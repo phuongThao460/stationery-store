@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,500&display=swap');
+.container-1{
+  /* background-color: rgb(255, 211, 211); */
+  height: 55px;
+}
+.navbar-1{
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+}
+.navbar-1 .header-1{
+  display: flex;
+  justify-content: flex-start;
+  width: fill-available;
+  width: -webkit-fill-available;
+}
+.navbar-1 form input[type="search"]{
+  width: 250px;
+  height: 34px;
+  border: 1px solid #ccc;
+  left: 82px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  outline: none;
+  position: relative;
+}
+.navbar-1 form input[type="search"]:focus{
+  border: 2px solid #555;
+}
+#input-img{
+  position: absolute;
+  width: 25px;
+  left: 297px;
+  top: 18px;
+  cursor: pointer;
+}
+.user-account, .cart{
+  display: flex;
+  justify-content: end;
+  margin-top: 14px;
+  width: 26px;
+  height: 30px;
+  margin-right: 36px;
+}
+.cart-bag{
+  width: 26px;
+  height: 30px;
+  position: absolute;
+}
+.num-item{
+  background-color: #FF975C;
+  height: 23px;
+  position: relative;
+  width: 23px;
+  border-radius: 50%;
+  left: 11px;
+  display: flex;
+  justify-content: center;
+}
+.text-num{
+  width: fit-content;
+  color: #fff;
+}
+.navbar{
+  text-align: center;
+  height: 50px;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-around;
+}
+.sub-nav{
+  padding-top: 13px;
+  width: 174px;
+}
+.sub-nav:hover{
+  background-color: turquoise;
+  border-bottom: violet;
+}
+.link-page{
+  text-decoration: none;
+  font-family: 'Grandstander', cursive;
+  color: #000;
+  font-size: 20px;
+  margin-top: 15px;
+}
+.banner-pic{
+  width: 1365px;
+  height: 387px;
+}
+.card .card-text{
+  background-color: blue;
+  width: 100px;
+  position: absolute;
+  z-index: 1;
+  transform: translateY(250%);
+  transition: transform 1.5s ease;
+}
+.card:hover .card-text{
+	transform: translateY(0);
+}
