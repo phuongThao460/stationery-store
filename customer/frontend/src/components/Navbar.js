@@ -65,6 +65,34 @@ function Navbar(props) {
           className="banner-pic"
         />
       </div>
+      <div className="sub-menu">
+        <div className="card-content-1" style={{background: `url('./images/notebook.jpg')`, backgroundSize: "cover"}}>
+          <div className="card-title">NoteBook</div>
+          <div className="card-text">how do you do</div>
+        </div>
+        <div style={{ flexDirection: "column" }}>
+          <div className="card-content-2" style={{background: `url('./images/pen.jpg')`, backgroundSize: "cover"}}>
+            <div className="card-title">Pen</div>
+            <div className="card-text"></div>
+          </div>
+          <div className="card-content-2" style={{background: `url('./images/giftwrap.jpg')`, backgroundSize: "cover", marginTop: "9px" }}>
+            <div className="card-title">Gift</div>
+            <div className="card-text"></div>
+          </div>
+        </div>
+
+        <div style={{ flexDirection: "column" }}>
+          <div className="card-content-3" style={{background: `url('./images/a.png')`, backgroundSize: "cover"}}>
+            <div className="card-title">Sketchbook</div>
+            <div className="card-text"></div>
+          </div>
+          <div className="card-content-3" style={{background: `url('./images/aaaaaaa.jpg')`, backgroundSize: "cover", marginTop: "9px" }}>
+            <div className="card-title">Calendar</div>
+            <div className="card-text"></div>
+          </div>
+        </div>
+      </div>
+      <div className="padding-space" style={{ height: "500px" }}></div>
     </div>
   );
 }

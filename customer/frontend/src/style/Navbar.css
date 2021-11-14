@@ -87,10 +87,31 @@
   margin-top: 15px;
 }
 .banner-pic{
-  width: 1365px;
+  width: 1349px;
   height: 387px;
 }
-.card .card-text{
+.sub-menu{
+  display: flex;
+  justify-content: center;
+}
+.card-content-1{
+  width: 275px;
+  height: 351px;
+  margin-left: 12px;
+}
+.card-content-2{
+  width: 338px;
+  height: 171px;
+  margin-left: 12px;
+}
+.card-content-3{
+  width: 395px;
+  height: 171px;
+  background-color: rgb(73, 73, 73);
+  margin-left: 12px;
+}
+
+.card-text{
   background-color: blue;
   width: 100px;
   position: absolute;
@@ -98,6 +119,6 @@
   transform: translateY(250%);
   transition: transform 1.5s ease;
 }
-.card:hover .card-text{
+.card-content-1:hover .card-text{
 	transform: translateY(0);
 }
