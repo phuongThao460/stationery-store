@@ -2,7 +2,7 @@ import React from "react";
 import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
-
+import NavbarData from "../data/NavbarData";
 function Navbar(props) {
   const { countCartItem } = props;
   return (
@@ -27,36 +27,15 @@ function Navbar(props) {
         </div>
       </div>
       <nav className="navbar">
-        <div className="sub-nav">
-          <a href="/#" className="link-page">
-            Home
-          </a>
-        </div>
-        <div className="sub-nav">
-          <a href="/#" className="link-page">
-            Office & School
-          </a>
-        </div>
-        <div className="sub-nav">
-          <a href="/#" className="link-page">
-            Design & Fun
-          </a>
-        </div>
-        <div className="sub-nav">
-          <a href="/#" className="link-page">
-            Accessories
-          </a>
-        </div>
-        <div className="sub-nav">
-          <a href="/#" className="link-page">
-            Souvenir
-          </a>
-        </div>
-        <div className="sub-nav">
-          <a href="/#" className="link-page">
-            About
-          </a>
-        </div>
+        {NavbarData.map((item, index) => {
+          return (
+            <div key={index} className="sub-nav">
+              <a href={item.path} className="link-page">
+                {item.title}
+              </a>
+            </div>
+          );
+        })}
       </nav>
       <div className="banner">
         <img
@@ -66,29 +45,82 @@ function Navbar(props) {
         />
       </div>
       <div className="sub-menu">
-        <div className="card-content-1" style={{background: `url('./images/notebook.jpg')`, backgroundSize: "cover"}}>
-          <div className="card-title">NoteBook</div>
-          <div className="card-text">how do you do</div>
+        <div
+          className="card-content-1"
+          style={{
+            background: `url('./images/notebook.jpg')`,
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="card-cover">
+            <div className="card-title">NoteBook</div>
+            <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
+"Vậy thì ... Cố hương của mình là..."
+Mình nhớ ra rồi, nơi đó là....</div>
+          </div>
         </div>
         <div style={{ flexDirection: "column" }}>
-          <div className="card-content-2" style={{background: `url('./images/pen.jpg')`, backgroundSize: "cover"}}>
-            <div className="card-title">Pen</div>
-            <div className="card-text"></div>
+          <div
+            className="card-content-2"
+            style={{
+              background: `url('./images/pen.jpg')`,
+              backgroundSize: "cover",
+            }}
+          >
+            <div className="card-cover" style={{top: "72%"}}>
+              <div className="card-title">Pen</div>
+              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
+"Vậy thì ... Cố hương của mình là..."
+Mình nhớ ra rồi, nơi đó là....</div>
+            </div>
           </div>
-          <div className="card-content-2" style={{background: `url('./images/giftwrap.jpg')`, backgroundSize: "cover", marginTop: "9px" }}>
-            <div className="card-title">Gift</div>
-            <div className="card-text"></div>
+
+          <div
+            className="card-content-2"
+            style={{
+              background: `url('./images/giftwrap.jpg')`,
+              backgroundSize: "cover",
+              marginTop: "9px",
+            }}
+          >
+            <div className="card-cover" style={{top: "72%"}}>
+              <div className="card-title">Gift</div>
+              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
+"Vậy thì ... Cố hương của mình là..."
+Mình nhớ ra rồi, nơi đó là....</div>
+            </div>
           </div>
         </div>
 
         <div style={{ flexDirection: "column" }}>
-          <div className="card-content-3" style={{background: `url('./images/a.png')`, backgroundSize: "cover"}}>
-            <div className="card-title">Sketchbook</div>
-            <div className="card-text"></div>
+          <div
+            className="card-content-3"
+            style={{
+              background: `url('./images/a.png')`,
+              backgroundSize: "cover",
+            }}
+          >
+            <div className="card-cover" style={{top: "72%"}}>
+              <div className="card-title">Sketchbook</div>
+              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
+"Vậy thì ... Cố hương của mình là..."
+Mình nhớ ra rồi, nơi đó là....</div>
+            </div>
           </div>
-          <div className="card-content-3" style={{background: `url('./images/aaaaaaa.jpg')`, backgroundSize: "cover", marginTop: "9px" }}>
-            <div className="card-title">Calendar</div>
-            <div className="card-text"></div>
+          <div
+            className="card-content-3"
+            style={{
+              background: `url('./images/aaaaaaa.jpg')`,
+              backgroundSize: "cover",
+              marginTop: "9px",
+            }}
+          >
+            <div className="card-cover" style={{top: "72%"}}>
+              <div className="card-title">Calendar</div>
+              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
+"Vậy thì ... Cố hương của mình là..."
+Mình nhớ ra rồi, nơi đó là....</div>
+            </div>
           </div>
         </div>
       </div>

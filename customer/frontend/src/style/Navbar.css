@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,500&display=swap');
+:root{
+  --clr-accent-400: hsl(142 90% 61%);
+}
 .container-1{
   /* background-color: rgb(255, 211, 211); */
   height: 55px;
@@ -94,31 +97,81 @@
   display: flex;
   justify-content: center;
 }
+.card-title{
+  font-weight: 500;
+  font-size: 35px;
+  font-family: 'Grandstander', cursive;
+  padding-left: 29px;
+  padding-top: 11px;
+}
+.card-text{
+  color: #fff;
+  font-size: 300;
+  padding: 8px;
+}
 .card-content-1{
   width: 275px;
   height: 351px;
   margin-left: 12px;
+  position: relative;
+  overflow: hidden;
 }
 .card-content-2{
+  position: relative;
+  overflow: hidden;
   width: 338px;
   height: 171px;
   margin-left: 12px;
 }
 .card-content-3{
+  position: relative;
+  overflow: hidden;
   width: 395px;
   height: 171px;
-  background-color: rgb(73, 73, 73);
   margin-left: 12px;
 }
-
-.card-text{
-  background-color: blue;
-  width: 100px;
+.card-cover{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 86%;
+}
+.card-content-1 .card-title,
+.card-content-2 .card-title,
+.card-content-3 .card-title{
+  position: relative;
+  width: max-content;
+  color: white;
+}
+.card-title::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding-left: 29px;
+  background: var(--clr-accent-400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
+}
+.card-content-1:hover .card-title::after,
+.card-content-2:hover .card-title::after,
+.card-content-3:hover .card-title::after{
+  transform: scaleX(1);
+}
+.card-cover{
+  width: 100%;
+  
   position: absolute;
   z-index: 1;
-  transform: translateY(250%);
-  transition: transform 1.5s ease;
+  transform: translateY(0);
+  transition: transform 700ms ease;
+  background-color: rgb(0, 0, 0, 0.45);
 }
-.card-content-1:hover .card-text{
-	transform: translateY(0);
+.card-content-1:hover .card-cover,
+.card-content-2:hover .card-cover,
+.card-content-3:hover .card-cover{
+	transform: translateY(-62%);
 }
