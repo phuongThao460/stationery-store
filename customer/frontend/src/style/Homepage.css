@@ -63,7 +63,7 @@
   display: contents;
 }
 .rec.rec-carousel{
-  height: 463px;
+  height: 463px !important;
 }
 /* square buttons */
 .rec.rec-arrow {
