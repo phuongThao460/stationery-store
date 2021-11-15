@@ -1,0 +1,85 @@
+
+.container {
+  height: 600px;
+  background-color: violet;
+  margin-top: 60px;
+}
+.header {
+  margin: auto;
+  height: 80px;
+  width: 916px;
+  background-color: rgb(255, 255, 158);
+  flex-direction: none;
+}
+.card-container{
+  width: 1215px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card {
+  margin: auto;
+  margin-top: 26px;
+  width: 245.750px;
+  height: 402px;
+  border-radius: 2%;
+  background-color: turquoise;
+  transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+}
+.card:hover{
+  background-color: tomato;
+  transform: scale(1.10, 1.10);
+}
+.card-img{
+  width: 208px !important;
+  height: 240px !important;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+.card-body{
+  margin-right: auto;
+  margin-left: auto;
+  
+}
+.body-title{
+  font-weight: 300;
+}
+.body-price{
+  font-weight: 400;
+}
+.body-title, .body-price{
+  padding-left: 6px;
+}
+.rec.rec-carousel-item{
+  width: 273px;
+}
+.rec.rec-pagination{
+  display: none;
+}
+.rec.rec-arrow{
+  border-radius: 10%;
+}
+.rec.rec-carousel-item .rec.rec-item-wrapper{
+  display: contents;
+}
+.rec.rec-carousel{
+  height: 463px;
+}
+/* square buttons */
+.rec.rec-arrow {
+  box-shadow: none;
+}
+/* round buttons on hover */
+.rec.rec-arrow:hover {
+  border-radius: 10%;
+}
+/* hide disabled buttons */
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+/* disable default outline on focused items */
+/* add custom outline on focused items */
+.rec-carousel-item:focus {
+  outline: none;
+  box-shadow: inset 0 0 1px 1px lightgrey;
+}

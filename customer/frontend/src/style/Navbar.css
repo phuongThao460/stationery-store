@@ -2,10 +2,6 @@
 :root{
   --clr-accent-400: hsl(142 90% 61%);
 }
-.container-1{
-  /* background-color: rgb(255, 211, 211); */
-  height: 55px;
-}
 .navbar-1{
   display: flex;
   justify-content: space-between;
@@ -97,6 +93,9 @@
   display: flex;
   justify-content: center;
 }
+.cover-menu{
+  flex-direction: column;
+}
 .card-title{
   font-weight: 500;
   font-size: 35px;
@@ -112,9 +111,9 @@
 .card-content-1{
   width: 275px;
   height: 351px;
-  margin-left: 12px;
   position: relative;
   overflow: hidden;
+  background-size: cover;
 }
 .card-content-2{
   position: relative;
@@ -122,6 +121,7 @@
   width: 338px;
   height: 171px;
   margin-left: 12px;
+  background-size: cover;
 }
 .card-content-3{
   position: relative;
@@ -129,6 +129,7 @@
   width: 395px;
   height: 171px;
   margin-left: 12px;
+  background-size: cover;
 }
 .card-cover{
   position: absolute;

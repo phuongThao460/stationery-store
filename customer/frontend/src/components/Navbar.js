@@ -3,8 +3,14 @@ import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
+import SubNav from "../data/SubNavbar";
+import { Link } from "react-router-dom";
+import ListItem from "./ListItem";
 function Navbar(props) {
   const { countCartItem } = props;
+  const submit = (title) => {
+    window.localStorage.setItem("itemTitle", title);
+  };
   return (
     <div className="container-1">
       <div className="navbar-1">
@@ -45,86 +51,76 @@ function Navbar(props) {
         />
       </div>
       <div className="sub-menu">
-        <div
-          className="card-content-1"
-          style={{
-            background: `url('./images/notebook.jpg')`,
-            backgroundSize: "cover",
-          }}
-        >
-          <div className="card-cover">
-            <div className="card-title">NoteBook</div>
-            <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
-"Vậy thì ... Cố hương của mình là..."
-Mình nhớ ra rồi, nơi đó là....</div>
-          </div>
+        <div className="cover-menu">
+          {SubNav.content1.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={item.cardContent}
+                style={{
+                  background: `url(${item.backgroundImg})`,
+                  backgroundSize: item.backgroundSize,
+                  marginTop: item.marginTop,
+                }}
+              >
+                <div className="card-cover" style={{ top: item.top }}>
+                  <div className="card-title">{item.title}</div>
+                  <div className="card-text">{item.text}</div>
+                  <button onClick={() => submit(item.title)}>
+                    <Link to={"/item/" + item.title}>See more</Link>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <div style={{ flexDirection: "column" }}>
-          <div
-            className="card-content-2"
-            style={{
-              background: `url('./images/pen.jpg')`,
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="card-cover" style={{top: "72%"}}>
-              <div className="card-title">Pen</div>
-              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
-"Vậy thì ... Cố hương của mình là..."
-Mình nhớ ra rồi, nơi đó là....</div>
-            </div>
-          </div>
-
-          <div
-            className="card-content-2"
-            style={{
-              background: `url('./images/giftwrap.jpg')`,
-              backgroundSize: "cover",
-              marginTop: "9px",
-            }}
-          >
-            <div className="card-cover" style={{top: "72%"}}>
-              <div className="card-title">Gift</div>
-              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
-"Vậy thì ... Cố hương của mình là..."
-Mình nhớ ra rồi, nơi đó là....</div>
-            </div>
-          </div>
+        <div className="cover-menu">
+          {SubNav.content2.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={item.cardContent}
+                style={{
+                  background: `url(${item.backgroundImg})`,
+                  backgroundSize: item.backgroundSize,
+                  marginTop: item.marginTop,
+                }}
+              >
+                <div className="card-cover" style={{ top: item.top }}>
+                  <div className="card-title">{item.title}</div>
+                  <div className="card-text">{item.text}</div>
+                  <button onClick={() => submit(item.title)}>
+                    <Link to={"/item/" + item.title}>See more</Link>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-
-        <div style={{ flexDirection: "column" }}>
-          <div
-            className="card-content-3"
-            style={{
-              background: `url('./images/a.png')`,
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="card-cover" style={{top: "72%"}}>
-              <div className="card-title">Sketchbook</div>
-              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
-"Vậy thì ... Cố hương của mình là..."
-Mình nhớ ra rồi, nơi đó là....</div>
-            </div>
-          </div>
-          <div
-            className="card-content-3"
-            style={{
-              background: `url('./images/aaaaaaa.jpg')`,
-              backgroundSize: "cover",
-              marginTop: "9px",
-            }}
-          >
-            <div className="card-cover" style={{top: "72%"}}>
-              <div className="card-title">Calendar</div>
-              <div className="card-text">"Đối với mình mà nói, không có nơi nào trên thế giới này sống động hơn Bình An Kinh, đây là cố hương của mình nha~"
-"Vậy thì ... Cố hương của mình là..."
-Mình nhớ ra rồi, nơi đó là....</div>
-            </div>
-          </div>
+        <div className="cover-menu">
+          {SubNav.content3.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={item.cardContent}
+                style={{
+                  background: `url(${item.backgroundImg})`,
+                  backgroundSize: item.backgroundSize,
+                  marginTop: item.marginTop,
+                }}
+              >
+                <div className="card-cover" style={{ top: item.top }}>
+                  <div className="card-title">{item.title}</div>
+                  <div className="card-text">{item.text}</div>
+                  <button onClick={() => submit(item.title)}>
+                    <Link to={"/item/" + item.title}>See more</Link>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div className="padding-space" style={{ height: "500px" }}></div>
     </div>
   );
 }
