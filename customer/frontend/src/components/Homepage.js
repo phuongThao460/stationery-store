@@ -149,7 +149,7 @@ class Homepage extends React.Component {
             <div className="card">
               <div className="card-body">
                 <div className="body-title">
-                  See more
+                  <a href="/#">See more</a>
                 </div>
               </div>
             
