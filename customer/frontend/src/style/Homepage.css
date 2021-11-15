@@ -1,6 +1,6 @@
 .container {
   height: 600px;
-  background-color: violet;
+  /* background-color: violet; */
   margin-top: 60px;
 }
 .header {
@@ -11,7 +11,7 @@
   flex-direction: none;
 }
 .card-container {
-  width: 1191px;
+  width: 1229px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -21,12 +21,13 @@
   width: 204px;
   height: 289px;
   border-radius: 2%;
-  background-color: turquoise;
+  background-color: #fafafa;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
 }
 .card:hover {
-  background-color: tomato;
-  transform: scale(1.0, 1.1);
+  box-shadow: -0.05px -0.05px 22px 5px #E4DDDD;
+  transform: scale(1, 1.1);
+  box-shadow: 0 0 0.2;
 }
 .card-img img {
   border-radius: 2% 2% 0 0;
@@ -34,12 +35,24 @@
 .card-body {
   margin-right: auto;
   margin-left: auto;
+  margin-top: 7px;
 }
 .body-title {
   font-weight: 300;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  word-break: normal;
+  overflow: hidden;
 }
 .body-price {
   font-weight: 400;
+  margin-top: 14px;
+  color: #D16325;
+  font-size: 22px;
+  text-align: center;
 }
 .body-title,
 .body-price {
@@ -53,6 +66,7 @@
 }
 .rec.rec-arrow {
   border-radius: 10%;
+  margin: 0 10px;
 }
 .rec.rec-carousel-item .rec.rec-item-wrapper {
   display: contents;
@@ -80,10 +94,6 @@
 }
 .rec.rec-slider-container {
   margin: 0;
-}
-.rec.rec-arrow.rec.rec-arrow-right {
-  left: 1215px;
-  bottom: 31px;
 }
 .rec.rec-swipable {
   padding-left: 32px;

@@ -17,13 +17,13 @@ class Homepage extends React.Component {
     return (
       <div className="container">
         <div className="card-container">
-          <Carousel breakPoints={this.state.breakPoints}>
+          <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             <div className="card">
               <div className="card-img">
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -31,7 +31,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -39,7 +39,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -47,7 +47,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -55,7 +55,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -63,7 +63,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -71,7 +71,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -79,7 +79,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -87,7 +87,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -95,7 +95,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -103,7 +103,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -111,7 +111,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">999.999 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -119,7 +119,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -127,7 +127,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
@@ -135,7 +135,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "204px", height: "205px" }}
+                  style={{ width: "204px", height: "185px" }}
                 />
               </div>
               <div className="card-body">
@@ -143,7 +143,7 @@ class Homepage extends React.Component {
                   Brustro Professional Pigment Based Fineliner - Set of 6
                   (Black)
                 </div>
-                <div className="body-price">this is a price of product</div>
+                <div className="body-price">120.000 Đ</div>
               </div>
             </div>
             <div className="card">
