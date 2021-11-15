@@ -8,8 +8,8 @@ class Homepage extends React.Component {
   state = {
     breakPoints: [
       { width: 1, itemsToShow: 1 },
-      { width: 200, itemsToShow: 2 },
-      { width: 768, itemsToShow: 4 },
+      { width: 204, itemsToShow: 8 },
+      { width: 768, itemsToShow: 5 },
       { width: 1200, itemsToShow: 6 },
     ],
   };
@@ -23,7 +23,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -39,7 +39,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -55,7 +55,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -71,7 +71,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -87,7 +87,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -103,7 +103,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -119,7 +119,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
@@ -135,7 +135,7 @@ class Homepage extends React.Component {
                 <img
                   src="./images/BUT- BI.jpg"
                   alt=""
-                  style={{ width: "203px", height: "224px" }}
+                  style={{ width: "204px", height: "205px" }}
                 />
               </div>
               <div className="card-body">
