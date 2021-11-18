@@ -3,14 +3,10 @@ import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
-import SubNav from "../data/SubNavbar";
-import { Link } from "react-router-dom";
-import ListItem from "./ListItem";
+
 function Navbar(props) {
   const { countCartItem } = props;
-  const submit = (title) => {
-    window.localStorage.setItem("itemTitle", title);
-  };
+
   return (
     <div className="container-1">
       <div className="navbar-1">
@@ -23,8 +19,14 @@ function Navbar(props) {
           />
           <BsSearch id="input-img" />
         </form>
+        <div className="user-account" style={{height:"38px", width:"111px", marginRight:"9px"}}>
+          <BiUser className="user-icon" />
+          <ul className="table-content">
+            <li className="list">Login</li>
+            <li className="list" style={{marginTop: "8px", backgroundColor: "#efefef", color: "black"}}>Signup</li>
+          </ul>
+        </div>
 
-        <BiUser className="user-account" />
         <div className="cart">
           <BsHandbag className="cart-bag" />
           <div className="num-item">
@@ -49,77 +51,6 @@ function Navbar(props) {
           alt="sale-off"
           className="banner-pic"
         />
-      </div>
-      <div className="sub-menu">
-        <div className="cover-menu">
-          {SubNav.content1.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={item.cardContent}
-                style={{
-                  background: `url(${item.backgroundImg})`,
-                  backgroundSize: item.backgroundSize,
-                  marginTop: item.marginTop,
-                }}
-              >
-                <div className="card-cover" style={{ top: item.top }}>
-                  <div className="card-title">{item.title}</div>
-                  <div className="card-text">{item.text}</div>
-                  <button onClick={() => submit(item.title)}>
-                    <Link to={"/item/" + item.title}>See more</Link>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="cover-menu">
-          {SubNav.content2.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={item.cardContent}
-                style={{
-                  background: `url(${item.backgroundImg})`,
-                  backgroundSize: item.backgroundSize,
-                  marginTop: item.marginTop,
-                }}
-              >
-                <div className="card-cover" style={{ top: item.top }}>
-                  <div className="card-title">{item.title}</div>
-                  <div className="card-text">{item.text}</div>
-                  <button onClick={() => submit(item.title)}>
-                    <Link to={"/item/" + item.title}>See more</Link>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="cover-menu">
-          {SubNav.content3.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={item.cardContent}
-                style={{
-                  background: `url(${item.backgroundImg})`,
-                  backgroundSize: item.backgroundSize,
-                  marginTop: item.marginTop,
-                }}
-              >
-                <div className="card-cover" style={{ top: item.top }}>
-                  <div className="card-title">{item.title}</div>
-                  <div className="card-text">{item.text}</div>
-                  <button onClick={() => submit(item.title)}>
-                    <Link to={"/item/" + item.title}>See more</Link>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </div>
   );

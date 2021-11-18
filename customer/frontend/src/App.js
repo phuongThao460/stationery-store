@@ -21,10 +21,10 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Navbar countCartItem={cartItem.length} /> */}
+        <Navbar countCartItem={cartItem.length} />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/item/:title" element={<ListItem/>} />
+          <Route path="/item/:title" element={<ListItem />} />
         </Routes>
       </BrowserRouter>
     </>

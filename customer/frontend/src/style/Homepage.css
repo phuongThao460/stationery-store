@@ -1,7 +1,122 @@
+a {
+  text-decoration: none;
+  color: #a81f1f;
+}
+.sub-nav {
+  width: 174px;
+  position: relative;
+  display: flex;
+}
+.sub-nav:hover .link-page:hover {
+  background-color: #a81f1f;
+  color: white;
+}
+.link-page {
+  text-decoration: none;
+  font-family: "Grandstander", cursive;
+  color: rgb(209, 99, 37);
+  font-size: 20px;
+  padding-top: 15px;
+  width: 100%;
+  height: 69%;
+  position: absolute;
+}
+.link-page:hover {
+  color: white;
+}
+.banner-pic {
+  width: 1349px;
+  height: 387px;
+}
+.sub-menu {
+  display: flex;
+  justify-content: center;
+}
+.cover-menu {
+  flex-direction: column;
+}
+.card-title {
+  font-weight: 500;
+  font-size: 35px;
+  font-family: "Grandstander", cursive;
+  padding-left: 29px;
+  padding-top: 11px;
+}
+.card-text {
+  color: #fff;
+  font-size: 300;
+  padding: 8px;
+}
+.card-content-1 {
+  width: 275px;
+  height: 351px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+}
+.card-content-2 {
+  position: relative;
+  overflow: hidden;
+  width: 338px;
+  height: 171px;
+  margin-left: 12px;
+  background-size: cover;
+}
+.card-content-3 {
+  position: relative;
+  overflow: hidden;
+  width: 395px;
+  height: 171px;
+  margin-left: 12px;
+  background-size: cover;
+}
+.card-cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 86%;
+}
+.card-content-1 .card-title,
+.card-content-2 .card-title,
+.card-content-3 .card-title {
+  position: relative;
+  width: max-content;
+  color: white;
+}
+.card-title::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding-left: 29px;
+  background: var(--clr-accent-400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
+}
+.card-content-1:hover .card-title::after,
+.card-content-2:hover .card-title::after,
+.card-content-3:hover .card-title::after {
+  transform: scaleX(1);
+}
+.card-cover {
+  width: 100%;
+
+  position: absolute;
+  z-index: 1;
+  transform: translateY(0);
+  transition: transform 700ms ease;
+  background-color: rgb(0, 0, 0, 0.45);
+}
+.card-content-1:hover .card-cover,
+.card-content-2:hover .card-cover,
+.card-content-3:hover .card-cover {
+  transform: translateY(-62%);
+}
 .container {
-  height: 600px;
-  /* background-color: violet; */
-  margin-top: 60px;
+  height: 100%;
 }
 .header {
   margin: auto;
@@ -25,7 +140,7 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
 }
 .card:hover {
-  box-shadow: -0.05px -0.05px 22px 5px #E4DDDD;
+  box-shadow: -0.05px -0.05px 22px 5px #e4dddd;
   transform: scale(1, 1.1);
   box-shadow: 0 0 0.2;
 }
@@ -50,7 +165,7 @@
 .body-price {
   font-weight: 400;
   margin-top: 14px;
-  color: #D16325;
+  color: #a81f1f;
   font-size: 22px;
   text-align: center;
 }
@@ -59,7 +174,7 @@
   padding-left: 6px;
 }
 .rec.rec-carousel-item {
-  width: 211px;
+  width: 217px;
 }
 .rec.rec-pagination {
   display: none;
@@ -72,7 +187,7 @@
   display: contents;
 }
 .rec.rec-carousel {
-  height: 463px !important;
+  height: 389px !important;
 }
 /* square buttons */
 .rec.rec-arrow {
@@ -95,6 +210,23 @@
 .rec.rec-slider-container {
   margin: 0;
 }
-.rec.rec-swipable {
-  padding-left: 32px;
+h1 {
+  text-align: center;
+  background-color: antiquewhite;
+  margin: 60px 132px 0 124px;
+  height: 47px;
+  border-radius: 10px;
+  padding-top: 23px;
+  color: rgb(209, 99, 37)
+}
+.btn-submit {
+  padding: 10px;
+  margin-left: 7px;
+  width: 116px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  border: none;
+  font-family: "Grandstander", cursive;
+  background-color: wheat;
 }

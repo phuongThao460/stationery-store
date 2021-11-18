@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,500&display=swap');
-:root{
+@import url("https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,500&display=swap");
+:root {
   --clr-accent-400: hsl(142 90% 61%);
 }
-.navbar-1{
+.navbar-1 {
   display: flex;
   justify-content: space-between;
   height: 55px;
 }
-.navbar-1 .header-1{
+.navbar-1 .header-1 {
   display: flex;
   justify-content: flex-start;
   width: fill-available;
   width: -webkit-fill-available;
 }
-.navbar-1 form input[type="search"]{
+.navbar-1 form input[type="search"] {
   width: 250px;
   height: 34px;
   border: 1px solid #ccc;
@@ -26,31 +26,33 @@
   outline: none;
   position: relative;
 }
-.navbar-1 form input[type="search"]:focus{
+.navbar-1 form input[type="search"]:focus {
   border: 2px solid #555;
 }
-#input-img{
+#input-img {
   position: absolute;
   width: 25px;
   left: 297px;
   top: 18px;
   cursor: pointer;
 }
-.user-account, .cart{
+.user-account,
+.cart {
   display: flex;
   justify-content: end;
   margin-top: 14px;
-  width: 26px;
+  width: 3%;
   height: 30px;
   margin-right: 36px;
+  position: relative;
 }
-.cart-bag{
-  width: 26px;
-  height: 30px;
+.cart-bag {
+  width: 100%;
+  height: 100%;
   position: absolute;
 }
-.num-item{
-  background-color: #FF975C;
+.num-item {
+  background-color: #ff975c;
   height: 23px;
   position: relative;
   width: 23px;
@@ -59,120 +61,60 @@
   display: flex;
   justify-content: center;
 }
-.text-num{
+.text-num {
   width: fit-content;
   color: #fff;
+  padding-top: 5px;
 }
-.navbar{
+.navbar {
   text-align: center;
   height: 50px;
-  background-color: whitesmoke;
+  background-color: antiquewhite;
   display: flex;
   justify-content: space-around;
 }
-.sub-nav{
-  padding-top: 13px;
-  width: 174px;
-}
-.sub-nav:hover{
-  background-color: turquoise;
-  border-bottom: violet;
-}
-.link-page{
-  text-decoration: none;
-  font-family: 'Grandstander', cursive;
-  color: #000;
-  font-size: 20px;
-  margin-top: 15px;
-}
-.banner-pic{
-  width: 1349px;
-  height: 387px;
-}
-.sub-menu{
-  display: flex;
-  justify-content: center;
-}
-.cover-menu{
-  flex-direction: column;
-}
-.card-title{
-  font-weight: 500;
-  font-size: 35px;
-  font-family: 'Grandstander', cursive;
-  padding-left: 29px;
-  padding-top: 11px;
-}
-.card-text{
-  color: #fff;
-  font-size: 300;
-  padding: 8px;
-}
-.card-content-1{
-  width: 275px;
-  height: 351px;
+.user-account {
   position: relative;
-  overflow: hidden;
-  background-size: cover;
 }
-.card-content-2{
-  position: relative;
-  overflow: hidden;
-  width: 338px;
-  height: 171px;
-  margin-left: 12px;
-  background-size: cover;
-}
-.card-content-3{
-  position: relative;
-  overflow: hidden;
-  width: 395px;
-  height: 171px;
-  margin-left: 12px;
-  background-size: cover;
-}
-.card-cover{
-  position: absolute;
-  height: 100%;
+.user-icon {
   width: 100%;
-  top: 86%;
+  height: 88%;
 }
-.card-content-1 .card-title,
-.card-content-2 .card-title,
-.card-content-3 .card-title{
-  position: relative;
-  width: max-content;
+.table-content {
+  position: absolute;
+  top: 31px;
+  right: -58px;
+  min-width: 186px;
+  border: 1px solid #efefef;
+  background: #fff;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 18%);
+  z-index: 999;
+  border-radius: 3px;
+  list-style: none;
+  display: none;
+}
+.table-content li {
+  background-color: #ff975c;
+  height: 27px;
+  border-radius: 5px;
+  text-align: center;
   color: white;
+  padding-top: 13px;
 }
-.card-title::after {
+.user-account:hover .table-content {
+  display: block;
+}
+.user-account .table-content::before {
+  position: absolute;
+  pointer-events: none;
   content: "";
-  position: absolute;
-  height: 4px;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  padding-left: 29px;
-  background: var(--clr-accent-400);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 500ms ease;
-}
-.card-content-1:hover .card-title::after,
-.card-content-2:hover .card-title::after,
-.card-content-3:hover .card-title::after{
-  transform: scaleX(1);
-}
-.card-cover{
-  width: 100%;
-  
-  position: absolute;
-  z-index: 1;
-  transform: translateY(0);
-  transition: transform 700ms ease;
-  background-color: rgb(0, 0, 0, 0.45);
-}
-.card-content-1:hover .card-cover,
-.card-content-2:hover .card-cover,
-.card-content-3:hover .card-cover{
-	transform: translateY(-62%);
+  border: 9px solid transparent;
+  border-bottom: 9px solid white;
+  bottom: 100%;
+  right: 95px;
+  height: 0;
+  width: 0;
 }
