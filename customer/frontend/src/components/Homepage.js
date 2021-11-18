@@ -21,6 +21,13 @@ class Homepage extends React.Component {
   render() {
     return (
       <div className="container">
+        <div className="banner">
+          <img
+            src="./images/banner-1.jpg"
+            alt="sale-off"
+            className="banner-pic"
+          />
+        </div>
         <div className="sub-menu">
           <div className="cover-menu">
             {SubNav.content1.map((item, index) => {
@@ -37,8 +44,16 @@ class Homepage extends React.Component {
                   <div className="card-cover" style={{ top: item.top }}>
                     <div className="card-title">{item.title}</div>
                     <div className="card-text">{item.text}</div>
-                    <button onClick={() => this.submit(item.title)} className="btn-submit">
-                      <Link to={"/item/" + item.title} style={{color: "#D16325"}}>See more</Link>
+                    <button
+                      onClick={() => this.submit(item.title)}
+                      className="btn-submit"
+                    >
+                      <Link
+                        to={"/item/" + item.title}
+                        style={{ color: "#D16325" }}
+                      >
+                        See more
+                      </Link>
                     </button>
                   </div>
                 </div>
@@ -60,8 +75,16 @@ class Homepage extends React.Component {
                   <div className="card-cover" style={{ top: item.top }}>
                     <div className="card-title">{item.title}</div>
                     <div className="card-text">{item.text}</div>
-                    <button onClick={() => this.submit(item.title)} className="btn-submit">
-                      <Link to={"/item/" + item.title} style={{color: "#D16325"}}>See more</Link>
+                    <button
+                      onClick={() => this.submit(item.title)}
+                      className="btn-submit"
+                    >
+                      <Link
+                        to={"/item/" + item.title}
+                        style={{ color: "#D16325" }}
+                      >
+                        See more
+                      </Link>
                     </button>
                   </div>
                 </div>
@@ -83,8 +106,16 @@ class Homepage extends React.Component {
                   <div className="card-cover" style={{ top: item.top }}>
                     <div className="card-title">{item.title}</div>
                     <div className="card-text">{item.text}</div>
-                    <button onClick={() => this.submit(item.title)} className="btn-submit">
-                      <Link to={"/item/" + item.title} style={{color: "#D16325"}}>See more</Link>
+                    <button
+                      onClick={() => this.submit(item.title)}
+                      className="btn-submit"
+                    >
+                      <Link
+                        to={"/item/" + item.title}
+                        style={{ color: "#D16325" }}
+                      >
+                        See more
+                      </Link>
                     </button>
                   </div>
                 </div>
@@ -232,7 +263,7 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <h1 style={{marginTop: "0px"}}>Sale 50% Off For All Products</h1>
+        <h1 style={{ marginTop: "0px" }}>Sale 50% Off For All Products</h1>
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             <div className="card">
@@ -372,9 +403,10 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <div className="footer" style={{height: "50vh", backgroundColor: "antiquewhite"}}>
-
-        </div>
+        <div
+          className="footer"
+          style={{ height: "50vh", backgroundColor: "antiquewhite" }}
+        ></div>
       </div>
     );
   }

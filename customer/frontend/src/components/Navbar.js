@@ -26,11 +26,13 @@ function Navbar(props) {
             <li className="list">
               <Link
                   to="/Login"
+                  style={{color: "white"}}
                 > Login
                 </Link></li>
-            <li className="list" style={{marginTop: "8px", backgroundColor: "#efefef", color: "black"}}>
+            <li className="list" style={{marginTop: "8px", backgroundColor: "#efefef"}}>
             <Link
                   to="/Signup"
+                  style={{ color: "black"}}
                 > Signup
                 </Link>
             </li>
@@ -55,13 +57,7 @@ function Navbar(props) {
           );
         })}
       </nav>
-      <div className="banner">
-        <img
-          src="./images/banner-1.jpg"
-          alt="sale-off"
-          className="banner-pic"
-        />
-      </div>
+      
     </div>
   );
 }

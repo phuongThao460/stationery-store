@@ -27,8 +27,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />
-          <Route path="/Login" exact component={LoginForm}/>
-          <Route path="/Signup" component={SignupForm} />
+          <Route path="/Login" element={<LoginForm/>}/>
+          <Route path="/Signup" element={<SignupForm/>} />
         </Routes>
       </BrowserRouter>
     </>
