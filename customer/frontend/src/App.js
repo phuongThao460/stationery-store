@@ -4,6 +4,8 @@ import "./App.css";
 
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,6 +27,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />
+          <Route path="/Login" exact component={LoginForm}/>
+          <Route path="/Signup" component={SignupForm} />
         </Routes>
       </BrowserRouter>
     </>

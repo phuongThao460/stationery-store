@@ -3,6 +3,7 @@ import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
+import { Link } from 'react-router-dom';
 
 function Navbar(props) {
   const { countCartItem } = props;
@@ -22,8 +23,17 @@ function Navbar(props) {
         <div className="user-account" style={{height:"38px", width:"111px", marginRight:"9px"}}>
           <BiUser className="user-icon" />
           <ul className="table-content">
-            <li className="list">Login</li>
-            <li className="list" style={{marginTop: "8px", backgroundColor: "#efefef", color: "black"}}>Signup</li>
+            <li className="list">
+              <Link
+                  to="/Login"
+                > Login
+                </Link></li>
+            <li className="list" style={{marginTop: "8px", backgroundColor: "#efefef", color: "black"}}>
+            <Link
+                  to="/Signup"
+                > Signup
+                </Link>
+            </li>
           </ul>
         </div>
 
