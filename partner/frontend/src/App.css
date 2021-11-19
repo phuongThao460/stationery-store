@@ -1,38 +1,195 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+body{
+  background-color: #FBF6F0;
+  font-family: "Open Sans", sans-serif;
+}
+.side-menu.inactive{
+  width: 80px;
+}
+.side-menu{
+  position: fixed;
+  background-color: white;
+  width: 300px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  transition: width 500ms ease-in;
+}
+.side-menu .top-section .logo{
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  display: inline-block;
+}
+.side-menu .top-section{
+  position: relative;
+}
+.side-menu .top-section .logo img{
+  max-width: 100%;
+  max-height: 100%;
+}
+.side-menu .top-section .toggle-menu-btn{
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.side-menu.inactive .top-section .toggle-menu-btn{
+  right: -50px;
+}
+.side-menu .search-controller{
+  color: #ddd;
+  position: relative;
+}
+.side-menu .search-controller .search-btn{
+  width: 40px;
+  height: 35px;
+  position: absolute;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  color: rgb(51, 51, 51);
+}
+.side-menu .search-controller input[type=text]{
+  border: 0;
+  outline: none;
+  height: 35px;
+  background: #ddd;
+  border-radius: 5px;
+  display: block;
+  margin: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 40px;
+  color: #666;
+}
+.side-menu .main-menu .menu-item{
+  color: #333;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  font-weight: 600;
+}
+.side-menu .main-menu{
+  margin: 5px 0;
+}
+.side-menu .main-menu .menu-item .menu-icon{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.side-menu .main-menu .menu-item span{
+  position: absolute;
+  display: inline-block;
+  line-height: 40px;
+  opacity: 1;
+  transition:  opacity 500ms ease-in;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.side-menu .main-menu .menu-item.active{
+  background: rgb(224, 224, 224);
+  border-radius: 5px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.side-menu.inactive .main-menu .menu-item span{
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
-
-.App-link {
-  color: #61dafb;
+.side-menu .main-menu .sub-menu{
+  color: #333;
+  margin-left: 20px;
+  border-left: 1px solid #666;
+  box-sizing: border-box;
+  padding-left: 30px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms ease-in;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.side-menu .main-menu .sub-menu a{
+  display: block;
+  margin: 5px 0;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+  box-sizing: border-box;
+  padding: 5px;
+}
+.side-menu .main-menu .sub-menu a.active{
+  background: rgb(224, 224, 224);
+  border-radius: 5px;
+  
+}
+.side-menu .main-menu .sub-menu.active{
+  max-height: 200px;
+}
+.side-menu-footer{
+  width: 100%;
+  height: 100px;
+  background: burlywood;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+.side-menu-footer .avatar{
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: inline-block;
+}
+.side-menu-footer .avatar img{
+  max-width: 100%;
+}
+.side-menu-footer .user-info{
+  display: inline-block;
+  margin: 2px 10px;
+  color: #333;
+  position: absolute;
+  opacity: 1;
+  transition:  opacity 500ms ease-in;
+}
+.side-menu.inactive .side-menu-footer .user-info{
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.side-menu-footer .user-info h5{
+  font-size: 20px;
+}
+.side-menu-footer .user-info p{
+  font-size: 12px;
+}
+.divider{
+  width: 100%;
+  height: 1px;
+  border-radius: 1px;
+  background: #333;
+}
+.container{
+  margin-left: 300px;
+  transition: margin-left 500ms ease-in;
+  padding: 50px;
+  max-width: calc(100% - 300px);
+}
+.container.inactive{
+  margin-left: 80px;
 }
