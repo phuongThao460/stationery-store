@@ -2,6 +2,9 @@ a {
   text-decoration: none;
   color: #a81f1f;
 }
+.container{
+  position: relative;
+}
 .sub-nav {
   width: 174px;
   position: relative;
@@ -24,9 +27,16 @@ a {
 .link-page:hover {
   color: white;
 }
-.banner-pic {
-  width: 1349px;
+.banner{
+  width: 100%;
   height: 387px;
+  margin-bottom: 5px;
+  position: relative;
+}
+.banner-pic {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 .sub-menu {
   display: flex;

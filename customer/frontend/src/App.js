@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Link,

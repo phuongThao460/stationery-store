@@ -22,7 +22,7 @@ const SignupForm = () => {
   return (
     <div
       className="container"
-      style={{ backgroundImage: "url(/login-background.jpg)", display: "flex" }}
+      style={{ backgroundImage: `url('./images/Login-Form1.jpg')`, display: "flex" }}
     >
       <div className="app-wrapper">
         <div>
