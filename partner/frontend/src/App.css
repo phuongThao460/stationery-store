@@ -192,4 +192,5 @@ body{
 }
 .container.inactive{
   margin-left: 80px;
+  max-width: 94%;
 }

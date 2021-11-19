@@ -2,10 +2,7 @@ import "./App.css";
 import SideMenu from "./components/SideMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
-
-const Dashboard = () => {
-  return <h1>Dashboard</h1>;
-};
+import Dashboard from "./pages/Dashboard";
 const Content = () => {
   return <h1>Content</h1>;
 };

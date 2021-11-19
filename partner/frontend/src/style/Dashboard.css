@@ -1,0 +1,17 @@
+tr td{
+  /* width: 193px; */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  word-break: normal;
+  overflow: hidden;
+}
+.btn-edit, .btn-delete, .btn-view{
+  outline: none;
+  border: 0;
+  margin-right: 11px;
+  padding: 5px;
+  border-radius: 5px;
+}
