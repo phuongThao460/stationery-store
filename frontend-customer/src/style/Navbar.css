@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,500&display=swap");
+:root {
+  --clr-accent-400: hsl(142 90% 61%);
+}
+.navbar-1 {
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+}
+.navbar-1 .header-1 {
+  display: flex;
+  justify-content: flex-start;
+  width: fill-available;
+  width: -webkit-fill-available;
+}
+.navbar-1 form input[type="search"] {
+  width: 250px;
+  height: 34px;
+  border: 1px solid #ccc;
+  left: 82px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  outline: none;
+  position: relative;
+}
+.navbar-1 form input[type="search"]:focus {
+  border: 2px solid #555;
+}
+#input-img {
+  position: absolute;
+  width: 25px;
+  left: 297px;
+  top: 18px;
+  cursor: pointer;
+}
+.user-account,
+.cart {
+  display: flex;
+  justify-content: end;
+  margin-top: 14px;
+  width: 3%;
+  height: 30px;
+  margin-right: 36px;
+  position: relative;
+}
+.cart-bag {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.num-item {
+  background-color: #ff975c;
+  height: 23px;
+  position: relative;
+  width: 23px;
+  border-radius: 50%;
+  left: 11px;
+  display: flex;
+  justify-content: center;
+}
+.text-num {
+  width: fit-content;
+  color: #fff;
+  padding-top: 5px;
+}
+.navbar {
+  text-align: center;
+  height: 50px;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: space-around;
+}
+.user-account {
+  position: relative;
+}
+.user-icon {
+  width: 100%;
+  height: 88%;
+}
+.table-content {
+  position: absolute;
+  top: 31px;
+  right: -58px;
+  min-width: 186px;
+  border: 1px solid #efefef;
+  background: #fff;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 18%);
+  z-index: 999;
+  border-radius: 3px;
+  list-style: none;
+  display: none;
+}
+.table-content li {
+  background-color: #ff975c;
+  height: 27px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  padding-top: 13px;
+}
+.user-account:hover .table-content {
+  display: block;
+}
+.user-account .table-content::before {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+  border: 9px solid transparent;
+  border-bottom: 9px solid white;
+  bottom: 100%;
+  right: 95px;
+  height: 0;
+  width: 0;
+}
