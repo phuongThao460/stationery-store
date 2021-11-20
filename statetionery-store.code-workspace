@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "frontend-customer",
+			"path": "frontend-customer",
+		},
+		{
+			"name": "frontend-admin",
+			"path": "frontend-admin"
+		},
+		{
+			"name": "server",
+			"path": "server"
+		},
+		{
+			"name": "backend",
+			"path": "backend"
+		},
+		{
+			"name": "config",
+			"path": "config"
+		}
+	],
+	"settings": {}
+}

@@ -1,0 +1,6 @@
+in fronted file
+--- npm install --save react-metismenu
+--- npm install -g sass --save
+--- npm i react-perfect-scrollbar
+--- npm install react-perfect-scrollbar -S
+--- npm i react-addons-css-transition-group
