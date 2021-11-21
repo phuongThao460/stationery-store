@@ -12,7 +12,7 @@ export const Get_Mau_Sacs = async (req, res) => {
 
 export const Get_Mau_Sac_By_ID = async (req, res) => {
 	try {
-		const mau_sac_id = req.body.mau_sac_id
+		const mau_sac_id = req.query.mau_sac_id
 		const mau_sac = await MAU_SAC_Model.findById(mau_sac_id)
 		console.log('mau_sac', mau_sac)
 		res.status(200).json(mau_sac)

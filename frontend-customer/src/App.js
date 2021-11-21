@@ -22,7 +22,7 @@ function App() {
   //const { product } = data;
   return (
     <>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Navbar countCartItem={cartItem.length} />
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -30,8 +30,7 @@ function App() {
           <Route path="/Login" element={<LoginForm/>}/>
           <Route path="/Signup" element={<SignupForm/>} />
         </Routes>
-      </BrowserRouter> */}
-      <Color/>
+      </BrowserRouter>
     </>
   );
 }

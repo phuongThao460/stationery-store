@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
 import SideMenu from "./components/SideMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
+import Material from "./components/Material";
+import Color from "./components/Color";
+import { Modal } from "./components/Modal";
+import Product from "./pages/Product";
 const Content = () => {
   return <h1>Content</h1>;
 };
@@ -22,7 +27,7 @@ function App() {
   const [inactive, setInactive] = useState(false);
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <SideMenu
           onCollapse={(inactive) => {
             console.log(inactive);
@@ -39,7 +44,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Product/>
     </div>
   );
 }
