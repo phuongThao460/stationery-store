@@ -127,6 +127,10 @@ class Homepage extends React.Component {
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             <div className="card">
+              <Link
+                        to= "/Product"
+                        style={{ color: "#D16325" }}
+                      >
               <div className="card-img">
                 <img
                   src="./images/BUT- BI.jpg"
@@ -141,6 +145,7 @@ class Homepage extends React.Component {
                 </div>
                 <div className="body-price">120.000 Đ</div>
               </div>
+              </Link>
             </div>
             <div className="card">
               <div className="card-img">
