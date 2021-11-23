@@ -34,3 +34,13 @@ export const Create_Mau_Sac = async (req, res) => {
 		console.log(err)
 	}
 }
+
+export const Find_Mau_Sac_By_ID = async mau_sac_id => {
+	try {
+		const mau_sac = await MAU_SAC_Model.findById(mau_sac_id)
+		return mau_sac
+	} catch(err) {
+		console.log(err)
+		return err
+	}
+}
