@@ -14,7 +14,6 @@ import {
 } from "react-router-dom";
 import ListItem from "./components/ListItem";
 import SubNav from "./data/SubNavbar";
-import Color from "./components/Color";
 //import data from './data'
 
 function App() {
