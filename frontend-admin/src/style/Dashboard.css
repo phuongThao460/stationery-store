@@ -1,4 +1,4 @@
-tr td{
+tr td, tr th{
   /* width: 193px; */
   white-space: nowrap;
   text-overflow: ellipsis;

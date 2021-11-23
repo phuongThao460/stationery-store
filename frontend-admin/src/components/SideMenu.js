@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { BsSearch, BsFillPersonLinesFill } from "react-icons/bs";
 import { RiDashboardFill, RiContactsFill, RiListUnordered } from "react-icons/ri";
-import { SiContentful } from "react-icons/si";
+//import { SiContentful } from "react-icons/si";
 import logo from "../images/logo.jpg";
 import cat from "../images/cat.jpg";
 import MenuItem from "./MenuItem";

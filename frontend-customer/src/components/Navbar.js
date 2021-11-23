@@ -1,3 +1,4 @@
+//eslint-disable-next-line
 import React from "react";
 import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";

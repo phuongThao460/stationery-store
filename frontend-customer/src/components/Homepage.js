@@ -1,3 +1,4 @@
+/* eslint-disable react/no-direct-mutation-state */
 //npm install --save styled-components
 //npm install --save react-elastic-carousel
 import React from "react";
@@ -5,15 +6,38 @@ import "../style/Homepage.css";
 import Carousel from "react-elastic-carousel";
 import SubNav from "../data/SubNavbar";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Homepage extends React.Component {
-  state = {
-    breakPoints: [
-      { width: 1, itemsToShow: 1 },
-      { width: 204, itemsToShow: 8 },
-      { width: 768, itemsToShow: 5 },
-      { width: 1200, itemsToShow: 6 },
-    ],
+  constructor() {
+    super();
+    this.state = {
+      idPro: 0,
+      lstProduct: [],
+      breakPoints: [
+        { width: 1, itemsToShow: 1 },
+        { width: 204, itemsToShow: 8 },
+        { width: 768, itemsToShow: 5 },
+        { width: 1200, itemsToShow: 6 },
+      ],
+    };
+    this.getListProduct();
+  }
+  getListProduct = () => {
+    axios.get("http://localhost:8000/san_pham/").then((res) => {
+      const array = []
+      res.data.forEach((element) => {
+        
+        array.push({
+          id: element._id,
+          name: element.ten_sp,
+          price: element.don_gia_xuat,
+        });
+      });
+      this.state.lstProduct = array.reverse()
+      this.setState(this);
+      console.log(this.state.lstProduct);
+    });
   };
   submit = (title) => {
     window.localStorage.setItem("itemTitle", title);
@@ -126,139 +150,25 @@ class Homepage extends React.Component {
         <h1>New Arrival</h1>
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
-            <div className="card">
-              <Link
-                        to= "/Product"
-                        style={{ color: "#D16325" }}
-                      >
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
+            {this.state.lstProduct.map((item, index) => (
+              <div className="card" key={index} value={item._id}>
+                <div className="card-img">
+                  <Link to="/#">
+                    <img
+                      src="./images/BUT- BI.jpg"
+                      alt=""
+                      style={{ width: "204px", height: "185px" }}
+                    />
+                  </Link>
                 </div>
-                <div className="body-price">120.000 Đ</div>
+                <Link to="/#">
+                  <div className="card-body">
+                    <div className="body-title">{item.name}</div>
+                    <div className="body-price">{item.price}</div>
+                  </div>
+                </Link>
               </div>
-              </Link>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">999.999 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
+            ))}
             <div className="card">
               <div className="card-body">
                 <div className="body-title">

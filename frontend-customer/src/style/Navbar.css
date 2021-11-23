@@ -10,7 +10,7 @@
 .navbar-1 .header-1 {
   display: flex;
   justify-content: flex-start;
-  width: fill-available;
+  width: flex-end;
   width: -webkit-fill-available;
 }
 .navbar-1 form input[type="search"] {
@@ -39,7 +39,7 @@
 .user-account,
 .cart {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: 14px;
   width: 3%;
   height: 30px;
