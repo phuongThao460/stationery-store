@@ -1,14 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../style/Dashboard.css";
+import { BiPlusMedical } from "react-icons/bi";
 function Dashboard() {
   return (
     <>
       <div className="hearder">
         <h1>Produts</h1>
         <div className="btn">
-          <button className="btn-add">Add Product</button>
-          <button className="btn-add">Add List of Product</button>
+          <button className="btn-add">
+            <BiPlusMedical />
+            <span>Add Product</span>
+          </button>
+          <button className="btn-add">
+            <BiPlusMedical />
+            <span>Add List of Product</span>
+          </button>
         </div>
       </div>
 

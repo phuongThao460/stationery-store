@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
-import { BsSearch, BsPencilFill } from "react-icons/bs";
-import { RiDashboardFill, RiContactsFill } from "react-icons/ri";
+import { BsSearch, BsFillPersonLinesFill } from "react-icons/bs";
+import { RiDashboardFill, RiContactsFill, RiListUnordered } from "react-icons/ri";
 import { SiContentful } from "react-icons/si";
 import logo from "../images/logo.jpg";
 import cat from "../images/cat.jpg";
@@ -11,10 +11,11 @@ import MenuItem from "./MenuItem";
 
 const menuItems = [
   {
-    name: "Products",
+    name: "Dashboard",
     to: "/",
     icon: <RiDashboardFill />,
     subMenus: [
+      { name: "Product", to: "/products/add-product" },
       { name: "Supplier", to: "/products/supplier" },
       { name: "Type of Product", to: "/products/types" },
       { name: "Color of Product", to: "/products/color" },
@@ -23,16 +24,16 @@ const menuItems = [
     ],
   },
   {
-    name: "Content",
-    to: "/content",
+    name: "Customer",
+    to: "/customer",
     exact: "true",
     subMenus: [
-      { name: "Courses", to: "/content/courses" },
-      { name: "Music", to: "/content/music" },
+      { name: "Courses", to: "/customer/courses" },
+      { name: "Music", to: "/customer/music" },
     ],
-    icon: <SiContentful />,
+    icon: <BsFillPersonLinesFill />,
   },
-  { name: "About Us", to: "/about", icon: <BsPencilFill /> },
+  { name: "Order", to: "/order", icon: <RiListUnordered /> },
   { name: "Contact", to: "/contact", icon: <RiContactsFill /> },
 ];
 
@@ -79,7 +80,7 @@ const SideMenu = (props) => {
           <img src={logo} alt="" />
         </div>
         <div className="toggle-menu-btn" onClick={() => setInactive(!inactive)}>
-          {inactive ? <AiOutlineArrowLeft /> : <AiOutlineArrowRight />}
+          {inactive ?  <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
         </div>
       </div>
 

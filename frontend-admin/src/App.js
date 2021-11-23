@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Material from "./components/Material";
-import Color from "./components/Color";
+import Color from "./components/MultipleColor";
 import { Modal } from "./components/Modal";
 import Product from "./pages/Product";
 const Content = () => {
@@ -26,27 +26,28 @@ const Music = () => {
 function App() {
   const [inactive, setInactive] = useState(false);
   return (
-    <div className="App">
-      {/* <BrowserRouter>
-        <SideMenu
-          onCollapse={(inactive) => {
-            console.log(inactive);
-            setInactive(inactive);
-          }}
-        />
-        <div className={`container ${inactive ? "inactive" : ""}`}>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/content" element={<Content />} />
-            <Route path="/content/courses" element={<Courses />} />
-            <Route path="/content/music" element={<Music />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-      </BrowserRouter> */}
-      <Product/>
-    </div>
+    <>
+      <div className="App">
+        <BrowserRouter>
+          <SideMenu
+            onCollapse={(inactive) => {
+              console.log(inactive);
+              setInactive(inactive);
+            }}
+          />
+          <div className={`container ${inactive ? "inactive" : ""}`}>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/products/add-product" element={<Product />} />
+              <Route path="/customer" element={<Courses />} />
+              <Route path="/customer/music" element={<Music />} />
+              <Route path="/order" element={<AboutUs />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </div>
+    </>
   );
 }
 

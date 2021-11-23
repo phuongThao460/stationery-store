@@ -21,6 +21,9 @@ tr td{
   color: white;
   padding: 6px 14px;
 }
+.btn-add span{
+  margin-left: 8px;
+}
 .btn-delete{
   background-color: red;
   color: white;
