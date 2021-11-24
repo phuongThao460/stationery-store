@@ -14,29 +14,28 @@ class Dashboard extends React.Component {
       showModal: false,
       nameType: "",
       lstProduct: [],
-      lstType: [],
     };
-    this.getListProduct();
-    //this.getType(this.props.id);
+
   }
+
+  componentDidMount() {
+    this.getListProduct();
+  }
+
   getType = (idType) => {
     axios
       .post("http://localhost:8000/loai_sp/", { loai_sp_id: idType })
       .then((res) => {
-        //console.log(res.data.ten_loai_sp);
+        console.log(res.data);
         this.setState({ nameType: res.data.ten_loai_sp });
       });
   };
-  getListProduct = () => {
-    axios.get("http://localhost:8000/san_pham/").then((res) => {
-      this.state.lstType = res.data;
-      this.state.lstProduct = this.state.lstType.reverse();
-      this.setState(this, () => {
-        this.getType(this.state.lstType[0].id_loai_sp);
-      });
-      this.setState(this);
-      console.log(this.state.lstType[0].id_loai_sp);
-    });
+  async getListProduct() {
+    await axios.get("http://localhost:8000/san_pham/").then((res) => {
+      this.setState({
+        lstProduct: res.data,
+      })
+    }).catch((error) => console.log(error));;
   };
   openModal = () => {
     this.setState({ showModal: true });
@@ -47,6 +46,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <>
+        <div>{this.state.lstProduct.length}</div>
         <div className="hearder">
           <h1>Produts</h1>
           <div className="btn">
@@ -92,10 +92,10 @@ class Dashboard extends React.Component {
                   <td style={{ maxWidth: "60px" }}>
                     {new Date(item.ngay_nhap).toLocaleDateString()}
                   </td>
-                  <td>{this.state.nameType}</td>
+                  <td>{ item.id_loai_sp != null ? item.id_loai_sp.ten_loai_sp : '' }</td>
                   <td style={{ maxWidth: "141px" }}>
                     <button className="btn-edit">Edit</button>
-                    <button className="btn-delete">Delete</button>
+                  <button className="btn-delete">Delete</button>
                     <Link to={"/products/" + item._id}>
                       <button className="btn-view">View</button>
                     </Link>
