@@ -188,3 +188,24 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
     </>
   );
 }
+export const ModalProduct = ({ show, children, handleClose }) => {
+  return (
+    <>
+      {show ? (
+        <div className="modal display-block">
+          <section className="modal-main">
+            <div className="modal-top">
+              
+              
+              <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
+                <AiOutlineClose/>
+              </button>
+            </div>
+
+            <h3>{children}</h3>
+          </section>
+        </div>
+      ) : null}
+    </>
+  );
+}

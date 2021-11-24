@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import "../style/Dashboard.css";
 import { BiPlusMedical } from "react-icons/bi";
 import axios from "axios";
+import { ModalProduct } from "../components/Modal";
+import View from "./View";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       idRow: 0,
+      showModal: false,
       nameType: "",
       lstProduct: [],
       lstType: [],
@@ -30,12 +33,17 @@ class Dashboard extends React.Component {
       this.state.lstProduct = this.state.lstType.reverse();
       this.setState(this, () => {
         this.getType(this.state.lstType[0].id_loai_sp);
-      })
+      });
       this.setState(this);
       console.log(this.state.lstType[0].id_loai_sp);
     });
   };
-
+  openModal = () => {
+    this.setState({ showModal: true });
+  };
+  hideModal = () => {
+    this.setState({ showModal: false });
+  };
   render() {
     return (
       <>
@@ -81,7 +89,9 @@ class Dashboard extends React.Component {
                   </th>
                   <td style={{ maxWidth: "125px" }}>{item.ten_sp}</td>
                   <td style={{ width: "30px" }}>{item.so_luong}</td>
-                  <td style={{ maxWidth: "60px" }}>{new Date (item.ngay_nhap).toLocaleDateString()}</td>
+                  <td style={{ maxWidth: "60px" }}>
+                    {new Date(item.ngay_nhap).toLocaleDateString()}
+                  </td>
                   <td>{this.state.nameType}</td>
                   <td style={{ maxWidth: "141px" }}>
                     <button className="btn-edit">Edit</button>
@@ -89,6 +99,12 @@ class Dashboard extends React.Component {
                     <Link to={"/products/" + item._id}>
                       <button className="btn-view">View</button>
                     </Link>
+                    {/* <button className="btn-view"onClick={this.openModal}>View</button>
+                    <ModalProduct
+                      show={this.state.showModal}
+                      handleClose={this.hideModal}
+                      children={<View idItem={item._id}/>}
+                    ></ModalProduct> */}
                   </td>
                 </tr>
               ))}

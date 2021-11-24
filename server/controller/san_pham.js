@@ -14,7 +14,7 @@ export const Get_San_Phams = async (req, res) => {
 
 export const Get_San_Pham_By_ID = async (req, res) => {
 	try {
-		const san_pham_id = req.body._id
+		const san_pham_id = req.body.san_pham_id
 		const san_pham = await SANPHAM_Model.findById(san_pham_id)
 		console.log('san_pham', san_pham)
 		res.status(200).json(san_pham)
