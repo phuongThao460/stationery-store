@@ -41,10 +41,15 @@ function Navbar(props) {
         </div>
 
         <div className="cart">
+          <Link
+            to="/Cart"
+            style={{color: "white"}}
+          >
           <BsHandbag className="cart-bag" />
           <div className="num-item">
             <div className="text-num">{countCartItem}</div>
           </div>
+          </Link>
         </div>
       </div>
       <nav className="navbar">

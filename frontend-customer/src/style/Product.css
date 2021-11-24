@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+.Container-Product{
+    font-family: 'Nunito', sans-serif;
+}
+
+.Wrapper{
+    padding: 50px;
+    display: flex;
+}
+
+.ImgContainer{
+    flex: 1;
+}
+
+.Image{
+    width :70vh;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.InfoContainer{
+    flex: 1;
+    padding: 0px 50px;
+}
+
+.Title-Product{
+    font-weight: 200;
+}
+
+.Desc{
+    margin:20px 0px;
+}
+
+.Price{
+    font-weight:100;
+    font-size:40px;
+}
+
+.FilterContainer{
+    display:flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 15px 0px
+}
+.Filter{
+    display: flex;
+    align-items:center;
+}
+
+.FilterTitle{
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.FilterColor{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    margin: 0px 5px;
+    cursor:point; 
+    background-color: rgb(231, 200, 142);
+}
+
+.AddContainer{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.AmountContainer{
+    display:flex;
+    align-items:center;
+    font-weight:700;
+}
+
+.Amount{
+    width:30px;
+    height:30px;
+    border-radius:10px;
+    border:1px solid rgb(241, 180, 12);
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin:0px 10px;
+}
+
+.Button{
+    padding: 15px;
+    border:2px solid Orange;
+    background-color: white;
+    cursor: pointer;
+    font-weight:500;
+    
+}
+.Button:hover{
+    background-color: #FFCC99;
+}
