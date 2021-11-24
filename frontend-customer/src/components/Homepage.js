@@ -27,7 +27,6 @@ class Homepage extends React.Component {
     axios.get("http://localhost:8000/san_pham/").then((res) => {
       const array = []
       res.data.forEach((element) => {
-        
         array.push({
           id: element._id,
           name: element.ten_sp,
@@ -151,9 +150,9 @@ class Homepage extends React.Component {
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             {this.state.lstProduct.map((item, index) => (
-              <div className="card" key={index} value={item._id}>
+              <div className="card" key={index} value={item.id}>
                 <div className="card-img">
-                  <Link to="/#">
+                  <Link to={"/products/" + item.id}>
                     <img
                       src="./images/BUT- BI.jpg"
                       alt=""
@@ -161,7 +160,7 @@ class Homepage extends React.Component {
                     />
                   </Link>
                 </div>
-                <Link to="/#">
+                <Link to={"/products/" + item.id}>
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
                     <div className="body-price">{item.price}</div>
@@ -169,146 +168,6 @@ class Homepage extends React.Component {
                 </Link>
               </div>
             ))}
-            <div className="card">
-              <div className="card-body">
-                <div className="body-title">
-                  <a href="/#">See more</a>
-                </div>
-              </div>
-            </div>
-          </Carousel>
-        </div>
-        <h1 style={{ marginTop: "0px" }}>Sale 50% Off For All Products</h1>
-        <div className="card-container">
-          <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">999.999 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-img">
-                <img
-                  src="./images/BUT- BI.jpg"
-                  alt=""
-                  style={{ width: "204px", height: "185px" }}
-                />
-              </div>
-              <div className="card-body">
-                <div className="body-title">
-                  Brustro Professional Pigment Based Fineliner - Set of 6
-                  (Black)
-                </div>
-                <div className="body-price">120.000 Đ</div>
-              </div>
-            </div>
             <div className="card">
               <div className="card-body">
                 <div className="body-title">

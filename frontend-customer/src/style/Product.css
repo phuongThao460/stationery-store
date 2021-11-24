@@ -1,98 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
-.Container-Product{
-    font-family: 'Nunito', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+.Container-Product {
+  font-family: "Nunito", sans-serif;
 }
 
-.Wrapper{
-    padding: 50px;
-    display: flex;
+.Wrapper {
+  padding: 50px;
+  display: flex;
 }
 
-.ImgContainer{
-    flex: 1;
+.ImgContainer {
+  flex: 1;
 }
 
-.Image{
-    width :70vh;
-    height: 70vh;
-    object-fit: cover;
+.Image {
+  width: 70vh;
+  height: 70vh;
+  object-fit: cover;
 }
 
-.InfoContainer{
-    flex: 1;
-    padding: 0px 50px;
+.InfoContainer {
+  flex: 1;
+  padding: 0px 50px;
 }
 
-.Title-Product{
-    font-weight: 200;
+.Title-Product {
+  font-weight: 600;
+  text-align: left;
+  background-color: transparent;
+  color: black;
+  margin: 0;
 }
 
-.Desc{
-    margin:20px 0px;
+.Desc {
+  margin: 20px 0px;
 }
 
-.Price{
-    font-weight:100;
-    font-size:40px;
+.Price {
+  font-weight: 100;
+  font-size: 40px;
 }
 
-.FilterContainer{
-    display:flex;
-    justify-content: space-between;
-    width: 50%;
-    margin: 15px 0px
+.FilterContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 15px 0px;
 }
-.Filter{
-    display: flex;
-    align-items:center;
-}
-
-.FilterTitle{
-    font-size: 20px;
-    font-weight: 200;
+.Filter {
+  display: flex;
+  align-items: center;
 }
 
-.FilterColor{
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    margin: 0px 5px;
-    cursor:point; 
-    background-color: rgb(231, 200, 142);
+.FilterTitle {
+  font-size: 20px;
+  font-weight: 200;
 }
 
-.AddContainer{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
+.FilterColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0px 5px;
+  cursor: point;
+  background-color: rgb(231, 200, 142);
 }
 
-.AmountContainer{
-    display:flex;
-    align-items:center;
-    font-weight:700;
+.AddContainer {
+  width: 63%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.Amount{
-    width:30px;
-    height:30px;
-    border-radius:10px;
-    border:1px solid rgb(241, 180, 12);
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    margin:0px 10px;
+.AmountContainer {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
 }
 
-.Button{
-    padding: 15px;
-    border:2px solid Orange;
-    background-color: white;
-    cursor: pointer;
-    font-weight:500;
-    
+.Amount {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid rgb(241, 180, 12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 10px;
 }
-.Button:hover{
-    background-color: #FFCC99;
+
+.Button {
+  padding: 15px;
+  border: 2px solid Orange;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+.Button:hover {
+  background-color: #ffcc99;
+}
+.primary-color {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+}
+.primary-color::-webkit-color-swatch-wrapper {
+	padding: 0; 
+}
+.primary-color::-webkit-color-swatch {
+	border: none;
+	border-radius: 50%;
 }

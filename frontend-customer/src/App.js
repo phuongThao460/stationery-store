@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
 import Product from "./components/Product";
-import Cart from "./components/Cart";
 import {
   Routes,
   Route,
@@ -30,8 +29,7 @@ function App() {
           <Route path="/item/:title" element={<ListItem />} />
           <Route path="/Login" element={<LoginForm/>}/>
           <Route path="/Signup" element={<SignupForm/>} />
-          <Route path="/Product" element={<Product/>} />
-          <Route path="/Cart" element={<Cart/>} />
+          <Route path="/products/:id" element={<Product/>} />
         </Routes>
       </BrowserRouter>
     </>

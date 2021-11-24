@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
           </div>
         </div>
 
-        <div class="table-responsive-md">
+        <div className="table-responsive-md">
           <table
             class="table table-hover"
             style={{
