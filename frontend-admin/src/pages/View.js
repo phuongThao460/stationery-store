@@ -18,6 +18,7 @@ export default class View extends Component {
     };
     this.getItem();
   }
+  
   getItem = async () => {
     await axios
       .post("http://localhost:8000/san_pham/", {

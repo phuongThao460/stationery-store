@@ -25,19 +25,19 @@ const schema = new mongoose.Schema({
 		required: true
 	},
 	id_loai_sp: {
-		type: String,
+		type: mongoose.Types.ObjectId, ref: "LOAI_SAN_PHAM",
 		required: true
 	},
 	id_nha_cc: {
-		type: String,
+		type: mongoose.Types.ObjectId, ref: "NHA_CUNG_CAP",
 		required: true
 	},
-	id_mau_sac: {
-		type: Array,
+	id_mau_sac: [{
+		type: Array, ref: 'MAU_SAC',
 		required: true
-	},
+	}],
 	id_chat_lieu: {
-		type: String,
+		type: mongoose.Types.ObjectId, ref: "CHAT_LIEU",
 		required: true
 	},
 	ti_le_danh_gia: {
