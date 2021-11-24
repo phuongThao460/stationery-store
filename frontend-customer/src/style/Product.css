@@ -26,6 +26,15 @@
 .Title-Product{
     font-weight: 200;
 }
+.Title-Product {
+  font-weight: 600;
+  text-align: left;
+  background-color: transparent;
+  color: black;
+  margin: 0;
+  display: inline-block;
+  word-break: break-word;
+}
 
 .Desc{
     margin:20px 0px;
@@ -51,6 +60,11 @@
     font-size: 20px;
     font-weight: 200;
 }
+.FilterTitle {
+  font-size: 20px;
+  font-weight: 200;
+  margin-right: 12px;
+}
 
 .FilterColor{
     width:20px;
@@ -66,6 +80,12 @@
     display: flex;
     align-items: center;
     justify-content:space-between;
+}
+.AddContainer {
+  width: 76%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .AmountContainer{
@@ -84,7 +104,6 @@
     justify-content: center;
     margin:0px 10px;
 }
-
 .Button{
     padding: 15px;
     border:2px solid Orange;
@@ -95,4 +114,30 @@
 }
 .Button:hover{
     background-color: #FFCC99;
+}
+.Button {
+  padding: 15px;
+  border: 2px solid Orange;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+.Button:hover {
+  background-color: #ffcc99;
+}
+.primary-color {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  -webkit-appearance: none;
+}
+.primary-color::-webkit-color-swatch-wrapper {
+	padding: 0; 
+}
+.primary-color::-webkit-color-swatch {
+	border: none;
+	border-radius: 50%;
 }

@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
       nameType: "",
       lstProduct: [],
     };
-
   }
 
   componentDidMount() {
@@ -31,12 +30,15 @@ class Dashboard extends React.Component {
       });
   };
   async getListProduct() {
-    await axios.get("http://localhost:8000/san_pham/").then((res) => {
-      this.setState({
-        lstProduct: res.data,
+    await axios
+      .get("http://localhost:8000/san_pham/")
+      .then((res) => {
+        this.setState({
+          lstProduct: res.data,
+        });
       })
-    }).catch((error) => console.log(error));;
-  };
+      .catch((error) => console.log(error));
+  }
   openModal = () => {
     this.setState({ showModal: true });
   };
@@ -51,8 +53,10 @@ class Dashboard extends React.Component {
           <h1>Produts</h1>
           <div className="btn">
             <button className="btn-add">
-              <BiPlusMedical />
-              <span>Add Product</span>
+              <Link to="/products/add-product" style={{textDecoration: "none", color: "white"}}>
+                <BiPlusMedical />
+                <span>Add Product</span>
+              </Link>
             </button>
             <button className="btn-add">
               <BiPlusMedical />
@@ -92,10 +96,12 @@ class Dashboard extends React.Component {
                   <td style={{ maxWidth: "60px" }}>
                     {new Date(item.ngay_nhap).toLocaleDateString()}
                   </td>
-                  <td>{ item.id_loai_sp != null ? item.id_loai_sp.ten_loai_sp : '' }</td>
+                  <td>
+                    {item.id_loai_sp != null ? item.id_loai_sp.ten_loai_sp : ""}
+                  </td>
                   <td style={{ maxWidth: "141px" }}>
                     <button className="btn-edit">Edit</button>
-                  <button className="btn-delete">Delete</button>
+                    <button className="btn-delete">Delete</button>
                     <Link to={"/products/" + item._id}>
                       <button className="btn-view">View</button>
                     </Link>

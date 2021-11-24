@@ -15,7 +15,6 @@ const menuItems = [
     to: "/",
     icon: <RiDashboardFill />,
     subMenus: [
-      { name: "Product", to: "/products/add-product" },
       { name: "Supplier", to: "/products/supplier" },
       { name: "Type of Product", to: "/products/types" },
       { name: "Color of Product", to: "/products/color" },

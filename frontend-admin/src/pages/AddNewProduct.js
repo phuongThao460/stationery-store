@@ -24,7 +24,8 @@ class Product extends React.Component {
       lstMate: [],
       lstColor: [],
       getLstColor: [],
-      selectedOption: 0,
+      // selectedOptions: [],
+      selectedOption:0
     };
 
     this.getListSupplier();
@@ -39,7 +40,10 @@ class Product extends React.Component {
     this.exportPrice = createRef();
     this.rate = createRef();
   }
-  changeType = (e) => {
+  // handleChange = (selectedOptions) => {
+  //   this.setState({ selectedOptions });
+  // };
+  changeColor = (e) => {
     this.setState({ selectedOption: e.value });
   };
   changeId = (e) => {
@@ -122,7 +126,7 @@ class Product extends React.Component {
     this.setState({ showModal: false });
   };
   render() {
-    const { selectedOption } = this.state;
+    const { selectedOptions } = this.state;
     return (
       <>
         <div className="header">
@@ -258,14 +262,11 @@ class Product extends React.Component {
                   closeMenuOnSelect={false}
                   options={this.state.lstColor}
                   styles={colourStyles}
-                  onChange={this.changeType}
-                  value={this.state.lstColor.find(
-                    (id) => id.value === selectedOption
-                  )}
+                  onChange={this.changeColor}
+                  value={this.state.lstColor.find(obj => obj.value === this.state.selectedOption)}
                 />
-                {selectedOption &&
-                  window.localStorage.setItem("mau_sac_id", selectedOption)}
-                {/* {this.state.getLstColor.map(o => window.localStorage.setItem("id", o.value))} */}
+                {/* {this.state.getLstColor.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),[])} */}
+                {window.localStorage.setItem("mau_sac_id", this.state.selectedOption)}
               </div>
             </div>
             <button
