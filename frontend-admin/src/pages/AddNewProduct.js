@@ -126,7 +126,6 @@ class Product extends React.Component {
     this.setState({ showModal: false });
   };
   render() {
-    const { selectedOptions } = this.state;
     return (
       <>
         <div className="header">

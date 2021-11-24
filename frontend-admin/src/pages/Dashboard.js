@@ -6,6 +6,7 @@ import { BiPlusMedical } from "react-icons/bi";
 import axios from "axios";
 import { ModalProduct } from "../components/Modal";
 import View from "./View";
+import ViewProduct from "./ViewProduct";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ class Dashboard extends React.Component {
       showModal: false,
       nameType: "",
       lstProduct: [],
+      activeObj: null,
     };
   }
 
@@ -21,14 +23,6 @@ class Dashboard extends React.Component {
     this.getListProduct();
   }
 
-  getType = (idType) => {
-    axios
-      .post("http://localhost:8000/loai_sp/", { loai_sp_id: idType })
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ nameType: res.data.ten_loai_sp });
-      });
-  };
   async getListProduct() {
     await axios
       .get("http://localhost:8000/san_pham/")
@@ -36,11 +30,12 @@ class Dashboard extends React.Component {
         this.setState({
           lstProduct: res.data,
         });
+        console.log(res.data);
       })
       .catch((error) => console.log(error));
   }
-  openModal = () => {
-    this.setState({ showModal: true });
+  openModal(){
+    this.setState({showModal: true});
   };
   hideModal = () => {
     this.setState({ showModal: false });
@@ -48,12 +43,14 @@ class Dashboard extends React.Component {
   render() {
     return (
       <>
-        <div>{this.state.lstProduct.length}</div>
         <div className="hearder">
           <h1>Produts</h1>
           <div className="btn">
             <button className="btn-add">
-              <Link to="/products/add-product" style={{textDecoration: "none", color: "white"}}>
+              <Link
+                to="/products/add-product"
+                style={{ textDecoration: "none", color: "white", wordBreak: "break-word", overflow: "hidden" }}
+              >
                 <BiPlusMedical />
                 <span>Add Product</span>
               </Link>
@@ -102,18 +99,25 @@ class Dashboard extends React.Component {
                   <td style={{ maxWidth: "141px" }}>
                     <button className="btn-edit">Edit</button>
                     <button className="btn-delete">Delete</button>
-                    <Link to={"/products/" + item._id}>
+                    {/* <Link to={"/products/" + item._id}>
                       <button className="btn-view">View</button>
-                    </Link>
-                    {/* <button className="btn-view"onClick={this.openModal}>View</button>
-                    <ModalProduct
-                      show={this.state.showModal}
-                      handleClose={this.hideModal}
-                      children={<View idItem={item._id}/>}
-                    ></ModalProduct> */}
+                    </Link> */}
+                    <button
+                      className="btn-view"
+                      onClick={this.openModal}
+                    >
+                      View {console.log(item._id)}
+                    </button>
                   </td>
                 </tr>
               ))}
+              {this.state.showModal ? <ModalProduct
+                show={this.state.showModal}
+                handleClose={this.hideModal}
+                children={<View idItem={this.state.idRow} />}
+              ></ModalProduct>: null
+              }
+              
             </tbody>
           </table>
         </div>
