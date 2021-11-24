@@ -5,6 +5,22 @@ import { Find_Mau_Sac_By_ID } from "./mau_sac.js"
 export const Get_San_Phams = async (req, res) => {
 	try {
 		const san_phams = await SANPHAM_Model.find()
+		.populate({
+            path: 'id_loai_sp',
+            select: 'ten_loai_sp'
+        })
+		.populate({
+            path: 'id_nha_cc',
+            select: 'ten_nha_cc'
+        })
+		.populate({
+            path: 'id_mau_sac',
+            select: 'ten_mau'
+        })
+		.populate({
+            path: 'id_chat_lieu',
+            select: 'ten_chat_lieu'
+        })
 		console.log('san_phams', san_phams)
 		res.status(200).json(san_phams)
 	} catch (err) {
@@ -16,6 +32,22 @@ export const Get_San_Pham_By_ID = async (req, res) => {
 	try {
 		const san_pham_id = req.body.san_pham_id
 		const san_pham = await SANPHAM_Model.findById(san_pham_id)
+		.populate({
+            path: 'id_mau_sac',
+            select: 'ten_mau'
+        })
+		.populate({
+            path: 'id_loai_sp',
+            select: 'ten_loai_sp'
+        })
+		.populate({
+            path: 'id_nha_cc',
+            select: 'ten_nha_cc'
+        })
+		.populate({
+            path: 'id_chat_lieu',
+            select: 'ten_chat_lieu'
+        })
 		console.log('san_pham', san_pham)
 		res.status(200).json(san_pham)
 	} catch(err) {
