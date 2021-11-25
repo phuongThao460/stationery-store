@@ -16,6 +16,7 @@ import san_pham from './routers/san_pham.js'
 import tt_dh from './routers/trang_thai_dh.js'
 import gio_hang from './routers/gio_hang.js'
 import ct_gh from './routers/ct_gio_hang.js'
+import don_hang from './routers/don_hang.js'
 
 const app = express()
 const PORT = process.env.port  || 8000
@@ -36,6 +37,7 @@ app.use('/san_pham', san_pham)
 app.use('/tt_dh', tt_dh)
 app.use('/gio_hang', gio_hang)
 app.use('/ct_gh', ct_gh)
+app.use('/don_hang', don_hang)
 
 mongoose
 	.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true})
