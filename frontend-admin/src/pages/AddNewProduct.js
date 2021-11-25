@@ -5,7 +5,6 @@ import {
 } from "../components/Modal";
 import { BiPlusMedical } from "react-icons/bi";
 import "../style/AddProduct.css";
-import { colourStyles } from "../components/colourStyles";
 import Select from "react-select";
 import axios from "axios";
 class Product extends React.Component {
