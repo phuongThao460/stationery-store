@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+.Container-cart {
+  font-family: "Nunito", sans-serif;
+}
+
+.Wrapper-cart{
+    padding: 20px;
+    display: block;
+}
+
+.Title-cart{
+    font-weight: 300;
+    text-align: center;
+    background-color: transparent;
+    color: black;
+    margin: 0;
+}
+
+.Top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.TopButton{
+    padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border:   1sd solid black;
+  background-color: transparent;
+}
+
+.TopButton-checkout{
+    padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background-color:black;
+  color:white;
+}
+
+.TopText{
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0px 10px;
+}
+
+.Bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Info{
+    flex: 3;
+}
+
+.Product-cart{
+    display: flex;
+}
+
+.ProductDetail-cart{
+    flex: 2;
+    display: flex;
+}
+
+.Image-cart{
+    width: 200px;
+    height: 200px;
+}
+
+.Details-cart{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.ProductColor{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.PriceDetail{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProductAmountContainer{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ProductAmount{
+    font-size: 24px;
+    margin: 5px;
+}
+
+.ProductPrice{
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.Summary{
+    flex: 1;
+    border: 0.5px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    height: 50vh;
+}
+
+.SummaryTitle{
+    font-weight: 200;
+    background-color: transparent;
+    color: black;
+    margin: 0;
+}
+
+.SummaryItem{
+    margin: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SummaryItem-total{
+    margin: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.Button-checkout{
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+}
+
+.Hr{
+    background-color: #eee;
+    border: 1px solid #eee;
+}
