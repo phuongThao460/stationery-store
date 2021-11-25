@@ -9,16 +9,21 @@ import axios from "axios";
 
 
 export default class Product extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       idProduct: document.location.pathname.substring(10),
       product: null,
-      count: 1
+      count: 1,
+      arrayProduct: []
     };
   }
   componentDidMount() {
     this.getItem();
+  }
+  handleSubmit = () => {
+    this.state.arrayProduct.push(this.state.product)
+    this.setState(this)
   }
   async getItem() {
     await axios
@@ -31,9 +36,6 @@ export default class Product extends React.Component {
       })
       .catch((e) => console.log(e));
   }
-
-
-
   render() {
     let data = <div></div>;
     if (this.state.product != null) {
@@ -50,7 +52,8 @@ export default class Product extends React.Component {
                 src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
               />
             </div>
-            <div className="infoContainer" style={{ maxWidth: "570px" }}>
+            <div style={{display: "inline-block"}}>
+            <div className="infoContainer" style={{ maxWidth: "397px", position: "relative" }}>
               <h1 className="Title-Product">{this.state.product.ten_sp}</h1>
               <span className="Price">${this.state.product.don_gia_xuat}</span>
               <p className="Desc">{this.state.product.mo_ta}</p>
@@ -67,13 +70,15 @@ export default class Product extends React.Component {
                   ))}
                 </div>
               </div>
-              <div className="AddContainer">
+              
+            </div>
+            <div className="AddContainer">
                 <div className="AmountContainer">
                   <IoMdRemove onClick={() => this.setState({ count: this.state.count - 1 })} />
                   <span className="Amount">{this.state.count}</span>
                   <GrAdd onClick={() => this.setState({ count: this.state.count + 1 })}/>
                 </div>
-                <button className="Button">
+                <button className="Button" onClick={() => this.props.onAdd(this.state.product)}>
                   <BsHandbagFill style={{ marginRight: "7px" }} />
                   ADD TO CART
                 </button>
@@ -83,6 +88,8 @@ export default class Product extends React.Component {
                 </button>
               </div>
             </div>
+            {/* {console.log(this.state.arrayProduct)}
+            {window.localStorage.setItem("products", JSON.stringify(this.state.arrayProduct))} */}
           </div>
         </div>
       );

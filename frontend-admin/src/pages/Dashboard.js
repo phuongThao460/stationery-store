@@ -233,6 +233,7 @@ function Dashboard() {
         columns={columns}
         rowEvents={rowEvents}
         bordered={false}
+        hover
       />
       {show ? <ModalContent /> : null}
     </>
