@@ -2,9 +2,6 @@
 import React, { createRef } from "react";
 import {
   ModalColor,
-  ModalMaterial,
-  ModalSupplier,
-  ModalType,
 } from "../components/Modal";
 import { BiPlusMedical } from "react-icons/bi";
 import "../style/AddProduct.css";
@@ -156,6 +153,8 @@ class Product extends React.Component {
                   className="form-control"
                   placeholder="Enter the munber of products "
                   ref={this.amount}
+                  min="1"
+                  max="200"
                 />
               </div>
             </div>
@@ -181,6 +180,8 @@ class Product extends React.Component {
                   className="form-control"
                   placeholder="Import Price"
                   ref={this.importPrice}
+                  min="1.000"
+                  max="3.000.000"
                 />
               </div>
             </div>
@@ -192,6 +193,9 @@ class Product extends React.Component {
                   class="form-control"
                   placeholder="Export Price"
                   ref={this.exportPrice}
+                  min="1000"
+                  step="1.000"
+                  max="3.000.000"
                 />
               </div>
             </div>
@@ -220,11 +224,7 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Supplier</span>
             </button>
-            <ModalSupplier
-              show={this.state.showModal}
-              handleClose={this.hideModal}
-              children={"Add new color"}
-            ></ModalSupplier>
+            
           </div>
           {/* Type */}
           <div style={{ display: "flex" }}>
@@ -249,11 +249,7 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Type</span>
             </button>
-            <ModalType
-              show={this.state.showModal}
-              handleClose={this.hideModal}
-              children={"Add new color"}
-            ></ModalType>
+            
           </div>
           {/* Color */}
           <div style={{ display: "flex" }}>
@@ -313,11 +309,7 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Material</span>
             </button>
-            <ModalMaterial
-              show={this.state.showModal}
-              handleClose={this.hideModal}
-              children={"Add new color"}
-            ></ModalMaterial>
+            
           </div>
           <div className="form-group">
             <label className="control-label col-sm-2">Description</label>

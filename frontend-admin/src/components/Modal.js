@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import "../style/Modal.css"
-import { AiOutlineClose } from 'react-icons/ai'
-const ColorPicker = props => {
+import { useState } from "react";
+import "../style/Modal.css";
+import { AiOutlineClose } from "react-icons/ai";
+const ColorPicker = (props) => {
   return (
     <div className="color-picker">
       <input type="color" {...props} />
@@ -9,21 +9,12 @@ const ColorPicker = props => {
     </div>
   );
 };
-
-export default function Color() {
+export const ModalColor = ({ show, children, handleClose }) => {
   const [state, updateState] = useState("#FFFFFF");
 
-  const handleInput = e => {
+  const handleInput = (e) => {
     updateState(e.target.value);
   };
-
-  return (
-    <div className="color">
-      <ColorPicker onChange={handleInput} value={state} />
-    </div>
-  );
-}
-export const ModalColor = ({ show, children, handleClose }) => {
   return (
     <>
       {show ? (
@@ -31,9 +22,17 @@ export const ModalColor = ({ show, children, handleClose }) => {
           <section className="modal-main">
             <div className="modal-top">
               <h3>{children}</h3>
-              
-              <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
-                <AiOutlineClose/>
+
+              <button
+                type="button"
+                onClick={handleClose}
+                style={{
+                  backgroundColor: "transparent",
+                  outline: "none",
+                  border: "0",
+                }}
+              >
+                <AiOutlineClose />
               </button>
             </div>
 
@@ -43,7 +42,7 @@ export const ModalColor = ({ show, children, handleClose }) => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 paddingLeft: "35px",
-                paddingTop: "19px"
+                paddingTop: "19px",
               }}
             >
               <div className="col-auto">
@@ -52,10 +51,23 @@ export const ModalColor = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
+                <div className="color">
+                  <ColorPicker onChange={handleInput} value={state} />
+                </div>
               </div>
               <div className="col-auto">
-                <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
+                <button
+                  style={{
+                    backgroundColor: "blue",
+                    outline: "none",
+                    border: "0",
+                    color: "white",
+                    borderRadius: "5px",
+                    padding: "5px 10px",
+                  }}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </section>
@@ -73,9 +85,17 @@ export const ModalMaterial = ({ show, children, handleClose }) => {
           <section className="modal-main">
             <div className="modal-top">
               <h3>{children}</h3>
-              
-              <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
-                <AiOutlineClose/>
+
+              <button
+                type="button"
+                onClick={handleClose}
+                style={{
+                  backgroundColor: "transparent",
+                  outline: "none",
+                  border: "0",
+                }}
+              >
+                <AiOutlineClose />
               </button>
             </div>
 
@@ -85,7 +105,7 @@ export const ModalMaterial = ({ show, children, handleClose }) => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 paddingLeft: "35px",
-                paddingTop: "19px"
+                paddingTop: "19px",
               }}
             >
               <div className="col-auto">
@@ -94,10 +114,20 @@ export const ModalMaterial = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
               </div>
               <div className="col-auto">
-                <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
+                <button
+                  style={{
+                    backgroundColor: "blue",
+                    outline: "none",
+                    border: "0",
+                    color: "white",
+                    borderRadius: "5px",
+                    padding: "5px 10px",
+                  }}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </section>
@@ -105,7 +135,7 @@ export const ModalMaterial = ({ show, children, handleClose }) => {
       ) : null}
     </>
   );
-}
+};
 export const ModalType = ({ show, children, handleClose }) => {
   return (
     <>
@@ -114,9 +144,17 @@ export const ModalType = ({ show, children, handleClose }) => {
           <section className="modal-main">
             <div className="modal-top">
               <h3>{children}</h3>
-              
-              <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
-                <AiOutlineClose/>
+
+              <button
+                type="button"
+                onClick={handleClose}
+                style={{
+                  backgroundColor: "transparent",
+                  outline: "none",
+                  border: "0",
+                }}
+              >
+                <AiOutlineClose />
               </button>
             </div>
 
@@ -126,7 +164,7 @@ export const ModalType = ({ show, children, handleClose }) => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 paddingLeft: "35px",
-                paddingTop: "19px"
+                paddingTop: "19px",
               }}
             >
               <div className="col-auto">
@@ -135,10 +173,20 @@ export const ModalType = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
               </div>
               <div className="col-auto">
-                <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
+                <button
+                  style={{
+                    backgroundColor: "blue",
+                    outline: "none",
+                    border: "0",
+                    color: "white",
+                    borderRadius: "5px",
+                    padding: "5px 10px",
+                  }}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </section>
@@ -146,7 +194,7 @@ export const ModalType = ({ show, children, handleClose }) => {
       ) : null}
     </>
   );
-}
+};
 export const ModalSupplier = ({ show, children, handleClose }) => {
   return (
     <>
@@ -155,9 +203,17 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
           <section className="modal-main">
             <div className="modal-top">
               <h3>{children}</h3>
-              
-              <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
-                <AiOutlineClose/>
+
+              <button
+                type="button"
+                onClick={handleClose}
+                style={{
+                  backgroundColor: "transparent",
+                  outline: "none",
+                  border: "0",
+                }}
+              >
+                <AiOutlineClose />
               </button>
             </div>
 
@@ -167,7 +223,7 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 paddingLeft: "35px",
-                paddingTop: "19px"
+                paddingTop: "19px",
               }}
             >
               <div className="col-auto">
@@ -176,10 +232,20 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
               </div>
               <div className="col-auto">
-                <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
+                <button
+                  style={{
+                    backgroundColor: "blue",
+                    outline: "none",
+                    border: "0",
+                    color: "white",
+                    borderRadius: "5px",
+                    padding: "5px 10px",
+                  }}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </section>
@@ -187,17 +253,28 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
       ) : null}
     </>
   );
-}
+};
 export const ModalProduct = ({ show, children, handleClose }) => {
   return (
     <>
       {show ? (
         <div className="modal display-block">
-          <section className="modal-main" style={{width: "62%", height:"90%"}}>
+          <section
+            className="modal-main"
+            style={{ width: "62%", height: "90%" }}
+          >
             <div className="modal-top">
               <h3>Product Detail</h3>
-              <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
-                <AiOutlineClose/>
+              <button
+                type="button"
+                onClick={handleClose}
+                style={{
+                  backgroundColor: "transparent",
+                  outline: "none",
+                  border: "0",
+                }}
+              >
+                <AiOutlineClose />
               </button>
             </div>
 
@@ -207,4 +284,4 @@ export const ModalProduct = ({ show, children, handleClose }) => {
       ) : null}
     </>
   );
-}
+};

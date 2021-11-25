@@ -4,10 +4,10 @@ import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-function Navbar() {
-  const countCartItem = JSON.parse(localStorage.getItem("products")).length;
+function Navbar(props) {
+  const { countCartItem } = props;
   return (
     <div className="container-1">
       <div className="navbar-1">
@@ -20,33 +20,36 @@ function Navbar() {
           />
           <BsSearch id="input-img" />
         </form>
-        <div className="user-account" style={{height:"38px", width:"111px", marginRight:"9px"}}>
+        <div
+          className="user-account"
+          style={{ height: "38px", width: "111px", marginRight: "9px" }}
+        >
           <BiUser className="user-icon" />
           <ul className="table-content">
             <li className="list">
-              <Link
-                  to="/Login"
-                  style={{color: "white"}}
-                > Login
-                </Link></li>
-            <li className="list" style={{marginTop: "8px", backgroundColor: "#efefef"}}>
-            <Link
-                  to="/Signup"
-                  style={{ color: "black"}}
-                > Signup
-                </Link>
+              <Link to="/Login" style={{ color: "white" }}>
+                {" "}
+                Login
+              </Link>
+            </li>
+            <li
+              className="list"
+              style={{ marginTop: "8px", backgroundColor: "#efefef" }}
+            >
+              <Link to="/Signup" style={{ color: "black" }}>
+                {" "}
+                Signup
+              </Link>
             </li>
           </ul>
         </div>
 
         <div className="cart">
-          <Link
-            to="/Cart"
-          >
-          <BsHandbag className="cart-bag" />
-          <div className="num-item">
-            <div className="text-num">{countCartItem}</div>
-          </div>
+          <Link to="/Cart">
+            <BsHandbag className="cart-bag" />
+            <div className="num-item">
+              <div className="text-num">{countCartItem}</div>
+            </div>
           </Link>
         </div>
       </div>
@@ -61,7 +64,6 @@ function Navbar() {
           );
         })}
       </nav>
-      
     </div>
   );
 }
