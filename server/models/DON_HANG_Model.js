@@ -3,18 +3,20 @@ import mongoose from 'mongoose'
 const schema = new mongoose.Schema({
 	ngay_dat: {
 		type: Date,
-		required: true
+		required: true,
+		default: new Date()
 	},
 	ngay_giao: {
 		type: Date,
-		required: true
+		required: true,
+		default: new Date()
 	},
 	id_ttkh: {
-		type: mongoose.Types.ObjectId,
+		type: String,
 		required: true
 	},
 	id_ttdh: {
-		type: mongoose.Types.ObjectId,
+		type: String,
 		required: true
 	},
 	ghi_chu: {
@@ -34,4 +36,4 @@ const schema = new mongoose.Schema({
 	}
 }, { timestamps: false })
 
-export const SANPHAM_Model = mongoose.model('SAN_PHAM', schema)
+export const DON_HANG_Model = mongoose.model('DON_HANG', schema)
