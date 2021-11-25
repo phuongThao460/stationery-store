@@ -15,11 +15,13 @@ const schema = new mongoose.Schema({
 	},
 	so_luong: {
 		type: Number,
-		required: true
+		required: true,
+		min: [1, 'Must at least 1, got {VALUE}']
 	},
 	tong_gia: {
 		type: Number,
-		required: true
+		required: true,
+		min: [1, 'Must at least 1, got {VALUE}']
 	}
 }, { timestamps: false })
 
