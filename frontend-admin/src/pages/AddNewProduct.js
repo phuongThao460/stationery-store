@@ -21,6 +21,7 @@ class Product extends React.Component {
       lstMate: [],
       lstColor: [],
       getLstColor: [],
+      colorArray: [],
       // selectedOptions: [],
       selectedOption: 0,
     };
@@ -116,6 +117,7 @@ class Product extends React.Component {
       })
       .then((res) => {
         console.log(res.data);
+        //this.props.history.push("/");
         alert("Add data successful");
       });
   };
@@ -125,6 +127,16 @@ class Product extends React.Component {
   hideModal = () => {
     this.setState({ showModal: false });
   };
+
+  submitColorHandle = (value) => {
+    const temp = this.state.colorArray
+    temp.push(value)
+    this.setState({
+      showModal: false,
+      colorArray: temp,
+    })
+  };
+
   render() {
     return (
       <>
@@ -224,7 +236,11 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Supplier</span>
             </button>
-            
+            {/* <ModalSupplier
+              show={this.state.showModal}
+              handleClose={this.hideModal}
+              children={"Add new color"}
+            ></ModalSupplier> */}
           </div>
           {/* Type */}
           <div style={{ display: "flex" }}>
@@ -249,14 +265,18 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Type</span>
             </button>
-            
+            {/* <ModalType
+              show={this.state.showModal}
+              handleClose={this.hideModal}
+              children={"Add new color"}
+            ></ModalType> */}
           </div>
           {/* Color */}
           <div style={{ display: "flex" }}>
             <div className="form-group" style={{ width: "367px" }}>
               <label className="control-label col-sm-2">Color</label>
               <div className="col-sm-10">
-                <Select
+                {/* <Select
                   closeMenuOnSelect={false}
                   options={this.state.lstColor}
                   styles={colourStyles}
@@ -264,12 +284,18 @@ class Product extends React.Component {
                   value={this.state.lstColor.find(
                     (obj) => obj.value === this.state.selectedOption
                   )}
-                />
+                /> */}
+
                 {/* {this.state.getLstColor.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),[])} */}
-                {window.localStorage.setItem(
+                {/* {window.localStorage.setItem(
                   "mau_sac_id",
                   this.state.selectedOption
-                )}
+                )} */}
+                <div className="test-demo">
+                  {this.state.colorArray.map(item => {
+                    return (<span className="badge" style={{ backgroundColor: item }}>{item}</span>)
+                  })}
+                </div>
               </div>
             </div>
             <button
@@ -284,6 +310,7 @@ class Product extends React.Component {
               show={this.state.showModal}
               handleClose={this.hideModal}
               children={"Add new color"}
+              setColor = {this.submitColorHandle}
             ></ModalColor>
           </div>
           {/* Material */}
@@ -309,7 +336,11 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Material</span>
             </button>
-            
+            {/* <ModalMaterial
+              show={this.state.showModal}
+              handleClose={this.hideModal}
+              children={"Add new color"}
+            ></ModalMaterial> */}
           </div>
           <div className="form-group">
             <label className="control-label col-sm-2">Description</label>

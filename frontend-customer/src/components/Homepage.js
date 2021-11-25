@@ -163,7 +163,7 @@ class Homepage extends React.Component {
                 <Link to={"/products/" + item.id}>
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
-                    <div className="body-price">{item.price}</div>
+                    <div className="body-price">$ {item.price}</div>
                   </div>
                 </Link>
               </div>
@@ -194,7 +194,7 @@ class Homepage extends React.Component {
                 <Link to={"/products/" + item.id}>
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
-                    <div className="body-price">{item.price}</div>
+                    <div className="body-price">$ {item.price}</div>
                   </div>
                 </Link>
               </div>

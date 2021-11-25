@@ -114,6 +114,7 @@ export const ModalMaterial = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
+                {/* <Color /> */}
               </div>
               <div className="col-auto">
                 <button
@@ -173,6 +174,7 @@ export const ModalType = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
+                {/* <Color /> */}
               </div>
               <div className="col-auto">
                 <button
@@ -232,6 +234,7 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
+                {/* <Color /> */}
               </div>
               <div className="col-auto">
                 <button

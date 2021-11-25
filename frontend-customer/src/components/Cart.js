@@ -55,7 +55,7 @@ class Cart extends React.Component {
                   <div className="PriceDetail">
                     <div className="ProductAmountContainer">
                       <GrAdd />
-                      <div className="ProductAmount">2</div>
+                      <div className="ProductAmount">1</div>
                       <IoMdRemove />
                     </div>
                     <div className="ProductPrice">{item.don_gia_xuat}</div>
