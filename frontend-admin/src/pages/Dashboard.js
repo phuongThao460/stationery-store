@@ -1,129 +1,242 @@
-/* eslint-disable react/no-direct-mutation-state */
-import React from "react";
-import { Link } from "react-router-dom";
-import "../style/Dashboard.css";
-import { BiPlusMedical } from "react-icons/bi";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ModalProduct } from "../components/Modal";
-import View from "./View";
-import ViewProduct from "./ViewProduct";
-class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      idRow: 0,
-      showModal: false,
-      nameType: "",
-      lstProduct: [],
-      activeObj: null,
-    };
-  }
+import { Link } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import BootstrapTable from "react-bootstrap-table-next";
+import "../style/Dashboard.css";
+import { BsFillPencilFill } from "react-icons/bs";
+import { BiPlusMedical } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
 
-  componentDidMount() {
-    this.getListProduct();
-  }
+function Dashboard() {
+  const [products, setProducts] = useState([]);
+  const [modalInfo, setModalInfo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [show, setShow] = useState(false);
 
-  async getListProduct() {
-    await axios
-      .get("http://localhost:8000/san_pham/")
-      .then((res) => {
-        this.setState({
-          lstProduct: res.data,
-        });
-        console.log(res.data);
-      })
-      .catch((error) => console.log(error));
-  }
-  openModal(){
-    this.setState({showModal: true});
+  const [hoverIdx, setHoverIdx] = useState(null);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const getProductData = async () => {
+    try {
+      const data = await axios.get("http://localhost:8000/san_pham/");
+      setProducts(data.data.reverse());
+      console.log(data.data.reverse());
+    } catch (e) {
+      console.log(e);
+    }
   };
-  hideModal = () => {
-    this.setState({ showModal: false });
-  };
-  render() {
+  useEffect(() => {
+    getProductData();
+  }, []);
+  function rankFormatter(col, row, rowIndex, formatExtraData) {
     return (
-      <>
-        <div className="hearder">
-          <h1>Produts</h1>
-          <div className="btn">
-            <button className="btn-add">
-              <Link
-                to="/products/add-product"
-                style={{ textDecoration: "none", color: "white", wordBreak: "break-word", overflow: "hidden" }}
-              >
-                <BiPlusMedical />
-                <span>Add Product</span>
-              </Link>
-            </button>
-            <button className="btn-add">
-              <BiPlusMedical />
-              <span>Add List of Product</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="table-responsive-md">
-          <table
-            class="table table-hover"
-            style={{
-              backgroundColor: "white",
-              borderRadius: "5px",
-            }}
-          >
-            <thead>
-              <tr style={{ textAlign: "center" }}>
-                <th scope="col">ID</th>
-                <th scope="col" className="name-item">
-                  Name
-                </th>
-                <th scope="col">Count</th>
-                <th scope="col">Import Date</th>
-                <th scope="col">Type</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.lstProduct.map((item, index) => (
-                <tr style={{ textAlign: "center" }}>
-                  <th scope="row" style={{ maxWidth: "90px" }}>
-                    {item._id}
-                  </th>
-                  <td style={{ maxWidth: "125px" }}>{item.ten_sp}</td>
-                  <td style={{ width: "30px" }}>{item.so_luong}</td>
-                  <td style={{ maxWidth: "60px" }}>
-                    {new Date(item.ngay_nhap).toLocaleDateString()}
-                  </td>
-                  <td>
-                    {item.id_loai_sp != null ? item.id_loai_sp.ten_loai_sp : ""}
-                  </td>
-                  <td style={{ maxWidth: "141px" }}>
-                    <button className="btn-edit">Edit</button>
-                    <button className="btn-delete">Delete</button>
-                    {/* <Link to={"/products/" + item._id}>
-                      <button className="btn-view">View</button>
-                    </Link> */}
-                    <button
-                      className="btn-view"
-                      onClick={this.openModal}
-                    >
-                      View {console.log(item._id)}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {this.state.showModal ? <ModalProduct
-                show={this.state.showModal}
-                handleClose={this.hideModal}
-                children={<View idItem={this.state.idRow} />}
-              ></ModalProduct>: null
-              }
-              
-            </tbody>
-          </table>
-        </div>
-      </>
+      <div
+        style={{
+          textAlign: "center",
+          cursor: "pointer",
+          lineHeight: "normal",
+          display: "inline-flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link to="/products/add-product">
+          <BsFillPencilFill
+            style={{ fontSize: 20, marginRight: "20px" }}
+            color="disabled"
+          />
+        </Link>
+        <AiFillDelete></AiFillDelete>
+      </div>
     );
   }
+  const columns = [
+    {
+      dataField: "_id",
+      text: "ID",
+      attrs: { width: 100, class: "EditRow" },
+      headerAlign: "center",
+      formatter: (col, row) => {
+        return (
+          <span
+            style={{
+              display: "block",
+              width: 120,
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            {col}
+          </span>
+        );
+      },
+    },
+    {
+      dataField: "ten_sp",
+      text: "Name",
+      attrs: { width: 250, class: "EditRow" },
+      headerAlign: "center",
+      formatter: (col, row) => {
+        return (
+          <span
+            style={{
+              display: "block",
+              width: 234,
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            {col}
+          </span>
+        );
+      },
+    },
+    {
+      dataField: "ngay_nhap",
+      text: "Import Date",
+      headerAlign: "center",
+      attrs: { width: 200, class: "EditRow", style: { textAlign: "center" } },
+      formatter: (cell) => {
+        let dateObj = cell;
+        if (typeof cell !== "object") {
+          dateObj = new Date(cell);
+        }
+        return `${("0" + dateObj.getUTCDate()).slice(-2)}/${(
+          "0" +
+          (dateObj.getUTCMonth() + 1)
+        ).slice(-2)}/${dateObj.getUTCFullYear()}`;
+      },
+    },
+    {
+      dataField: "id_loai_sp.ten_loai_sp",
+      text: "Type",
+      attrs: { width: 200, class: "EditRow", style: { textAlign: "center" } },
+      headerAlign: "center",
+    },
+    {
+      dataField: "",
+      text: "Action",
+      isDummyField: true,
+      csvExport: false,
+      formatter: rankFormatter,
+      headerAttrs: { width: 50 },
+      attrs: { width: 100, class: "EditRow" },
+    },
+  ];
+  const rowEvents = {
+    onClick: (e, row) => {
+      setModalInfo(row);
+      toggleTrueFalse();
+    },
+  };
+
+  const toggleTrueFalse = () => {
+    setShowModal(handleShow);
+  };
+
+  const ModalContent = () => {
+    return (
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Product Detail</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ul>
+            <li>
+              <b>Name: </b>
+              {modalInfo.ten_sp}
+            </li>
+            <li>
+              <b>Amount: </b>
+              {modalInfo.so_luong}
+            </li>
+            <li>
+              <b>Import Date: </b>
+              {new Date(modalInfo.ngay_nhap).toLocaleDateString()}
+            </li>
+            <li>
+              <b>Description: </b>
+              {modalInfo.mo_ta}
+            </li>
+            <li>
+              <b>Import Price: </b>
+              {modalInfo.don_gia_nhap}
+            </li>
+            <li>
+              <b>Selling Price: </b>
+              {modalInfo.don_gia_xuat}
+            </li>
+            <li>
+              <b>Supplier: </b>
+              {modalInfo.id_nha_cc.ten_nha_cc}
+            </li>
+            <li>
+              <b>Color: </b>
+              {modalInfo.id_mau_sac.map((item) => (
+                <input type="color" value={item.ten_mau} className="primary-color"/>
+              ))}
+            </li>
+            <li>
+              <b>Material: </b>
+              {modalInfo.id_chat_lieu.ten_chat_lieu}
+            </li>
+            <li>
+              <b>Type: </b>
+              {modalInfo.id_loai_sp.ten_loai_sp}
+            </li>
+            <li>
+              <b>Rating of rate: </b>
+              {modalInfo.ti_le_danh_gia}
+            </li>
+          </ul>
+        </Modal.Body>
+      </Modal>
+    );
+  };
+  return (
+    <>
+      <div className="hearder">
+        <h1>Produts</h1>
+        <div className="btn">
+          <button className="btn-add">
+            <Link
+              to="/products/add-product"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                wordBreak: "break-word",
+                overflow: "hidden",
+              }}
+            >
+              <BiPlusMedical />
+              <span>Add Product</span>
+            </Link>
+          </button>
+          <button className="btn-add">
+            <BiPlusMedical />
+            <span>Add List of Product</span>
+          </button>
+        </div>
+      </div>
+      <BootstrapTable
+        bodyClasses="custosize-table"
+        keyField="key"
+        data={products}
+        columns={columns}
+        rowEvents={rowEvents}
+        bordered={false}
+      />
+      {show ? <ModalContent /> : null}
+    </>
+  );
 }
 
 export default Dashboard;

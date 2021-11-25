@@ -1,5 +1,5 @@
-tr td, tr th{
-  /* width: 193px; */
+/* .react-bootstrap-table .table .custosize-table tr td, .react-bootstrap-table .table .custosize-table tr th{
+  width: 193px !important;
   white-space: nowrap;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
@@ -7,6 +7,9 @@ tr td, tr th{
   word-break: break-all;
   word-break: normal;
   overflow: hidden;
+} */
+.react-bootstrap-table {
+  background-color: white;
 }
 .btn-edit, .btn-delete, .btn-view, .btn-add{
   outline: none;
@@ -16,6 +19,23 @@ tr td, tr th{
   border-radius: 5px;
   padding: 4px 14px;
 }
+.primary-color {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  -webkit-appearance: none;
+}
+.primary-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.primary-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
 .btn-add{
   background-color: #3EA4ED;
   color: white;

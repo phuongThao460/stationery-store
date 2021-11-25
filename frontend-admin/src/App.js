@@ -10,7 +10,6 @@ import { Modal } from "./components/Modal";
 import AddNewProduct from "./pages/AddNewProduct";
 import View from "./pages/View";
 import ViewProduct from "./pages/ViewProduct";
-import ListProduct from "./pages/ListProduct";
 const Content = () => {
   return <h1>Content</h1>;
 };
@@ -40,7 +39,7 @@ function App() {
           />
           <div className={`container ${inactive ? "inactive" : ""}`}>
             <Routes>
-              <Route path="/" element={<ListProduct />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/products/add-product" element={<AddNewProduct />} />
               {/* <Route path="/products/:id" element={<ViewProduct/>} /> */}
               <Route path="/customer" element={<Courses />} />

@@ -9,7 +9,18 @@ export const Get_San_Phams = async (req, res) => {
         path: "id_loai_sp",
         select: "ten_loai_sp",
       })
-      
+      .populate({
+        path: "id_nha_cc",
+        select: "ten_nha_cc",
+      })
+      .populate({
+        path: "id_mau_sac",
+        select: "ten_mau",
+      })
+      .populate({
+        path: "id_chat_lieu",
+        select: "ten_chat_lieu",
+      });
     console.log("san_phams", san_phams);
     res.status(200).json(san_phams);
   } catch (err) {
