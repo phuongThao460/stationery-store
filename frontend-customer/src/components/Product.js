@@ -5,12 +5,16 @@ import { BsHandbagFill } from "react-icons/bs";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import "../style/Product.css";
 import axios from "axios";
+
+
+
 export default class Product extends React.Component {
   constructor() {
     super();
     this.state = {
       idProduct: document.location.pathname.substring(10),
       product: null,
+      count: 1
     };
   }
   componentDidMount() {
@@ -27,6 +31,9 @@ export default class Product extends React.Component {
       })
       .catch((e) => console.log(e));
   }
+
+
+
   render() {
     let data = <div></div>;
     if (this.state.product != null) {
@@ -45,7 +52,7 @@ export default class Product extends React.Component {
             </div>
             <div className="infoContainer" style={{ maxWidth: "570px" }}>
               <h1 className="Title-Product">{this.state.product.ten_sp}</h1>
-              <span className="Price">{this.state.product.don_gia_xuat}d</span>
+              <span className="Price">${this.state.product.don_gia_xuat}</span>
               <p className="Desc">{this.state.product.mo_ta}</p>
 
               <div className="FilterContainer">
@@ -62,9 +69,9 @@ export default class Product extends React.Component {
               </div>
               <div className="AddContainer">
                 <div className="AmountContainer">
-                  <IoMdRemove />
-                  <span className="Amount">1</span>
-                  <GrAdd />
+                  <IoMdRemove onClick={() => this.setState({ count: this.state.count - 1 })} />
+                  <span className="Amount">{this.state.count}</span>
+                  <GrAdd onClick={() => this.setState({ count: this.state.count + 1 })}/>
                 </div>
                 <button className="Button">
                   <BsHandbagFill style={{ marginRight: "7px" }} />

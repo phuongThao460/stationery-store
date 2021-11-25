@@ -193,16 +193,15 @@ export const ModalProduct = ({ show, children, handleClose }) => {
     <>
       {show ? (
         <div className="modal display-block">
-          <section className="modal-main">
+          <section className="modal-main" style={{width: "62%", height:"90%"}}>
             <div className="modal-top">
-              
-              
+              <h3>Product Detail</h3>
               <button type="button" onClick={handleClose} style={{backgroundColor: "transparent", outline:"none", border: "0"}}>
                 <AiOutlineClose/>
               </button>
             </div>
 
-            <h3>{children}</h3>
+            <div>{children}</div>
           </section>
         </div>
       ) : null}

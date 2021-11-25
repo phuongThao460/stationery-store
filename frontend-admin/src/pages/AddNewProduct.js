@@ -25,7 +25,7 @@ class Product extends React.Component {
       lstColor: [],
       getLstColor: [],
       // selectedOptions: [],
-      selectedOption:0
+      selectedOption: 0,
     };
 
     this.getListSupplier();
@@ -117,7 +117,10 @@ class Product extends React.Component {
         id_chat_lieu: window.localStorage.getItem("chat_lieu_id"),
         ti_le_danh_gia: "0",
       })
-      .then((res) => console.log(res.data));
+      .then((res) => {
+        console.log(res.data);
+        alert("Add data successful");
+      });
   };
   openModal = () => {
     this.setState({ showModal: true });
@@ -126,7 +129,6 @@ class Product extends React.Component {
     this.setState({ showModal: false });
   };
   render() {
-    const { selectedOptions } = this.state;
     return (
       <>
         <div className="header">
@@ -263,10 +265,15 @@ class Product extends React.Component {
                   options={this.state.lstColor}
                   styles={colourStyles}
                   onChange={this.changeColor}
-                  value={this.state.lstColor.find(obj => obj.value === this.state.selectedOption)}
+                  value={this.state.lstColor.find(
+                    (obj) => obj.value === this.state.selectedOption
+                  )}
                 />
                 {/* {this.state.getLstColor.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),[])} */}
-                {window.localStorage.setItem("mau_sac_id", this.state.selectedOption)}
+                {window.localStorage.setItem(
+                  "mau_sac_id",
+                  this.state.selectedOption
+                )}
               </div>
             </div>
             <button

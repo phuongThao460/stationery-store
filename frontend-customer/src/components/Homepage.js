@@ -177,6 +177,37 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
+        <h1>Special Sale 50% Off</h1>
+        <div className="card-container">
+          <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
+            {this.state.lstProduct.map((item, index) => (
+              <div className="card" key={index} value={item.id}>
+                <div className="card-img">
+                  <Link to={"/products/" + item.id}>
+                    <img
+                      src="./images/BUT- BI.jpg"
+                      alt=""
+                      style={{ width: "204px", height: "185px" }}
+                    />
+                  </Link>
+                </div>
+                <Link to={"/products/" + item.id}>
+                  <div className="card-body">
+                    <div className="body-title">{item.name}</div>
+                    <div className="body-price">{item.price}</div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+            <div className="card">
+              <div className="card-body">
+                <div className="body-title">
+                  <a href="/#">See more</a>
+                </div>
+              </div>
+            </div>
+          </Carousel>
+        </div>
         <div
           className="footer"
           style={{ height: "50vh", backgroundColor: "antiquewhite" }}

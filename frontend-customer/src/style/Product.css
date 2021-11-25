@@ -118,16 +118,7 @@
 .Button:hover {
   background-color: #ffcc99;
 }
-.Button {
-  padding: 15px;
-  border: 2px solid Orange;
-  background-color: white;
-  cursor: pointer;
-  font-weight: 500;
-}
-.Button:hover {
-  background-color: #ffcc99;
-}
+
 .primary-color {
   border-radius: 50%;
   height: 30px;

@@ -43,7 +43,6 @@ function Navbar(props) {
         <div className="cart">
           <Link
             to="/Cart"
-            style={{color: "white"}}
           >
           <BsHandbag className="cart-bag" />
           <div className="num-item">

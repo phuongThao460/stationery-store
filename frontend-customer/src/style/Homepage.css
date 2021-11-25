@@ -169,7 +169,6 @@ a {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   word-break: break-all;
-  word-break: normal;
   overflow: hidden;
 }
 .body-price {

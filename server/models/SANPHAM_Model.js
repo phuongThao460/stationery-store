@@ -25,11 +25,11 @@ const schema = new mongoose.Schema({
 		required: true
 	},
 	id_loai_sp: {
-		type: mongoose.Types.ObjectId, ref: 'LOAI_SP',
+		type: mongoose.Types.ObjectId, ref: 'LOAI_SAN_PHAM',
 		required: true
 	},
 	id_nha_cc: {
-		type: mongoose.Types.ObjectId, ref: 'NHA_CC',
+		type: mongoose.Types.ObjectId, ref: 'NHA_CUNG_CAP',
 		required: true
 	},
 	id_mau_sac: [{
