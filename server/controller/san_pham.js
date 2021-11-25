@@ -14,10 +14,6 @@ export const Get_San_Phams = async (req, res) => {
         select: "ten_nha_cc",
       })
       .populate({
-        path: "id_mau_sac",
-        select: "ten_mau",
-      })
-      .populate({
         path: "id_chat_lieu",
         select: "ten_chat_lieu",
       });
@@ -32,10 +28,6 @@ export const Get_San_Pham_By_ID = async (req, res) => {
   try {
     const san_pham_id = req.body.san_pham_id;
     const san_pham = await SANPHAM_Model.findById(san_pham_id)
-      .populate({
-        path: "id_mau_sac",
-        select: "ten_mau",
-      })
       .populate({
         path: "id_loai_sp",
         select: "ten_loai_sp",

@@ -15,7 +15,6 @@ function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(false);
 
-  const [hoverIdx, setHoverIdx] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -180,8 +179,8 @@ function Dashboard() {
             </li>
             <li>
               <b>Color: </b>
-              {modalInfo.id_mau_sac.map((item) => (
-                <input type="color" value={item.ten_mau} className="primary-color"/>
+              {modalInfo.mau_sac.map((item) => (
+                <input type="color" value={item} className="primary-color"/>
               ))}
             </li>
             <li>

@@ -32,8 +32,8 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId, ref: 'NHA_CUNG_CAP',
 		required: true
 	},
-	id_mau_sac: [{
-		type: mongoose.Types.ObjectId, ref: 'MAU_SAC',
+	mau_sac: [{
+		type: String,
 		required: true
 	}],
 	id_chat_lieu: {
