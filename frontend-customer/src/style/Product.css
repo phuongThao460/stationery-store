@@ -37,6 +37,7 @@
   color: black;
   margin: 0;
   display: inline-block;
+  width: 100%;
   word-break: break-word;
 }
 
@@ -86,7 +87,7 @@
   justify-content: space-between;
 }
 .AddContainer {
-  width: 76%;
+  width: 114%;
   display: flex;
   align-items: center;
   justify-content: space-between;

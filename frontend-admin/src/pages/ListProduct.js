@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../style/Dashboard.css";
 import { BiPlusMedical } from "react-icons/bi";
 import axios from "axios";
-class Dashboard extends React.Component {
+class ListProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -110,4 +110,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default ListProduct;
