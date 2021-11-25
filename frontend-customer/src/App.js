@@ -19,13 +19,14 @@ import SubNav from "./data/SubNavbar";
 //import data from './data'
 
 function App() {
-  const [cartItems, setCardItems] = useState([]);
+  const [cartItems, setCardItems] = useState(0);
   const onAdd = (product) => {
     let products = [];
     if(localStorage.getItem('products')){
         products = JSON.parse(localStorage.getItem('products'));
     }
     products.push(product);
+    setCardItems(cartItems + 1)
     localStorage.setItem('products', JSON.stringify(products));
   };
   const onRemove = (product) => {
@@ -44,7 +45,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar countCartItem={cartItems.length} />
+        <Navbar countCartItem={cartItems} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />

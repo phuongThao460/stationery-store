@@ -6,8 +6,9 @@ import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
 import { Link } from 'react-router-dom';
 
-function Navbar() {
-  const countCartItem = JSON.parse(localStorage.getItem("products")).length;
+function Navbar(props) {
+  
+  const { countCartItem } = props;
   return (
     <div className="container-1">
       <div className="navbar-1">

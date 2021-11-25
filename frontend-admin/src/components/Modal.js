@@ -1,29 +1,20 @@
 import { useState } from 'react'
 import "../style/Modal.css"
 import { AiOutlineClose } from 'react-icons/ai'
-const ColorPicker = props => {
-  return (
-    <div className="color-picker">
-      <input type="color" {...props} />
-      <input type="text" {...props} />
-    </div>
-  );
-};
 
-export default function Color() {
-  const [state, updateState] = useState("#FFFFFF");
 
-  const handleInput = e => {
-    updateState(e.target.value);
+export const ModalColor = ({ show, children, handleClose, setColor }) => {
+  const [color, setColorPicker] = useState("#FFFFFF");
+
+  const ColorPicker = props => {
+    return (
+      <div className="color-picker">
+        <input type="color" {...props} />
+        <input type="text" {...props} />
+      </div>
+    );
   };
 
-  return (
-    <div className="color">
-      <ColorPicker onChange={handleInput} value={state} />
-    </div>
-  );
-}
-export const ModalColor = ({ show, children, handleClose }) => {
   return (
     <>
       {show ? (
@@ -52,10 +43,15 @@ export const ModalColor = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
+                <div className="color">
+                    <div className="color-picker">
+                      <input type="color" onChange={e => setColorPicker(e.target.value)} value={color} />
+                      <input type="text" />
+                    </div>
+                </div>
               </div>
               <div className="col-auto">
-                <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
+                <button onClick={e => setColor(color)} style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
               </div>
             </div>
           </section>
@@ -94,7 +90,7 @@ export const ModalMaterial = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
+                {/* <Color /> */}
               </div>
               <div className="col-auto">
                 <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
@@ -135,7 +131,7 @@ export const ModalType = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
+                {/* <Color /> */}
               </div>
               <div className="col-auto">
                 <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
@@ -176,7 +172,7 @@ export const ModalSupplier = ({ show, children, handleClose }) => {
                 </label>
               </div>
               <div className="col-auto">
-                <Color />
+                {/* <Color /> */}
               </div>
               <div className="col-auto">
                 <button style={{backgroundColor: "blue", outline:"none", border: "0", color: "white", borderRadius: "5px", padding: "5px 10px"}}>Submit</button>
