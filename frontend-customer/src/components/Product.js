@@ -14,6 +14,8 @@ export default class Product extends React.Component {
       product: null,
       count: 1,
       arrayColor: [],
+      chooseColor: "",
+      addCart: [],
     };
   }
   componentDidMount() {
@@ -30,20 +32,28 @@ export default class Product extends React.Component {
       })
       .then((res) => {
         this.setState({ product: res.data });
-        //console.log(res.data.mau_sac);
         for (let i = 0; i < res.data.mau_sac.length; i++) {
           this.state.arrayColor.push(res.data.mau_sac[i]);
         }
-        //this.state.arrayColor.push(res.data.mau_sac)
-        //console.log(res.data.mau_sac[0]);
-        //console.log(this.state.arrayColor);
         this.setState(this);
       })
       .catch((e) => console.log(e));
   }
+
+  addToCart = (count, color) => {
+    var cart = {
+      _id: this.state.product._id,
+      ten_sp: this.state.product.ten_sp,
+      so_luong: count,
+      don_gia_xuat: this.state.product.don_gia_xuat,
+      mau_sac: color,
+    }
+    this.setState({addCart: [...this.state.addCart, cart]});
+  };
   render() {
+    const { product, addCart, count, chooseColor } = this.state;
     let data = <div></div>;
-    if (this.state.product != null) {
+    if (product != null) {
       data = (
         <div className="Container-Product">
           <div className="Wrapper">
@@ -62,44 +72,46 @@ export default class Product extends React.Component {
                 className="infoContainer"
                 style={{ maxWidth: "397px", position: "relative" }}
               >
-                <h1 className="Title-Product">{this.state.product.ten_sp}</h1>
-                <span className="Price">
-                  ${this.state.product.don_gia_xuat}
-                </span>
-                <p className="Desc">{this.state.product.mo_ta}</p>
+                <h1 className="Title-Product">{product.ten_sp}</h1>
+                <span className="Price">${product.don_gia_xuat}</span>
+                <p className="Desc">{product.mo_ta}</p>
 
                 <div className="FilterContainer">
                   <div className="Filter">
                     <span className="FilterTitle">Color</span>
-                    {this.state.arrayColor.map((item) => (
-                      <input
-                        type="color"
-                        value={item}
+                    {product.mau_sac.map((item) => (
+                      <button
                         className="primary-color"
+                        style={{ backgroundColor: `${item}` }}
+                        onClick={() => this.setState({ chooseColor: item })}
                       />
                     ))}
-                    {this.state.product.mau_sac.map((item) => console.log(item))}
                   </div>
                 </div>
               </div>
               <div className="AddContainer">
                 <div className="AmountContainer">
                   <IoMdRemove
-                    onClick={() =>
-                      this.setState({ count: this.state.count - 1 })
-                    }
+                    onClick={() => {
+                      if (this.state.count < 1) {
+                        this.setState({ count: 1 });
+                      } else {
+                        this.setState({ count: count - 1 });
+                      }
+                    }}
                   />
-                  <span className="Amount">{this.state.count}</span>
+                  <span className="Amount">{count}</span>
                   <GrAdd
-                    onClick={() =>
-                      this.setState({ count: this.state.count + 1 })
-                    }
+                    onClick={() => {
+                      if (count < product.so_luong) {
+                        this.setState({ count: count + 1 });
+                      } else {
+                        this.setState({ count: product.so_luong });
+                      }
+                    }}
                   />
                 </div>
-                <button
-                  className="Button"
-                  onClick={() => this.props.onAdd(this.state.product)}
-                >
+                <button className="Button" onClick={() => this.props.onAdd(this.addToCart(count, chooseColor))}>
                   <BsHandbagFill style={{ marginRight: "7px" }} />
                   ADD TO CART
                 </button>
@@ -109,8 +121,8 @@ export default class Product extends React.Component {
                 </button>
               </div>
             </div>
-            {/* {console.log(this.state.arrayProduct)}
-            {window.localStorage.setItem("products", JSON.stringify(this.state.arrayProduct))} */}
+            {console.log(addCart)}
+            {window.localStorage.setItem("products", JSON.stringify(addCart))}
           </div>
         </div>
       );

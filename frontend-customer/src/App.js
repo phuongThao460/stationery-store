@@ -2,10 +2,10 @@
 import { useState } from "react";
 import "./App.css";
 
-import Homepage from "./components/Homepage";
+import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
-import LoginForm from './components/LoginForm'
-import SignupForm from './components/SignupForm'
+import LoginForm from './pages/LoginForm'
+import SignupForm from './pages/SignupForm'
 import Product from "./components/Product";
 import Cart from "./components/Cart";
 import {
@@ -19,16 +19,26 @@ import SubNav from "./data/SubNavbar";
 //import data from './data'
 
 function App() {
-  const [cartItems, setCardItems] = useState(0);
+  const [cartItems, setCardItems] = useState([]);
   const onAdd = (product) => {
-    let products = [];
-    if(localStorage.getItem('products')){
-        products = JSON.parse(localStorage.getItem('products'));
-        setCardItems(cartItems + JSON.parse(localStorage.getItem("products")).length)
+    const exist = cartItems.find((x) => x.id === product._id);
+    if (exist) {
+      setCardItems(
+        cartItems.map((x) =>
+          x.id === product._id ? { ...exist, so_luong: exist.so_luong + 1 } : x
+        )
+      );
+    } else {
+      setCardItems([...cartItems, { ...product, so_luong: 1 }]);
     }
-    products.push(product);
-    setCardItems(cartItems + 1)
-    localStorage.setItem('products', JSON.stringify(products));
+    // let products = [];
+    // if(localStorage.getItem('products')){
+    //     products = JSON.parse(localStorage.getItem('products'));
+    //     //setCardItems(cartItems + JSON.parse(localStorage.getItem("products")).length)
+    // }
+    // products.push(product);
+    // setCardItems(cartItems + 1)
+    // localStorage.setItem('products', JSON.stringify(products));
   };
   //const countCartItem = JSON.parse(localStorage.getItem("products")).length;
   const onRemove = (product) => {
@@ -47,7 +57,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar countCartItem={cartItems} />
+        <Navbar countCartItem={cartItems.length} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />
