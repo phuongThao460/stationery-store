@@ -9,6 +9,11 @@ class Cart extends React.Component {
     super(props);
     this.state = {
       array: [],
+      style: {
+        width: "10px",
+        height: "10px",
+        margin: "0 12px"
+      }
     };
     this.getArray();
   }
@@ -19,6 +24,7 @@ class Cart extends React.Component {
     console.log(this.state.array.length)
   }
   render() {
+    const { style, array } = this.state;
     return (
       <div className="Container-cart">
         <div className="Wrapper-cart">
@@ -34,7 +40,7 @@ class Cart extends React.Component {
           
           <div className="Bottom">
             <div className="Info">
-              {this.state.array.map((item) => (
+              {array.map((item) => (
                 <div className="Product-cart">
                   <div className="ProductDetail-cart">
                     <img
@@ -49,14 +55,14 @@ class Cart extends React.Component {
                       <span className="ProductId">
                         <b>ID:</b> {item._id}
                       </span>
-                      <div className="ProductColor" color="black" />
+                      <div className="ProductColor" style={{backgroundColor: `${item.mau_sac}`}} />
                     </div>
                   </div>
                   <div className="PriceDetail">
                     <div className="ProductAmountContainer">
-                      <GrAdd />
-                      <div className="ProductAmount">1</div>
-                      <IoMdRemove />
+                      <GrAdd style={style}/>
+                      <div className="ProductAmount">{item.so_luong}</div>
+                      <IoMdRemove style={style}/>
                     </div>
                     <div className="ProductPrice">{item.don_gia_xuat}</div>
                   </div>

@@ -136,3 +136,8 @@
   border: none;
   border-radius: 50%;
 }
+.primary-color::after,
+.primary-color:focus{
+  outline: 4px solid rgb(209, 209, 209);
+  border: 1px solid black;
+}

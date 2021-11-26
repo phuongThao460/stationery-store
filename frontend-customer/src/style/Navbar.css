@@ -60,6 +60,7 @@
   left: 11px;
   display: flex;
   justify-content: center;
+  margin-left: 9px;
 }
 .text-num {
   width: fit-content;
