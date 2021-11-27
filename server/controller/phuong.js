@@ -12,6 +12,10 @@ export const Get_Phuongs = async (req, res) => {
       .populate({
         path: "id_quan",
         select: "quan_huyen",
+        populate: {
+          path: "id_thanh_pho",
+          select: "ten_thanh_pho"
+        }
       })
     console.log("phuongs", phuongs);
     res.status(200).json(phuongs);
@@ -32,6 +36,10 @@ export const Get_Phuong_By_ID = async (req, res) => {
       .populate({
         path: "id_quan",
         select: "quan_huyen",
+        populate: {
+          path: "id_thanh_pho",
+          select: "ten_thanh_pho"
+        }
       })
     console.log("phuong", phuong);
     res.status(200).json(phuong);
