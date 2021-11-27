@@ -1,0 +1,39 @@
+.container-body{
+  display: flex;
+}
+.card-container{
+  display: grid;
+  grid-template-columns: repeat(4, 234px);
+  grid-template-rows: repeat(2, 150px);
+  grid-auto-flow: column;
+  row-gap: 194px;
+}
+.sidemenu{
+  width: 300px;
+  margin-left: 61px;
+  height: 100%;
+  margin-top: 35px;
+  margin-right: 30px;
+  border-right: 1px solid #C4C4C4;
+}
+.title-list{
+  margin-bottom: 12px;
+}
+ul li{
+  list-style: none;
+  padding-bottom: 12px;
+  display: flex;
+}
+ul{
+  margin-bottom: 24px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #C4C4C4;
+}
+input[type="checkbox"]{
+  margin-right: 12px;
+  height: 20px;
+  width: 20px;
+}
+ul li span{
+  margin-top: 3px;
+}
