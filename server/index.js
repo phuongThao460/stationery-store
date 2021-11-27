@@ -18,13 +18,10 @@ import gio_hang from './routers/gio_hang.js'
 import ct_gh from './routers/ct_gio_hang.js'
 import don_hang from './routers/don_hang.js'
 import ct_dh from './routers/ct_don_hang.js'
-<<<<<<< HEAD
 import report from './routers/report.js'
 import thanh_pho from './routers/thanh_pho.js'
 import quan from './routers/quan.js'
 import phuong from './routers/phuong.js'
-=======
->>>>>>> 38ae51fe3cf6a7ffbb0e2f801e5eaf26d399534f
 
 const app = express()
 const PORT = process.env.port  || 8000
@@ -47,13 +44,10 @@ app.use('/gio_hang', gio_hang)
 app.use('/ct_gh', ct_gh)
 app.use('/don_hang', don_hang)
 app.use('/ct_dh', ct_dh)
-<<<<<<< HEAD
 app.use('/report', report)
 app.use('/thanh_pho', thanh_pho)
 app.use('/quan', quan)
 app.use('/phuong', phuong)
-=======
->>>>>>> 38ae51fe3cf6a7ffbb0e2f801e5eaf26d399534f
 
 mongoose
 	.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true})
