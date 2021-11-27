@@ -43,6 +43,10 @@ const schema = new mongoose.Schema({
 	ti_le_danh_gia: {
 		type: Number,
 		default: 0
+	},
+	id_phan_loai: {
+		type: mongoose.Types.ObjectId,
+		ref: 'PHAN_LOAI'
 	}
 }, { timestamps: false })
 
