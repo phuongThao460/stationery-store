@@ -24,6 +24,7 @@ class Cart extends React.Component {
     console.log(this.state.array.length)
   }
   render() {
+    let subtotal = 0;
     const { style, array } = this.state;
     return (
       <div className="Container-cart">
@@ -66,16 +67,20 @@ class Cart extends React.Component {
                     </div>
                     <div className="ProductPrice">{item.don_gia_xuat}</div>
                   </div>
+                  <div style={{display: "none"}}>{subtotal = subtotal + (item.so_luong * item.don_gia_xuat)}</div>
+                  
                 </div>
               ))}
 
               <hr className="Hr" />
             </div>
             <div className="Summary">
+              
+              <div className="summary-container">
               <h1 className="SummaryTitle">ORDER SUMMARY</h1>
               <div className="SummaryItem">
                 <span className="SummaryItemText">Subtotal</span>
-                <span className="SummaryItemPrice">$ 80</span>
+                <span className="SummaryItemPrice">{subtotal}</span>
               </div>
               <div className="SummaryItem">
                 <span className="SummaryItemText">Estimated Shipping</span>
@@ -90,6 +95,8 @@ class Cart extends React.Component {
                 <span className="SummaryItemPrice">$ 80</span>
               </div>
               <button className="Button-checkout">CHECKOUT NOW</button>
+              </div>
+              
             </div>
           </div>
         </div>

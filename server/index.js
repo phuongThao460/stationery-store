@@ -18,7 +18,6 @@ import gio_hang from './routers/gio_hang.js'
 import ct_gh from './routers/ct_gio_hang.js'
 import don_hang from './routers/don_hang.js'
 import ct_dh from './routers/ct_don_hang.js'
-import report from './routers/report.js'
 
 const app = express()
 const PORT = process.env.port  || 8000
@@ -41,7 +40,6 @@ app.use('/gio_hang', gio_hang)
 app.use('/ct_gh', ct_gh)
 app.use('/don_hang', don_hang)
 app.use('/ct_dh', ct_dh)
-app.use('/report', report)
 
 mongoose
 	.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true})

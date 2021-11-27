@@ -1,6 +1,6 @@
 import React from "react";
 //import { useParams } from 'react-router';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "../style/ListItem.css";
 function ListItem() {
   return (
@@ -9,34 +9,34 @@ function ListItem() {
       <div className="container-body">
         <div className="sidemenu">
           <h3 className="title-list">Categories</h3>
-          <ul>
-            <li>Notebook</li>
-            <li>Pen - Pencil</li>
-            <li>Shetchnote</li>
-            <li>Book - Eraser - Ruler</li>
-            <li>Souvenir</li>
-            <li>Color - Paint Brush</li>
-            <li>Paper - Paper Clips</li>
-            <li>Pen Box</li>
-            <li>Other</li>
+          <ul className="sidebar-title">
+            <li className="sidebar-name">Notebook</li>
+            <li className="sidebar-name">Pen - Pencil</li>
+            <li className="sidebar-name">Shetchnote</li>
+            <li className="sidebar-name">Book - Eraser - Ruler</li>
+            <li className="sidebar-name">Souvenir</li>
+            <li className="sidebar-name">Color - Paint Brush</li>
+            <li className="sidebar-name">Paper - Paper Clips</li>
+            <li className="sidebar-name">Pen Box</li>
+            <li className="sidebar-name">Other</li>
           </ul>
           <h3 className="title-list">Material</h3>
-          <ul>
-            <li><input type="checkbox"/><span>Kraft Paper</span></li>
-            <li><input type="checkbox"/><span>Duplex Paper</span></li>
-            <li><input type="checkbox"/><span>Couche Paper</span></li>
-            <li><input type="checkbox"/><span>Fort Paper</span></li>
+          <ul className="sidebar-title">
+            <li className="sidebar-name"><input type="checkbox"/><span>Kraft Paper</span></li>
+            <li className="sidebar-name"><input type="checkbox"/><span>Duplex Paper</span></li>
+            <li className="sidebar-name"><input type="checkbox"/><span>Couche Paper</span></li>
+            <li className="sidebar-name"><input type="checkbox"/><span>Fort Paper</span></li>
           </ul>
           <h3 className="title-list">Suplier</h3>
-          <ul>
-            <li><input type="checkbox"/><span>Thien Long</span></li>
-            <li><input type="checkbox"/><span>Hoang Ha</span></li>
-            <li><input type="checkbox"/><span>An Thien Phuoc</span></li>
-            <li><input type="checkbox"/><span>An Loc Viet</span></li>
+          <ul className="sidebar-title">
+            <li className="sidebar-name"><input type="checkbox"/><span>Thien Long</span></li>
+            <li className="sidebar-name"><input type="checkbox"/><span>Hoang Ha</span></li>
+            <li className="sidebar-name"><input type="checkbox"/><span>An Thien Phuoc</span></li>
+            <li className="sidebar-name"><input type="checkbox"/><span>An Loc Viet</span></li>
           </ul>
         </div>
         
-        <div className="card-container">
+        <div className="card-container-1">
           <div className="card">
             <div className="card-img">
               <a href={"/products/"}>
