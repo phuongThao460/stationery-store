@@ -8,6 +8,7 @@ export const Get_TKKHs = async (req, res) => {
 
 	try {
 		const tkkhs = await TK_KH_Model.find()
+			.populate('id_ttkh')
 		console.log('tkkhs', tkkhs)
 		res.status(200).json(tkkhs)
 	} catch (err) {
@@ -22,8 +23,9 @@ export const Get_TKKH_By_ID = async (req, res) => {
 	*/
 
 	try {
-		const tkkh_id = req.body.tkkh_id
+		const tkkh_id = req.body._id
 		const tkkh = await TK_KH_Model.findById(tkkh_id)
+			.populate('id_ttkh')
 		console.log('tkkh', tkkh)
 		res.status(200).json(tkkh)
 	} catch(err) {
@@ -67,4 +69,23 @@ export const Add_San_Pham_To_Rate_List = async (_id, sp_id) => {
 		console.log(err)
 		return err
   	}
+}
+
+export const create_TKKH = async (req, res) => {
+	/*
+	Create new tai khoan khach hang
+	:return: tai khoan khach hang was created
+	*/
+
+	try {
+		const new_tkkh = req.body
+
+		const tkkh = new TK_KH_Model(new_tkkh)
+		await tkkh.save()
+
+		res.status(200).json(tkkh)
+	} catch(err) {
+		res.status(500).json({ error: err })
+		console.log(err)
+	}
 }

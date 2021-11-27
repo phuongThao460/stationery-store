@@ -7,6 +7,6 @@ router.get('/', Get_TTKHs)
 
 router.post('/', Get_TTKH_By_ID)
 
-router.post('/create_ttkh', create_TTKH)
+router.post('/create', create_TTKH)
 
 export default router
