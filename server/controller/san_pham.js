@@ -16,7 +16,11 @@ export const Get_San_Phams = async (req, res) => {
       .populate({
         path: "id_chat_lieu",
         select: "ten_chat_lieu",
-      });
+      })
+      .populate({
+        path: "id_phan_loai",
+        select: "ten_phan_loai"
+      })
     console.log("san_phams", san_phams);
     res.status(200).json(san_phams);
   } catch (err) {
@@ -26,7 +30,7 @@ export const Get_San_Phams = async (req, res) => {
 
 export const Get_San_Pham_By_ID = async (req, res) => {
   try {
-    const san_pham_id = req.body.san_pham_id;
+    const san_pham_id = req.body._id;
     const san_pham = await SANPHAM_Model.findById(san_pham_id)
       .populate({
         path: "id_loai_sp",
@@ -39,7 +43,11 @@ export const Get_San_Pham_By_ID = async (req, res) => {
       .populate({
         path: "id_chat_lieu",
         select: "ten_chat_lieu",
-      });
+      })
+      .populate({
+        path: "id_phan_loai",
+        select: "ten_phan_loai"
+      })
     console.log("san_pham", san_pham);
     res.status(200).json(san_pham);
   } catch (err) {
