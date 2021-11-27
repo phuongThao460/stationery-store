@@ -28,7 +28,7 @@ export default class Product extends React.Component {
   async getItem() {
     await axios
       .post("http://localhost:8000/san_pham/", {
-        san_pham_id: this.state.idProduct,
+        _id: this.state.idProduct,
       })
       .then((res) => {
         this.setState({ product: res.data });

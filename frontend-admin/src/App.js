@@ -5,11 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Material from "./components/Material";
-import Color from "./components/MultipleColor";
-import { Modal } from "./components/Modal";
 import AddNewProduct from "./pages/AddNewProduct";
-import View from "./pages/View";
-import ViewProduct from "./pages/ViewProduct";
 const Content = () => {
   return <h1>Content</h1>;
 };
@@ -41,7 +37,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products/add-product" element={<AddNewProduct />} />
-              {/* <Route path="/products/:id" element={<ViewProduct/>} /> */}
               <Route path="/customer" element={<Courses />} />
               <Route path="/customer/music" element={<Music />} />
               <Route path="/order" element={<AboutUs />} />
