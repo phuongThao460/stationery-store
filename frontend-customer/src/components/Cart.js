@@ -12,17 +12,17 @@ class Cart extends React.Component {
       style: {
         width: "10px",
         height: "10px",
-        margin: "0 12px"
-      }
+        margin: "0 12px",
+      },
     };
     this.getArray();
   }
 
   getArray = () => {
-    this.state.array = JSON.parse(window.localStorage.getItem("products"))
-    this.setState(this)
-    console.log(this.state.array.length)
-  }
+    this.state.array = JSON.parse(window.localStorage.getItem("products"));
+    this.setState(this);
+    console.log(this.state.array.length);
+  };
   render() {
     let subtotal = 0;
     const { style, array } = this.state;
@@ -38,7 +38,7 @@ class Cart extends React.Component {
             </div>
             <button className="TopButton-checkout">CHECKOUT NOW</button>
           </div>
-          
+
           <div className="Bottom">
             <div className="Info">
               {array.map((item) => (
@@ -50,53 +50,59 @@ class Cart extends React.Component {
                       src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
                     />
                     <div className="Details-cart">
-                      <span className="ProductName">
-                        <b>Product:</b> {item.ten_sp}
+                      <span className="ProductName" style={{ width: "454px" }}>
+                        <b>{item.ten_sp}</b>
                       </span>
-                      <span className="ProductId">
-                        <b>ID:</b> {item._id}
+                      <span className="ProductId" style={{ display: "inline-flex" }}>
+                        Amount: 
+                        <div className="ProductAmountContainer">
+                          <GrAdd style={style} />
+                          <div className="ProductAmount">{item.so_luong}</div>
+                          <IoMdRemove style={style} />
+                        </div>
                       </span>
-                      <div className="ProductColor" style={{backgroundColor: `${item.mau_sac}`}} />
+                      <span style={{ display: "inline-flex" }}>
+                        Color:{" "}
+                        <div
+                          className="ProductColor"
+                          style={{
+                            backgroundColor: `${item.mau_sac}`,
+                            marginLeft: "12px",
+                          }}
+                        />
+                      </span>
                     </div>
                   </div>
                   <div className="PriceDetail">
-                    <div className="ProductAmountContainer">
-                      <GrAdd style={style}/>
-                      <div className="ProductAmount">{item.so_luong}</div>
-                      <IoMdRemove style={style}/>
-                    </div>
-                    <div className="ProductPrice">{item.don_gia_xuat}</div>
+                    <div className="ProductPrice">{item.don_gia_xuat * 1000}</div>
                   </div>
-                  <div style={{display: "none"}}>{subtotal = subtotal + (item.so_luong * item.don_gia_xuat)}</div>
-                  
+                  <div style={{ display: "none" }}>
+                    {(subtotal = subtotal + item.so_luong * item.don_gia_xuat)}
+                  </div>
                 </div>
               ))}
-
-              <hr className="Hr" />
             </div>
             <div className="Summary">
-              
               <div className="summary-container">
-              <h1 className="SummaryTitle">ORDER SUMMARY</h1>
-              <div className="SummaryItem">
-                <span className="SummaryItemText">Subtotal</span>
-                <span className="SummaryItemPrice">{subtotal}</span>
+                <h1 className="SummaryTitle">ORDER SUMMARY</h1>
+                <div className="SummaryItem">
+                  <span className="SummaryItemText">Subtotal</span>
+                  <span className="SummaryItemPrice">{subtotal * 1000}</span>
+                </div>
+                <div className="SummaryItem">
+                  <span className="SummaryItemText">Estimated Shipping</span>
+                  <span className="SummaryItemPrice">28000</span>
+                </div>
+                <div className="SummaryItem">
+                  <span className="SummaryItemText">Shipping Discount</span>
+                  <span className="SummaryItemPrice">$ -5.90</span>
+                </div>
+                <div className="SummaryItem-total">
+                  <span className="SummaryItemText">Total</span>
+                  <span className="SummaryItemPrice">{subtotal * 1000 + 28000}</span>
+                </div>
+                <button className="Button-checkout">CHECKOUT NOW</button>
               </div>
-              <div className="SummaryItem">
-                <span className="SummaryItemText">Estimated Shipping</span>
-                <span className="SummaryItemPrice">$5.90</span>
-              </div>
-              <div className="SummaryItem">
-                <span className="SummaryItemText">Shipping Discount</span>
-                <span className="SummaryItemPrice">$ -5.90</span>
-              </div>
-              <div className="SummaryItem-total">
-                <span className="SummaryItemText">Total</span>
-                <span className="SummaryItemPrice">$ 80</span>
-              </div>
-              <button className="Button-checkout">CHECKOUT NOW</button>
-              </div>
-              
             </div>
           </div>
         </div>

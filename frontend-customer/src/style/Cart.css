@@ -60,6 +60,7 @@
   margin-top: 24px;
   width: 885px;
   margin-left: 20px;
+  padding-bottom: 24px;
   border-bottom: 1px solid #cdcdcd;
 }
 
@@ -99,10 +100,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  height: 20px;
 }
 
 .ProductAmount {
-  font-size: 24px;
+  font-size: 20px;
   margin: 5px;
 }
 
@@ -152,6 +154,10 @@
   background-color: black;
   color: white;
   font-weight: 600;
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.5);
 }
 
 .Hr {
