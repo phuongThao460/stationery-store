@@ -10,8 +10,12 @@ const schema = new mongoose.Schema({
 		required: true
 	},
 	id_ttkh: {
-		type: mongoose.Types.ObjectId,
+		type: String,
 		required: true
+	},
+	sp_cho_danh_gia: {
+		type: Array,
+		default: []
 	}
 }, { timestamps: false })
 

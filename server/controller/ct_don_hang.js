@@ -15,24 +15,26 @@ export const Get_CT_DHs = async (req, res) => {
 	}
 }
 
-export const Create_CT_DH = async (req, res) => {
+export const Create_CT_DH = async new_ct_dh  => {
 	/*
-	Create ct don hang
+	Create ct don hang, this method will be called when
+	creating don hang in controller don_hang
 	:return: json
 	*/
 
 	try {
-		const new_ct_dh = req.body
 
 		const ct_dh = new CT_DON_HANG_Model(new_ct_dh)
 		await ct_dh.save()
 
-		res.status(200).json(ct_dh)
+		return ct_dh
 	} catch(err) {
-		res.status(500).json({ error: err })
+		return err
 		console.log(err)
 	}
 }
+
+
 
 export const Get_CT_DH_By_Id = async (req, res) => {
 	/*
