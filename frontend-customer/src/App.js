@@ -21,24 +21,14 @@ import SubNav from "./data/SubNavbar";
 function App() {
   const [cartItems, setCardItems] = useState([]);
   const onAdd = (product) => {
-    const exist = cartItems.find((x) => x.id === product._id);
-    if (exist) {
-      setCardItems(
-        cartItems.map((x) =>
-          x.id === product._id ? { ...exist, so_luong: exist.so_luong + 1 } : x
-        )
-      );
-    } else {
-      setCardItems([...cartItems, { ...product, so_luong: 1 }]);
+    let products = [];
+    if(localStorage.getItem('products')){
+        products = JSON.parse(localStorage.getItem('products'));
+        //setCardItems(cartItems + JSON.parse(localStorage.getItem("products")).length)
     }
-    // let products = [];
-    // if(localStorage.getItem('products')){
-    //     products = JSON.parse(localStorage.getItem('products'));
-    //     //setCardItems(cartItems + JSON.parse(localStorage.getItem("products")).length)
-    // }
-    // products.push(product);
-    // setCardItems(cartItems + 1)
-    // localStorage.setItem('products', JSON.stringify(products));
+    products.push(product);
+    setCardItems(cartItems + 1)
+    localStorage.setItem('products', JSON.stringify(products));
   };
   //const countCartItem = JSON.parse(localStorage.getItem("products")).length;
   const onRemove = (product) => {

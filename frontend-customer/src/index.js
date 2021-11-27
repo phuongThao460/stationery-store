@@ -8,8 +8,8 @@ import ListItem from './components/ListItem';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <ListItem />
+    <App />
+    {/* <ListItem /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
