@@ -11,12 +11,13 @@ const schema = new mongoose.Schema({
 	},
 	id_ttkh: {
 		type: String,
-		required: true
+		required: true,
+		ref: "THONG_TIN_KHACH_HANG"
 	},
-	sp_cho_danh_gia: {
-		type: Array,
-		default: []
-	}
+	sp_cho_danh_gia: [{ 
+		type: mongoose.Types.ObjectId,
+		ref: "SAN_PHAM"
+	}]
 }, { timestamps: false })
 
 export const TK_KH_Model = mongoose.model('TAI_KHOAN_KHACH_HANG', schema)
