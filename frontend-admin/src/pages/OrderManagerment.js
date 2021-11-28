@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../style/Order.css";
 function OrderManagerment() {
   const [toggleState, setToggleState] = useState(1);
-
+  const [orderList, setOrderList] = useState([]);
   const toggleTab = (index) => {
     setToggleState(index);
   };
+
+  const getAllOrder = async () => {
+    try {
+      const data = await axios.get("http://localhost:8000/don_hang/");
+      setOrderList(data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getAllOrder();
+  }, []);
   return (
     <>
       <h1>Produts</h1>
@@ -51,7 +65,7 @@ function OrderManagerment() {
           >
             <table class="table table-hover">
               <thead>
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th scope="col">ID</th>
                   <th scope="col">Date Order</th>
                   <th scope="col">Status</th>
@@ -59,23 +73,20 @@ function OrderManagerment() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                {orderList.map((item, index) =>
+                  item.id_ttdh.trang_thai === "New" ? (
+                    <tr key={index} style={{ textAlign: "center" }}>
+                      <th scope="row">{item._id}</th>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
+                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>
+                        <Link to={"/products/" + item._id}>
+                          <button className="btn-view">View</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ) : null
+                )}
               </tbody>
             </table>
           </div>
@@ -85,12 +96,32 @@ function OrderManagerment() {
               toggleState === 2 ? "content  active-content" : "content"
             }
           >
-            <h2>Content 2</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-              voluptatum qui adipisci.
-            </p>
+            <table class="table table-hover">
+              <thead>
+                <tr style={{ textAlign: "center" }}>
+                  <th scope="col">ID</th>
+                  <th scope="col">Date Order</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderList.map((item, index) =>
+                  item.id_ttdh.trang_thai === "Confirm" ? (
+                    <tr key={index} style={{ textAlign: "center" }}>
+                      <th scope="row">{item._id}</th>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
+                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>
+                        <Link to={"/products/" + item._id}>
+                          <button className="btn-view">View</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ) : null
+                )}
+              </tbody>
+            </table>
           </div>
 
           <div
@@ -98,48 +129,96 @@ function OrderManagerment() {
               toggleState === 3 ? "content  active-content" : "content"
             }
           >
-            <h2>Content 3</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-              nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-              Accusamus in quia odit aspernatur provident et ad vel distinctio
-              recusandae totam quidem repudiandae omnis veritatis nostrum
-              laboriosam architecto optio rem, dignissimos voluptatum beatae
-              aperiam voluptatem atque. Beatae rerum dolores sunt.
-            </p>
+            <table class="table table-hover">
+              <thead>
+                <tr style={{ textAlign: "center" }}>
+                  <th scope="col">ID</th>
+                  <th scope="col">Date Order</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderList.map((item, index) =>
+                  item.id_ttdh.trang_thai === "Shipping" ? (
+                    <tr key={index} style={{ textAlign: "center" }}>
+                      <th scope="row">{item._id}</th>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
+                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>
+                        <Link to={"/products/" + item._id}>
+                          <button className="btn-view">View</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ) : null
+                )}
+              </tbody>
+            </table>
           </div>
           <div
             className={
               toggleState === 4 ? "content  active-content" : "content"
             }
           >
-            <h2>Content 4</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-              nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-              Accusamus in quia odit aspernatur provident et ad vel distinctio
-              recusandae totam quidem repudiandae omnis veritatis nostrum
-              laboriosam architecto optio rem, dignissimos voluptatum beatae
-              aperiam voluptatem atque. Beatae rerum dolores sunt.
-            </p>
+            <table class="table table-hover">
+              <thead>
+                <tr style={{ textAlign: "center" }}>
+                  <th scope="col">ID</th>
+                  <th scope="col">Date Order</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderList.map((item, index) =>
+                  item.id_ttdh.trang_thai === "Finished" ? (
+                    <tr key={index} style={{ textAlign: "center" }}>
+                      <th scope="row">{item._id}</th>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
+                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>
+                        <Link to={"/products/" + item._id}>
+                          <button className="btn-view">View</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ) : null
+                )}
+              </tbody>
+            </table>
           </div>
           <div
             className={
               toggleState === 5 ? "content  active-content" : "content"
             }
           >
-            <h2>Content 5</h2>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-              nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-              Accusamus in quia odit aspernatur provident et ad vel distinctio
-              recusandae totam quidem repudiandae omnis veritatis nostrum
-              laboriosam architecto optio rem, dignissimos voluptatum beatae
-              aperiam voluptatem atque. Beatae rerum dolores sunt.
-            </p>
+            <table class="table table-hover">
+              <thead>
+                <tr style={{ textAlign: "center" }}>
+                  <th scope="col">ID</th>
+                  <th scope="col">Date Order</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderList.map((item, index) =>
+                  item.id_ttdh.trang_thai === "Cancelled" ? (
+                    <tr key={index} style={{ textAlign: "center" }}>
+                      <th scope="row">{item._id}</th>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
+                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>
+                        <Link to={"/order/" + item._id}>
+                          <button className="btn-view">View</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ) : null
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
