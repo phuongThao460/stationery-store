@@ -70,8 +70,8 @@
 }
 
 .Image-cart {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 .Details-cart {
@@ -110,7 +110,7 @@
 
 .ProductPrice {
   font-size: 30px;
-  font-weight: 200;
+  font-weight: 600;
 }
 
 .Summary {

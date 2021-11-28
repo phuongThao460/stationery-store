@@ -50,17 +50,10 @@ class Cart extends React.Component {
                       src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
                     />
                     <div className="Details-cart">
-                      <span className="ProductName" style={{ width: "454px" }}>
-                        <b>{item.ten_sp}</b>
+                      <span className="ProductName" style={{ width: "328px" }}>
+                        <p style={{fontSize: "15px"}}>{item.ten_sp}</p>
                       </span>
-                      <span className="ProductId" style={{ display: "inline-flex" }}>
-                        Amount: 
-                        <div className="ProductAmountContainer">
-                          <GrAdd style={style} />
-                          <div className="ProductAmount">{item.so_luong}</div>
-                          <IoMdRemove style={style} />
-                        </div>
-                      </span>
+                      
                       <span style={{ display: "inline-flex" }}>
                         Color:{" "}
                         <div
@@ -73,9 +66,18 @@ class Cart extends React.Component {
                       </span>
                     </div>
                   </div>
+                  
                   <div className="PriceDetail">
+                  
                     <div className="ProductPrice">{item.don_gia_xuat * 1000}</div>
                   </div>
+                  <span className="ProductId" style={{ display: "inline-flex", marginTop: "64px" }}>
+                        <div className="ProductAmountContainer">
+                          <GrAdd style={style} />
+                          <div className="ProductAmount">{item.so_luong}</div>
+                          <IoMdRemove style={style} />
+                        </div>
+                      </span>
                   <div style={{ display: "none" }}>
                     {(subtotal = subtotal + item.so_luong * item.don_gia_xuat)}
                   </div>

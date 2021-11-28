@@ -8,8 +8,9 @@ export const Get_CT_DHs = async (req, res) => {
 
 	try {
 		const ct_dhs = await CT_DON_HANG_Model.find()
-			.populate('id_san_pham')
+			.populate({path: 'id_san_pham', select: "ten_sp"})
 			.populate('id_don_hang')
+
 		console.log('ct_dhs', ct_dhs)
 		res.status(200).json(ct_dhs)
 	} catch (err) {
@@ -17,7 +18,7 @@ export const Get_CT_DHs = async (req, res) => {
 	}
 }
 
-export const Create_CT_DH = async new_ct_dh  => {
+export const Create_CT_DH = async (req, res)  => {
 	/*
 	Create ct don hang, this method will be called when
 	creating don hang in controller don_hang
@@ -25,14 +26,14 @@ export const Create_CT_DH = async new_ct_dh  => {
 	*/
 
 	try {
-
+		const new_ct_dh = req.body;
 		const ct_dh = new CT_DON_HANG_Model(new_ct_dh)
 		await ct_dh.save()
 
-		return ct_dh
+		res.status(200).json(ct_dh);
 	} catch(err) {
-		return err
-		console.log(err)
+		res.status(500).json({ error: err });
+    console.log(err);
 	}
 }
 

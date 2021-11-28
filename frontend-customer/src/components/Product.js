@@ -48,7 +48,8 @@ export default class Product extends React.Component {
       don_gia_xuat: this.state.product.don_gia_xuat,
       mau_sac: color,
     };
-    this.setState({ addCart: [...this.state.addCart, cart] });
+    this.state.addCart.push({...cart})
+    this.setState(this);
   };
   render() {
     const { product, addCart, count, chooseColor } = this.state;
@@ -139,7 +140,7 @@ export default class Product extends React.Component {
                   </button>
                 </div>
             </div>
-            {console.log(addCart)}
+            {console.log({...addCart})}
             {window.localStorage.setItem("products", JSON.stringify(addCart))}
           </div>
         </div>

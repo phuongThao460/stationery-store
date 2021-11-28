@@ -27,7 +27,10 @@ export const Get_Don_Hang_By_Id = async (req, res) => {
 		const don_hang_id = req.body._id
 		const don_hang = await DON_HANG_Model.findById(don_hang_id)
 			.populate('id_ttkh')
-			.populate('id_ttdh')
+			.populate({
+				path: 'id_ttdh',
+				select: "trang_thai"
+			})
 		console.log('don_hang', don_hang)
 		if (don_hang == null) {
 			console.log("Not found don hang")

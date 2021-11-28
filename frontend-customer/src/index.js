@@ -9,7 +9,7 @@ import CheckoutCustomer from './pages/CheckoutCustomer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CheckoutCustomer />
+    <App />
     {/* <ListItem /> */}
   </React.StrictMode>,
   document.getElementById('root')

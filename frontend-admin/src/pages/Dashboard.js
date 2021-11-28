@@ -22,7 +22,6 @@ function Dashboard() {
     try {
       const data = await axios.get("http://localhost:8000/san_pham/");
       setProducts(data.data.reverse());
-      //console.log(data.data.reverse());
     } catch (e) {
       console.log(e);
     }

@@ -6,6 +6,7 @@ import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import AddNewProduct from "./pages/AddNewProduct";
 import OrderManagerment from "./pages/OrderManagerment";
+import OrderDetail from "./pages/OrderDetail";
 const Courses = () => {
   return <h1>Courses</h1>;
 };
@@ -34,6 +35,7 @@ function App() {
               <Route path="/customer" element={<Courses />} />
               <Route path="/customer/music" element={<Music />} />
               <Route path="/order" element={<OrderManagerment />} />
+              <Route path="/order/:id" element={<OrderDetail />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>

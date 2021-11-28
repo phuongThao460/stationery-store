@@ -78,9 +78,9 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>{item.tong_tien}</td>
                       <td>
-                        <Link to={"/products/" + item._id}>
+                      <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
                         </Link>
                       </td>
@@ -113,7 +113,7 @@ function OrderManagerment() {
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
                       <td>{item.id_ttdh.trang_thai}</td>
                       <td>
-                        <Link to={"/products/" + item._id}>
+                      <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
                         </Link>
                       </td>
@@ -146,7 +146,7 @@ function OrderManagerment() {
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
                       <td>{item.id_ttdh.trang_thai}</td>
                       <td>
-                        <Link to={"/products/" + item._id}>
+                      <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
                         </Link>
                       </td>
@@ -178,7 +178,7 @@ function OrderManagerment() {
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
                       <td>{item.id_ttdh.trang_thai}</td>
                       <td>
-                        <Link to={"/products/" + item._id}>
+                      <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
                         </Link>
                       </td>

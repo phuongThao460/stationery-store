@@ -24,13 +24,11 @@ function App() {
     let products = [];
     if(localStorage.getItem('products')){
         products = JSON.parse(localStorage.getItem('products'));
-        //setCardItems(cartItems + JSON.parse(localStorage.getItem("products")).length)
     }
     products.push(product);
     setCardItems(cartItems + 1)
     localStorage.setItem('products', JSON.stringify(products));
   };
-  //const countCartItem = JSON.parse(localStorage.getItem("products")).length;
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if(exist.qty === 1){

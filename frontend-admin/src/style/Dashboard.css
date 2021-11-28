@@ -1,13 +1,6 @@
-/* .react-bootstrap-table .table .custosize-table tr td, .react-bootstrap-table .table .custosize-table tr th{
-  width: 193px !important;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  word-break: break-all;
-  word-break: normal;
-  overflow: hidden;
-} */
+.modal-dialog{
+  max-width: 839px !important;
+}
 .react-bootstrap-table {
   background-color: white;
 }
