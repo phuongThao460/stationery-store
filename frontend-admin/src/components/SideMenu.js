@@ -17,7 +17,6 @@ const menuItems = [
     subMenus: [
       { name: "Supplier", to: "/products/supplier" },
       { name: "Type of Product", to: "/products/types" },
-      { name: "Color of Product", to: "/products/color" },
       { name: "Material of Product", to: "/products/material" },
       { name: "Feedback", to: "/products/feedback" },
     ],

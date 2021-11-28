@@ -9,7 +9,6 @@ import mongoose from 'mongoose'
 import ttkh from './routers/tt_kh.js'
 import tkkh from './routers/tk_kh.js'
 import loai_sp from './routers/loai_sp.js'
-import mau_sac from './routers/mau_sac.js'
 import chat_lieu from './routers/chat_lieu.js'
 import nha_cc from './routers/nha_cc.js'
 import san_pham from './routers/san_pham.js'
@@ -35,7 +34,6 @@ app.use('/', cors())
 app.use('/ttkh', ttkh)
 app.use('/tkkh', tkkh)
 app.use('/loai_sp', loai_sp)
-app.use('/mau_sac', mau_sac)
 app.use('/chat_lieu', chat_lieu)
 app.use('/nha_cc', nha_cc)
 app.use('/san_pham', san_pham)

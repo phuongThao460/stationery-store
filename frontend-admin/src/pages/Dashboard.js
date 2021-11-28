@@ -22,7 +22,7 @@ function Dashboard() {
     try {
       const data = await axios.get("http://localhost:8000/san_pham/");
       setProducts(data.data.reverse());
-      console.log(data.data.reverse());
+      //console.log(data.data.reverse());
     } catch (e) {
       console.log(e);
     }
@@ -190,6 +190,10 @@ function Dashboard() {
             <li>
               <b>Type: </b>
               {modalInfo.id_loai_sp.ten_loai_sp}
+            </li>
+            <li>
+              <b>Classify: </b>
+              {modalInfo.id_phan_loai.ten_phan_loai}
             </li>
             <li>
               <b>Rating of rate: </b>

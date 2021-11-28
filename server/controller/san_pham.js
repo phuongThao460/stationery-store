@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { SANPHAM_Model } from "../models/SANPHAM_Model.js";
-import { Find_Mau_Sac_By_ID } from "./mau_sac.js";
 
 export const Get_San_Phams = async (req, res) => {
   try {
