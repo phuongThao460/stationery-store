@@ -48,13 +48,15 @@
 .Price {
   font-weight: 100;
   font-size: 40px;
+  color: red;
 }
 
 .FilterContainer {
   display: flex;
   justify-content: space-between;
   width: 50%;
-  margin: 15px 0px;
+  margin-top: 33px;
+  margin-bottom: 20px;
 }
 .Filter {
   display: flex;
@@ -83,16 +85,7 @@
 .AddContainer {
   width: 63%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
-.AddContainer {
-  width: 114%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .AmountContainer {
   display: flex;
   align-items: center;
@@ -115,6 +108,7 @@
   background-color: white;
   cursor: pointer;
   font-weight: 500;
+  margin-right: 20px;
 }
 .Button:hover {
   background-color: #ffcc99;
@@ -140,4 +134,27 @@
 .primary-color:focus{
   outline: 4px solid rgb(209, 209, 209);
   border: 1px solid black;
+}
+.stock{
+  margin-bottom: 30px;
+  margin-top: 10px;
+  
+}
+
+.stock .in-stock{
+  color: blue;
+  background-color: #F9F9F9;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.stock .out-stock{
+  color: black;
+  background-color: #F9F9F9;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.btn{
+  margin-top: 33px;
 }

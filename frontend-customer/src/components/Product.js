@@ -47,8 +47,8 @@ export default class Product extends React.Component {
       so_luong: count,
       don_gia_xuat: this.state.product.don_gia_xuat,
       mau_sac: color,
-    }
-    this.setState({addCart: [...this.state.addCart, cart]});
+    };
+    this.setState({ addCart: [...this.state.addCart, cart] });
   };
   render() {
     const { product, addCart, count, chooseColor } = this.state;
@@ -59,7 +59,7 @@ export default class Product extends React.Component {
           <div className="Wrapper">
             <div
               className="ImgContainer"
-              style={{ marginRight: "120px", maxWidth: "450px" }}
+              style={{ maxWidth: "597px" }}
             >
               <img
                 alt=""
@@ -70,10 +70,19 @@ export default class Product extends React.Component {
             <div style={{ display: "inline-block" }}>
               <div
                 className="infoContainer"
-                style={{ maxWidth: "397px", position: "relative" }}
+                style={{ maxWidth: "610px", position: "relative" }}
               >
                 <h1 className="Title-Product">{product.ten_sp}</h1>
+                <div className="stock">
+                  {product.so_luong > 0 ? (
+                    <span className="in-stock">IN STOCK</span>
+                  ) : (
+                    <span className="out-stock">OUT OF STOCK</span>
+                  )}
+                </div>
                 <span className="Price">${product.don_gia_xuat}</span>
+                
+
                 <p className="Desc">{product.mo_ta}</p>
 
                 <div className="FilterContainer">
@@ -90,6 +99,7 @@ export default class Product extends React.Component {
                 </div>
               </div>
               <div className="AddContainer">
+                <span className="FilterTitle">Qty</span>
                 <div className="AmountContainer">
                   <IoMdRemove
                     onClick={() => {
@@ -111,15 +121,23 @@ export default class Product extends React.Component {
                     }}
                   />
                 </div>
-                <button className="Button" onClick={() => this.props.onAdd(this.addToCart(count, chooseColor))}>
-                  <BsHandbagFill style={{ marginRight: "7px" }} />
-                  ADD TO CART
-                </button>
-                <button className="Button">
-                  <BsFillSuitHeartFill style={{ marginRight: "7px" }} />
-                  ADD TO WISHLIST
-                </button>
+                
               </div>
+              <div className="btn">
+                  <button
+                    className="Button"
+                    onClick={() =>
+                      this.props.onAdd(this.addToCart(count, chooseColor))
+                    }
+                  >
+                    <BsHandbagFill style={{ marginRight: "7px" }} />
+                    ADD TO CART
+                  </button>
+                  <button className="Button">
+                    <BsFillSuitHeartFill style={{ marginRight: "7px" }} />
+                    ADD TO WISHLIST
+                  </button>
+                </div>
             </div>
             {console.log(addCart)}
             {window.localStorage.setItem("products", JSON.stringify(addCart))}

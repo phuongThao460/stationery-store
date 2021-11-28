@@ -4,16 +4,10 @@ import SideMenu from "./components/SideMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
-import Material from "./components/Material";
 import AddNewProduct from "./pages/AddNewProduct";
-const Content = () => {
-  return <h1>Content</h1>;
-};
+import OrderManagerment from "./pages/OrderManagerment";
 const Courses = () => {
   return <h1>Courses</h1>;
-};
-const AboutUs = () => {
-  return <h1>AboutUs</h1>;
 };
 const Contact = () => {
   return <h1>Contact</h1>;
@@ -39,7 +33,7 @@ function App() {
               <Route path="/products/add-product" element={<AddNewProduct />} />
               <Route path="/customer" element={<Courses />} />
               <Route path="/customer/music" element={<Music />} />
-              <Route path="/order" element={<AboutUs />} />
+              <Route path="/order" element={<OrderManagerment />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>

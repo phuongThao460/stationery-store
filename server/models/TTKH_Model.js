@@ -24,6 +24,11 @@ const schema = new mongoose.Schema({
 		type: Boolean,
 		required: true
 	}
+	, 
+	id_phuong: {
+		type: mongoose.Types.ObjectId, ref: 'PHUONG',
+		required: true
+	}
 }, { timestamps: false })
 
 export const TT_KH_Model = mongoose.model('THONG_TIN_KHACH_HANG', schema)

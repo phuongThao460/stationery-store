@@ -12,11 +12,11 @@ const schema = new mongoose.Schema({
 		default: new Date()
 	},
 	id_ttkh: {
-		type: String,
+		type: mongoose.Types.ObjectId, ref: 'THONG_TIN_KHACH_HANG',
 		required: true
 	},
 	id_ttdh: {
-		type: String,
+		type: mongoose.Types.ObjectId, ref: 'TRANG_THAI_DH',
 		required: true
 	},
 	ghi_chu: {

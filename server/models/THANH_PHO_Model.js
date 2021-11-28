@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema({
-	ten_tp: {
+	ten_thanh_pho: {
 		type: String,
 		required: true
 	}
