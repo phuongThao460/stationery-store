@@ -3,6 +3,7 @@ import { GIO_HANG_Model } from "../models/GIO_HANG_Model.js"
 export const Get_Gio_Hangs = async (req, res) => {
 	try {
 		const gio_hangs = await GIO_HANG_Model.find()
+			.populate('id_tkkh')
 		console.log('gio_hangs', gio_hangs)
 		res.status(200).json(gio_hangs)
 	} catch (err) {
@@ -12,8 +13,9 @@ export const Get_Gio_Hangs = async (req, res) => {
 
 export const Get_Gio_Hangs_By_ID = async (req, res) => {
 	try {
-		const gio_hang_id = req.body.gio_hang_id
+		const gio_hang_id = req.body._id
 		const gio_hang = await GIO_HANG_Model.findById(gio_hang_id)
+			.populate('id_tkkh')
 		console.log('gio_hang', gio_hang)
 		res.status(200).json(gio_hang)
 	} catch(err) {

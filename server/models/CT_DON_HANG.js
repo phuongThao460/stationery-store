@@ -2,12 +2,14 @@ import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema({
 	id_san_pham: {
-		type: String,
-		required: true
+		type: mongoose.Types.ObjectId,
+		required: true,
+		ref: 'SAN_PHAM'
 	},
 	id_don_hang: {
-		type: String,
-		required: true
+		type: mongoose.Types.ObjectId,
+		required: true,
+		ref: "DON_HANG"
 	},
 	gia_ban: {
 		type: Number,

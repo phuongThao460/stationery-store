@@ -8,6 +8,8 @@ export const Get_CT_DHs = async (req, res) => {
 
 	try {
 		const ct_dhs = await CT_DON_HANG_Model.find()
+			.populate('id_san_pham')
+			.populate('id_don_hang')
 		console.log('ct_dhs', ct_dhs)
 		res.status(200).json(ct_dhs)
 	} catch (err) {
@@ -45,6 +47,8 @@ export const Get_CT_DH_By_Id = async (req, res) => {
 	try {
 		const ctdh_id = req.body._id
 		const ctdh = await CT_DON_HANG_Model.findById(ctdh_id)
+			.populate('id_san_pham')
+			.populate('id_don_hang')
 		console.log('ctdh', ctdh)
 		if (ctdh == null) {
 			console.log("Not found ctdh")

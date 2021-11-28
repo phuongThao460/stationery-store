@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 const schema = new mongoose.Schema({
 	id_tkkh: {
 		type: mongoose.Types.ObjectId,
-		required: true
+		required: true,
+		ref: "TAI_KHOAN_KHACH_HANG"
 	}
 }, { timestamps: false })
 

@@ -8,6 +8,8 @@ export const Get_Don_Hangs = async (req, res) => {
 
 	try {
 		const don_hangs = await DON_HANG_Model.find()
+			.populate('id_ttkh')
+			.populate('id_ttdh')
 		console.log('don_hangs', don_hangs)
 		res.status(200).json(don_hangs)
 	} catch (err) {
@@ -24,6 +26,8 @@ export const Get_Don_Hang_By_Id = async (req, res) => {
 	try {
 		const don_hang_id = req.body._id
 		const don_hang = await DON_HANG_Model.findById(don_hang_id)
+			.populate('id_ttkh')
+			.populate('id_ttdh')
 		console.log('don_hang', don_hang)
 		if (don_hang == null) {
 			console.log("Not found don hang")

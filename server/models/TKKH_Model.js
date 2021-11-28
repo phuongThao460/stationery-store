@@ -10,7 +10,7 @@ const schema = new mongoose.Schema({
 		required: true
 	},
 	id_ttkh: {
-		type: String,
+		type: mongoose.Types.ObjectId,
 		required: true,
 		ref: "THONG_TIN_KHACH_HANG"
 	},
