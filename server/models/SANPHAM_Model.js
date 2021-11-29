@@ -34,7 +34,7 @@ const schema = new mongoose.Schema({
 	},
 	mau_sac: [{
 		type: String,
-		required: true
+		required: false
 	}],
 	id_chat_lieu: {
 		type: mongoose.Types.ObjectId, ref: 'CHAT_LIEU',
