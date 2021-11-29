@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
-import "../style/Dashboard.css";
+import "./Dashboard.css";
 import { BsFillPencilFill } from "react-icons/bs";
 import { BiPlusMedical } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";

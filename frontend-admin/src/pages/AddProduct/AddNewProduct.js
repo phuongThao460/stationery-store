@@ -2,9 +2,9 @@
 import React, { createRef } from "react";
 import {
   ModalColor,
-} from "../components/Modal";
+} from "../../components/Modal";
 import { BiPlusMedical } from "react-icons/bi";
-import "../style/AddProduct.css";
+import "./AddProduct.css";
 import Select from "react-select";
 import axios from "axios";
 class Product extends React.Component {
@@ -28,7 +28,6 @@ class Product extends React.Component {
     this.getListSupplier();
     this.getListType();
     this.getListMaterial();
-    this.getColor();
     this.nameProduct = createRef();
     this.amount = createRef();
     this.date = createRef();
@@ -40,9 +39,6 @@ class Product extends React.Component {
   // handleChange = (selectedOptions) => {
   //   this.setState({ selectedOptions });
   // };
-  changeColor = (e) => {
-    this.setState({ selectedOption: e.value });
-  };
   changeId = (e) => {
     this.setState({ idType: e.value });
   };
@@ -72,7 +68,6 @@ class Product extends React.Component {
         });
       });
       this.setState(this);
-      console.log(this.state.lstType);
     });
   };
   getListMaterial = () => {
@@ -86,19 +81,6 @@ class Product extends React.Component {
       this.setState(this);
     });
   };
-  getColor = () => {
-    axios.get("http://localhost:8000/mau_sac/").then((res) => {
-      res.data.forEach((element) =>
-        this.state.lstColor.push({
-          label: element.ten_mau,
-          value: element._id,
-          color: element.ten_mau,
-        })
-      );
-      this.setState(this);
-    });
-  };
-
   createProduct = () => {
     axios
       .post("http://localhost:8000/san_pham/create_san_pham", {
@@ -275,25 +257,11 @@ class Product extends React.Component {
             <div className="form-group" style={{ width: "367px" }}>
               <label className="control-label col-sm-2">Color</label>
               <div className="col-sm-10">
-                {/* <Select
-                  closeMenuOnSelect={false}
-                  options={this.state.lstColor}
-                  styles={colourStyles}
-                  onChange={this.changeColor}
-                  value={this.state.lstColor.find(
-                    (obj) => obj.value === this.state.selectedOption
-                  )}
-                /> */}
-
-                {/* {this.state.getLstColor.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),[])} */}
-                {/* {window.localStorage.setItem(
-                  "mau_sac_id",
-                  this.state.selectedOption
-                )} */}
                 <div className="test-demo">
                   {this.state.colorArray.map(item => {
                     return (<span className="badge" style={{ backgroundColor: item }}>{item}</span>)
                   })}
+                  {console.log(this.state.colorArray)}
                 </div>
               </div>
             </div>

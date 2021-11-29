@@ -9,7 +9,21 @@ const ColorPicker = (props) => {
     </div>
   );
 };
-export const ModalColor = ({ show, children, handleClose }) => {
+const styleButton = {
+  backgroundColor: "blue",
+  outline: "none",
+  border: "0",
+  color: "white",
+  borderRadius: "5px",
+  padding: "5px 10px",
+};
+const styleRow = {
+  marginLeft: "auto",
+  marginRight: "auto",
+  paddingLeft: "35px",
+  paddingTop: "19px",
+}
+export const ModalColor = ({ show, children, handleClose, setColor }) => {
   const [state, updateState] = useState("#FFFFFF");
 
   const handleInput = (e) => {
@@ -38,12 +52,7 @@ export const ModalColor = ({ show, children, handleClose }) => {
 
             <div
               className="row align-items-center"
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                paddingLeft: "35px",
-                paddingTop: "19px",
-              }}
+              style={styleRow}
             >
               <div className="col-auto">
                 <label for="inputPassword6" className="col-form-label">
@@ -57,231 +66,13 @@ export const ModalColor = ({ show, children, handleClose }) => {
               </div>
               <div className="col-auto">
                 <button
-                  style={{
-                    backgroundColor: "blue",
-                    outline: "none",
-                    border: "0",
-                    color: "white",
-                    borderRadius: "5px",
-                    padding: "5px 10px",
-                  }}
+                  style={styleButton}
+                  onClick={setColor}
                 >
                   Submit
                 </button>
               </div>
             </div>
-          </section>
-        </div>
-      ) : null}
-    </>
-  );
-};
-
-export const ModalMaterial = ({ show, children, handleClose }) => {
-  return (
-    <>
-      {show ? (
-        <div className="modal display-block">
-          <section className="modal-main">
-            <div className="modal-top">
-              <h3>{children}</h3>
-
-              <button
-                type="button"
-                onClick={handleClose}
-                style={{
-                  backgroundColor: "transparent",
-                  outline: "none",
-                  border: "0",
-                }}
-              >
-                <AiOutlineClose />
-              </button>
-            </div>
-
-            <div
-              className="row align-items-center"
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                paddingLeft: "35px",
-                paddingTop: "19px",
-              }}
-            >
-              <div className="col-auto">
-                <label for="inputPassword6" className="col-form-label">
-                  Color
-                </label>
-              </div>
-              <div className="col-auto">
-                {/* <Color /> */}
-              </div>
-              <div className="col-auto">
-                <button
-                  style={{
-                    backgroundColor: "blue",
-                    outline: "none",
-                    border: "0",
-                    color: "white",
-                    borderRadius: "5px",
-                    padding: "5px 10px",
-                  }}
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </section>
-        </div>
-      ) : null}
-    </>
-  );
-};
-export const ModalType = ({ show, children, handleClose }) => {
-  return (
-    <>
-      {show ? (
-        <div className="modal display-block">
-          <section className="modal-main">
-            <div className="modal-top">
-              <h3>{children}</h3>
-
-              <button
-                type="button"
-                onClick={handleClose}
-                style={{
-                  backgroundColor: "transparent",
-                  outline: "none",
-                  border: "0",
-                }}
-              >
-                <AiOutlineClose />
-              </button>
-            </div>
-
-            <div
-              className="row align-items-center"
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                paddingLeft: "35px",
-                paddingTop: "19px",
-              }}
-            >
-              <div className="col-auto">
-                <label for="inputPassword6" className="col-form-label">
-                  Color
-                </label>
-              </div>
-              <div className="col-auto">
-                {/* <Color /> */}
-              </div>
-              <div className="col-auto">
-                <button
-                  style={{
-                    backgroundColor: "blue",
-                    outline: "none",
-                    border: "0",
-                    color: "white",
-                    borderRadius: "5px",
-                    padding: "5px 10px",
-                  }}
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </section>
-        </div>
-      ) : null}
-    </>
-  );
-};
-export const ModalSupplier = ({ show, children, handleClose }) => {
-  return (
-    <>
-      {show ? (
-        <div className="modal display-block">
-          <section className="modal-main">
-            <div className="modal-top">
-              <h3>{children}</h3>
-
-              <button
-                type="button"
-                onClick={handleClose}
-                style={{
-                  backgroundColor: "transparent",
-                  outline: "none",
-                  border: "0",
-                }}
-              >
-                <AiOutlineClose />
-              </button>
-            </div>
-
-            <div
-              className="row align-items-center"
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                paddingLeft: "35px",
-                paddingTop: "19px",
-              }}
-            >
-              <div className="col-auto">
-                <label for="inputPassword6" className="col-form-label">
-                  Color
-                </label>
-              </div>
-              <div className="col-auto">
-                {/* <Color /> */}
-              </div>
-              <div className="col-auto">
-                <button
-                  style={{
-                    backgroundColor: "blue",
-                    outline: "none",
-                    border: "0",
-                    color: "white",
-                    borderRadius: "5px",
-                    padding: "5px 10px",
-                  }}
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </section>
-        </div>
-      ) : null}
-    </>
-  );
-};
-export const ModalProduct = ({ show, children, handleClose }) => {
-  return (
-    <>
-      {show ? (
-        <div className="modal display-block">
-          <section
-            className="modal-main"
-            style={{ width: "62%", height: "90%" }}
-          >
-            <div className="modal-top">
-              <h3>Product Detail</h3>
-              <button
-                type="button"
-                onClick={handleClose}
-                style={{
-                  backgroundColor: "transparent",
-                  outline: "none",
-                  border: "0",
-                }}
-              >
-                <AiOutlineClose />
-              </button>
-            </div>
-
-            <div>{children}</div>
           </section>
         </div>
       ) : null}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../style/Order.css";
+import "./Order.css";
 function OrderManagerment() {
   const [toggleState, setToggleState] = useState(1);
   const [orderList, setOrderList] = useState([]);
@@ -111,7 +111,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>{item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -144,7 +144,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>{item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -176,7 +176,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>{item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -208,7 +208,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.id_ttdh.trang_thai}</td>
+                      <td>{item.tong_tien}</td>
                       <td>
                         <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>

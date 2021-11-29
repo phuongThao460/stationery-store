@@ -1,0 +1,11 @@
+.cusInfo {
+  border-collapse: collapse;
+  width: 91%;
+  background-color: #fff;
+}
+
+td, th {
+  border: 1px solid #000;
+  text-align: left;
+  padding: 8px;
+}

@@ -3,10 +3,10 @@ import "./App.css";
 import SideMenu from "./components/SideMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import Dashboard from "./pages/Dashboard";
-import AddNewProduct from "./pages/AddNewProduct";
-import OrderManagerment from "./pages/OrderManagerment";
-import OrderDetail from "./pages/OrderDetail";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AddNewProduct from "./pages/AddProduct/AddNewProduct";
+import OrderManagerment from "./pages/Order/OrderManagerment";
+import OrderDetail from "./pages/Order/OrderDetail";
 const Courses = () => {
   return <h1>Courses</h1>;
 };
