@@ -30,7 +30,7 @@ export default class CheckoutCustomer extends Component {
   };
   getListDistrict = () => {
     axios
-      .get("http://localhost:8000/quan/", { _id: this.state.idCity })
+      .post("http://localhost:8000/quan/by_thanh_pho", { id_thanh_pho: this.state.idCity })
       .then((response) => {
         this.state.lstDistrict = response.data;
         //console.log(this.state.lstDistrict);
@@ -39,7 +39,7 @@ export default class CheckoutCustomer extends Component {
   };
   getListWards = () => {
     axios
-      .get("http://localhost:8000/phuong/", { _id: this.state.idDis })
+      .post("http://localhost:8000/phuong/by_quan", { id_quan: this.state.idDis })
       .then((response) => {
         this.state.lstWards = response.data;
         //console.log(this.state.lstWards);
@@ -48,21 +48,16 @@ export default class CheckoutCustomer extends Component {
   };
   changeCities = (event) => {
     this.state.idCity = event.target.value;
-    //this.state.city = event.target.value;
     this.setState(this);
     this.getListDistrict();
-    //console.log(this.state.city)
   };
   changeDistricts = (event) => {
     this.state.idDis = event.target.value;
-    this.state.dis = event.target.value;
     this.setState(this);
     this.getListWards();
-    console.log(this.state.dis)
   };
   changeWards = (event) => {
     this.state.idWard = event.target.value;
-    //this.state.ward = event.target.value;
     this.setState(this);
     
   };
@@ -72,7 +67,6 @@ export default class CheckoutCustomer extends Component {
     console.log(this.state.city)
   }
   render() {
-    let address = ""
     return (
       <div>
         city{" "}
