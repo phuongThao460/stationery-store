@@ -39,3 +39,23 @@ export const Get_Quan_By_ID = async (req, res) => {
     res.status(500).json({ error: err });
   }
 };
+
+export const Get_Quan_By_ID_Thanh_Pho = async (req, res) => {
+  /*
+  Fetch quan by id thanh pho
+  :return: array
+  */
+
+  try {
+    const id_thanh_pho = req.body.id_thanh_pho
+    const quan = await QUAN_Model.find({ id_thanh_pho: id_thanh_pho })
+      .populate('id_thanh_pho')
+      .exec()
+    if (quan.length == 0) {
+      console.log('Quans is empty')
+    }
+    res.status(200).json(quan)
+  } catch (err) {
+    res.status(500).json({ error: err })
+  }
+}
