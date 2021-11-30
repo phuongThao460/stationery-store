@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "../style/Modal.css";
 import { AiOutlineClose } from "react-icons/ai";

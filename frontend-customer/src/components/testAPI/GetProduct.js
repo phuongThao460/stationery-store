@@ -3,25 +3,18 @@ import productApi from "../../services/api/productAPI";
 import ProductList from "./ProductList";
 function GetProduct() {
   const [productsList, setProductsList] = useState([]);
-  const products = [];
 
   const fetchProductList = async () => {
-    try {
-      const response = await productApi.getAll();
-
-      console.log("status: " + response.status);
-      setProductsList(response);
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await productApi.getAll();
+    setProductsList(response);
   };
   useEffect(() => {
     fetchProductList();
-  }, []);
+  },[]);
+
   return (
     <>
-      {productsList.map((item) => products.push(item))}
-      <ProductList products={products} />
+      {console.log(productsList)}
     </>
   );
 }

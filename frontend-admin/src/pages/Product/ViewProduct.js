@@ -4,14 +4,14 @@ import axios from "axios";
 import React, { useState } from "react";
 
 function ViewProduct() {
-  const {idItem} = window.location.pathname.substring(14);
+  const idItem = window.location.pathname.substring(14);
   let [responseData, setResponseData] = React.useState(null);
   let [type, setType] = useState("");
   const [supplier, setSupplier] = useState("");
   const [material, setMaterial] = useState("")
   const [color, setColor] = useState([])
-  const getData = async() => {
-    const data = await axios.post("http://localhost:8000/san_pham/", {_id: "619f39d6f1611025e785f18a"})
+  const getData = () => {
+    const data = axios.post("http://localhost:8000/san_pham/", {_id: idItem})
     setResponseData(data.data)
     setType(data.data.id_loai_sp.ten_loai_sp)
     setColor(data.data.mau_sac)

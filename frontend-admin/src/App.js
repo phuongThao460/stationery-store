@@ -25,7 +25,6 @@ function App() {
         <BrowserRouter>
           <SideMenu
             onCollapse={(inactive) => {
-              console.log(inactive);
               setInactive(inactive);
             }}
           />
