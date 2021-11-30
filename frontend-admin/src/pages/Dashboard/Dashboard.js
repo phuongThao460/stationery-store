@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
-import "./Dashboard.css";
+import "./styles.css";
 import { BsFillPencilFill } from "react-icons/bs";
 import { BiPlusMedical } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
@@ -38,14 +39,9 @@ function Dashboard() {
           lineHeight: "normal",
           display: "inline-flex",
           justifyContent: "space-around",
+          marginLeft: "23px"
         }}
       >
-        <Link to="/products/add-product">
-          <BsFillPencilFill
-            style={{ fontSize: 20, marginRight: "20px" }}
-            color="disabled"
-          />
-        </Link>
         <AiFillDelete></AiFillDelete>
       </div>
     );
@@ -144,12 +140,24 @@ function Dashboard() {
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Product Detail</Modal.Title>
+          <Modal.Title>
+            Product Detail{" "}
+            <Link
+              to={"/products/edit/" + modalInfo._id}
+              style={{ marginLeft: "30px" }}
+            >
+              <BsFillPencilFill
+                style={{ fontSize: 20, marginRight: "20px" }}
+                color="disabled"
+              />
+              {window.localStorage.setItem("product", modalInfo)}
+            </Link>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ul>
             <li>
-              <b>Name: </b>
+              <b>Name: </b> {console.log(modalInfo)}
               {modalInfo.ten_sp}
             </li>
             <li>
@@ -179,7 +187,7 @@ function Dashboard() {
             <li>
               <b>Color: </b>
               {modalInfo.mau_sac.map((item) => (
-                <input type="color" value={item} className="primary-color"/>
+                <input type="color" value={item} className="primary-color" />
               ))}
             </li>
             <li>

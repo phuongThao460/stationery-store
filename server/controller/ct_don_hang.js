@@ -68,7 +68,7 @@ export const Get_Don_Hang_By_DH_Id = async (req, res) => {
 
 	try {
 		const id_dh = req.body.id_don_hang
-		const ctdh_s = await CT_DON_HANG_Model.find({ id_don_hang: id_dh }).exec()
+		const ctdh_s = await CT_DON_HANG_Model.find({ id_don_hang: id_dh }).populate({path: "id_san_pham", select: "ten_sp"}).exec()
 		console.log('ctdh_s', ctdh_s)
 		if (ctdh_s.length == 0) {
 			console.log("Not found ctdh")

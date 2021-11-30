@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 //import React, { useEffect, useState } from "react";
-import "./OrderDetail.css";
+import "./styles.css";
 import React, { Component } from "react";
 
 export default class OrderDetail extends Component {
@@ -12,6 +12,7 @@ export default class OrderDetail extends Component {
       id_order: window.location.pathname.substring(7),
       order: {},
       customer: {},
+      details: [],
       address: "",
       status: "",
     };
@@ -28,14 +29,23 @@ export default class OrderDetail extends Component {
         this.state.status = res.data.id_ttdh;
         this.setState(this);
         this.setState(() => this.getAddressCustomer(this.state.customer._id));
-        console.log(this.state.order.id_ttdh.trang_thai);
+        //console.log(this.state.order.id_ttdh.trang_thai);
+      });
+    await axios
+      .post("http://localhost:8000/ct_dh/by_dh_id", {
+        id_don_hang: this.state.id_order,
+      })
+      .then((res) => {
+        this.state.details = res.data;
+        this.setState(this);
+        console.log(res.data);
       });
   };
   getAddressCustomer = (idAddr) => {
     axios
       .post("http://localhost:8000/ttkh/getAddress", { ttkh_id: idAddr })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.setState({ address: res.data });
       });
   };
@@ -47,48 +57,34 @@ export default class OrderDetail extends Component {
   };
   render() {
     const { order, customer, address, status } = this.state;
+    let total = 0;
     return (
       <>
+        <h1>Order Detail</h1>
         <div className="orderInfo">
           <div>
-            <b>Order's ID: </b>
-            {order._id}
+            Order's ID:
+            <b>{order._id}</b>
           </div>
           <div>
             <b>Order date: </b>
-            {new Date(order.ngay_dat).toLocaleDateString()}
+            {new Date(order.ngay_dat).toLocaleDateString('en-GB')}
           </div>
           <div>
-            <b>Delivery date: </b>
-            {new Date(order.ngay_giao).toLocaleDateString()}
-          </div>
-          <div>
-            <b>trang thai: </b>
-            {status.trang_thai}
+            <b>Delivery date:</b>
+            {new Date(order.ngay_giao).toLocaleDateString('en-GB')}
           </div>
           <div>
             <b>Note: </b>
             {order.ghi_chu}
-          </div>
-          <div>
-            <b>Subtotal: </b>
-            {order.tong_phu}
-          </div>
-          <div>
-            <b>Shipping tax: </b>
-            {order.phi_ship}
-          </div>
-          <div>
-            <b>Total: </b>
-            {order.tong_tien}
           </div>
         </div>
 
         <div style={{ marginTop: "20px", marginBottom: "30px" }}>
           <table className="cusInfo">
             <tr>
-              <th>Payment Info</th>
-              <th>Shipping Address</th>
+              <th className="table-title">Payment Info</th>
+              <th className="table-title">Shipping Address</th>
             </tr>
             <tr>
               <td>
@@ -108,33 +104,64 @@ export default class OrderDetail extends Component {
             </tr>
           </table>
         </div>
-        <table className="table table-light" style={{width:"91%"}}>
+        <table className="table table-light" style={{ width: "91%" }}>
           <thead>
             <tr>
-              <th scope="col">Item</th>
-              <th scope="col" style={{width:"70px", textAlign:"center"}}>Qty.</th>
-              <th scope="col" style={{width:"150px", textAlign:"center"}}>Item Price</th>
-              <th scope="col" style={{width:"150px",textAlign:"center"}}>Total Price</th>
+              <th scope="col" className="table-title">
+                Item
+              </th>
+              <th
+                scope="col"
+                className="table-title"
+                style={{ width: "70px", textAlign: "center" }}
+              >
+                Qty.
+              </th>
+              <th
+                scope="col"
+                className="table-title"
+                style={{ width: "100px", textAlign: "center" }}
+              >
+                Item Price
+              </th>
+              <th
+                scope="col"
+                className="table-title"
+                style={{ width: "105px", textAlign: "center" }}
+              >
+                Total Price
+              </th>
             </tr>
           </thead>
           <tbody>
+            {this.state.details.map((item) => (
+              <tr>
+                <td>{item.id_san_pham.ten_sp}</td>
+                <td style={{ textAlign: "end" }}>{item.so_luong}</td>
+                <td style={{ textAlign: "end" }}>${item.gia_ban}</td>
+                <td style={{ textAlign: "end" }}>${item.tong_gia}</td>
+                <td style={{ display: "none" }}>
+                  {(total = total + item.tong_gia)}
+                </td>
+              </tr>
+            ))}
             <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
+              <td colspan="3" style={{ textAlign: "end" }}>
+                Shipping
+              </td>
+              <td style={{ textAlign: "end" }}>0</td>
             </tr>
             <tr>
-              <td colspan="3" style={{textAlign:"end"}}>Shipping</td>
-              <td>@twitter</td>
+              <td colspan="3" style={{ textAlign: "end" }}>
+                Sales Tax
+              </td>
+              <td style={{ textAlign: "end" }}>0</td>
             </tr>
             <tr>
-              <td colspan="3" style={{textAlign:"end"}}>Sales Tax</td>
-              <td>@twitter</td>
-            </tr>
-            <tr>
-              <td colspan="3" style={{textAlign:"end"}}><b>Total</b></td>
-              <td>@twitter</td>
+              <td colspan="3" style={{ textAlign: "end" }}>
+                <b>Total</b>
+              </td>
+              <td style={{ textAlign: "end" }}>${total}</td>
             </tr>
           </tbody>
         </table>

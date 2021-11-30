@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Order.css";
+import "./styles.css";
 function OrderManagerment() {
   const [toggleState, setToggleState] = useState(1);
   const [orderList, setOrderList] = useState([]);
@@ -68,7 +68,7 @@ function OrderManagerment() {
                 <tr style={{ textAlign: "center" }}>
                   <th scope="col">ID</th>
                   <th scope="col">Date Order</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Total</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -77,8 +77,8 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "New" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.tong_tien}</td>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>${item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -101,7 +101,7 @@ function OrderManagerment() {
                 <tr style={{ textAlign: "center" }}>
                   <th scope="col">ID</th>
                   <th scope="col">Date Order</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Total</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -110,8 +110,8 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "Confirm" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.tong_tien}</td>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>${item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -134,7 +134,7 @@ function OrderManagerment() {
                 <tr style={{ textAlign: "center" }}>
                   <th scope="col">ID</th>
                   <th scope="col">Date Order</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Total</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -143,8 +143,8 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "Shipping" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.tong_tien}</td>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>${item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -166,7 +166,7 @@ function OrderManagerment() {
                 <tr style={{ textAlign: "center" }}>
                   <th scope="col">ID</th>
                   <th scope="col">Date Order</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Total</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -175,8 +175,8 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "Finished" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.tong_tien}</td>
+                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>${item.tong_tien}</td>
                       <td>
                       <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>
@@ -198,7 +198,7 @@ function OrderManagerment() {
                 <tr style={{ textAlign: "center" }}>
                   <th scope="col">ID</th>
                   <th scope="col">Date Order</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Total</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -208,7 +208,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>{item.tong_tien}</td>
+                      <td>${item.tong_tien}</td>
                       <td>
                         <Link to={"/order/" + item._id}>
                           <button className="btn-view">View</button>

@@ -61,7 +61,8 @@ export const ModalColor = ({ show, children, handleClose, setColor }) => {
               </div>
               <div className="col-auto">
                 <div className="color">
-                  <ColorPicker onChange={handleInput} value={state} />
+                  {/* <ColorPicker onChange={handleInput} value={state} /> */}
+                  <input type="color" onChange={handleInput} value={state}/>
                 </div>
               </div>
               <div className="col-auto">

@@ -76,3 +76,19 @@ button {
 .active-content {
   display: block;
 }
+.cusInfo {
+  border-collapse: collapse;
+  width: 91%;
+  background-color: #fff;
+}
+
+.cusInfo td, .table-title {
+  border: 1px solid #000;
+  text-align: left;
+  padding: 8px;
+}
+.table.table-light td, .table-title {
+  border: 1px solid #000;
+  text-align: left;
+  padding: 8px;
+}

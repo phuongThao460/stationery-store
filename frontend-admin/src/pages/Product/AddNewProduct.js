@@ -1,10 +1,8 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { createRef } from "react";
-import {
-  ModalColor,
-} from "../../components/Modal";
+import { ModalColor } from "../../components/Modal";
 import { BiPlusMedical } from "react-icons/bi";
-import "./AddProduct.css";
+import "./styles.css";
 import Select from "react-select";
 import axios from "axios";
 class Product extends React.Component {
@@ -110,12 +108,12 @@ class Product extends React.Component {
   };
 
   submitColorHandle = (value) => {
-    const temp = this.state.colorArray
-    temp.push(value)
+    const temp = this.state.colorArray;
+    temp.push(value);
     this.setState({
       showModal: false,
       colorArray: temp,
-    })
+    });
   };
 
   render() {
@@ -258,10 +256,13 @@ class Product extends React.Component {
               <label className="control-label col-sm-2">Color</label>
               <div className="col-sm-10">
                 <div className="test-demo">
-                  {this.state.colorArray.map(item => {
-                    return (<span className="badge" style={{ backgroundColor: item }}>{item}</span>)
+                  {this.state.colorArray.map((item) => {
+                    return (
+                      <span className="badge" style={{ backgroundColor: item }}>
+                        {item}
+                      </span>
+                    );
                   })}
-                  {console.log(this.state.colorArray)}
                 </div>
               </div>
             </div>
@@ -277,7 +278,7 @@ class Product extends React.Component {
               show={this.state.showModal}
               handleClose={this.hideModal}
               children={"Add new color"}
-              setColor = {this.submitColorHandle}
+              setColor={this.submitColorHandle}
             ></ModalColor>
           </div>
           {/* Material */}

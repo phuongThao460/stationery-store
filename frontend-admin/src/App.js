@@ -4,9 +4,10 @@ import SideMenu from "./components/SideMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import AddNewProduct from "./pages/AddProduct/AddNewProduct";
+import AddNewProduct from "./pages/Product/AddNewProduct";
 import OrderManagerment from "./pages/Order/OrderManagerment";
 import OrderDetail from "./pages/Order/OrderDetail";
+import EditProduct from "./pages/Product/EditProduct";
 const Courses = () => {
   return <h1>Courses</h1>;
 };
@@ -32,6 +33,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products/add-product" element={<AddNewProduct />} />
+              <Route path="/products/edit/:id" element={<EditProduct/>} />
               <Route path="/customer" element={<Courses />} />
               <Route path="/customer/music" element={<Music />} />
               <Route path="/order" element={<OrderManagerment />} />

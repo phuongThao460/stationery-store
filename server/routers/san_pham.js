@@ -1,6 +1,6 @@
 import express from 'express'
 import { Get_San_Phams, Get_San_Pham_By_ID, Create_San_Pham,
-		 Update_San_Pham } from '../controller/san_pham.js'
+		Update_San_Pham } from '../controller/san_pham.js'
 
 const router = express.Router()
 
