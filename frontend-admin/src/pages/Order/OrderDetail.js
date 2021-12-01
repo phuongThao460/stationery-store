@@ -28,8 +28,8 @@ export default class OrderDetail extends Component {
         this.state.customer = res.data.id_ttkh;
         this.state.status = res.data.id_ttdh;
         this.setState(this);
-        this.setState(() => this.getAddressCustomer(this.state.customer._id));
-        //console.log(this.state.order.id_ttdh.trang_thai);
+        this.setState(() => this.getAddressCustomer(this.state.customer.id_phuong));
+        console.log(this.state.customer.id_phuong);
       });
     await axios
       .post("http://localhost:8000/ct_dh/by_dh_id", {
@@ -42,8 +42,7 @@ export default class OrderDetail extends Component {
       });
   };
   getAddressCustomer = (idAddr) => {
-    axios
-      .post("http://localhost:8000/ttkh/getAddress", { ttkh_id: idAddr })
+    axios.post("http://localhost:8000/ttkh/getAddress", { _id: idAddr })
       .then((res) => {
         //console.log(res.data);
         this.setState({ address: res.data });
@@ -146,7 +145,7 @@ export default class OrderDetail extends Component {
               </tr>
             ))}
             <tr>
-              <td colspan="3" style={{ textAlign: "end" }}>
+              <td colSpan="3" style={{ textAlign: "end" }}>
                 Shipping
               </td>
               <td style={{ textAlign: "end" }}>0</td>

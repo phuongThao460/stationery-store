@@ -8,6 +8,7 @@ import AddNewProduct from "./pages/Product/AddNewProduct";
 import OrderManagerment from "./pages/Order/OrderManagerment";
 import OrderDetail from "./pages/Order/OrderDetail";
 import EditProduct from "./pages/Product/EditProduct";
+import Customers from "./pages/Customer/Customers";
 const Courses = () => {
   return <h1>Courses</h1>;
 };
@@ -33,7 +34,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/products/add-product" element={<AddNewProduct />} />
               <Route path="/products/edit/:id" element={<EditProduct/>} />
-              <Route path="/customer" element={<Courses />} />
+              <Route path="/customer" element={<Customers />} />
               <Route path="/customer/music" element={<Music />} />
               <Route path="/order" element={<OrderManagerment />} />
               <Route path="/order/:id" element={<OrderDetail />} />

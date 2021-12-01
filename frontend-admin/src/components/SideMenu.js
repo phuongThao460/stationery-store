@@ -25,10 +25,6 @@ const menuItems = [
     name: "Customer",
     to: "/customer",
     exact: "true",
-    subMenus: [
-      { name: "Courses", to: "/customer/courses" },
-      { name: "Music", to: "/customer/music" },
-    ],
     icon: <BsFillPersonLinesFill />,
   },
   { name: "Order", to: "/order", icon: <RiListUnordered /> },

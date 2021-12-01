@@ -18,11 +18,10 @@ export const Get_TTKHs = async (req, res) => {
 }
 export const Get_address = async (req, res) => {
 	try {
-		const ttkd_id = req.body.ttkd_id;
-		const infoCus = await TT_KH_Model.findOne(ttkd_id);
-		const phuong = await PHUONG_Model.findOne(infoCus.id_phuong);
-		const quan = await QUAN_Model.findOne(phuong.id_quan);
-		const tp = await THANH_PHO_Model.findOne(quan.id_thanh_pho);
+		const id_phuong = req.body._id;
+		const phuong = await PHUONG_Model.findById(id_phuong);
+		const quan = await QUAN_Model.findById(phuong.id_quan);
+		const tp = await THANH_PHO_Model.findById(quan.id_thanh_pho);
 		const address = phuong.phuong_xa + ", " + quan.quan_huyen + ", " + tp.ten_thanh_pho
 		console.log('address', address);
 		res.status(200).json(address)
