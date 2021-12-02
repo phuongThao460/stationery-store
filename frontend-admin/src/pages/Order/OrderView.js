@@ -1,83 +1,67 @@
-/* eslint-disable react/no-direct-mutation-state */
 /* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
-//import React, { useEffect, useState } from "react";
-import "./styles.css";
-import React, { Component } from "react";
-import { Link } from 'react-router-dom'
-export default class OrderDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id_order: window.location.pathname.substring(7),
-      order: {},
-      customer: {},
-      details: [],
-      address: "",
-      status: "",
-    };
+
+export default function OrderView(props) {
+  const [details, setDetails] = useState([]);
+  const [address, setAdress] = useState("");
+
+  let total = 0;
+
+  const getDetails = async() => {
+    const data_details = await axios.post("http://localhost:8000/ct_dh/by_dh_id",{id_don_hang: props.idOrder});
+    setDetails(data_details.data);
   }
-  componentDidMount() {
-    this.getOrderDetail();
-  }
-  getOrderDetail = async () => {
-    await axios
-      .post("http://localhost:8000/don_hang/", { _id: this.state.id_order })
-      .then((res) => {
-        this.state.order = res.data;
-        this.state.customer = res.data.id_ttkh;
-        this.state.status = res.data.id_ttdh;
-        this.setState(this);
-        this.setState(() => this.getAddressCustomer(this.state.customer.id_phuong));
-        console.log(this.state.customer.id_phuong);
-      });
-    await axios
-      .post("http://localhost:8000/ct_dh/by_dh_id", {
-        id_don_hang: this.state.id_order,
-      })
-      .then((res) => {
-        this.state.details = res.data;
-        this.setState(this);
-        console.log(res.data);
-      });
+  const getAddressCustomer = async () => {
+    const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+      _id: props.customer.id_phuong,
+    });
+    setAdress(data.data);
   };
-  getAddressCustomer = (idAddr) => {
-    axios.post("http://localhost:8000/ttkh/getAddress", { _id: idAddr })
-      .then((res) => {
-        //console.log(res.data);
-        this.setState({ address: res.data });
-      });
-  };
-  updateStatus = (event) => {
+  const updateStatus = (event) => {
     axios.post("http://localhost:8000/don_hang/update_by_id", {
-      _id: this.state.id_order,
+      _id: props.idOrder,
       id_ttdh: event,
     });
     
   };
-  render() {
-    const { order, customer, address, status } = this.state;
-    let total = 0;
-    return (
+  useEffect(() => {
+    getDetails();
+    getAddressCustomer();
+    console.log(props.status)
+  },[])
+  return (
+    <div>
       <>
-      <Link to="/order">Back to Order</Link>
-        <h1>Order Detail</h1>
+        <Modal
+          {...props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Order Detail
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
         <div className="orderInfo">
           <div>
             Order's ID:
-            <b>{order._id}</b>
+            <b>{props.idOrder}</b>
           </div>
           <div>
             <b>Order date: </b>
-            {new Date(order.ngay_dat).toLocaleDateString('en-GB')}
+            {new Date(props.dateIn).toLocaleDateString('en-GB')}
           </div>
           <div>
             <b>Delivery date:</b>
-            {new Date(order.ngay_giao).toLocaleDateString('en-GB')}
+            {new Date(props.dateOut).toLocaleDateString('en-GB')}
           </div>
           <div>
             <b>Note: </b>
-            {order.ghi_chu}
+            {props.note}
           </div>
         </div>
 
@@ -90,22 +74,22 @@ export default class OrderDetail extends Component {
             <tr>
               <td>
                 <div>
-                  <b>{customer.ten_kh}</b>
+                  <b>{props.customer.ten_kh}</b>
                 </div>
-                <div>{customer.email}</div>
-                <div>{customer.sdt}</div>
+                <div>{props.customer.email}</div>
+                <div>{props.customer.sdt}</div>
               </td>
               <td>
                 <div>
-                  <b>{customer.ten_kh}</b>
+                  <b>{props.customer.ten_kh}</b>
                 </div>
-                <div>{customer.dia_chi + ", " + address}</div>
-                <div>{customer.sdt}</div>
+                <div>{props.customer.dia_chi + ", " + address}</div>
+                <div>{props.customer.sdt}</div>
               </td>
             </tr>
           </table>
         </div>
-        <table className="table table-light" style={{ width: "91%" }}>
+        <table className="table table-light">
           <thead>
             <tr>
               <th scope="col" className="table-title">
@@ -135,7 +119,7 @@ export default class OrderDetail extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.details.map((item) => (
+            {details.map((item) => (
               <tr>
                 <td>{item.id_san_pham.ten_sp}</td>
                 <td style={{ textAlign: "end" }}>{item.so_luong}</td>
@@ -166,7 +150,8 @@ export default class OrderDetail extends Component {
             </tr>
           </tbody>
         </table>
-        {status.trang_thai === "New" ? (
+        
+        {/* {status.trang_thai === "New" ? (
           <div>
             <button
               className="btn-edit"
@@ -199,39 +184,19 @@ export default class OrderDetail extends Component {
               Finished
             </button>
           </div>
-        ) : null}
-
+        ) : null} */}
+        
+          </Modal.Body>
+          <Modal.Footer>
+          {props.status === "New" ? (<button
+              className="btn-delete"
+              onClick={updateStatus("61a2498320a54c9a7f3b02dd")}
+            >
+              Cancel
+            </button>) : null}
+          </Modal.Footer>
+        </Modal>
       </>
-    );
-  }
+    </div>
+  );
 }
-
-// function OrderDetail() {
-//   const id_order = window.location.pathname.substring(7);
-//   const [order, setOrder] = useState({});
-//   const getOrderDetail = async () => {
-//     // await axios.post("http://localhost:8000/don_hang/", {
-//     //   _id: id_order,
-//     // }).then((response) => {
-//     //   setOrder(response.data);
-//     //   console.log(order);
-//     // });
-//     try {
-//       const data = await axios.post("http://localhost:8000/don_hang/", {
-//         _id: id_order,
-//       });
-//       setOrder(data.data);
-//       console.log(data.data)
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     getOrderDetail();
-//   }, []);
-
-//   return <div></div>;
-// }
-
-// export default OrderDetail;

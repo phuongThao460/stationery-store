@@ -1,10 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import OrderView from "./OrderView";
 import "./styles.css";
 function OrderManagerment() {
   const [toggleState, setToggleState] = useState(1);
   const [orderList, setOrderList] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [idOrder, setIdOrde] = useState("");
+  const [dateIn, setDateIn] = useState("");
+  const [dateOut, setDateOut] = useState("");
+  const [customer, setCustomer] = useState(null);
+  const [note, setNote] = useState("");
+  const [total, setTotal] = useState("");
+  const [subtotal, setSubtotal] = useState("");
+  const [ship, setShip] = useState("");
+  const [status, setStatus] = useState("");
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -16,6 +27,13 @@ function OrderManagerment() {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const updateStatus = (idOrder, event) => {
+    axios.post("http://localhost:8000/don_hang/update_by_id", {
+      _id: idOrder,
+      id_ttdh: event,
+    });
   };
   useEffect(() => {
     getAllOrder();
@@ -77,12 +95,37 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "New" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>
+                        {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
+                      </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                      <Link to={"/order/" + item._id}>
-                          <button className="btn-view">View</button>
-                        </Link>
+                        <button
+                          className="btn-edit"
+                          onClick={updateStatus(
+                            item._id,
+                            "61a2494520a54c9a7f3b02a9"
+                          )}
+                        >
+                          Confirm
+                        </button>
+                        <button
+                          className="btn-view"
+                          onClick={() => {
+                            setModalShow(true);
+                            setIdOrde(item._id);
+                            setDateIn(item.ngay_dat);
+                            setDateOut(item.ngay_giao);
+                            setCustomer(item.id_ttkh);
+                            setNote(item.ghi_chu);
+                            setSubtotal(item.tong_phu);
+                            setTotal(item.tong_tien);
+                            setShip(item.phi_ship);
+                            setStatus(item.id_ttdh.trang_thai);
+                          }}
+                        >
+                          View
+                        </button>
                       </td>
                     </tr>
                   ) : null
@@ -110,12 +153,31 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "Confirm" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>
+                        {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
+                      </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                      <Link to={"/order/" + item._id}>
-                          <button className="btn-view">View</button>
-                        </Link>
+                        <button className="btn-edit" onClick={updateStatus(
+                            item._id,
+                            "61a2496d20a54c9a7f3b02cd"
+                          )}>Shipping</button>
+                        <button
+                          className="btn-view"
+                          onClick={() => {
+                            setModalShow(true);
+                            setIdOrde(item._id);
+                            setDateIn(item.ngay_dat);
+                            setDateOut(item.ngay_giao);
+                            setCustomer(item.id_ttkh);
+                            setNote(item.ghi_chu);
+                            setSubtotal(item.tong_phu);
+                            setTotal(item.tong_tien);
+                            setShip(item.phi_ship);
+                          }}
+                        >
+                          View
+                        </button>
                       </td>
                     </tr>
                   ) : null
@@ -143,12 +205,31 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "Shipping" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>
+                        {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
+                      </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                      <Link to={"/order/" + item._id}>
-                          <button className="btn-view">View</button>
-                        </Link>
+                        <button className="btn-edit"onClick={updateStatus(
+                            item._id,
+                            "61a2497920a54c9a7f3b02d6"
+                          )}>Finished</button>
+                        <button
+                          className="btn-view"
+                          onClick={() => {
+                            setModalShow(true);
+                            setIdOrde(item._id);
+                            setDateIn(item.ngay_dat);
+                            setDateOut(item.ngay_giao);
+                            setCustomer(item.id_ttkh);
+                            setNote(item.ghi_chu);
+                            setSubtotal(item.tong_phu);
+                            setTotal(item.tong_tien);
+                            setShip(item.phi_ship);
+                          }}
+                        >
+                          View
+                        </button>
                       </td>
                     </tr>
                   ) : null
@@ -175,12 +256,27 @@ function OrderManagerment() {
                   item.id_ttdh.trang_thai === "Finished" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id}</th>
-                      <td>{new Date(item.ngay_dat).toLocaleDateString('en-GB')}</td>
+                      <td>
+                        {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
+                      </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                      <Link to={"/order/" + item._id}>
-                          <button className="btn-view">View</button>
-                        </Link>
+                        <button
+                          className="btn-view"
+                          onClick={() => {
+                            setModalShow(true);
+                            setIdOrde(item._id);
+                            setDateIn(item.ngay_dat);
+                            setDateOut(item.ngay_giao);
+                            setCustomer(item.id_ttkh);
+                            setNote(item.ghi_chu);
+                            setSubtotal(item.tong_phu);
+                            setTotal(item.tong_tien);
+                            setShip(item.phi_ship);
+                          }}
+                        >
+                          View
+                        </button>
                       </td>
                     </tr>
                   ) : null
@@ -209,11 +305,22 @@ function OrderManagerment() {
                       <th scope="row">{item._id}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
                       <td>${item.tong_tien}</td>
-                      <td>
-                        <Link to={"/order/" + item._id}>
-                          <button className="btn-view">View</button>
-                        </Link>
-                      </td>
+                      <button
+                        className="btn-view"
+                        onClick={() => {
+                          setModalShow(true);
+                          setIdOrde(item._id);
+                          setDateIn(item.ngay_dat);
+                          setDateOut(item.ngay_giao);
+                          setCustomer(item.id_ttkh);
+                          setNote(item.ghi_chu);
+                          setSubtotal(item.tong_phu);
+                          setTotal(item.tong_tien);
+                          setShip(item.phi_ship);
+                        }}
+                      >
+                        View
+                      </button>
                     </tr>
                   ) : null
                 )}
@@ -222,6 +329,21 @@ function OrderManagerment() {
           </div>
         </div>
       </div>
+      {modalShow ? (
+        <OrderView
+          show={modalShow}
+          idOrder={idOrder}
+          onHide={() => setModalShow(false)}
+          dateIn={dateIn}
+          dateOut={dateOut}
+          note={note}
+          subtotal={subtotal}
+          total={total}
+          ship={ship}
+          customer={customer}
+          status={status}
+        />
+      ) : null}
     </>
   );
 }

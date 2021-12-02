@@ -1,7 +1,6 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { Component } from "react";
 import axios from "axios";
-import Select from "react-select";
 
 export default class CheckoutCustomer extends Component {
   constructor(props) {
