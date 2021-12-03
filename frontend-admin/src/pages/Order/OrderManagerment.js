@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import OrderView from "./OrderView";
 import "./styles.css";
 function OrderManagerment() {
@@ -102,7 +101,7 @@ function OrderManagerment() {
                       <td>
                         <button
                           className="btn-edit"
-                          onClick={updateStatus(
+                          onClick={() => updateStatus(
                             item._id,
                             "61a2494520a54c9a7f3b02a9"
                           )}
@@ -158,7 +157,7 @@ function OrderManagerment() {
                       </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                        <button className="btn-edit" onClick={updateStatus(
+                        <button className="btn-edit" onClick={() => updateStatus(
                             item._id,
                             "61a2496d20a54c9a7f3b02cd"
                           )}>Shipping</button>
@@ -210,7 +209,7 @@ function OrderManagerment() {
                       </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                        <button className="btn-edit"onClick={updateStatus(
+                        <button className="btn-edit"onClick={() => updateStatus(
                             item._id,
                             "61a2497920a54c9a7f3b02d6"
                           )}>Finished</button>

@@ -6,7 +6,6 @@ function Customers() {
   const styled = {
     textOverflow: "ellipsis",
     width: "100px",
-    display: "block",
     overflow: "hidden",
     whiteSpace: "nowrap",
   };
