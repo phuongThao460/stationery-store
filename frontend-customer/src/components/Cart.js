@@ -1,35 +1,44 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React from "react";
-import { IoMdRemove } from "react-icons/io";
-import { GrAdd } from "react-icons/gr";
 import "../style/Cart.css";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      array: [],
-      style: {
-        width: "10px",
-        height: "10px",
-        margin: "0 12px",
-      },
-    };
-    this.getArray();
-  }
+import { Link } from "react-router-dom";
+import CartItem from "./CartItems";
 
-  getArray = () => {
-    this.state.array = JSON.parse(window.localStorage.getItem("products"));
-    this.setState(this);
-    console.log(this.state.array.length);
+import { addToCart, removeFromCart } from "../redux/action/cartAction";
+
+const Cart = () => {
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  useEffect(() => {}, []);
+
+  const qtyChangeHandler = (id, count) => {
+    dispatch(addToCart(id, count));
   };
-  render() {
-    let subtotal = 0;
-    const { style, array } = this.state;
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
+  const getCartCount = () => {
+    return cartItems.reduce((count, item) => Number(item.count) + count, 0);
+  };
+
+  const getCartSubTotal = () => {
+    return cartItems
+      .reduce((price, item) => price + item.don_gia_xuat * item.count, 0)
+      .toFixed(2);
+  };
     return (
       <div className="Container-cart">
         <div className="Wrapper-cart">
           <h1 className="Title-cart">YOUR BAG</h1>
+
           <div className="Top">
             <button className="TopButton">CONTINUE SHOPPING</button>
             <div className="TopTexts">
@@ -38,72 +47,46 @@ class Cart extends React.Component {
             </div>
             <button className="TopButton-checkout">CHECKOUT NOW</button>
           </div>
-
+          
           <div className="Bottom">
             <div className="Info">
-              {array.map((item) => (
-                <div className="Product-cart">
-                  <div className="ProductDetail-cart">
-                    <img
-                      alt=""
-                      className="Image-cart"
-                      src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
-                    />
-                    <div className="Details-cart">
-                      <span className="ProductName" style={{ width: "328px" }}>
-                        <p style={{fontSize: "15px"}}>{item.ten_sp}</p>
-                      </span>
-                      
-                      <span style={{ display: "inline-flex" }}>
-                        Color:{" "}
-                        <div
-                          className="ProductColor"
-                          style={{
-                            backgroundColor: `${item.mau_sac}`,
-                            marginLeft: "12px",
-                          }}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="PriceDetail">
-                  
-                    <div className="ProductPrice">{item.don_gia_xuat * 1000}</div>
-                  </div>
-                  <span className="ProductId" style={{ display: "inline-flex", marginTop: "64px" }}>
-                        <div className="ProductAmountContainer">
-                          <GrAdd style={style} />
-                          <div className="ProductAmount">{item.so_luong}</div>
-                          <IoMdRemove style={style} />
-                        </div>
-                      </span>
-                  <div style={{ display: "none" }}>
-                    {(subtotal = subtotal + item.so_luong * item.don_gia_xuat)}
-                  </div>
-                </div>
-              ))}
+            {cartItems.length === 0 ? (
+            <div>
+              Your Cart Is Empty <Link to="/">Go Back</Link>
+            </div>
+          ) : (
+            cartItems.map((item) => (
+              <CartItem
+                key={item.product}
+                item={item}
+                qtyChangeHandler={qtyChangeHandler}
+                removeHandler={removeFromCartHandler}
+              />
+            ))
+          )}
             </div>
             <div className="Summary">
               <div className="summary-container">
                 <h1 className="SummaryTitle">ORDER SUMMARY</h1>
                 <div className="SummaryItem">
                   <span className="SummaryItemText">Subtotal</span>
-                  <span className="SummaryItemPrice">{subtotal * 1000}</span>
+                  <span className="SummaryItemPrice">{getCartCount()} items</span>
                 </div>
-                <div className="SummaryItem">
+                {/* <div className="SummaryItem">
                   <span className="SummaryItemText">Estimated Shipping</span>
                   <span className="SummaryItemPrice">28000</span>
                 </div>
                 <div className="SummaryItem">
                   <span className="SummaryItemText">Shipping Discount</span>
                   <span className="SummaryItemPrice">$ -5.90</span>
-                </div>
+                </div> */}
                 <div className="SummaryItem-total">
                   <span className="SummaryItemText">Total</span>
-                  <span className="SummaryItemPrice">{subtotal * 1000 + 28000}</span>
+                  <span className="SummaryItemPrice">${getCartSubTotal()}</span>
                 </div>
+                <Link to="/CheckoutCustomer">
                 <button className="Button-checkout">CHECKOUT NOW</button>
+                </Link>
               </div>
             </div>
           </div>
@@ -111,6 +94,5 @@ class Cart extends React.Component {
       </div>
     );
   }
-}
 
 export default Cart;

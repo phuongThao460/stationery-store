@@ -8,6 +8,7 @@ import LoginForm from './pages/LoginForm'
 import SignupForm from './pages/SignupForm'
 import Product from "./components/Product";
 import Cart from "./components/Cart";
+import CheckoutCustomer from "./pages/CheckoutCustomer";
 import {
   Routes,
   Route,
@@ -19,40 +20,20 @@ import SubNav from "./data/SubNavbar";
 //import data from './data'
 
 function App() {
-  const [cartItems, setCardItems] = useState([]);
-  const onAdd = (product) => {
-    let products = [];
-    if(localStorage.getItem('products')){
-        products = JSON.parse(localStorage.getItem('products'));
-    }
-    products.push(product);
-    setCardItems(cartItems + 1)
-    localStorage.setItem('products', JSON.stringify(products));
-  };
-  const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if(exist.qty === 1){
-      setCardItems(cartItems.filter((x) => x.id !== product.id))
-    }
-    else{
-      setCardItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
-        )
-      );
-    }
-  }
+  const [sideToggle, setSideToggle] = useState(false);
+
   return (
     <>
       <BrowserRouter>
-        <Navbar countCartItem={cartItems.length} />
+        <Navbar click={() => setSideToggle(true)} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />
           <Route path="/Login" element={<LoginForm/>}/>
           <Route path="/Signup" element={<SignupForm/>} />
-          <Route path="/products/:id" element={<Product onAdd={onAdd}/>} />
-          <Route path="/Cart" element={<Cart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>} />
+          <Route path="/products/:id" element={<Product/>} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/CheckoutCustomer" element={<CheckoutCustomer/>}/>
         </Routes>
       </BrowserRouter>
     </>

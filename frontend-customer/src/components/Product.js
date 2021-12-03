@@ -1,62 +1,47 @@
 import React from "react";
-import { IoMdRemove } from "react-icons/io";
-import { GrAdd } from "react-icons/gr";
+// import { IoMdRemove } from "react-icons/io";
+// import { GrAdd } from "react-icons/gr";
 import { BsHandbagFill } from "react-icons/bs";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import "../style/Product.css";
-import axios from "axios";
 
-export default class Product extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      idProduct: document.location.pathname.substring(10),
-      product: null,
-      count: 1,
-      arrayColor: [],
-      chooseColor: "",
-      addCart: [],
-    };
-  }
-  componentDidMount() {
-    this.getItem();
-  }
-  handleSubmit = () => {
-    this.state.arrayProduct.push(this.state.product);
-    this.setState(this);
-  };
-  async getItem() {
-    await axios
-      .post("http://localhost:8000/san_pham/", {
-        _id: this.state.idProduct,
-      })
-      .then((res) => {
-        this.setState({ product: res.data });
-        for (let i = 0; i < res.data.mau_sac.length; i++) {
-          this.state.arrayColor.push(res.data.mau_sac[i]);
-        }
-        this.setState(this);
-      })
-      .catch((e) => console.log(e));
-  }
 
-  addToCart = (count, color) => {
-    var cart = {
-      _id: this.state.product._id,
-      ten_sp: this.state.product.ten_sp,
-      so_luong: count,
-      don_gia_xuat: this.state.product.don_gia_xuat,
-      mau_sac: color,
-    };
-    this.state.addCart.push({...cart})
-    this.setState(this);
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+
+import { getProductDetails } from '../redux/action/productAction';
+import { addToCart } from '../redux/action/cartAction';
+
+
+const Product = ({ match, history }) => {
+  const [count, setQty] = useState(1);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const productDetails = useSelector((state) => state.getProductDetails);
+  const { loading, error, product } = productDetails;
+
+  useEffect(() => {
+    // if (product && match.params.id !== product._id) {
+    //   
+    // }
+    dispatch(getProductDetails(window.location.pathname.substring(10)));
+    console.log(productDetails)
+  }, []);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart(product._id, count));
+    navigate(`/cart`);
   };
-  render() {
-    const { product, addCart, count, chooseColor } = this.state;
-    let data = <div></div>;
-    if (product != null) {
-      data = (
+
+  return ( 
         <div className="Container-Product">
+           {loading ? (
+            <h2>Loading...</h2>
+            ) : error ? (
+            <h2>{error}</h2>
+            ) : (
+        <>
           <div className="Wrapper">
             <div
               className="ImgContainer"
@@ -89,47 +74,25 @@ export default class Product extends React.Component {
                 <div className="FilterContainer">
                   <div className="Filter">
                     <span className="FilterTitle">Color</span>
-                    {product.mau_sac.map((item) => (
-                      <button
-                        className="primary-color"
-                        style={{ backgroundColor: `${item}` }}
-                        onClick={() => this.setState({ chooseColor: item })}
-                      />
-                    ))}
+                    {product.mau_sac}
                   </div>
                 </div>
               </div>
               <div className="AddContainer">
                 <span className="FilterTitle">Qty</span>
-                <div className="AmountContainer">
-                  <IoMdRemove
-                    onClick={() => {
-                      if (this.state.count < 1) {
-                        this.setState({ count: 1 });
-                      } else {
-                        this.setState({ count: count - 1 });
-                      }
-                    }}
-                  />
-                  <span className="Amount">{count}</span>
-                  <GrAdd
-                    onClick={() => {
-                      if (count < product.so_luong) {
-                        this.setState({ count: count + 1 });
-                      } else {
-                        this.setState({ count: product.so_luong });
-                      }
-                    }}
-                  />
-                </div>
+                <select value={count} onChange={(e) => setQty(e.target.value)}>
+                  {[...Array(product.so_luong).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
                 
               </div>
               <div className="btn">
                   <button
                     className="Button"
-                    onClick={() =>
-                      this.props.onAdd(this.addToCart(count, chooseColor))
-                    }
+                    onClick={addToCartHandler}
                   >
                     <BsHandbagFill style={{ marginRight: "7px" }} />
                     ADD TO CART
@@ -140,12 +103,10 @@ export default class Product extends React.Component {
                   </button>
                 </div>
             </div>
-            {console.log({...addCart})}
-            {window.localStorage.setItem("products", JSON.stringify(addCart))}
           </div>
+          </>
+            )}
         </div>
-      );
-    }
-    return <>{data}</>;
-  }
-}
+   );
+};
+export default Product;
