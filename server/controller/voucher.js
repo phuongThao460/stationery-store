@@ -41,10 +41,15 @@ export const Create_Voucher = async (req, res) => {
 	/*
 	Add new voucher to db
 	
-	required value to create new voucher: tong_tien_mua_hang_tich_luy_toi_thieu,
+	required value to create new voucher: 
+	
+		tong_tien_mua_hang_tich_luy_toi_thieu,
+
 		ngay_bat_dau_tich_luy, ngay_ket_thuc_tich_luy, 
+
 		so_ngay_kich_hoat_tai_khoan_toi_thieu, phan_tram_giam,
-		ngay_bat_dau_ap_dung, ngay_ket_thuc_ap_dung, ngay_tao
+
+		ngay_bat_dau_ap_dung, ngay_ket_thuc_ap_dung
 	*/
 
 	try {
