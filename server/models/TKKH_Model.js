@@ -1,5 +1,10 @@
 import mongoose from 'mongoose'
 
+
+// ==========================================
+//              MODEL DEFINITIONS
+// ==========================================
+
 const schema = new mongoose.Schema({
 	ten_dn: {
 		type: String,
@@ -31,3 +36,27 @@ const schema = new mongoose.Schema({
 }, { timestamps: false })
 
 export const TK_KH_Model = mongoose.model('TAI_KHOAN_KHACH_HANG', schema)
+
+
+// ==========================================
+//              FUNCTION DEFINITIONS
+// ==========================================
+
+export const Add_Voucher = async (id_tkkh, id_voucher) => {
+	/*
+	Add voucher for tkkh
+	*/
+
+  	try {
+    	const tkkh = await TK_KH_Model.findOneAndUpdate(
+      		{ _id: id_tkkh },
+      		{ $push: { id_voucher: id_voucher } },
+      		{ new: true }
+    	);
+    	console.log(tkkh);
+		return tkkh
+  	} catch (err) {
+    	res.status(500).json({ error: err });
+    	console.log(err);
+  	}
+}

@@ -1,7 +1,11 @@
 import { VOUCHER_Model, Is_Voucher_On_Time_To_Sale,
 		Set_Tinh_Trang_Voucher, Find_TKKH_Meets_The_Conditions,
-		Set_So_Luong_Voucher } from '../models/VOUCHER_Model.js'
-	 
+		Set_So_Luong_Voucher, Broadcast_Voucher_To_Account } from '../models/VOUCHER_Model.js'
+
+
+// ==========================================
+//              FUNCTION DEFINITIONS
+// ==========================================
 
 export const Get_Vouchers = async (req, res) => {
 	/*
@@ -17,7 +21,6 @@ export const Get_Vouchers = async (req, res) => {
 		res.status(500).json({ error: err })
 	}
 }
-
 
 export const Get_Voucher_By_ID = async (req, res) => {
 	/*
@@ -35,7 +38,6 @@ export const Get_Voucher_By_ID = async (req, res) => {
 		res.status(500).json({ error: err })
 	}
 }
-
 
 export const Create_Voucher = async (req, res) => {
 	/*
@@ -66,6 +68,10 @@ export const Create_Voucher = async (req, res) => {
 		voucher = Set_So_Luong_Voucher(voucher, tkkh_meet_the_conds.length)
 
 		await voucher.save()
+
+		// Add voucher for TKKH
+		Broadcast_Voucher_To_Account(tkkh_meet_the_conds, voucher._id)
+
 		console.log('voucher: ', voucher)
 		res.status(200).json(voucher)
 	} catch(err) {
@@ -73,8 +79,7 @@ export const Create_Voucher = async (req, res) => {
 	}
 }
 
-
-export const Test = async (req, res) => {
+export const Test_Find_TKKH_Meets_The_Conditions = async (req, res) => {
 	/*
 	Add new voucher to db
 	
@@ -94,6 +99,3 @@ export const Test = async (req, res) => {
 		res.status(500).json({ error: err })
 	}
 }
-
-
-
