@@ -78,11 +78,13 @@ export const Set_Tinh_Trang_Voucher = (voucher, status) => {
 	return voucher
 }
 
-export const Set_So_Luong_Voucher = () => {
+export const Set_So_Luong_Voucher = (voucher, num_of_vouchers) => {
 	/*
 	Set so luong voucher for voucher
 	*/
-	return 0
+
+	voucher.so_luong_voucher = num_of_vouchers
+	return voucher
 }
 
 export const Increase_Num_Of_Voucher_Applied = () => {
@@ -100,7 +102,8 @@ export const Broadcast_Voucher_To_Account = () => {
 export const Find_TKKH_Meets_The_Conditions = async voucher => {
 	/*
 	Find TKKHs which meet the voucher's conditions
-	:return: array
+	:return: array, 
+		shape of element in array: {id_tkkh, tong_tien_mua_hang_tich_luy}
 	*/
 
 	var tong_tien_mua_hang_tich_luy_toi_thieu = voucher.tong_tien_mua_hang_tich_luy_toi_thieu
@@ -111,9 +114,6 @@ export const Find_TKKH_Meets_The_Conditions = async voucher => {
 	var ngay_kich_hoat_tai_khoan_toi_thieu = new Date()
 	ngay_kich_hoat_tai_khoan_toi_thieu.setDate(
 		ngay_kich_hoat_tai_khoan_toi_thieu.getDate() - so_ngay_kich_hoat_tai_khoan_toi_thieu)
-
-	console.log(ngay_bat_dau_tich_luy)
-	console.log(ngay_ket_thuc_tich_luy)
 
 	try {
 		var rs = await DON_HANG_Model.aggregate([
@@ -147,7 +147,12 @@ export const Find_TKKH_Meets_The_Conditions = async voucher => {
 				id_tkkh: { $arrayElemAt: [ "$_id", 0 ] },
 				tong_tien_mua_hang_tich_luy: 1,
 				_id: 0
-			} }
+			} },
+
+			// Stage 6: Find accounts have enough tong tien 
+			// mua hang tich luy toi thieu
+			{ $match: { 
+				tong_tien_mua_hang_tich_luy: { $gte: tong_tien_mua_hang_tich_luy_toi_thieu } } }
 
 		]).exec()
 
