@@ -6,8 +6,15 @@ import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
 import { Link } from "react-router-dom";
 
-function Navbar(props) {
-  const { countCartItem } = props;
+import { useSelector } from "react-redux";
+
+const Navbar = ({ click }) => {
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  const getCartCount = () => {
+    return cartItems.reduce((count, item) => Number(item.count) + count, 0);
+  };
   return (
     <div className="container-1">
       <div className="navbar-1">
@@ -48,7 +55,7 @@ function Navbar(props) {
           <Link to="/Cart">
             <BsHandbag className="cart-bag" />
             <div className="num-item">
-              <div className="text-num">{countCartItem}</div>
+              <div className="text-num">{getCartCount()}</div>
             </div>
           </Link>
         </div>
