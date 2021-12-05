@@ -32,6 +32,18 @@ const schema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	tong_gia_giam_boi_voucher: {
+		type: Number,
+		default: 0
+	},
+	id_voucher: {
+		type: mongoose.Types.ObjectId,
+		ref: "VOUCHER"
+	},
+	id_phuong_thuc_thanh_toan: {
+		type: mongoose.Types.ObjectId,
+		ref: "PHUONG_THUC_THANH_TOAN"
+	},
 	tong_tien: {
 		type: Number,
 		default: 0

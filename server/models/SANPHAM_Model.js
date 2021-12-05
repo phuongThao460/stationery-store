@@ -20,7 +20,11 @@ const schema = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
-	don_gia_xuat: {
+	gia_ban_goc: {
+		type: Number,
+		required: true
+	},
+	gia_ban_hien_tai: {
 		type: Number,
 		required: true
 	},

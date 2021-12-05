@@ -13,6 +13,20 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		required: true,
 		ref: "THONG_TIN_KHACH_HANG"
+	},
+	id_voucher: [{
+		type: mongoose.Types.ObjectId,
+		default: [],
+		ref: "VOUCHER"
+	}],
+	wish_list: [{
+		type: mongoose.Types.ObjectId,
+		default: [],
+		ref: "SAN_PHAM"
+	}],
+	ngay_tao_tk: {
+		type: Date,
+		default: new Date()
 	}
 }, { timestamps: false })
 

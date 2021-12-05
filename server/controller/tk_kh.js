@@ -101,3 +101,25 @@ export const create_TKKH = async (req, res) => {
     console.log(err);
   }
 };
+
+export const Update_TKKH = async (req, res) => {
+  /*
+  Update tkkh
+  :return: json
+  */
+
+  try{
+    const update_tkkh = req.body;
+
+    const tkkh = await TK_KH_Model.findOneAndUpdate(
+      { _id: update_tkkh._id },
+      update_tkkh,
+      { new: true }
+    );
+    console.log(tkkh);
+    res.status(200).json(tkkh);
+  } catch(err) {
+    console.log(err)
+    res.status(500).json(err) 
+  }
+}
