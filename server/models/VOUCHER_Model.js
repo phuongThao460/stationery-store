@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 import { DON_HANG_Model } from './DON_HANG_Model.js'
+import { Add_Voucher } from './TKKH_Model.js'
 
 
 // ==========================================
@@ -91,12 +92,19 @@ export const Increase_Num_Of_Voucher_Applied = () => {
 	return	
 }
 
-export const Broadcast_Voucher_To_Account = () => {
+export const Broadcast_Voucher_To_Account = (tkkhs, id_voucher) => {
 	/*
 	Automatically add id voucher to tai khoan khach hang which met 
 	the voucher's conditions
+	:return: boolean
 	*/
-	return 
+
+	try {
+		tkkhs.forEach(ele => Add_Voucher(ele.id_tkkh, id_voucher))
+	} catch(err) {
+		console.log(err)
+	}
+
 }
 
 export const Find_TKKH_Meets_The_Conditions = async voucher => {
