@@ -9,14 +9,9 @@ import OrderManagerment from "./pages/Order/OrderManagerment";
 import OrderDetail from "./pages/Order/OrderDetail";
 import EditProduct from "./pages/Product/EditProduct";
 import Customers from "./pages/Customer/Customers";
-const Courses = () => {
-  return <h1>Courses</h1>;
-};
+import Voucher from "./pages/Voucher/Voucher";
 const Contact = () => {
   return <h1>Contact</h1>;
-};
-const Music = () => {
-  return <h1>Music</h1>;
 };
 function App() {
   const [inactive, setInactive] = useState(false);
@@ -35,9 +30,9 @@ function App() {
               <Route path="/products/add-product" element={<AddNewProduct />} />
               <Route path="/products/edit/:id" element={<EditProduct/>} />
               <Route path="/customer" element={<Customers />} />
-              <Route path="/customer/music" element={<Music />} />
               <Route path="/order" element={<OrderManagerment />} />
               <Route path="/order/:id" element={<OrderDetail />} />
+              <Route path="/voucher" element={<Voucher/>} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>
