@@ -70,7 +70,7 @@
 .navbar {
   text-align: center;
   height: 50px;
-  background-color: antiquewhite;
+  background-color: rgb(250, 235, 215);
   display: flex;
   justify-content: space-around;
 }

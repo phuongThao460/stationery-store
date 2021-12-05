@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { BsSearch, BsFillPersonLinesFill } from "react-icons/bs";
 import { RiDashboardFill, RiContactsFill, RiListUnordered } from "react-icons/ri";
-//import { SiContentful } from "react-icons/si";
+import { IoTicketOutline } from "react-icons/io";
 import logo from "../images/logo.jpg";
 import cat from "../images/cat.jpg";
 import MenuItem from "./MenuItem";
@@ -28,6 +28,7 @@ const menuItems = [
     icon: <BsFillPersonLinesFill />,
   },
   { name: "Order", to: "/order", icon: <RiListUnordered /> },
+  { name: "Voucer", to: "/voucher", icon: <IoTicketOutline /> },
   { name: "Contact", to: "/contact", icon: <RiContactsFill /> },
 ];
 
