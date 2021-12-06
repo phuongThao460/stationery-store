@@ -146,7 +146,7 @@ class Homepage extends React.Component {
             })}
           </div>
         </div>
-        <h1>New Arrival</h1>
+        <h1 className="Home-Title">New Arrival</h1>
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             {this.state.lstProduct.map((item, index) => (
@@ -177,7 +177,7 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <h1>Special Sale 50% Off</h1>
+        <h1 className="Home-Title">Special Sale 50% Off</h1>
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             {this.state.lstProduct.map((item, index) => (
