@@ -10,6 +10,7 @@ import OrderDetail from "./pages/Order/OrderDetail";
 import EditProduct from "./pages/Product/EditProduct";
 import Customers from "./pages/Customer/Customers";
 import Voucher from "./pages/Voucher/Voucher";
+import AddNewVoucher from "./pages/Voucher/AddNewVoucher";
 const Contact = () => {
   return <h1>Contact</h1>;
 };
@@ -33,6 +34,7 @@ function App() {
               <Route path="/order" element={<OrderManagerment />} />
               <Route path="/order/:id" element={<OrderDetail />} />
               <Route path="/voucher" element={<Voucher/>} />
+              <Route path="/voucher/add-voucher" element={<AddNewVoucher/>} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>
