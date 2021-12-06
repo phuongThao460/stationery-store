@@ -83,7 +83,7 @@ const Product = ({ match, history }) => {
               </div>
               <div className="AddContainer">
                 <span className="FilterTitle">Qty</span>
-                <select value={count} onChange={(e) => setQty(e.target.value)}>
+                <select value={count} onChange={(e) => setQty(parseInt(e.target.value))}>
                   {[...Array(product.so_luong).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
