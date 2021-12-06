@@ -3,7 +3,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { BiPlusMedical } from "react-icons/bi";
-import "./styles.css";
 import Select from "react-select";
 import { ModalColor } from "../../components/Modal";
 

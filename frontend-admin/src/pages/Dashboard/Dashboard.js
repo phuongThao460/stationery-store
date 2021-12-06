@@ -5,7 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
-import "./styles.css";
 import { BsFillPencilFill } from "react-icons/bs";
 import { BiPlusMedical } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
@@ -85,7 +84,7 @@ function Dashboard() {
               whiteSpace: "nowrap",
               textOverflow: "ellipsis",
               cursor: "pointer",
-              textAlign: "center",
+              textAlign: "start",
             }}
           >
             {col}
@@ -94,10 +93,16 @@ function Dashboard() {
       },
     },
     {
+      dataField: "id_loai_sp.ten_loai_sp",
+      text: "Type",
+      attrs: { width: 100, class: "EditRow", style: { textAlign: "start" } },
+      headerAlign: "start",
+    },
+    {
       dataField: "ngay_nhap",
       text: "Import Date",
       headerAlign: "center",
-      attrs: { width: 200, class: "EditRow", style: { textAlign: "center" } },
+      attrs: { width: 80, class: "EditRow", style: { textAlign: "end" } },
       formatter: (cell) => {
         let dateObj = cell;
         if (typeof cell !== "object") {
@@ -108,12 +113,6 @@ function Dashboard() {
           (dateObj.getUTCMonth() + 1)
         ).slice(-2)}/${dateObj.getUTCFullYear()}`;
       },
-    },
-    {
-      dataField: "id_loai_sp.ten_loai_sp",
-      text: "Type",
-      attrs: { width: 200, class: "EditRow", style: { textAlign: "center" } },
-      headerAlign: "center",
     },
     {
       dataField: "",

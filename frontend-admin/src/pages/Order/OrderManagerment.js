@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import OrderView from "./OrderView";
-import "./styles.css";
 function OrderManagerment() {
   const [toggleState, setToggleState] = useState(1);
   const [orderList, setOrderList] = useState([]);
@@ -93,18 +92,17 @@ function OrderManagerment() {
                 {orderList.map((item, index) =>
                   item.id_ttdh.trang_thai === "New" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
-                      <th scope="row">{item._id}</th>
+                      <th scope="row">{item._id.substr(14)}</th>
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${item.tong_tien}</td>
+                      <td style={{ textAlign: "end" }}>${item.tong_tien}</td>
                       <td>
                         <button
                           className="btn-edit"
-                          onClick={() => updateStatus(
-                            item._id,
-                            "61a2494520a54c9a7f3b02a9"
-                          )}
+                          onClick={() =>
+                            updateStatus(item._id, "61a2494520a54c9a7f3b02a9")
+                          }
                         >
                           Confirm
                         </button>
@@ -151,16 +149,20 @@ function OrderManagerment() {
                 {orderList.map((item, index) =>
                   item.id_ttdh.trang_thai === "Confirm" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
-                      <th scope="row">{item._id}</th>
+                      <th scope="row">{item._id.substr(14)}</th>
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                        <button className="btn-edit" onClick={() => updateStatus(
-                            item._id,
-                            "61a2496d20a54c9a7f3b02cd"
-                          )}>Shipping</button>
+                        <button
+                          className="btn-edit"
+                          onClick={() =>
+                            updateStatus(item._id, "61a2496d20a54c9a7f3b02cd")
+                          }
+                        >
+                          Shipping
+                        </button>
                         <button
                           className="btn-view"
                           onClick={() => {
@@ -203,16 +205,20 @@ function OrderManagerment() {
                 {orderList.map((item, index) =>
                   item.id_ttdh.trang_thai === "Shipping" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
-                      <th scope="row">{item._id}</th>
+                      <th scope="row">{item._id.substr(14)}</th>
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
                       <td>${item.tong_tien}</td>
                       <td>
-                        <button className="btn-edit"onClick={() => updateStatus(
-                            item._id,
-                            "61a2497920a54c9a7f3b02d6"
-                          )}>Finished</button>
+                        <button
+                          className="btn-edit"
+                          onClick={() =>
+                            updateStatus(item._id, "61a2497920a54c9a7f3b02d6")
+                          }
+                        >
+                          Finished
+                        </button>
                         <button
                           className="btn-view"
                           onClick={() => {
@@ -254,7 +260,7 @@ function OrderManagerment() {
                 {orderList.map((item, index) =>
                   item.id_ttdh.trang_thai === "Finished" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
-                      <th scope="row">{item._id}</th>
+                      <th scope="row">{item._id.substr(14)}</th>
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
@@ -301,25 +307,27 @@ function OrderManagerment() {
                 {orderList.map((item, index) =>
                   item.id_ttdh.trang_thai === "Cancelled" ? (
                     <tr key={index} style={{ textAlign: "center" }}>
-                      <th scope="row">{item._id}</th>
+                      <th scope="row">{item._id.substr(14)}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
                       <td>${item.tong_tien}</td>
-                      <button
-                        className="btn-view"
-                        onClick={() => {
-                          setModalShow(true);
-                          setIdOrde(item._id);
-                          setDateIn(item.ngay_dat);
-                          setDateOut(item.ngay_giao);
-                          setCustomer(item.id_ttkh);
-                          setNote(item.ghi_chu);
-                          setSubtotal(item.tong_phu);
-                          setTotal(item.tong_tien);
-                          setShip(item.phi_ship);
-                        }}
-                      >
-                        View
-                      </button>
+                      <td>
+                        <button
+                          className="btn-view"
+                          onClick={() => {
+                            setModalShow(true);
+                            setIdOrde(item._id);
+                            setDateIn(item.ngay_dat);
+                            setDateOut(item.ngay_giao);
+                            setCustomer(item.id_ttkh);
+                            setNote(item.ghi_chu);
+                            setSubtotal(item.tong_phu);
+                            setTotal(item.tong_tien);
+                            setShip(item.phi_ship);
+                          }}
+                        >
+                          View
+                        </button>
+                      </td>
                     </tr>
                   ) : null
                 )}

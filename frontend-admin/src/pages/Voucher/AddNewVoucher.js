@@ -45,6 +45,7 @@ export default class Voucher extends Component {
                   className="form-control"
                   placeholder="Enter product’s name "
                   ref={this.dateStart}
+                  autoFocus
                 />
               </div>
             </div>

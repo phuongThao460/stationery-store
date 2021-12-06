@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 //import React, { useEffect, useState } from "react";
-import "./styles.css";
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 export default class OrderDetail extends Component {

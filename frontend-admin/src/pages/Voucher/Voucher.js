@@ -60,39 +60,41 @@ function Voucher() {
       </div>
       <table className="table table-hover" style={{ backgroundColor: "#fff" }}>
         <thead>
-          <tr style={{ textAlign: "center" }}>
+          <tr>
             <th scope="col" style={{ width: "100px" }}>
               ID
             </th>
             <th scope="col">Start Day</th>
             <th scope="col">End Day</th>
-            <th scope="col">Percent</th>
             <th scope="col">Day Create</th>
-            <th scope="col">Status</th>
-            <th scope="col">Number In Used</th>
+            <th scope="col" style={{width: "67px"}}>Percent</th>
+            <th scope="col" style={{textAlign: "end"}}>Number In Used</th>
+            <th scope="col" style={{width: "132px", paddingLeft:"28px"}}>Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           {vouchers.map((item, index) => (
-            <tr key={index} style={{ textAlign: "center" }}>
+            <tr key={index}>
               <th scope="row" style={styled}>
                 {item._id.substr(14)}
               </th>
-              <td>
+              <td style={{textAlign: "start"}}>
                 {new Date(item.ngay_bat_dau_ap_dung).toLocaleDateString(
                   "en-GB"
                 )}
               </td>
-              <td>
+              <td style={{textAlign: "start"}}>
                 {new Date(item.ngay_ket_thuc_ap_dung).toLocaleDateString(
                   "en-GB"
                 )}
               </td>
-              <td>{item.phan_tram_giam}</td>
-              <td>{new Date(item.ngay_tao).toLocaleDateString("en-GB")}</td>
-              <td>{item.tinh_trang}</td>
-              <td>{item.so_lan_duoc_su_dung}</td>
+              <td style={{textAlign: "start"}}>{new Date(item.ngay_tao).toLocaleDateString("en-GB")}</td>
+              <td style={{textAlign: "end"}}>{item.phan_tram_giam}</td>
+              
+              
+              <td style={{textAlign: "end"}}>{item.so_lan_duoc_su_dung}</td>
+              <td style={{width: "132px", paddingLeft:"28px"}}>{item.tinh_trang ? "Available" : "Inavailable"}</td>
               <td>
                 <button
                   className="btn-view"

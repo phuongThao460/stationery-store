@@ -2,7 +2,6 @@
 import React, { createRef } from "react";
 import { ModalColor } from "../../components/Modal";
 import { BiPlusMedical } from "react-icons/bi";
-import "./styles.css";
 import Select from "react-select";
 import axios from "axios";
 class Product extends React.Component {
@@ -131,6 +130,7 @@ class Product extends React.Component {
                 className="form-control"
                 placeholder="Enter product’s name "
                 ref={this.nameProduct}
+                autoFocus
               />
             </div>
           </div>
