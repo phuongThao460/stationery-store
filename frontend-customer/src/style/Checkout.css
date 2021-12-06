@@ -44,7 +44,7 @@
     box-sizing: border-box;
   }
 
-  .Ward{
+  .District{
     width: 49%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -55,7 +55,7 @@
     margin-right: 10px;
   }
 
-  .District{
+  .Ward{
     width: 49%;
     padding: 12px 20px;
     margin: 8px 0;

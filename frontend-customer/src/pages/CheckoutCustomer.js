@@ -92,16 +92,6 @@ export default class CheckoutCustomer extends Component {
                                 ))}
                             </select >
                             <div className="Ward-District">
-                                <select className="Ward" value={this.state.idWard} onChange={this.changeWards}>
-                                  <option value="0" className="select-option">
-                                  Select Ward...
-                                  </option>
-                                  {this.state.lstWards.map((item) => (
-                                  <option key={item._id} value={item._id}>
-                                  {item.phuong_xa}
-                                  </option>
-                                  ))}
-                                </select>
                                 <select className="District" value={this.state.idDis} onChange={this.changeDistricts}>
                                   <option value="0" className="select-option">
                                   Select District...
@@ -109,6 +99,16 @@ export default class CheckoutCustomer extends Component {
                                   {this.state.lstDistrict.map((item) => (
                                   <option key={item._id} value={item._id} >
                                   {item.quan_huyen}
+                                  </option>
+                                  ))}
+                                </select>
+                                <select className="Ward" value={this.state.idWard} onChange={this.changeWards}>
+                                  <option value="0" className="select-option">
+                                  Select Ward...
+                                  </option>
+                                  {this.state.lstWards.map((item) => (
+                                  <option key={item._id} value={item._id}>
+                                  {item.phuong_xa}
                                   </option>
                                   ))}
                                 </select>
