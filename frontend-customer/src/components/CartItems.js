@@ -41,17 +41,17 @@ return (
             <div className="ProductAmount">{item.so_luong}</div>
             <IoMdRemove style={style} />*/}
            
-            <select
-             value={item.count}
-                onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
-                className="ProductAmount"
-                    >
-                 {[...Array(item.so_luong).keys()].map((x) => (
+           <select
+              value={item.count}
+              onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
+              className="ProductAmount"
+            >
+              {[...Array(item.so_luong).keys()].map((x) => (
                 <option key={x + 1} value={x + 1}>
-                    {x + 1}
+                  {x + 1}
                 </option>
-                ))}
-            </select>
+              ))}
+          </select>
             <button
                 className="ProductAmount" style={{ backgroundColor:"#FF9999"}}
                 onClick={() => removeHandler(item.product)}

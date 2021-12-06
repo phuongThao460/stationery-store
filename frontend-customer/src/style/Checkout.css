@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+.container-checkout {
+  font-family: "Nunito", sans-serif;
+}
+
+.wrapper-checkout {
+  padding: 20px;
+  display: block;
+}
+
+.Title-checkout {
+    font-size: 40px;
+    font-weight: bold 300;
+    background-color: transparent;
+    color: black;
+    padding-right: 100px;
+    margin-left: 50px;
+  }
+
+  .Title-Info {
+    font-weight: 300;
+    text-align: left;
+    font-size: 25px;
+    background-color: transparent;
+    color: black;
+  }
+
+  .Input-type{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .city{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .District{
+    width: 49%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 10px;
+  }
+
+  .Ward{
+    width: 49%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    align-items: right;
+  }
+
+.radio{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.opRadio{
+    padding: 15px ;
+}
+
+.bottom-checkout{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 50px;
+}
+
+.Info-checkout {
+  margin-right: 50px;
+  flex: 3;
+}
+  
+.right{
+ flex: 2;
+ width: 100%;
+ position: relative;
+}
+
+  
+
+  .Summary-checkout {
+    margin-top: 10px;
+    border: 0.5px solid lightgray;
+    border-radius: 10px;
+    height: 60vh;
+    width: 100%;
+    position: relative;
+  }
+  
+  .SummaryTitle-checkout {
+    font-weight: 200;
+    background-color: transparent;
+    color: black;
+    margin: 0;
+  }
+  
+  .SummaryItem-checkout {
+    margin: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summary-container-checkout {
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    padding: 0px 20px;
+  }
+  .SummaryItem-total-checkout {
+    margin: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  
+  .Button-checkout-checkout {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5);
+  }

@@ -68,13 +68,16 @@ const Product = ({ match, history }) => {
                 </div>
                 <span className="Price">${product.don_gia_xuat}</span>
                 
-
                 <p className="Desc">{product.mo_ta}</p>
 
                 <div className="FilterContainer">
                   <div className="Filter">
                     <span className="FilterTitle">Color</span>
-                    {product.mau_sac}
+                    <div>
+                      {product.mau_sac===undefined || product.mau_sac.map((mau) => (
+                        <div className="dot" style={{ backgroundColor: mau }}></div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
