@@ -28,17 +28,6 @@ export default function GetCart() {
       tong_gia: 12,
     },
   ];
-  let payload = carts
-  const headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Accept": "application/x-www-form-urlencoded",
-  };
-  let orderFormData = new FormData();
-  carts.forEach((item) => {
-    orderFormData.append("carts[]", item);
-  })
-  
-
   const addCartDetails = async () => {
     carts.forEach((item) => {
       axios({
@@ -47,7 +36,6 @@ export default function GetCart() {
         data: item
       })
     })
-    
   };
   return (
     <div>

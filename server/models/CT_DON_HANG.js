@@ -25,10 +25,6 @@ const schema = new mongoose.Schema({
 		required: true,
 		min: [1, 'Must at least 1, got {VALUE}']
 	},
-	mau_sac: {
-		type: Array,
-		required: true
-	}
 }, { timestamps: false })
 
 export const CT_DON_HANG_Model = mongoose.model('CT_DON_HANG', schema)

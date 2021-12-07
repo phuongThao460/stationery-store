@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,16 +9,18 @@ function Checkout() {
   const carts = JSON.parse(window.localStorage.getItem("cart"));
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
+  let array = [];
+  const [details, setDetails] = useState([]);
   const getAddressCustomer = async () => {
     const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
       _id: customerInfo.id_phuong,
     });
     setAdress(data.data);
   };
+
+  
   useEffect(() => {
     getAddressCustomer();
-  });
-  useEffect(() => {
     const createOrder = async () => {
       try {
         const data = await axios.post(
@@ -42,17 +45,55 @@ function Checkout() {
         console.log(error);
       }
     };
-
-    //createOrder();
+    createOrder();
   }, []);
+
+  useEffect(() => {
+    if (orderID != null) {
+      carts.forEach((element) => {
+        array.push({
+          so_luong: element.count,
+          gia_ban: element.don_gia_xuat,
+          id_san_pham: element.product,
+          id_don_hang: orderID,
+          tong_gia: element.count * element.don_gia_xuat,
+        });
+      });
+      console.log(array)
+      setDetails(array)
+    }
+  }, [orderID])
+
+  useEffect(() => {
+    if(array !== []){
+      
+    }
+  }, [details])
+  const addCartDetails = () => {
+    details.forEach((item) => {
+      axios({
+        method: "post",
+        url: "http://localhost:8000/ct_dh/create",
+        data: item,
+      }).then(() => alert("Successful Order"));
+    });
+    
+  };
   return (
     <div className="container-checkout">
       <div className="wrapper-checkout">
         <h1 className="Title-checkout">Checkout</h1>
         <div className="bottom-checkout">
           <div className="Info-checkout">
-            <div className="cusInfo" style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-              <div style={{display: "block"}}>
+            <div
+              className="cusInfo"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "10px",
+              }}
+            >{console.log(details)}
+              <div style={{ display: "block" }}>
                 <h1 className="Title-Info">Contact info</h1>
                 <div className="body-info">
                   <p>{customerInfo.ten_kh}</p>
@@ -64,17 +105,19 @@ function Checkout() {
                   <p>{customerInfo.email}</p>
                 </div>
               </div>
-              <div className="Payment" style={{padding: "0px"}}>
-              <h1 className="Title-Info">Payment Method</h1>
-              <div className="body-info"><p>Payment on delivery</p></div>
-            </div>
+              <div className="Payment" style={{ padding: "0px" }}>
+                <h1 className="Title-Info">Payment Method</h1>
+                <div className="body-info">
+                  <p>Payment on delivery</p>
+                </div>
+              </div>
             </div>
             <div className="Shipping">
               <h1 className="Title-Info">Shipping Address</h1>
-              <div className="address body-info" ><p>{customerInfo.dia_chi + ", " + address}</p></div>
-              
+              <div className="address body-info">
+                <p>{customerInfo.dia_chi + ", " + address}</p>
+              </div>
             </div>
-            
           </div>
           <div className="right">
             <div className="Summary-checkout" style={{ border: "0" }}>
@@ -82,7 +125,7 @@ function Checkout() {
                 <h1 className="SummaryTitle-checkout">Order Details</h1>
                 <div
                   className="SummaryItem-checkout"
-                  style={{ display: "block" }}
+                  style={{ display: "block" }} 
                 >
                   {carts.map((item) => (
                     <div className="cart-item">
@@ -101,7 +144,7 @@ function Checkout() {
                   </div>
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">
-                      Shipping Fee
+                      Shipping Fee 
                     </span>
                     <span className="SummaryItemPrice-checkout">FREE</span>
                   </div>
@@ -119,8 +162,11 @@ function Checkout() {
                   </div>
                 </div>
                 <Link to="/checkout">
-                  <button className="Button-checkout-checkout">
-                    CHECKOUT NOW
+                  <button
+                    className="Button-checkout-checkout"
+                    onClick={addCartDetails}
+                  >
+                    Confirm
                   </button>
                 </Link>
               </div>
