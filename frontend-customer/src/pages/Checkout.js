@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Checkout.css";
 function Checkout() {
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
@@ -10,6 +10,7 @@ function Checkout() {
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
   let array = [];
+  let navigate = useNavigate()
   const [details, setDetails] = useState([]);
   const getAddressCustomer = async () => {
     const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
@@ -18,7 +19,6 @@ function Checkout() {
     setAdress(data.data);
   };
 
-  
   useEffect(() => {
     getAddressCustomer();
     const createOrder = async () => {
@@ -59,25 +59,26 @@ function Checkout() {
           tong_gia: element.count * element.don_gia_xuat,
         });
       });
-      console.log(array)
-      setDetails(array)
+      console.log(array);
+      setDetails(array);
     }
-  }, [orderID])
+  }, [orderID]);
 
   useEffect(() => {
-    if(array !== []){
-      
+    if (array !== []) {
     }
-  }, [details])
+  }, [details]);
   const addCartDetails = () => {
     details.forEach((item) => {
       axios({
         method: "post",
         url: "http://localhost:8000/ct_dh/create",
         data: item,
-      }).then(() => alert("Successful Order"));
+      }).then(() => {
+        
+        navigate("/notificate");
+      });
     });
-    
   };
   return (
     <div className="container-checkout">
@@ -92,7 +93,8 @@ function Checkout() {
                 justifyContent: "space-between",
                 marginTop: "10px",
               }}
-            >{console.log(details)}
+            >
+              {console.log(details)}
               <div style={{ display: "block" }}>
                 <h1 className="Title-Info">Contact info</h1>
                 <div className="body-info">
@@ -125,7 +127,7 @@ function Checkout() {
                 <h1 className="SummaryTitle-checkout">Order Details</h1>
                 <div
                   className="SummaryItem-checkout"
-                  style={{ display: "block" }} 
+                  style={{ display: "block" }}
                 >
                   {carts.map((item) => (
                     <div className="cart-item">
@@ -144,7 +146,7 @@ function Checkout() {
                   </div>
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">
-                      Shipping Fee 
+                      Shipping Fee
                     </span>
                     <span className="SummaryItemPrice-checkout">FREE</span>
                   </div>

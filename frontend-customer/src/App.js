@@ -18,6 +18,7 @@ import {
 import ListItem from "./components/ListItem";
 import SubNav from "./data/SubNavbar";
 import Checkout from "./pages/Checkout";
+import NotificateOrder from "./pages/NotificateOrder";
 //import data from './data'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer/>}/>
           <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/notificate" element={<NotificateOrder/>} />
         </Routes>
       </BrowserRouter>
     </>
