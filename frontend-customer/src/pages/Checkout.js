@@ -1,12 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
+import "../style/Checkout.css";
 function Checkout() {
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
-
+  const carts = JSON.parse(window.localStorage.getItem("cart"));
   const [orderID, setOrderID] = useState(null);
-
+  const [address, setAdress] = useState("");
+  const getAddressCustomer = async () => {
+    const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+      _id: customerInfo.id_phuong,
+    });
+    setAdress(data.data);
+  };
+  useEffect(() => {
+    getAddressCustomer();
+  });
   useEffect(() => {
     const createOrder = async () => {
       try {
@@ -33,9 +43,93 @@ function Checkout() {
       }
     };
 
-    createOrder();
+    //createOrder();
   }, []);
-  return <div>{console.log(orderID)}</div>;
+  return (
+    <div className="container-checkout">
+      <div className="wrapper-checkout">
+        <h1 className="Title-checkout">Checkout</h1>
+        <div className="bottom-checkout">
+          <div className="Info-checkout">
+            <div className="cusInfo" style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
+              <div style={{display: "block"}}>
+                <h1 className="Title-Info">Contact info</h1>
+                <div className="body-info">
+                  <p>{customerInfo.ten_kh}</p>
+                </div>
+                <div className="body-info">
+                  <p>{customerInfo.sdt}</p>
+                </div>
+                <div className="body-info">
+                  <p>{customerInfo.email}</p>
+                </div>
+              </div>
+              <div className="Payment" style={{padding: "0px"}}>
+              <h1 className="Title-Info">Payment Method</h1>
+              <div className="body-info"><p>Payment on delivery</p></div>
+            </div>
+            </div>
+            <div className="Shipping">
+              <h1 className="Title-Info">Shipping Address</h1>
+              <div className="address body-info" ><p>{customerInfo.dia_chi + ", " + address}</p></div>
+              
+            </div>
+            
+          </div>
+          <div className="right">
+            <div className="Summary-checkout" style={{ border: "0" }}>
+              <div className="summary-container-checkout">
+                <h1 className="SummaryTitle-checkout">Order Details</h1>
+                <div
+                  className="SummaryItem-checkout"
+                  style={{ display: "block" }}
+                >
+                  {carts.map((item) => (
+                    <div className="cart-item">
+                      <div style={{ paddingBottom: "20px" }}>
+                        <p className="body-title">{item.ten_sp}</p>
+                        <p className="body-title">Amount: {item.count}</p>
+                      </div>
+                      <b style={{ marginLeft: "25px" }}>${item.don_gia_xuat}</b>
+                    </div>
+                  ))}
+                </div>
+                <div className="summary-price">
+                  <div className="SummaryItem-checkout">
+                    <span className="SummaryItemText-checkout">Subtotal</span>
+                    <span className="SummaryItemPrice-checkout">5 items</span>
+                  </div>
+                  <div className="SummaryItem-checkout">
+                    <span className="SummaryItemText-checkout">
+                      Shipping Fee
+                    </span>
+                    <span className="SummaryItemPrice-checkout">FREE</span>
+                  </div>
+                  <div className="SummaryItem-checkout">
+                    <span className="SummaryItemText-checkout">
+                      Discount Voucher
+                    </span>
+                    <span className="SummaryItemPrice-checkout">0</span>
+                  </div>
+                  <div className="SummaryItem-total-checkout">
+                    <b className="SummaryItemText-checkout">Total</b>
+                    <b className="SummaryItemPrice-checkout">
+                      {window.localStorage.getItem("total")}
+                    </b>
+                  </div>
+                </div>
+                <Link to="/checkout">
+                  <button className="Button-checkout-checkout">
+                    CHECKOUT NOW
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Checkout;

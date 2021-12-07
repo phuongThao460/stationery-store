@@ -20,6 +20,7 @@ export default class CheckoutCustomer extends Component {
       lstCities: [],
       lstWards: [],
       lstDistrict: [],
+      carts: JSON.parse(window.localStorage.getItem("cart")),
     };
     this.getListCities();
     this.fullName = createRef();
@@ -27,7 +28,6 @@ export default class CheckoutCustomer extends Component {
     this.streetName = createRef();
     this.email = createRef();
   }
-
   getListCities = () => {
     axios.get("http://localhost:8000/thanh_pho/").then((response) => {
       this.state.lstCities = response.data;
@@ -89,16 +89,15 @@ export default class CheckoutCustomer extends Component {
       })
       .then((res) => {
         console.log(res.data);
-        this.setState({customerInfo: res.data})
+        this.setState({ customerInfo: res.data });
         window.localStorage.setItem("customer", JSON.stringify(res.data));
       });
-    
   };
   render() {
     return (
       <div className="container-checkout">
         <div className="wrapper-checkout">
-          <h1 className="Title-checkout">CHECKOUT</h1>
+          <h1 className="Title-checkout">Checkout</h1>
           <div className="bottom-checkout">
             <div className="Info-checkout">
               <div className="cusInfo">
@@ -107,6 +106,7 @@ export default class CheckoutCustomer extends Component {
                   className="Input-type"
                   placeholder="Your full name"
                   ref={this.fullName}
+                  type="text"
                   autoFocus
                 ></input>
                 <input
@@ -117,6 +117,7 @@ export default class CheckoutCustomer extends Component {
                 <input
                   className="Input-type"
                   placeholder="Email"
+                  type="email"
                   ref={this.email}
                 ></input>
               </div>
@@ -135,9 +136,9 @@ export default class CheckoutCustomer extends Component {
                   <option value="0" className="select-option">
                     Select City...
                   </option>
-                  {this.state.lstCities.map((item) => (
+                  {this.state.lstCities.map((item, index) => (
                     <option
-                      key={item._id}
+                      key={index}
                       value={item._id}
                       onChange={this.getValue}
                     >
@@ -154,8 +155,8 @@ export default class CheckoutCustomer extends Component {
                     <option value="0" className="select-option">
                       Select District...
                     </option>
-                    {this.state.lstDistrict.map((item) => (
-                      <option key={item._id} value={item._id}>
+                    {this.state.lstDistrict.map((item, index) => (
+                      <option key={index} value={item._id}>
                         {item.quan_huyen}
                       </option>
                     ))}
@@ -168,8 +169,8 @@ export default class CheckoutCustomer extends Component {
                     <option value="0" className="select-option">
                       Select Ward...
                     </option>
-                    {this.state.lstWards.map((item) => (
-                      <option key={item._id} value={item._id}>
+                    {this.state.lstWards.map((item, index) => (
+                      <option key={index} value={item._id}>
                         {item.phuong_xa}
                       </option>
                     ))}
@@ -197,28 +198,48 @@ export default class CheckoutCustomer extends Component {
                   <option value="3">Quận 3</option>
                 </select>
               </div>
-              <div className="Summary-checkout">
+              <div className="Summary-checkout" style={{ border: "0" }}>
                 <div className="summary-container-checkout">
-                  <h1 className="SummaryTitle-checkout">ORDER SUMMARY</h1>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">Subtotal</span>
-                    <span className="SummaryItemPrice-checkout">5 items</span>
+                  <h1 className="SummaryTitle-checkout">Order Details</h1>
+                  <div
+                    className="SummaryItem-checkout"
+                    style={{ display: "block" }}
+                  >
+                    {this.state.carts.map((item) => (
+                      <div className="cart-item">
+                        <div style={{ paddingBottom: "20px" }}>
+                          <p className="body-title">{item.ten_sp}</p>
+                          <p className="body-title">Amount: {item.count}</p>
+                        </div>
+                        <b style={{ marginLeft: "25px" }}>
+                          ${item.don_gia_xuat}
+                        </b>
+                      </div>
+                    ))}
                   </div>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">
-                      Shipping Fee
-                    </span>
-                    <span className="SummaryItemPrice-checkout">$5</span>
-                  </div>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">
-                      Discount Voucher
-                    </span>
-                    <span className="SummaryItemPrice-checkout">$ -5</span>
-                  </div>
-                  <div className="SummaryItem-total-checkout">
-                    <span className="SummaryItemText-checkout">Total</span>
-                    <span className="SummaryItemPrice-checkout">$95</span>
+                  <div className="summary-price">
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">Subtotal</span>
+                      <span className="SummaryItemPrice-checkout">5 items</span>
+                    </div>
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">
+                        Shipping Fee
+                      </span>
+                      <span className="SummaryItemPrice-checkout">FREE</span>
+                    </div>
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">
+                        Discount Voucher
+                      </span>
+                      <span className="SummaryItemPrice-checkout">0</span>
+                    </div>
+                    <div className="SummaryItem-total-checkout">
+                      <b className="SummaryItemText-checkout">Total</b>
+                      <b className="SummaryItemPrice-checkout">
+                        {window.localStorage.getItem("total")}
+                      </b>
+                    </div>
                   </div>
                   <Link to="/checkout">
                     <button

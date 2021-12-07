@@ -83,6 +83,7 @@ const Cart = () => {
                 <div className="SummaryItem-total">
                   <span className="SummaryItemText">Total</span>
                   <span className="SummaryItemPrice">${getCartSubTotal()}</span>
+                  {window.localStorage.setItem("total", getCartSubTotal())}
                 </div>
                 <Link to="/CheckoutCustomer">
                 <button className="Button-checkout">CHECKOUT NOW</button>
