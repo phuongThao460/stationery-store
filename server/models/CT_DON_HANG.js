@@ -24,6 +24,10 @@ const schema = new mongoose.Schema({
 		type: Number,
 		required: true,
 		min: [1, 'Must at least 1, got {VALUE}']
+	},
+	mau_sac: {
+		type: Array,
+		required: true
 	}
 }, { timestamps: false })
 

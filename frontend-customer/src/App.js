@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 import ListItem from "./components/ListItem";
 import SubNav from "./data/SubNavbar";
+import Checkout from "./pages/Checkout";
 //import data from './data'
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/products/:id" element={<Product/>} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer/>}/>
+          <Route path="/checkout" element={<Checkout/>} />
         </Routes>
       </BrowserRouter>
     </>
