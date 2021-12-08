@@ -190,7 +190,7 @@ export default function OrderView(props) {
           <Modal.Footer>
           {props.status === "New" ? (<button
               className="btn-delete"
-              onClick={updateStatus("61a2498320a54c9a7f3b02dd")}
+              onClick={() => updateStatus("61a2498320a54c9a7f3b02dd")}
             >
               Cancel
             </button>) : null}

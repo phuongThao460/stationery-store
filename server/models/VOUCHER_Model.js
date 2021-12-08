@@ -1,7 +1,7 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-import { DON_HANG_Model } from './DON_HANG_Model.js'
-import { Add_Voucher } from './TKKH_Model.js'
+import { DON_HANG_Model } from "./DON_HANG_Model.js";
+import { Add_Voucher } from "./TKKH_Model.js";
 
 // ==========================================
 //              MODEL DEFINITIONS
@@ -9,6 +9,10 @@ import { Add_Voucher } from './TKKH_Model.js'
 
 const schema = new mongoose.Schema(
   {
+    ten_voucher: {
+      type: String,
+      required: true,
+    },
     tong_tien_mua_hang_tich_luy_toi_thieu: {
       type: Number,
     },
@@ -94,19 +98,18 @@ export const Increase_Num_Of_Voucher_Applied = () => {
 };
 
 export const Broadcast_Voucher_To_Account = (tkkhs, id_voucher) => {
-	/*
+  /*
 	Automatically add id voucher to tai khoan khach hang which met 
 	the voucher's conditions
 	:return: boolean
 	*/
 
-	try {
-		tkkhs.forEach(ele => Add_Voucher(ele.id_tkkh, id_voucher))
-	} catch(err) {
-		console.log(err)
-	}
-
-}
+  try {
+    tkkhs.forEach((ele) => Add_Voucher(ele.id_tkkh, id_voucher));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const Find_TKKH_Meets_The_Conditions = async (voucher) => {
   /*

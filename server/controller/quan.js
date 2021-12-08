@@ -47,7 +47,7 @@ export const Get_Quan_By_ID_Thanh_Pho = async (req, res) => {
   */
 
   try {
-    const id_thanh_pho = req.body.id_thanh_pho
+    const id_thanh_pho = req.body.id_thanh_pho;
     const quan = await QUAN_Model.find({ id_thanh_pho: id_thanh_pho })
       .populate('id_thanh_pho')
       .exec()

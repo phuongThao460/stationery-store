@@ -36,7 +36,6 @@ function Checkout() {
             tong_phu: 0,
             phi_ship: 0,
             tong_gia_giam_boi_voucher: 0,
-            id_voucher: "61accc14a12494fcd816d5a2",
             id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
             tong_tien: total,
           }
@@ -64,7 +63,7 @@ function Checkout() {
       console.log(array);
       setDetails(array);
     }
-  }, [orderID]);
+  }, [orderID]); //nhan su thay doi cua state o useEffect tren
 
   useEffect(() => {
     if (array !== []) {
