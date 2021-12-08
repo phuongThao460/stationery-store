@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai"
 function NotificateOrder() {
-  const styled = {};
 
   return (
     <div style={{ textAlign: "center", marginTop: "150px", fontSize: "20px" }}>

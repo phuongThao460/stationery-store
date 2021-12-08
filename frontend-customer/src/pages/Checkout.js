@@ -8,6 +8,7 @@ function Checkout() {
   
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
   const carts = JSON.parse(window.localStorage.getItem("cart"));
+  const total = window.localStorage.getItem("total")
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
   let array = [];
@@ -32,7 +33,7 @@ function Checkout() {
             id_ttkh: customerInfo._id,
             id_ttdh: "61a2492120a54c9a7f3b028a",
             ghi_chu: "None",
-            tong_phu: 0,
+            tong_phu: total,
             phi_ship: 0,
             tong_gia_giam_boi_voucher: 0,
             id_voucher: "61accc14a12494fcd816d5a2",
