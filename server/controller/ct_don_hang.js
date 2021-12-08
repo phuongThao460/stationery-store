@@ -1,4 +1,4 @@
-import { CT_DON_HANG_Model  } from "../models/CT_DON_HANG.js"
+import { CT_DON_HANG_Model  } from "../models/CT_DON_HANG_Model.js"
 
 export const Get_CT_DHs = async (req, res) => {
 	/*

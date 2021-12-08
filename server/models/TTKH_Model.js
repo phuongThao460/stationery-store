@@ -1,5 +1,10 @@
 import mongoose from 'mongoose'
 
+
+// ================================================
+//  				SCHEMA DEFINITIONS
+// ================================================
+
 const schema = new mongoose.Schema({
 	ten_kh: {
 		type: String,
@@ -32,3 +37,8 @@ const schema = new mongoose.Schema({
 }, { timestamps: false })
 
 export const TT_KH_Model = mongoose.model('THONG_TIN_KHACH_HANG', schema)
+
+
+// ================================================
+//  				FUNCTION DEFINITIONS
+// ================================================

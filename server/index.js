@@ -22,6 +22,7 @@ import quan from './routers/quan.js'
 import phuong from './routers/phuong.js'
 import phan_loai from './routers/phan_loai.js'
 import voucher from './routers/voucher.js'
+import thong_ke from './routers/thong_ke.js'
 
 const app = express()
 const PORT = process.env.port  || 8000
@@ -48,6 +49,7 @@ app.use('/quan', quan)
 app.use('/phuong', phuong)
 app.use('/phan_loai', phan_loai)
 app.use('/voucher', voucher)
+app.use('/thong_ke', thong_ke)
 
 mongoose
 	.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true})
