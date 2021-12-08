@@ -33,12 +33,12 @@ function Checkout() {
             id_ttkh: customerInfo._id,
             id_ttdh: "61a2492120a54c9a7f3b028a",
             ghi_chu: "None",
-            tong_phu: total,
+            tong_phu: 0,
             phi_ship: 0,
             tong_gia_giam_boi_voucher: 0,
             id_voucher: "61accc14a12494fcd816d5a2",
             id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
-            tong_tien: "95",
+            tong_tien: total,
           }
         );
 
