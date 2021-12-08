@@ -13,27 +13,27 @@ const LoginForm = () => {
     >
       <div className="app-wrapper">
         <div>
-          <h2 className="title">ĐĂNG NHẬP</h2>
+          <h2 className="title">Login</h2>
         </div>
         <form className="form-wrapper">
           <div className="name">
-            <label className="label"> Tên đăng nhập</label>
+            <label className="label">Email</label>
             <input className="input" type="text" name="fullname" />
           </div>
           <div className="password">
-            <label className="label">Mật khẩu</label>
+            <label className="label">Password</label>
             <input className="input" type="password" name="password" />
           </div>
           <div>
             <button className="submit" onClick={handleFormSubmit}>
-              Đăng nhập
+              Login
             </button>
           </div>
           <div className="signuplink">
-            Bạn chưa có tài khoản?
+              You don't have an account?
             <Link to="/Signup" style={{ color: "#5899d6", fontWeight: "600" }}>
               {" "}
-              Đăng kí tại đây
+              Register here
             </Link>
           </div>
         </form>

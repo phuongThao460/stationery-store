@@ -11,7 +11,7 @@ import Account from './pages/Account';
 ReactDOM.render(
   <Provider store = {store}>
     <React.StrictMode>
-      <Account />
+      <App />
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')

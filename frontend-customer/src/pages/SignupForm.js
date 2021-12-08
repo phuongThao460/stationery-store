@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import validation from "../data/validation";
 
+
 const SignupForm = () => {
   const [values, setValues] = useState({
     fullname: "",
     email: "",
     password: "",
+    phone:"",
   });
 
   const [errors, setErrors] = useState({});

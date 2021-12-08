@@ -1,7 +1,9 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { Component, createRef } from "react";
 import axios from "axios";
-import { isAwaitExpression } from "@babel/types";
+
+import "../style/Signup.css";
+
 //import { Link } from "react-router-dom";
 export default class Account extends Component {
   constructor(props) {
@@ -83,31 +85,19 @@ export default class Account extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="container-checkout">
-          <div className="wrapper-checkout">
-            <h1 className="Title-checkout">Checkout</h1>
-            <div className="bottom-checkout">
-              <div className="Info-checkout">
-                <div className="cusInfo">
-                  <h1 className="Title-Info">Create account</h1>
-                  <input
-                    className="Input-type"
-                    placeholder="Email"
-                    type="email"
-                    ref={this.email}
-                  ></input>
-                  <input
-                    className="Input-type"
-                    placeholder="Password"
-                    type="password"
-                    ref={this.password}
-                  ></input>
-                  <div style={{display: "inline-flex"}}>
-                  <select>
-                    <option value="0" ref={this.gender}>Mr.</option>
-                    <option value="1" ref={this.gender}>Mrs.</option>
-                  </select>
+      <div className="container-Signup" style={{ backgroundImage: `url('./images/Login-Form1.jpg')`}}>
+        <h2 className="title-Signup">Create Account</h2>
+        <div className="wrapper-signup">
+          <form className="Info-form">
+            <div><h1 className="title-form">Account Information</h1></div>
+            <div className="GN">
+            <div className="Gender" style={{float:"left"}}>
+                <select className="Input-type">
+                  <option value="0" ref={this.gender}>Mr.</option>
+                  <option value="1" ref={this.gender}>Mrs.</option>
+                </select>
+                </div>
+            <div className="name" style={{float:"left"}}>
                   <input
                     className="Input-type"
                     placeholder="Your full name"
@@ -115,22 +105,48 @@ export default class Account extends Component {
                     type="text"
                     autoFocus
                   ></input>
-                  </div>
-                  
+              </div>
+            </div>
+            <div className="email">
                   <input
+                    className="Input-type"
+                    placeholder="Email"
+                    type="email"
+                    ref={this.email}
+                  ></input>
+              </div>
+            <div className="password">
+                <input
+                  className="Input-type"
+                  placeholder="Password"
+                  type="password"
+                  ref={this.password}
+                ></input>
+              </div>
+            <div className="phone">
+                  <input
+                    type="number"
+                    pattern="[0-9]*" 
+                    inputmode="numeric"
                     className="Input-type"
                     placeholder="Phone number"
                     ref={this.phoneNumber}
                   ></input>
-                </div>
-                <div className="Shipping">
+              </div>
+            
+            </form>
+          <form className="Address-form">
+              <div><h1 className="title-form">Address Information</h1></div>
+                <div className="cus-address">
                   <input
                     className="Input-type"
                     placeholder="Street number and name"
                     ref={this.streetName}
                   ></input>
+                </div>
+                <div className="cus-city">
                   <select
-                    className="city"
+                    className="Input-type"
                     value={this.state.idCity}
                     onChange={this.changeCities}
                   >
@@ -147,9 +163,10 @@ export default class Account extends Component {
                       </option>
                     ))}
                   </select>
-                  <div className="Ward-District">
+                </div>
+                <div className="cus-district">
                     <select
-                      className="District"
+                      className="Input-type"
                       value={this.state.idDis}
                       onChange={this.changeDistricts}
                     >
@@ -162,8 +179,10 @@ export default class Account extends Component {
                         </option>
                       ))}
                     </select>
+                  </div>
+                  <div className="cus-ward">
                     <select
-                      className="Ward"
+                      className="Input-type"
                       value={this.state.idWard}
                       onChange={this.changeWards}
                     >
@@ -177,15 +196,12 @@ export default class Account extends Component {
                       ))}
                     </select>
                   </div>
-                  <div>
-                    <button className="Button-checkout-checkout" onClick={this.createAccount}>
-                      Create account
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </form>
+        </div>
+        <div className="btn-signup">
+           <button className="submit" onClick={this.createAccount}>
+           Create account
+           </button>
         </div>
       </div>
     );

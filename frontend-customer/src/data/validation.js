@@ -12,9 +12,12 @@ const validation = (values) => {
     }
     if(!values.password){
         errors.password="password is required"
-    } else if(values.password.length < 5)
+    }else if(values.password.length < 5)
     {
         errors.password="Password must be more than five charaters"
+    }
+    if(!values.phone){
+        errors.phone ="name is required"
     }
     return errors;
 }

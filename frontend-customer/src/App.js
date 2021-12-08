@@ -19,6 +19,7 @@ import ListItem from "./components/ListItem";
 import SubNav from "./data/SubNavbar";
 import Checkout from "./pages/Checkout";
 import NotificateOrder from "./pages/NotificateOrder";
+import Account from "./pages/Account";
 //import data from './data'
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />
           <Route path="/Login" element={<LoginForm/>}/>
-          <Route path="/Signup" element={<SignupForm/>} />
+          <Route path="/Signup" element={<Account/>} />
           <Route path="/products/:id" element={<Product/>} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer/>}/>
