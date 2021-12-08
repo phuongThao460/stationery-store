@@ -152,13 +152,15 @@
   padding-top: 40px;
 }
 
-.body-title {
+.body-title-cart {
   -webkit-line-clamp: 1 !important;
   width: 374px;
   padding-left: 0 !important;
 }
 .cart-item{
-  display: inline-flex;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .summary-price{
   width: 429px;

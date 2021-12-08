@@ -75,7 +75,7 @@ function Checkout() {
         url: "http://localhost:8000/ct_dh/create",
         data: item,
       }).then(() => {
-        
+        window.localStorage.clear();
         navigate("/notificate");
       });
     });
