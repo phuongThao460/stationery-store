@@ -23,6 +23,7 @@ function Customers() {
     getAllCustomer();
   }, []);
   return (
+    
     <>
       <h1>Customers</h1>
       <table className="table table-hover" style={{ backgroundColor: "#fff" }}>
@@ -38,7 +39,7 @@ function Customers() {
           </tr>
         </thead>
         <tbody>
-          {customers.map((item, index) => (
+          {customers != null ? customers.map((item, index) => (
             <tr key={index}>
               <th scope="row" style={{width:'167px'}}>
                 {item._id.substr(14)}
@@ -64,7 +65,7 @@ function Customers() {
                 </button>
               </td>
             </tr>
-          ))}
+          ))  : null}
         </tbody>
       </table>
       {modalShow ? (
