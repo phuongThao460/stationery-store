@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/Checkout.css";
 function Checkout() {
+  
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
   const carts = JSON.parse(window.localStorage.getItem("cart"));
   const [orderID, setOrderID] = useState(null);

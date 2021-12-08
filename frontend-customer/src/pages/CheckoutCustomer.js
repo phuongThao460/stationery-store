@@ -90,7 +90,8 @@ export default class CheckoutCustomer extends Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ customerInfo: res.data });
-        window.localStorage.setItem("customer", JSON.stringify(res.data));
+        (async () => await localStorage.setItem("customer", JSON.stringify(res.data)))();
+        window.location.reload();
       });
   };
   render() {
