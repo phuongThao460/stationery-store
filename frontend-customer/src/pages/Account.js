@@ -21,7 +21,7 @@ export default class Account extends Component {
     this.streetName = createRef();
     this.email = createRef();
     this.password = createRef();
-    
+    this.gender = createRef();
   }
   getListCities = () => {
     axios.get("http://localhost:8000/thanh_pho/").then((response) => {
@@ -69,7 +69,7 @@ export default class Account extends Component {
         dia_chi: this.streetName.current.value,
         email: this.email.current.value,
         diem_tich_luy: "0",
-        gioi_tinh: 1,
+        gioi_tinh: this.gender.current.value,
         id_phuong: this.state.idWard,
       })
       .then((res) => {
@@ -103,6 +103,11 @@ export default class Account extends Component {
                     type="password"
                     ref={this.password}
                   ></input>
+                  <div style={{display: "inline-flex"}}>
+                  <select>
+                    <option value="0" ref={this.gender}>Mr.</option>
+                    <option value="1" ref={this.gender}>Mrs.</option>
+                  </select>
                   <input
                     className="Input-type"
                     placeholder="Your full name"
@@ -110,6 +115,8 @@ export default class Account extends Component {
                     type="text"
                     autoFocus
                   ></input>
+                  </div>
+                  
                   <input
                     className="Input-type"
                     placeholder="Phone number"
