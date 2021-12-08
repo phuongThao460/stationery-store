@@ -38,7 +38,8 @@ const schema = new mongoose.Schema({
 	},
 	id_voucher: {
 		type: mongoose.Types.ObjectId,
-		ref: "VOUCHER"
+		ref: "VOUCHER",
+		default: null
 	},
 	id_phuong_thuc_thanh_toan: {
 		type: mongoose.Types.ObjectId,

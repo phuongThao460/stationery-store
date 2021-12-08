@@ -21,16 +21,18 @@ const schema = new mongoose.Schema({
 		require: true,
 		default: 0
 	},
-	so_luong: {
+	tong_so_luong_da_ban: {
 		type: Number, 
 		require: true,
 		default: 1
 	},
-	tong_gia: {
+	tong_tien: {
 		type: Number, 
 		require: true,
 		default: 0
-
+	},
+	mau_sac: {
+		type: String
 	}
 }, { timestamps: false })
 
