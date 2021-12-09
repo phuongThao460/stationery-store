@@ -54,10 +54,10 @@ function Checkout() {
       carts.forEach((element) => {
         array.push({
           so_luong: element.count,
-          gia_ban: element.don_gia_xuat,
+          gia_ban: element.gia_ban_hien_tai,
           id_san_pham: element.product,
           id_don_hang: orderID,
-          tong_gia: element.count * element.don_gia_xuat,
+          tong_gia: element.count * element.gia_ban_hien_tai,
         });
       });
       console.log(array);
@@ -136,7 +136,7 @@ function Checkout() {
                         <p className="body-title">{item.ten_sp}</p>
                         <p className="body-title">Amount: {item.count}</p>
                       </div>
-                      <b style={{ marginLeft: "25px" }}>${item.don_gia_xuat}</b>
+                      <b style={{ marginLeft: "25px" }}>${item.gia_ban_hien_tai}</b>
                     </div>
                   ))}
                 </div>

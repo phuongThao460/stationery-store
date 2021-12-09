@@ -33,7 +33,7 @@ return (
     
     <div className="PriceDetail">
     
-      <div className="ProductPrice">${item.don_gia_xuat}.00</div>
+      <div className="ProductPrice">${item.gia_ban_hien_tai}.00</div>
     </div>
     <span className="ProductId" style={{ display: "inline-flex", marginTop: "64px" }}>
           <div className="ProductAmountContainer">

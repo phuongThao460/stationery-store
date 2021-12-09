@@ -66,7 +66,7 @@ const Product = ({ match, history }) => {
                     <span className="out-stock">OUT OF STOCK</span>
                   )}
                 </div>
-                <span className="Price">${product.don_gia_xuat}</span>
+                <span className="Price">${product.gia_ban_hien_tai}</span>
                 
                 <p className="Desc">{product.mo_ta}</p>
 

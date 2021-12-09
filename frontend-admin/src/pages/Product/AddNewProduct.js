@@ -86,7 +86,7 @@ class Product extends React.Component {
         ngay_nhap: this.date.current.value,
         mo_ta: this.descript.current.value,
         don_gia_nhap: this.importPrice.current.value,
-        don_gia_xuat: this.exportPrice.current.value,
+        gia_ban_hien_tai: this.exportPrice.current.value,
         id_loai_sp: window.localStorage.getItem("loai_sp_id"),
         id_nha_cc: window.localStorage.getItem("nha_cc_id"),
         id_mau_sac: window.localStorage.getItem("mau_sac_id"),

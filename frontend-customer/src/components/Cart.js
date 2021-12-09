@@ -31,7 +31,7 @@ const Cart = () => {
 
   const getCartSubTotal = () => {
     return cartItems
-      .reduce((price, item) => price + item.don_gia_xuat * item.count, 0)
+      .reduce((price, item) => price + item.gia_ban_hien_tai * item.count, 0)
       .toFixed(2);
   };
     return (

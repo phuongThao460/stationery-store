@@ -30,7 +30,7 @@ class Homepage extends React.Component {
         array.push({
           id: element._id,
           name: element.ten_sp,
-          price: element.don_gia_xuat,
+          price: element.gia_ban_hien_tai,
         });
       });
       this.state.lstProduct = array.reverse()
