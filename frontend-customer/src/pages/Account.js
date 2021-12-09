@@ -91,21 +91,20 @@ export default class Account extends Component {
           <form className="Info-form">
             <div><h1 className="title-form">Account Information</h1></div>
             <div className="GN">
-            <div className="Gender" style={{float:"left"}}>
-                <select className="Input-type">
-                  <option value="0" ref={this.gender}>Mr.</option>
-                  <option value="1" ref={this.gender}>Mrs.</option>
+            <div className="Gender" style={{display:"flex"}}>
+                <select className="Input-type" style={{width: "80px", padding: "0px", marginRight: "10px"}}>
+                  <option value="0" ref={this.gender} className="select-option">Mr.</option>
+                  <option value="1" ref={this.gender} className="select-option">Mrs.</option>
                 </select>
-                </div>
-            <div className="name" style={{float:"left"}}>
-                  <input
+                
+                <input
                     className="Input-type"
                     placeholder="Your full name"
                     ref={this.fullName}
                     type="text"
                     autoFocus
                   ></input>
-              </div>
+                </div>
             </div>
             <div className="email">
                   <input

@@ -5,24 +5,24 @@
   width: 100%;
   min-height: 100vh;
 }
-.title-Signup{
-        font-size: 50px;
-        font-weight: bold;
-        background-color: #FFEFD5;
-        color: #f78248;
-        text-align: center;
-        padding-bottom: 15px;
-        padding-top: 20px;
+.title-Signup {
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #ffefd5;
+  color: #f78248;
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 20px;
 }
 
-.wrapper-signup{
-    margin:30px 0px;
-    display: flex;
-    justify-content: center;
+.wrapper-signup {
+  margin: 30px 0px;
+  display: flex;
+  justify-content: center;
 }
 
-.Info-form{
-  background-color: #FFFEE3;
+.Info-form {
+  background-color: #fffee3;
   width: 350px;
   min-height: 400px;
   padding: 7px;
@@ -31,10 +31,10 @@
   margin-right: 100px;
 }
 
-.title-form{
-    text-align: center;
-    color: coral;
-    padding-top: 20px;
+.title-form {
+  text-align: center;
+  color: coral;
+  padding-top: 20px;
 }
 
 .name,
@@ -47,21 +47,20 @@
   font-size: 16px;
 }
 
-.Address-form{
-    background-color: #FFFEE3;
-    width: 350px;
-    min-height: 400px;
-    padding: 7px;
-    box-sizing: border-box;
-    border-radius: 10px;
+.Address-form {
+  background-color: #fffee3;
+  width: 350px;
+  min-height: 400px;
+  padding: 7px;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .cus-address,
 .cus-city,
 .cus-district,
-.cus-ward{
+.cus-ward {
   margin: 10px;
   color: #969292;
   font-size: 16px;
 }
-
