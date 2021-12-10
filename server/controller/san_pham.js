@@ -20,7 +20,7 @@ export const Get_San_Phams = async (req, res) => {
         path: "id_phan_loai",
         select: "ten_phan_loai"
       })
-    console.log("san_phams", san_phams);
+    //console.log("san_phams", san_phams);
     res.status(200).json(san_phams);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -47,7 +47,7 @@ export const Get_San_Pham_By_ID = async (req, res) => {
         path: "id_phan_loai",
         select: "ten_phan_loai"
       })
-    console.log("san_pham", san_pham);
+    //console.log("san_pham", san_pham);
     res.status(200).json(san_pham);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -86,7 +86,7 @@ export const Update_San_Pham = async (req, res) => {
       update_sp,
       { new: true }
     );
-    console.log(sp);
+    //console.log(sp);
     res.status(200).json(sp);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -104,7 +104,7 @@ export const Add_Color = async (req, res) => {
       { $push: { id_mau_sac: id_color } },
       { new: true }
     );
-    console.log(sp);
+    //console.log(sp);
     res.status(200).json(sp);
   } catch (err) {
     res.status(500).json({ error: err });
