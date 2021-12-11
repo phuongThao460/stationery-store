@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 import opencage from 'opencage-api-client'
 import haversine from 'haversine-distance'
 
+import { PHUONG_Model } from './PHUONG_Model.js'
+import { QUAN_Model } from './QUAN_Model.js'
+import { THANH_PHO_Model } from './THANH_PHO_Model.js'
+
 
 // ==============================================
 // 				CONSTANT DEFINITIONS
@@ -9,6 +13,9 @@ import haversine from 'haversine-distance'
 
 const starting_location = '828, đường sư vạn hạnh, quận 10, thành phố hồ chí minh'
 const API_KEY = '8e6ae120db9a42bc82a32ff38756e4fe'
+const initial_shipping_fee = 1
+const intial_km = 2
+const shipping_fee_per_km = 0.5
 
 // ==============================================
 // 				SCHEMA DEFINITION
@@ -66,7 +73,7 @@ const schema = new mongoose.Schema({
 	dia_chi_giao: {
 		type: String
 	}
-}, { timestamps: false })
+}, { timestamps: true })
 
 export const DON_HANG_Model = mongoose.model('DON_HANG', schema)
 
@@ -75,13 +82,71 @@ export const DON_HANG_Model = mongoose.model('DON_HANG', schema)
 // 				FUNCTION DEFINITIONS
 // ==============================================
 
-const Format_Raw_To_Compute_Type_Location = location => {
+const Get_Phuong_Quan_Thanh_Pho_By_ID_Phuong = async id_phuong => {
 	/*
-	Formatting raw location to standard type location 
-	to be able for `opencage` finding the longitude and latitude
+	Get phuong, quan, thanh pho by id phuong
 
-	:return: string, formated type: số_nhà, tên đường, quận, thành phố
+	:return: Array, length = 3, [phuong, quan, thanh_pho]
 	*/
+
+	const phuong = await PHUONG_Model.findById(id_phuong)
+	const quan = await QUAN_Model.findById(phuong.id_quan);
+	const tp = await THANH_PHO_Model.findById(quan.id_thanh_pho);
+
+	return [phuong.phuong_xa, quan.quan_huyen, tp.ten_thanh_pho]
+}
+
+const Get_Number_And_Street_Name_From_Address = address => {
+	/*
+	Get number, street name from address
+
+	:return: Array, length = 2, [number, street name]
+	*/
+
+	var number = ""
+	var street = ""
+	address = address.split(" ")
+
+	let contain_digit_reg = new RegExp('^\\d+')
+
+	for(var word of address) {
+		if(contain_digit_reg.test(word)) {
+			number += word
+		} else {
+			street += (word + " ")
+		}
+	}
+
+	// Remove the last " " 
+	street = street.substring(0, street.length - 1)
+
+	return [number, street]
+}
+
+export const Set_Dia_Chi_Giao_Hang = async (don_hang, dia_chi_giao, id_phuong) => {
+	/*
+	Set dia_chi_giao for don_hang
+
+	:return: json
+	*/
+
+	const dia_chi = Get_Number_And_Street_Name_From_Address(dia_chi_giao)
+	const phuong_quan_tp = await Get_Phuong_Quan_Thanh_Pho_By_ID_Phuong(id_phuong)
+
+	var number = dia_chi[0]
+	var street_name = dia_chi[1]
+	var quan = phuong_quan_tp[1]
+	var tp = phuong_quan_tp[2]
+
+
+
+	// Replace 'district' to 'quận'
+	quan = quan.replace('District', 'quận')
+
+	don_hang.dia_chi_giao = 
+				number + ', đường ' + street_name + ', ' + quan + ', ' + tp
+
+	return don_hang
 }
 
 const Get_Lat_And_Long_From_Location = async location => {
@@ -100,7 +165,7 @@ const Get_Lat_And_Long_From_Location = async location => {
 	}
 }
 
-const Compute_Distance_Between_Two_Location = async destination => {
+export const Compute_Distance_Between_Two_Location = async destination => {
 	/*
 	Compute the distance (km) between 2 location by haversine 
 	distance formula (straight line from A to B)
@@ -109,10 +174,9 @@ const Compute_Distance_Between_Two_Location = async destination => {
 	*/
 
 	try {
-		start_lat_long = await Get_Lat_And_Long_From_Location(starting_location)
+		var start_lat_long = await Get_Lat_And_Long_From_Location(starting_location)
 
-		destination = Format_Raw_To_Compute_Type_Location(destination)
-		des_lat_long = await Get_Lat_And_Long_From_Location(destination)
+		var des_lat_long = await Get_Lat_And_Long_From_Location(destination)
 
 		// Compute distance (km)
 		var dis = haversine(start_lat_long, des_lat_long)
@@ -123,4 +187,39 @@ const Compute_Distance_Between_Two_Location = async destination => {
 	} catch(err) {
 		console.log(err)
 	}
+}
+
+const Compute_Shipping_Fee = distance => {
+	/*
+	Calculate shipping fee from distance of starting location
+	and destination
+
+	:return: number
+	*/
+	
+	var shipping_fee = initial_shipping_fee
+
+	if(distance <= 2) {
+		return shipping_fee
+	} else {
+		distance -= intial_km
+		var round_distance = Math.round(distance)
+		shipping_fee += round_distance * shipping_fee_per_km
+	}
+
+	return shipping_fee
+}
+
+export const Set_Shipping_Fee = (don_hang, distance) => {
+	/*
+	Set phi_ship for don_hang
+
+	:return: json
+	*/
+
+	var shipping_fee = Compute_Shipping_Fee(distance)
+
+	don_hang.phi_ship = shipping_fee
+
+	return don_hang
 }
