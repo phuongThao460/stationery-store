@@ -34,8 +34,7 @@ const Navbar = ({ click }) => {
           <BiUser className="user-icon" />
           <ul className="table-content">
             <li className="list">
-              <Link to="/Login" style={{ color: "white" }}>
-                {" "}
+              <Link to="/login" style={{ color: "white" }}>
                 Login
               </Link>
             </li>

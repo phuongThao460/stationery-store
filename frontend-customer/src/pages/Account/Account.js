@@ -2,7 +2,8 @@
 import React, { Component, createRef } from "react";
 import axios from "axios";
 
-import "../style/Signup.css";
+import "./styles.css";
+import { Link } from "react-router-dom";
 
 //import { Link } from "react-router-dom";
 export default class Account extends Component {
@@ -80,7 +81,7 @@ export default class Account extends Component {
           ten_dn: this.email.current.value,
           mat_khau: this.password.current.value,
           id_ttkh: this.state.cusInfo._id
-        }).then((res) => console.log(res.data));
+        }).then((res) => {console.log(res.data);});
       });
   };
   render() {
@@ -198,9 +199,9 @@ export default class Account extends Component {
             </form>
         </div>
         <div className="btn-signup">
-           <button className="submit" onClick={this.createAccount}>
-           Create account
-           </button>
+            <button className="submit" onClick={this.createAccount}>
+            Create account
+            </button>
         </div>
       </div>
     );
