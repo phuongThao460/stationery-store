@@ -1,5 +1,5 @@
 
-import "../style/Cart.css";
+import "./styles.css";
 import { AiOutlineDelete } from 'react-icons/ai';
 import { Link } from "react-router-dom";
 
@@ -40,8 +40,8 @@ return (
             {/* <GrAdd style={style} />
             <div className="ProductAmount">{item.so_luong}</div>
             <IoMdRemove style={style} />*/}
-           
-           <select
+          
+            <select
               value={item.count}
               onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
               className="ProductAmount"
@@ -64,7 +64,7 @@ return (
       {(subtotal = subtotal + item.so_luong * item.don_gia_xuat)} 
       </div>*/}
     </div>
- );
+  );
 };
 
 export default CartItems;

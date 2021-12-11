@@ -2,7 +2,7 @@
 import React, { Component, createRef } from "react";
 import axios from "axios";
 
-import "../style/Checkout.css";
+import "./styles.css";
 import { Link } from "react-router-dom";
 
 export default class CheckoutCustomer extends Component {

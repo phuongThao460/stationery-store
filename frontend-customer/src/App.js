@@ -7,8 +7,8 @@ import Navbar from "./components/Navbar";
 import LoginForm from './pages/LoginForm'
 import SignupForm from './pages/SignupForm'
 import Product from "./components/Product";
-import Cart from "./components/Cart";
-import CheckoutCustomer from "./pages/CheckoutCustomer";
+import Cart from "./pages/Cart/Cart.js";
+import CheckoutCustomer from "./pages/Checkout/CheckoutCustomer";
 import {
   Routes,
   Route,
@@ -17,7 +17,7 @@ import {
 } from "react-router-dom";
 import ListItem from "./components/ListItem";
 import SubNav from "./data/SubNavbar";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/Checkout/Checkout";
 import NotificateOrder from "./pages/NotificateOrder";
 import Account from "./pages/Account";
 //import data from './data'

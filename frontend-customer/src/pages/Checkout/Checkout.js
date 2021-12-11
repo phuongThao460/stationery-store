@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import "../style/Checkout.css";
+import "./styles.css";
 function Checkout() {
   
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));

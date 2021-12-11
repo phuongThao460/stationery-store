@@ -27,8 +27,8 @@
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: 1sd solid black;
-  background-color: transparent;
+  color: blue;
+  text-decoration: underline;
 }
 
 .TopButton-checkout {
