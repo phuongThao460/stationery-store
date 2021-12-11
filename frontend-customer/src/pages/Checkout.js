@@ -25,6 +25,7 @@ function Checkout() {
     getAddressCustomer();
     const createOrder = async () => {
       try {
+
         const data = await axios.post(
           "http://localhost:8000/don_hang/create_don_hang",
           {
@@ -38,6 +39,8 @@ function Checkout() {
             tong_gia_giam_boi_voucher: 0,
             id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
             tong_tien: total,
+            id_phuong: customerInfo.id_phuong,
+            dia_chi: customerInfo.dia_chi
           }
         );
 

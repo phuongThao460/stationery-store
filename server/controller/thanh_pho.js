@@ -9,7 +9,7 @@ export const Get_Thanh_Phos = async (req, res) => {
 
   try {
     const thanh_pho_s = await THANH_PHO_Model.find()
-    console.log("thanh_phos", thanh_pho_s);
+    //console.log("thanh_phos", thanh_pho_s);
     res.status(200).json(thanh_pho_s);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -25,7 +25,7 @@ export const Get_Thanh_Pho_By_ID = async (req, res) => {
   try {
     const thanh_pho_id = req.body._id;
     const thanh_pho = await THANH_PHO_Model.findById(thanh_pho_id)
-    console.log("thanh_pho", thanh_pho);
+    //console.log("thanh_pho", thanh_pho);
     res.status(200).json(thanh_pho);
   } catch (err) {
     res.status(500).json({ error: err });

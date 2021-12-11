@@ -1,4 +1,6 @@
-import { DON_HANG_Model } from "../models/DON_HANG_Model.js";
+import { DON_HANG_Model, Set_Dia_Chi_Giao_Hang, 
+         Compute_Distance_Between_Two_Location, 
+         Set_Shipping_Fee } from "../models/DON_HANG_Model.js";
 
 export const Get_Don_Hangs = async (req, res) => {
   /*
@@ -10,7 +12,7 @@ export const Get_Don_Hangs = async (req, res) => {
     const don_hangs = await DON_HANG_Model.find()
       .populate("id_ttkh")
       .populate("id_ttdh");
-    console.log("don_hangs", don_hangs);
+    //console.log("don_hangs", don_hangs);
     res.status(200).json(don_hangs);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -48,12 +50,22 @@ export const Create_Don_Hang = async (req, res) => {
 	*/
 
   try {
-    const new_don_hang = req.body;
+    var new_don_hang = req.body;
+
+    // Set dia_chi_giao
+    new_don_hang = await Set_Dia_Chi_Giao_Hang(new_don_hang, 
+      new_don_hang.dia_chi, new_don_hang.id_phuong )
+    
+    // Set phi_ship
+    const distance = await Compute_Distance_Between_Two_Location(new_don_hang.dia_chi_giao)
+    console.log(distance)
+    new_don_hang = Set_Shipping_Fee(new_don_hang, distance)
 
     const don_hang = new DON_HANG_Model(new_don_hang);
     await don_hang.save();
-
+      
     res.status(200).json(don_hang);
+
   } catch (err) {
     res.status(500).json({ error: err });
     console.log(err);
