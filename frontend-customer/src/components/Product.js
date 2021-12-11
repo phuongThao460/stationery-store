@@ -31,6 +31,7 @@ const Product = ({ match, history }) => {
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, count));
+    //alert('Add to cart sucessfully')
     navigate(`/cart`);
   };
 

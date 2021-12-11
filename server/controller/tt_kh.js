@@ -23,7 +23,7 @@ export const Get_address = async (req, res) => {
 		const quan = await QUAN_Model.findById(phuong.id_quan);
 		const tp = await THANH_PHO_Model.findById(quan.id_thanh_pho);
 		const address = phuong.phuong_xa + ", " + quan.quan_huyen + ", " + tp.ten_thanh_pho
-		//console.log('address', address);
+		console.log('address', address);
 		res.status(200).json(address)
 	} catch (err) {
 		res.status(500).json({ error: err })

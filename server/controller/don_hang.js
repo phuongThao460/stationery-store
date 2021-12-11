@@ -10,7 +10,7 @@ export const Get_Don_Hangs = async (req, res) => {
     const don_hangs = await DON_HANG_Model.find()
       .populate("id_ttkh")
       .populate("id_ttdh");
-    console.log("don_hangs", don_hangs);
+    //console.log("don_hangs", don_hangs);
     res.status(200).json(don_hangs);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -48,6 +48,7 @@ export const Create_Don_Hang = async (req, res) => {
 	*/
 
   try {
+    console.log(req.body)
     const new_don_hang = req.body;
 
     const don_hang = new DON_HANG_Model(new_don_hang);
