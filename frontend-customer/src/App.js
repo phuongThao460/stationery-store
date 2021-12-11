@@ -4,22 +4,15 @@ import "./App.css";
 
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
-import LoginForm from './pages/LoginForm'
-import SignupForm from './pages/SignupForm'
+import LoginForm from './pages/Account/LoginForm'
 import Product from "./components/Product";
 import Cart from "./pages/Cart/Cart.js";
 import CheckoutCustomer from "./pages/Checkout/CheckoutCustomer";
-import {
-  Routes,
-  Route,
-  Link,
-  BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ListItem from "./components/ListItem";
-import SubNav from "./data/SubNavbar";
 import Checkout from "./pages/Checkout/Checkout";
 import NotificateOrder from "./pages/NotificateOrder";
-import Account from "./pages/Account";
+import Account from "./pages/Account/Account";
 //import data from './data'
 
 function App() {
