@@ -11,7 +11,8 @@ function LoginForm() {
   const emailInput = createRef();
   const passwordInput = createRef();
 
-  const loginSubmit = () => {
+  const loginSubmit = (event) => {
+    event.preventDefault()
     if (emailInput.current.value === "" || passwordInput.current.value === "") {
       alert(errorName);
     } else {
@@ -21,8 +22,7 @@ function LoginForm() {
           mat_khau: passwordInput.current.value,
         })
         .then((res) => {
-          console.log(res.status);
-          if (res.data === JSON.stringify("Đăng nhập thành công")) {
+          if (res.data === "Đăng nhập thành công") {
             alert("Đăng nhập thành công");
             navigate("/")
           }
@@ -41,7 +41,7 @@ function LoginForm() {
         <div>
           <h2 className="title">Login</h2>
         </div>
-        <form className="form-wrapper">
+        <form className="form-wrapper" onSubmit={loginSubmit}>
           <div className="name">
             <label className="label">Email</label>
             <input
@@ -61,7 +61,7 @@ function LoginForm() {
             />
           </div>
           <div>
-            <button className="submit" onClick={loginSubmit}>
+            <button className="submit" type="submit">
               Login
             </button>
           </div>

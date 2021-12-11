@@ -1,7 +1,7 @@
 import * as actionTypes from "../constant/CartConstant";
 import axios from "axios";
 
-export const addToCart = (id, count) => async (dispatch, getState) => {
+export const addToCart = (id, count, cong_don = false) => async (dispatch, getState) => {
   const { data } = await axios.post("http://localhost:8000/san_pham/", {_id: id});
 
   dispatch({
@@ -13,6 +13,7 @@ export const addToCart = (id, count) => async (dispatch, getState) => {
       mau_sac: data.mau_sac,
       so_luong: data.so_luong,
       count,
+      cong_don,
     },
   });
 

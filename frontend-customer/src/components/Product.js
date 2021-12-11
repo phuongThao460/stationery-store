@@ -30,7 +30,7 @@ const Product = ({ match, history }) => {
   }, []);
 
   const addToCartHandler = () => {
-    dispatch(addToCart(product._id, count));
+    dispatch(addToCart(product._id, count, true));
     alert("Add to cart successfull!");
     //navigate(`/cart`);
   };
