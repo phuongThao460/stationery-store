@@ -87,7 +87,7 @@ export default LoginForm;
 //       errorName: ""
 //     }
 //     this.emailInput = createRef();
-//   this.passwordInput = createRef();
+//     this.passwordInput = createRef();
 //   }
 
 //   loginSubmit = () => {
@@ -105,7 +105,7 @@ export default LoginForm;
 //         })
 //         .then((res) => {
 //           console.log(res.status);
-//           if(res.data === "Đăng nhập thành công"){
+//           if(res.data === JSON.stringify("Đăng nhập thành công")){
 //             alert("Đăng nhập thành công")
 //           }
 //         });
