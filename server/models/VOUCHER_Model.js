@@ -9,10 +9,7 @@ import { Add_Voucher } from "./TKKH_Model.js";
 
 const schema = new mongoose.Schema(
   {
-    ten_voucher: {
-      type: String,
-      required: true,
-    },
+   
     tong_tien_mua_hang_tich_luy_toi_thieu: {
       type: Number,
     },
