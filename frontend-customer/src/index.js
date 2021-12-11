@@ -6,7 +6,8 @@ import App from './App';
 
 import { Provider } from "react-redux"
 import store from "./redux/store"
-import Account from './pages/Account';
+import ListItem from './components/ListItem';
+
 
 ReactDOM.render(
   <Provider store = {store}>

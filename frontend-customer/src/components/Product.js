@@ -31,12 +31,13 @@ const Product = ({ match, history }) => {
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, count));
-    navigate(`/cart`);
+    alert("Add to cart successfull!");
+    //navigate(`/cart`);
   };
 
   return ( 
         <div className="Container-Product">
-           {loading ? (
+            {loading ? (
             <h2>Loading...</h2>
             ) : error ? (
             <h2>{error}</h2>

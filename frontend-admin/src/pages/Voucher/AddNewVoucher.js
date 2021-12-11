@@ -4,7 +4,7 @@ import React, { Component, createRef } from "react";
 export default class Voucher extends Component {
   constructor(props) {
     super(props);
-
+    this.nameVoucher = createRef();
     this.dateStart = createRef();
     this.dateEnd = createRef();
     this.minNumberDay = createRef();
@@ -17,6 +17,7 @@ export default class Voucher extends Component {
   createVoucher = () => {
     axios
       .post("http://localhost:8000/voucher/create", {
+        ten_voucher: this.nameVoucher.current.value,
         ngay_bat_dau_tich_luy: this.dateStart.current.value,
         ngay_ket_thuc_tich_luy: this.dateEnd.current.value,
         so_ngay_kich_hoat_tai_khoan_toi_thieu: this.minNumberDay.current.value,
@@ -34,6 +35,18 @@ export default class Voucher extends Component {
           <h1>Add New Voucher</h1>
         </div>
         <div className="form-horizontal">
+        <div className="form-group">
+            <label className="control-label col-sm-2">Name</label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter voucher’s name "
+                ref={this.nameVoucher}
+                autoFocus
+              />
+            </div>
+          </div>
           <div style={{ display: "flex" }}>
             <div className="form-group" style={{ width: "278px" }}>
               <label className="control-label col-sm-7">
@@ -57,7 +70,7 @@ export default class Voucher extends Component {
                 <input
                   type="date"
                   className="form-control"
-                  placeholder="Enter product’s name "
+                  placeholder="Minimun day"
                   ref={this.dateEnd}
                 />
               </div>
@@ -71,7 +84,7 @@ export default class Voucher extends Component {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Enter product’s name "
+                placeholder="Minimun activation days"
                 ref={this.minNumberDay}
               />
             </div>
@@ -84,7 +97,7 @@ export default class Voucher extends Component {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Enter product’s name "
+                placeholder="Min total"
                 ref={this.minTotal}
               />
             </div>
@@ -95,7 +108,7 @@ export default class Voucher extends Component {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Enter product’s name "
+                placeholder="percent"
                 ref={this.percentApply}
               />
             </div>
