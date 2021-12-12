@@ -12,9 +12,11 @@ export const cartReducer = (state = CART_INITIAL_STATE, action) => {
       const existItem = state.cartItems.find((x) => x.product === item.product);
       
       if (existItem) {
-        item.count += existItem.count
-        if (item.count >= item.so_luong) {
-          item.count = item.so_luong
+        if (item.cong_don) {
+          item.count += existItem.count
+          if (item.count >= item.so_luong) {
+            item.count = item.so_luong
+          }
         }
         return {
           ...state,
