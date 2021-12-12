@@ -18,12 +18,14 @@ function LoginForm() {
     } else {
       axios
         .post("http://localhost:8000/tkkh/login", {
-          ten_dn: emailInput.current.value,
-          mat_khau: passwordInput.current.value,
+          email: emailInput.current.value,
+          password: passwordInput.current.value,
         })
         .then((res) => {
-          if (res.data === "Đăng nhập thành công") {
+          console.log(res.data)
+          if (res.data !== null) {
             alert("Đăng nhập thành công");
+            window.localStorage.setItem("customer", JSON.stringify(res.data));
             navigate("/")
           }
         });
