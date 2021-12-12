@@ -7,7 +7,7 @@ export const Get_TKKHs = async (req, res) => {
 	*/
 
   try {
-    const tkkhs = await TK_KH_Model.find().populate("id_ttkh");
+    const tkkhs = await TK_KH_Model.find();
     console.log("tkkhs", tkkhs);
     res.status(200).json(tkkhs);
   } catch (err) {
@@ -51,13 +51,15 @@ export const Login = async (req, res) => {
 	*/
 
   try {
-    const login_info = req.body;
-    const tkkh = await TK_KH_Model.findOne(login_info);
+    const login_info = req.query;
+    const tkkh = await TK_KH_Model.findOne(login_info)
+      .populate("id_ttkh")
+      .exec();
     console.log("tkkh", tkkh);
-    if (tkkh == null) {
+    if (tkkh === null) {
       res.status(200).send("Tài khoản hoặc mật khẩu không đúng");
     } else {
-      res.status(200).json("Đăng nhập thành công");
+      res.status(200).json(tkkh);
     }
   } catch (err) {
     res.status(500).json({ error: err });
@@ -108,7 +110,7 @@ export const Update_TKKH = async (req, res) => {
   :return: json
   */
 
-  try{
+  try {
     const update_tkkh = req.body;
 
     const tkkh = await TK_KH_Model.findOneAndUpdate(
@@ -118,8 +120,8 @@ export const Update_TKKH = async (req, res) => {
     );
     console.log(tkkh);
     res.status(200).json(tkkh);
-  } catch(err) {
-    console.log(err)
-    res.status(500).json(err) 
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
-}
+};

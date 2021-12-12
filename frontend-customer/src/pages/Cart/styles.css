@@ -164,3 +164,10 @@
   background-color: #eee;
   border: 1px solid #eee;
 }
+.Title-Info {
+  font-weight: 600;
+  text-align: left;
+  font-size: 30px;
+  background-color: transparent;
+  color: black;
+}

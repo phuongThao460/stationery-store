@@ -6,11 +6,11 @@ import mongoose from 'mongoose'
 // ==========================================
 
 const schema = new mongoose.Schema({
-	ten_dn: {
+	email: {
 		type: String,
 		required: true
 	},
-	mat_khau: {
+	password: {
 		type: String,
 		required: true
 	},

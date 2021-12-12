@@ -1,11 +1,8 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { Component, createRef } from "react";
 import axios from "axios";
-
 import "./styles.css";
-import { Link } from "react-router-dom";
 
-//import { Link } from "react-router-dom";
 export default class Account extends Component {
   constructor(props) {
     super(props);

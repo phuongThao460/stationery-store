@@ -191,14 +191,7 @@ export default class CheckoutCustomer extends Component {
               </div>
             </div>
             <div className="right">
-              <div className="voucher">
-                <h1 className="Title-Info">Voucher</h1>
-                <select className="city">
-                  <option value="10">MERRYCHRISTMAS</option>
-                  <option value="1">Quận 1</option>
-                  <option value="3">Quận 3</option>
-                </select>
-              </div>
+              
               <div className="Summary-checkout" style={{ border: "0" }}>
                 <div className="summary-container-checkout">
                   <h1 className="SummaryTitle-checkout">Order Details</h1>

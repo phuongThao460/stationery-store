@@ -48,7 +48,14 @@ const Cart = () => {
             <span className="TopText">Your Wishlist (0)</span>
           </div>
 
-          <button className="TopButton-checkout">CHECKOUT NOW</button>
+          <div className="voucher">
+                <h1 className="Title-Info">Voucher</h1>
+                <select className="city">
+                  <option value="10">MERRYCHRISTMAS</option>
+                  <option value="1">Quận 1</option>
+                  <option value="3">Quận 3</option>
+                </select>
+              </div>
         </div>
 
         <div className="Bottom">
