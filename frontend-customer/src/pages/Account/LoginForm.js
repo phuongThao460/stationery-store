@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { createRef, useState } from "react";
 import "./styles.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,7 +26,7 @@ function LoginForm() {
           console.log(res.data)
           if (res.data !== null) {
             alert("Đăng nhập thành công");
-            window.localStorage.setItem("customer", JSON.stringify(res.data));
+            window.localStorage.setItem("customer", JSON.stringify(res.data.id_ttkh));
             navigate("/")
           }
         });

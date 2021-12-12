@@ -12,7 +12,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ListItem from "./components/ListItem";
 import Checkout from "./pages/Checkout/Checkout";
 import NotificateOrder from "./pages/NotificateOrder";
-import Account from "./pages/Account/Account";
+import AccountFunction from "./pages/Account/AccountFunction";
 //import data from './data'
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/item/:title" element={<ListItem />} />
           <Route path="/login" element={<LoginForm/>}/>
-          <Route path="/Signup" element={<Account/>} />
+          <Route path="/Signup" element={<AccountFunction/>} />
           <Route path="/products/:id" element={<Product/>} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer/>}/>

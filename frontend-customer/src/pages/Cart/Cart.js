@@ -4,13 +4,14 @@ import "./styles.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartItem from "./CartItems";
 
 import { addToCart, removeFromCart } from "../../redux/action/cartAction";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
 
