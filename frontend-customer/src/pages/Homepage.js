@@ -35,7 +35,6 @@ class Homepage extends React.Component {
       });
       this.state.lstProduct = array.reverse()
       this.setState(this);
-      console.log(this.state.lstProduct);
     });
   };
   submit = (title) => {

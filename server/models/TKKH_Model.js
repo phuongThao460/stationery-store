@@ -16,7 +16,7 @@ const schema = new mongoose.Schema({
 	},
 	id_ttkh: {
 		type: mongoose.Types.ObjectId,
-		//required: true,
+		required: true,
 		ref: "THONG_TIN_KHACH_HANG"
 	},
 	id_voucher: [{

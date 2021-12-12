@@ -51,9 +51,9 @@ export const Login = async (req, res) => {
 	*/
 
   try {
-    const login_info = req.query;
+    const login_info = req.body;
     const tkkh = await TK_KH_Model.findOne(login_info)
-      .populate("id_ttkh");
+      .populate("id_ttkh").exec();
     console.log("tkkh", tkkh);
     if (tkkh === null) {
       res.status(200).send("Tài khoản hoặc mật khẩu không đúng");
