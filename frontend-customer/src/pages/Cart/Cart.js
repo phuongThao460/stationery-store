@@ -1,14 +1,14 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React from "react";
 import "./styles.css";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 import CartItem from "./CartItems";
 
 import { addToCart, removeFromCart } from "../../redux/action/cartAction";
-import axios from "axios";
+//import axios from "axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -19,18 +19,18 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const getAllVoucher = async (idCus) => {
-    await axios
-      .post("http://localhost:8000/tkkh/", { _id: idCus })
-      .then((res) => {
-        console.log(res.data);
-      });
+  // const getAllVoucher = async (idCus) => {
+  //   await axios
+  //     .post("http://localhost:8000/tkkh/", { _id: idCus })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     });
     // if (data.data !== []) {
     //   setVouchers(data.data.id_voucher);
     // } else {
     //   setVouchers([]);
     // }
-  };
+  //};
 
   // useEffect(() => {
   //   if(customerInfo != null){

@@ -13,6 +13,7 @@ function Checkout() {
   const total = window.localStorage.getItem("total");
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
+  const [shipping, setShipping] = useState(0);
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
@@ -43,7 +44,7 @@ function Checkout() {
               dia_chi: customerInfo.dia_chi,
             }
           );
-
+          setShipping(data.data.phi_ship)
           setOrderID(data.data._id);
         } catch (error) {
           console.log(error);
@@ -68,7 +69,7 @@ function Checkout() {
               dia_chi: customerInfo.dia_chi,
             }
           );
-
+          setShipping(data.data.phi_ship)
           setOrderID(data.data._id);
         } catch (error) {
           console.log(error);
@@ -92,12 +93,18 @@ function Checkout() {
       console.log(array);
       setDetails(array);
     }
+    
   }, [orderID]); //nhan su thay doi cua state o useEffect tren
 
   useEffect(() => {
-    if (array !== []) {
+    if(shipping !== 0)
+    {
+      console.log("shipping tax: " + shipping);
     }
-  }, [details]);
+    else {
+      console.log("not shipping tax")
+    }
+  }, [shipping]);
   const addCartDetails = () => {
     details.forEach((item) => {
       axios({
@@ -182,7 +189,7 @@ function Checkout() {
                     <span className="SummaryItemText-checkout">
                       Shipping Fee
                     </span>
-                    <span className="SummaryItemPrice-checkout">0</span>
+                    <span className="SummaryItemPrice-checkout">{shipping}</span>
                   </div>
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">

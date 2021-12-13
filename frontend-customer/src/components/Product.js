@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 // import { IoMdRemove } from "react-icons/io";
 // import { GrAdd } from "react-icons/gr";
@@ -7,7 +8,7 @@ import "../style/Product.css";
 
 
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { getProductDetails } from '../redux/action/productAction';
@@ -17,7 +18,7 @@ import { addToCart } from '../redux/action/cartAction';
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  //let navigate = useNavigate();
   const productDetails = useSelector((state) => state.getProductDetails);
   const { loading, error, product } = productDetails;
 
