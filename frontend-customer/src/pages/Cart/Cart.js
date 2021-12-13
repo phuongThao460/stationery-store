@@ -14,7 +14,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   //const [vouchers, setVouchers] = React.useState([]);
   const [id, setId] = React.useState(0);
-  const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
+  const customerInfo = JSON.parse(window.localStorage.getItem("customer-account"));
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -32,10 +32,13 @@ const Cart = () => {
     // }
   };
 
-  useEffect(() => {
-    getAllVoucher(customerInfo._id);
-    console.log(customerInfo._id)
-  }, []);
+  // useEffect(() => {
+  //   if(customerInfo != null){
+  //     getAllVoucher(customerInfo._id);
+  //     console.log(customerInfo._id)
+  //   }
+    
+  // }, []);
 
   const qtyChangeHandler = (id, count) => {
     dispatch(addToCart(id, count));
