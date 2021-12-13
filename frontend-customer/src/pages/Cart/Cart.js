@@ -4,21 +4,38 @@ import "./styles.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CartItem from "./CartItems";
 
 import { addToCart, removeFromCart } from "../../redux/action/cartAction";
+import axios from "axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
-
+  const [vouchers, setVouchers] = React.useState([]);
+  const [id, setId] = React.useState(0);
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  useEffect(() => {}, []);
+  const getAllVoucher = async (idCus) => {
+    await axios
+      .post("http://localhost:8000/tkkh/", { _id: idCus })
+      .then((res) => {
+        console.log(res.data);
+      });
+    // if (data.data !== []) {
+    //   setVouchers(data.data.id_voucher);
+    // } else {
+    //   setVouchers([]);
+    // }
+  };
+
+  useEffect(() => {
+    getAllVoucher(customerInfo._id);
+    console.log(customerInfo._id)
+  }, []);
 
   const qtyChangeHandler = (id, count) => {
     dispatch(addToCart(id, count));
@@ -37,26 +54,33 @@ const Cart = () => {
       .reduce((price, item) => price + item.gia_ban_hien_tai * item.count, 0)
       .toFixed(2);
   };
+
+  const getIDVoucher = (event) => {
+    setId(event.target.value);
+    window.localStorage.setItem("id_voucher", id);
+  };
   return (
     <div className="Container-cart">
       <div className="Wrapper-cart">
         <h1 className="Title-cart">YOUR BAG</h1>
 
         <div className="Top">
-          <Link to="/" className="TopButton">Continue shopping</Link>
+          <Link to="/" className="TopButton">
+            Continue shopping
+          </Link>
           <div className="TopTexts">
             <span className="TopText">Shopping Bag(2)</span>
             <span className="TopText">Your Wishlist (0)</span>
           </div>
 
           <div className="voucher">
-                <h1 className="Title-Info">Voucher</h1>
-                <select className="city">
-                  <option value="10">MERRYCHRISTMAS</option>
-                  <option value="1">Quận 1</option>
-                  <option value="3">Quận 3</option>
-                </select>
-              </div>
+            <h1 className="Title-Info">Voucher</h1>
+            <select className="city" value={id} onChange={getIDVoucher}>
+              {/* {vouchers.map((item, index) => (
+                <option key={index}>{item.ten_voucher}</option>
+              ))} */}
+            </select>
+          </div>
         </div>
 
         <div className="Bottom">

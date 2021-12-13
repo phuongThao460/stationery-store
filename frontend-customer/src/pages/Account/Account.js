@@ -2,6 +2,7 @@
 import React, { Component, createRef } from "react";
 import axios from "axios";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 export default class Account extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ export default class Account extends Component {
           })
           .then((res) => {
             console.log(res.data);
-            window.localStorage.setItem("customer", JSON.stringify(res.data))
+            window.localStorage.setItem("customer", JSON.stringify(res.data));
           });
       });
   };
@@ -210,9 +211,11 @@ export default class Account extends Component {
           </form>
         </div>
         <div className="btn-signup">
-          <button className="submit" onClick={this.createAccount}>
-            Create account
-          </button>
+          <Link to="/login">
+            <button className="submit" onClick={this.createAccount}>
+              Create account
+            </button>
+          </Link>
         </div>
       </div>
     );

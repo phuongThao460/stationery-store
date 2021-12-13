@@ -7,7 +7,7 @@ export const Get_TKKHs = async (req, res) => {
 	*/
 
   try {
-    const tkkhs = await TK_KH_Model.find();
+    const tkkhs = await TK_KH_Model.find().populate('id_ttkh');
     console.log("tkkhs", tkkhs);
     res.status(200).json(tkkhs);
   } catch (err) {
