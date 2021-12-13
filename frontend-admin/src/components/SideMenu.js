@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useEffect, useState } from "react";
-import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineBarChart } from "react-icons/ai";
 import { BsSearch, BsFillPersonLinesFill } from "react-icons/bs";
 import { RiDashboardFill, RiContactsFill, RiListUnordered } from "react-icons/ri";
 import { IoTicketOutline } from "react-icons/io5";
@@ -29,6 +29,7 @@ const menuItems = [
   },
   { name: "Order", to: "/order", icon: <RiListUnordered /> },
   { name: "Voucher", to: "/voucher", icon: <IoTicketOutline /> },
+  { name: "Revenue Statistics", to: "/statistics", icon: <AiOutlineBarChart /> },
   { name: "Contact", to: "/contact", icon: <RiContactsFill /> },
 ];
 

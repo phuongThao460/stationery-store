@@ -134,19 +134,19 @@ export default function OrderView(props) {
               <td colSpan="3" style={{ textAlign: "end" }}>
                 Shipping
               </td>
-              <td style={{ textAlign: "end" }}>0</td>
+              <td style={{ textAlign: "end" }}>${props.ship}</td>
             </tr>
             <tr>
               <td colspan="3" style={{ textAlign: "end" }}>
                 Sales Tax
               </td>
-              <td style={{ textAlign: "end" }}>0</td>
+              <td style={{ textAlign: "end" }}>$0</td>
             </tr>
             <tr>
               <td colspan="3" style={{ textAlign: "end" }}>
                 <b>Total</b>
               </td>
-              <td style={{ textAlign: "end" }}>${total}</td>
+              <td style={{ textAlign: "end" }}>${total + props.ship}</td>
             </tr>
           </tbody>
         </table>

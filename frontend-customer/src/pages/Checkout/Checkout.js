@@ -5,14 +5,16 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 function Checkout() {
-  
+  const cusAccountInfo = JSON.parse(
+    window.localStorage.getItem("customer-account")
+  );
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
   const carts = JSON.parse(window.localStorage.getItem("cart"));
-  const total = window.localStorage.getItem("total")
+  const total = window.localStorage.getItem("total");
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
   let array = [];
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const [details, setDetails] = useState([]);
   const getAddressCustomer = async () => {
     const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
@@ -23,33 +25,61 @@ function Checkout() {
 
   useEffect(() => {
     getAddressCustomer();
-    const createOrder = async () => {
-      try {
+    if (cusAccountInfo != null) {
+      const createOrder = async () => {
+        try {
+          const data = await axios.post(
+            "http://localhost:8000/don_hang/create_don_hang",
+            {
+              ngay_dat: new Date().toLocaleDateString(),
+              ngay_giao: new Date().toLocaleDateString(),
+              id_ttkh: cusAccountInfo._id,
+              id_ttdh: "61a2492120a54c9a7f3b028a",
+              ghi_chu: "None",
+              tong_phu: 0,
+              phi_ship: 0,
+              tong_gia_giam_boi_voucher: 0,
+              id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
+              tong_tien: total,
+              id_phuong: customerInfo.id_phuong,
+              dia_chi: customerInfo.dia_chi,
+            }
+          );
 
-        const data = await axios.post(
-          "http://localhost:8000/don_hang/create_don_hang",
-          {
-            ngay_dat: new Date().toLocaleDateString(),
-            ngay_giao: new Date().toLocaleDateString(),
-            id_ttkh: customerInfo._id,
-            id_ttdh: "61a2492120a54c9a7f3b028a",
-            ghi_chu: "None",
-            tong_phu: 0,
-            phi_ship: 0,
-            tong_gia_giam_boi_voucher: 0,
-            id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
-            tong_tien: total,
-            id_phuong: customerInfo.id_phuong,
-            dia_chi: customerInfo.dia_chi
-          }
-        );
+          setOrderID(data.data._id);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      createOrder();
+    } else {
+      const createOrder = async () => {
+        try {
+          const data = await axios.post(
+            "http://localhost:8000/don_hang/create_don_hang",
+            {
+              ngay_dat: new Date().toLocaleDateString(),
+              ngay_giao: new Date().toLocaleDateString(),
+              id_ttkh: customerInfo._id,
+              id_ttdh: "61a2492120a54c9a7f3b028a",
+              ghi_chu: "None",
+              tong_phu: 0,
+              phi_ship: 0,
+              tong_gia_giam_boi_voucher: 0,
+              id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
+              tong_tien: total,
+              id_phuong: customerInfo.id_phuong,
+              dia_chi: customerInfo.dia_chi,
+            }
+          );
 
-        setOrderID(data.data._id);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    createOrder();
+          setOrderID(data.data._id);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      createOrder();
+    }
   }, []);
 
   useEffect(() => {
@@ -81,6 +111,8 @@ function Checkout() {
       }).then(() => {
         window.localStorage.removeItem("cart");
         window.localStorage.removeItem("total");
+        window.localStorage.removeItem("customer");
+        window.location.reload();
         navigate("/notificate");
       });
     });
@@ -99,7 +131,6 @@ function Checkout() {
                 marginTop: "10px",
               }}
             >
-              {console.log(details)}
               <div style={{ display: "block" }}>
                 <h1 className="Title-Info">Contact info</h1>
                 <div className="body-info">
@@ -140,7 +171,9 @@ function Checkout() {
                         <p className="body-title">{item.ten_sp}</p>
                         <p className="body-title">Amount: {item.count}</p>
                       </div>
-                      <b style={{ marginLeft: "25px" }}>${item.gia_ban_hien_tai}</b>
+                      <b style={{ marginLeft: "25px" }}>
+                        ${item.gia_ban_hien_tai}
+                      </b>
                     </div>
                   ))}
                 </div>
@@ -153,7 +186,7 @@ function Checkout() {
                     <span className="SummaryItemText-checkout">
                       Shipping Fee
                     </span>
-                    <span className="SummaryItemPrice-checkout">FREE</span>
+                    <span className="SummaryItemPrice-checkout">0</span>
                   </div>
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">

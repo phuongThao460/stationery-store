@@ -12,7 +12,7 @@ import axios from "axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const [vouchers, setVouchers] = React.useState([]);
+  //const [vouchers, setVouchers] = React.useState([]);
   const [id, setId] = React.useState(0);
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
 

@@ -26,7 +26,7 @@ const Product = ({ match, history }) => {
     //   
     // }
     dispatch(getProductDetails(window.location.pathname.substring(10)));
-    console.log(productDetails)
+    //console.log(productDetails)
   }, []);
 
   const addToCartHandler = () => {

@@ -30,9 +30,6 @@ const schema = new mongoose.Schema({
 		type: Number, 
 		require: true,
 		default: 0
-	},
-	mau_sac: {
-		type: String
 	}
 }, { timestamps: false })
 

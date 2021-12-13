@@ -27,7 +27,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_REQUEST });
 
     const data = await axios.post("http://localhost:8000/san_pham/", {_id: id});
-    console.log(data.data)
+    //console.log(data.data)
     dispatch({
       type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS,
       payload: data.data,

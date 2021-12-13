@@ -220,7 +220,7 @@ export default class CheckoutCustomer extends Component {
                       <span className="SummaryItemText-checkout">
                         Shipping Fee
                       </span>
-                      <span className="SummaryItemPrice-checkout">FREE</span>
+                      <span className="SummaryItemPrice-checkout">$0</span>
                     </div>
                     <div className="SummaryItem-checkout">
                       <span className="SummaryItemText-checkout">

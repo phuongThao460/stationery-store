@@ -177,7 +177,11 @@ function Dashboard() {
             </li>
             <li>
               <b>Selling Price: </b>
-              {modalInfo.don_gia_xuat}
+              {modalInfo.gia_ban_hien_tai}
+            </li>
+            <li>
+              <b>Original Price: </b>
+              {modalInfo.gia_ban_goc}
             </li>
             <li>
               <b>Supplier: </b>

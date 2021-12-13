@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = ({ click }) => {
   const cart = useSelector((state) => state.cart);
+  const customerInfo = JSON.parse(window.localStorage.getItem("customer-account"));
   const { cartItems } = cart;
 
   const getCartCount = () => {
@@ -27,28 +28,32 @@ const Navbar = ({ click }) => {
           />
           <BsSearch id="input-img" />
         </form>
-        <div
-          className="user-account"
-          style={{ height: "38px", width: "111px", marginRight: "9px" }}
-        >
-          <BiUser className="user-icon" />
-          <ul className="table-content">
-            <li className="list">
-              <Link to="/login" style={{ color: "white" }}>
-                Login
-              </Link>
-            </li>
-            <li
-              className="list"
-              style={{ marginTop: "8px", backgroundColor: "#efefef" }}
-            >
-              <Link to="/Signup" style={{ color: "black" }}>
-                {" "}
-                Signup
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {customerInfo ? (
+          <div className="user-name">{customerInfo.ten_kh}</div>
+        ) : (
+          <div
+            className="user-account"
+            style={{ height: "38px", width: "111px", marginRight: "9px" }}
+          >
+            <BiUser className="user-icon" />
+            <ul className="table-content">
+              <li className="list">
+                <Link to="/login" style={{ color: "white" }}>
+                  Login
+                </Link>
+              </li>
+              <li
+                className="list"
+                style={{ marginTop: "8px", backgroundColor: "#efefef" }}
+              >
+                <Link to="/Signup" style={{ color: "black" }}>
+                  {" "}
+                  Signup
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
 
         <div className="cart">
           <Link to="/Cart">
@@ -72,6 +77,6 @@ const Navbar = ({ click }) => {
       </nav>
     </div>
   );
-}
+};
 
 export default Navbar;
