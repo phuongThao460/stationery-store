@@ -10,22 +10,36 @@ function Checkout() {
   );
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
   const carts = JSON.parse(window.localStorage.getItem("cart"));
-  const total = window.localStorage.getItem("total");
+  let number = JSON.parse(window.localStorage.getItem("total"));
+  var total = parseInt(number);
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
   const [shipping, setShipping] = useState(0);
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
-  const getAddressCustomer = async () => {
-    const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
-      _id: customerInfo.id_phuong,
-    });
-    setAdress(data.data);
-  };
+  
+  
 
   useEffect(() => {
-    getAddressCustomer();
+    if(cusAccountInfo != null){
+      const getAddressCustomer = async () => {
+        const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+          _id: cusAccountInfo.id_phuong,
+        });
+        setAdress(data.data);
+      };
+      getAddressCustomer();
+    } else {
+      const getAddressCustomer = async () => {
+        const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+          _id: customerInfo.id_phuong,
+        });
+        setAdress(data.data);
+      };
+      getAddressCustomer();
+    }
+    
     if (cusAccountInfo != null) {
       const createOrder = async () => {
         try {
@@ -40,11 +54,11 @@ function Checkout() {
               tong_gia_giam_boi_voucher: 0,
               id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
               tong_tien: total,
-              id_phuong: customerInfo.id_phuong,
-              dia_chi: customerInfo.dia_chi,
+              id_phuong: cusAccountInfo.id_phuong,
+              dia_chi: cusAccountInfo.dia_chi,
             }
           );
-          setShipping(data.data.phi_ship)
+          setShipping(data.data.phi_ship);
           setOrderID(data.data._id);
         } catch (error) {
           console.log(error);
@@ -69,7 +83,7 @@ function Checkout() {
               dia_chi: customerInfo.dia_chi,
             }
           );
-          setShipping(data.data.phi_ship)
+          setShipping(data.data.phi_ship);
           setOrderID(data.data._id);
         } catch (error) {
           console.log(error);
@@ -93,16 +107,13 @@ function Checkout() {
       console.log(array);
       setDetails(array);
     }
-    
   }, [orderID]); //nhan su thay doi cua state o useEffect tren
 
   useEffect(() => {
-    if(shipping !== 0)
-    {
+    if (shipping !== 0) {
       console.log("shipping tax: " + shipping);
-    }
-    else {
-      console.log("not shipping tax")
+    } else {
+      console.log("not shipping tax");
     }
   }, [shipping]);
   const addCartDetails = () => {
@@ -134,18 +145,33 @@ function Checkout() {
                 marginTop: "10px",
               }}
             >
-              <div style={{ display: "block" }}>
-                <h1 className="Title-Info">Contact info</h1>
-                <div className="body-info">
-                  <p>{customerInfo.ten_kh}</p>
+              {cusAccountInfo ? (
+                <div style={{ display: "block" }}>
+                  <h1 className="Title-Info">Contact info</h1>
+                  <div className="body-info">
+                    <p>{cusAccountInfo.ten_kh}</p>
+                  </div>
+                  <div className="body-info">
+                    <p>{cusAccountInfo.sdt}</p>
+                  </div>
+                  <div className="body-info">
+                    <p>{cusAccountInfo.email}</p>
+                  </div>
                 </div>
-                <div className="body-info">
-                  <p>{customerInfo.sdt}</p>
+              ) : (
+                <div style={{ display: "block" }}>
+                  <h1 className="Title-Info">Contact info</h1>
+                  <div className="body-info">
+                    <p>{customerInfo.ten_kh}</p>
+                  </div>
+                  <div className="body-info">
+                    <p>{customerInfo.sdt}</p>
+                  </div>
+                  <div className="body-info">
+                    <p>{customerInfo.email}</p>
+                  </div>
                 </div>
-                <div className="body-info">
-                  <p>{customerInfo.email}</p>
-                </div>
-              </div>
+              )}
               <div className="Payment" style={{ padding: "0px" }}>
                 <h1 className="Title-Info">Payment Method</h1>
                 <div className="body-info">
@@ -153,12 +179,17 @@ function Checkout() {
                 </div>
               </div>
             </div>
-            <div className="Shipping">
+            {cusAccountInfo ? (<div className="Shipping">
+              <h1 className="Title-Info">Shipping Address</h1>
+              <div className="address body-info">
+                <p>{cusAccountInfo.dia_chi + ", " + address}</p>
+              </div>
+            </div>):(<div className="Shipping">
               <h1 className="Title-Info">Shipping Address</h1>
               <div className="address body-info">
                 <p>{customerInfo.dia_chi + ", " + address}</p>
               </div>
-            </div>
+            </div>)}
           </div>
           <div className="right">
             <div className="Summary-checkout" style={{ border: "0" }}>
@@ -183,13 +214,15 @@ function Checkout() {
                 <div className="summary-price">
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">Subtotal</span>
-                    <span className="SummaryItemPrice-checkout">5 items</span>
+                    <span className="SummaryItemPrice-checkout">{total.toFixed(2)}</span>
                   </div>
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">
                       Shipping Fee
                     </span>
-                    <span className="SummaryItemPrice-checkout">{shipping}</span>
+                    <span className="SummaryItemPrice-checkout">
+                      {shipping.toFixed(2)}
+                    </span>
                   </div>
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">
@@ -200,7 +233,7 @@ function Checkout() {
                   <div className="SummaryItem-total-checkout">
                     <b className="SummaryItemText-checkout">Total</b>
                     <b className="SummaryItemPrice-checkout">
-                      {window.localStorage.getItem("total")}
+                      {(total + parseInt(shipping)).toFixed(2)}
                     </b>
                   </div>
                 </div>

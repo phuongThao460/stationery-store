@@ -27,7 +27,8 @@ function LoginForm() {
           if (res.data !== null) {
             alert("Đăng nhập thành công");
             window.localStorage.setItem("customer-account", JSON.stringify(res.data.id_ttkh));
-            navigate("/")
+            navigate("/");
+            window.location.reload();
           }
         });
     }

@@ -145,8 +145,6 @@ a {
   margin-top: 26px;
   width: 204px;
   height: 289px;
-  border-radius: 2%;
-  background-color: #fafafa;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
 }
 .card:hover {
