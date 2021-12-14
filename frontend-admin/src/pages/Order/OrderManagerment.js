@@ -14,6 +14,7 @@ function OrderManagerment() {
   const [subtotal, setSubtotal] = useState("");
   const [ship, setShip] = useState("");
   const [status, setStatus] = useState("");
+  const [saleTax, setSaleTax] = useState(0);
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -96,7 +97,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td style={{ textAlign: "end" }}>${item.tong_tien}</td>
+                      <td style={{ textAlign: "end" }}>${item.tong_tien.toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-edit"
@@ -119,6 +120,7 @@ function OrderManagerment() {
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
                             setStatus(item.id_ttdh.trang_thai);
+                            setSaleTax(item.tong_gia_giam_boi_voucher);
                           }}
                         >
                           View
@@ -153,7 +155,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${item.tong_tien}</td>
+                      <td>${(item.tong_tien).toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-edit"
@@ -175,6 +177,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
+                            setSaleTax(item.tong_gia_giam_boi_voucher)
                           }}
                         >
                           View
@@ -209,7 +212,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${item.tong_tien}</td>
+                      <td>${(item.tong_tien).toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-edit"
@@ -231,6 +234,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
+                            setSaleTax(item.tong_gia_giam_boi_voucher)
                           }}
                         >
                           View
@@ -264,7 +268,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${item.tong_tien}</td>
+                      <td>${(item.tong_tien).toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-view"
@@ -278,6 +282,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
+                            setSaleTax(item.tong_gia_giam_boi_voucher)
                           }}
                         >
                           View
@@ -309,7 +314,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id.substr(14)}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>${item.tong_tien}</td>
+                      <td>${(item.tong_tien).toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-view"
@@ -323,6 +328,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
+                            setSaleTax(item.tong_gia_giam_boi_voucher)
                           }}
                         >
                           View
@@ -349,6 +355,7 @@ function OrderManagerment() {
           ship={ship}
           customer={customer}
           status={status}
+          saleTax={saleTax}
         />
       ) : null}
     </>

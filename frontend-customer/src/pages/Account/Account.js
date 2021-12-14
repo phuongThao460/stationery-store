@@ -77,8 +77,8 @@ export default class Account extends Component {
         this.setState({ cusInfo: res.data });
         axios
           .post("http://localhost:8000/tkkh/create", {
-            ten_dn: this.email.current.value,
-            mat_khau: this.password.current.value,
+            email: this.email.current.value,
+            password: this.password.current.value,
             id_ttkh: this.state.cusInfo._id,
           })
           .then((res) => {

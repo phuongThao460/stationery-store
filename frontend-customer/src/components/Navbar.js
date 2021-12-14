@@ -37,7 +37,7 @@ const Navbar = ({ click }) => {
           <div className="user-name">{customerInfo.ten_kh}
             <ul className="table-content">
               <li className="list">
-                <button onClick={() => logout} style={{ color: "white" }}>
+                <button onClick={logout} style={{ color: "white" }}>
                   Logout
                 </button>
               </li>

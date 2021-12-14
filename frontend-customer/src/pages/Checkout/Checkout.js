@@ -52,6 +52,16 @@ function Checkout() {
   }, []);
   useEffect(() => {
     getAddressCustomer();
+  }, [vouchers]);
+
+  useEffect(() => {
+    if (shipping !== 0) {
+      console.log("shipping tax: " + shipping);
+    } else {
+      console.log("not shipping tax");
+    }
+  }, [shipping]);
+  const addCartDetails = () => {
     if (cusAccountInfo != null) {
       const createOrder = async () => {
         try {
@@ -63,6 +73,7 @@ function Checkout() {
               id_ttkh: cusAccountInfo._id,
               id_ttdh: "61a2492120a54c9a7f3b028a",
               ghi_chu: "None",
+              tong_phu: total,
               tong_gia_giam_boi_voucher: (total * vouchers) / 100,
               id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
               tong_tien: total - (total * vouchers) / 100,
@@ -72,7 +83,30 @@ function Checkout() {
             }
           );
           setShipping(data.data.phi_ship);
-          setOrderID(data.data._id);
+          carts.forEach((element) => {
+            array.push({
+              so_luong: element.count,
+              gia_ban: element.gia_ban_hien_tai,
+              id_san_pham: element.product,
+              id_don_hang: data.data._id,
+              tong_gia: element.count * element.gia_ban_hien_tai,
+            });
+          });
+          //setDetails(array);
+          array.forEach((item) => {
+            axios({
+              method: "post",
+              url: "http://localhost:8000/ct_dh/create",
+              data: item,
+            }).then(() => {
+              navigate("/notificate");
+              window.localStorage.removeItem("cart");
+              window.localStorage.removeItem("total");
+              window.localStorage.removeItem("customer");
+              window.localStorage.removeItem("id_voucher");
+              window.location.reload();
+            });
+          });
         } catch (error) {
           console.log(error);
         }
@@ -90,6 +124,7 @@ function Checkout() {
               id_ttkh: customerInfo._id,
               id_ttdh: "61a2492120a54c9a7f3b028a",
               ghi_chu: "None",
+              tong_phu: total,
               tong_gia_giam_boi_voucher: 0,
               id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
               tong_tien: total,
@@ -98,52 +133,36 @@ function Checkout() {
             }
           );
           setShipping(data.data.phi_ship);
-          setOrderID(data.data._id);
+          carts.forEach((element) => {
+            array.push({
+              so_luong: element.count,
+              gia_ban: element.gia_ban_hien_tai,
+              id_san_pham: element.product,
+              id_don_hang: data.data._id,
+              tong_gia: element.count * element.gia_ban_hien_tai,
+            });
+          });
+          //setDetails(array);
+          array.forEach((item) => {
+            axios({
+              method: "post",
+              url: "http://localhost:8000/ct_dh/create",
+              data: item,
+            }).then(() => {
+              navigate("/notificate");
+              window.localStorage.removeItem("cart");
+              window.localStorage.removeItem("total");
+              window.localStorage.removeItem("customer");
+              window.localStorage.removeItem("id_voucher");
+              window.location.reload();
+            });
+          });
         } catch (error) {
           console.log(error);
         }
       };
       createOrder();
     }
-  }, [vouchers]);
-
-  useEffect(() => {
-    if (orderID != null) {
-      carts.forEach((element) => {
-        array.push({
-          so_luong: element.count,
-          gia_ban: element.gia_ban_hien_tai,
-          id_san_pham: element.product,
-          id_don_hang: orderID,
-          tong_gia: element.count * element.gia_ban_hien_tai,
-        });
-      });
-      setDetails(array);
-    }
-  }, [orderID]); //nhan su thay doi cua state o useEffect tren
-
-  useEffect(() => {
-    if (shipping !== 0) {
-      console.log("shipping tax: " + shipping);
-    } else {
-      console.log("not shipping tax");
-    }
-  }, [shipping]);
-  const addCartDetails = () => {
-    details.forEach((item) => {
-      axios({
-        method: "post",
-        url: "http://localhost:8000/ct_dh/create",
-        data: item,
-      }).then(() => {
-        navigate("/notificate");
-        window.localStorage.removeItem("cart");
-        window.localStorage.removeItem("total");
-        window.localStorage.removeItem("customer");
-        window.localStorage.removeItem("id_voucher");
-        window.location.reload();
-      });
-    });
   };
   return (
     <div className="container-checkout">
