@@ -93,8 +93,28 @@ export const Set_So_Luong_Voucher = (voucher, num_of_vouchers) => {
   return voucher;
 };
 
-export const Increase_Num_Of_Voucher_Applied = () => {
-  return;
+export const Increase_Num_Of_Voucher_Applied = async (id_voucher) => {
+  /*
+  Increase so_lan_duoc_su_dung by 1 after some account using voucher,
+  Set tinh_trang = False if so_lan_duoc_su_dung = so_luong_voucher
+
+  :return: json
+  */
+
+  var voucher = await VOUCHER_Model.findOne({ _id: id_voucher });
+  voucher.so_lan_duoc_su_dung += 1;
+
+  if (voucher.so_lan_duoc_su_dung == voucher.so_luong_voucher) {
+    voucher = Set_Tinh_Trang_Voucher(voucher, false);
+  }
+
+  var new_voucher = await VOUCHER_Model.findOneAndUpdate(
+    { _id: id_voucher },
+    voucher,
+    { new: true }
+  );
+
+  return new_voucher;
 };
 
 export const Broadcast_Voucher_To_Account = (tkkhs, id_voucher) => {

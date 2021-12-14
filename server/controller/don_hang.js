@@ -1,4 +1,5 @@
 import { Remove_Voucher_From_TTKH } from "../models/TKKH_Model.js";
+import { Increase_Num_Of_Voucher_Applied } from "../models/VOUCHER_Model.js";
 import {
   DON_HANG_Model,
   Set_Dia_Chi_Giao_Hang,
@@ -71,10 +72,15 @@ export const Create_Don_Hang = async (req, res) => {
 
     // If the account uses voucher to get discount, then
     // removing the voucher from list voucher of account
+    // and increasing num of applied in voucher
     const id_ttkh = new_don_hang.id_ttkh;
     const id_voucher = new_don_hang.id_voucher;
     if (id_voucher != null) {
+      // Removing voucher from list voucher
       await Remove_Voucher_From_TTKH(id_ttkh, id_voucher);
+
+      // Increasing num of applied
+      await Increase_Num_Of_Voucher_Applied(id_voucher);
     }
 
     const don_hang = new DON_HANG_Model(new_don_hang);
