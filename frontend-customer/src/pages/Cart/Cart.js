@@ -30,7 +30,12 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    getAllVoucher();
+    if(customerInfo != null){
+      getAllVoucher();
+    }
+    else {
+      setVouchers([]);
+    }
   }, []);
 
   const qtyChangeHandler = (id, count) => {

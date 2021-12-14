@@ -13,7 +13,7 @@ function Checkout() {
   const carts = JSON.parse(window.localStorage.getItem("cart"));
   let number = JSON.parse(window.localStorage.getItem("total"));
   var total = parseInt(number);
-  
+
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
   const [shipping, setShipping] = useState(0);
@@ -21,28 +21,35 @@ function Checkout() {
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
-  
-  const getAddressCustomer = async() => {
-    if(cusAccountInfo != null){
-      await axios.post("http://localhost:8000/ttkh/getAddress", {
+
+  const getAddressCustomer = async () => {
+    if (cusAccountInfo != null) {
+      await axios
+        .post("http://localhost:8000/ttkh/getAddress", {
           _id: cusAccountInfo.id_phuong,
-        }).then(res => setAdress(res.data));
-        
+        })
+        .then((res) => setAdress(res.data));
     } else {
-      await axios.post("http://localhost:8000/ttkh/getAddress", {
+      await axios
+        .post("http://localhost:8000/ttkh/getAddress", {
           _id: customerInfo.id_phuong,
-        }).then(res => setAdress(res.data));
-        
+        })
+        .then((res) => setAdress(res.data));
     }
-  }
-  const getPercentVoucher = async() => {
-    await axios.post("http://localhost:8000/voucher/", {_id: voucher}).then(res => {setVouchers(res.data.phan_tram_giam); console.log(res.data.phan_tram_giam)});
-  }
+  };
+  const getPercentVoucher = async () => {
+    await axios
+      .post("http://localhost:8000/voucher/", { _id: voucher })
+      .then((res) => {
+        setVouchers(res.data.phan_tram_giam);
+        console.log(res.data.phan_tram_giam);
+      });
+  };
   useEffect(() => {
-    if(voucher != null){
+    if (voucher != null) {
       getPercentVoucher();
     }
-  },[])
+  }, []);
   useEffect(() => {
     getAddressCustomer();
     if (cusAccountInfo != null) {
@@ -56,9 +63,9 @@ function Checkout() {
               id_ttkh: cusAccountInfo._id,
               id_ttdh: "61a2492120a54c9a7f3b028a",
               ghi_chu: "None",
-              tong_gia_giam_boi_voucher: ((total * vouchers) / 100) ,
+              tong_gia_giam_boi_voucher: (total * vouchers) / 100,
               id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
-              tong_tien: total,
+              tong_tien: total - (total * vouchers) / 100,
               id_voucher: voucher,
               id_phuong: cusAccountInfo.id_phuong,
               dia_chi: cusAccountInfo.dia_chi,
@@ -71,7 +78,8 @@ function Checkout() {
         }
       };
       createOrder();
-    } else {
+    }
+    if (customerInfo != null) {
       const createOrder = async () => {
         try {
           const data = await axios.post(
@@ -185,17 +193,21 @@ function Checkout() {
                 </div>
               </div>
             </div>
-            {cusAccountInfo ? (<div className="Shipping">
-              <h1 className="Title-Info">Shipping Address</h1>
-              <div className="address body-info">
-                <p>{cusAccountInfo.dia_chi + ", " + address}</p>
+            {cusAccountInfo ? (
+              <div className="Shipping">
+                <h1 className="Title-Info">Shipping Address</h1>
+                <div className="address body-info">
+                  <p>{cusAccountInfo.dia_chi + ", " + address}</p>
+                </div>
               </div>
-            </div>):(<div className="Shipping">
-              <h1 className="Title-Info">Shipping Address</h1>
-              <div className="address body-info">
-                <p>{customerInfo.dia_chi + ", " + address}</p>
+            ) : (
+              <div className="Shipping">
+                <h1 className="Title-Info">Shipping Address</h1>
+                <div className="address body-info">
+                  <p>{customerInfo.dia_chi + ", " + address}</p>
+                </div>
               </div>
-            </div>)}
+            )}
           </div>
           <div className="right">
             <div className="Summary-checkout" style={{ border: "0" }}>
@@ -217,57 +229,71 @@ function Checkout() {
                     </div>
                   ))}
                 </div>
-                {vouchers ? (<div className="summary-price">
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">Subtotal</span>
-                    <span className="SummaryItemPrice-checkout">{((total * vouchers) / 100).toFixed(2)}</span>
+                {vouchers ? (
+                  <div className="summary-price">
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">Subtotal</span>
+                      <span className="SummaryItemPrice-checkout">
+                        {((total * vouchers) / 100).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">
+                        Shipping Fee
+                      </span>
+                      <span className="SummaryItemPrice-checkout">
+                        {shipping.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">
+                        Discount Voucher
+                      </span>
+                      <span className="SummaryItemPrice-checkout">
+                        {vouchers}%
+                      </span>
+                    </div>
+                    <div className="SummaryItem-total-checkout">
+                      <b className="SummaryItemText-checkout">Total</b>
+                      <b className="SummaryItemPrice-checkout">
+                        {(
+                          total +
+                          parseInt(shipping) -
+                          (total * vouchers) / 100
+                        ).toFixed(2)}
+                      </b>
+                    </div>
                   </div>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">
-                      Shipping Fee
-                    </span>
-                    <span className="SummaryItemPrice-checkout">
-                      {shipping.toFixed(2)}
-                    </span>
+                ) : (
+                  <div className="summary-price">
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">Subtotal</span>
+                      <span className="SummaryItemPrice-checkout">
+                        {total.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">
+                        Shipping Fee
+                      </span>
+                      <span className="SummaryItemPrice-checkout">
+                        {shipping.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="SummaryItem-checkout">
+                      <span className="SummaryItemText-checkout">
+                        Discount Voucher
+                      </span>
+                      <span className="SummaryItemPrice-checkout">0%</span>
+                    </div>
+                    <div className="SummaryItem-total-checkout">
+                      <b className="SummaryItemText-checkout">Total</b>
+                      <b className="SummaryItemPrice-checkout">
+                        {(total + parseInt(shipping)).toFixed(2)}
+                      </b>
+                    </div>
                   </div>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">
-                      Discount Voucher
-                    </span>
-                    <span className="SummaryItemPrice-checkout">{vouchers}%</span>
-                  </div>
-                  <div className="SummaryItem-total-checkout">
-                    <b className="SummaryItemText-checkout">Total</b>
-                    <b className="SummaryItemPrice-checkout">
-                      {((total + parseInt(shipping) - ((total * vouchers) / 100))).toFixed(2)}
-                    </b>
-                  </div>
-                </div>) : (<div className="summary-price">
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">Subtotal</span>
-                    <span className="SummaryItemPrice-checkout">{total.toFixed(2)}</span>
-                  </div>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">
-                      Shipping Fee
-                    </span>
-                    <span className="SummaryItemPrice-checkout">
-                      {shipping.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="SummaryItem-checkout">
-                    <span className="SummaryItemText-checkout">
-                      Discount Voucher
-                    </span>
-                    <span className="SummaryItemPrice-checkout">0%</span>
-                  </div>
-                  <div className="SummaryItem-total-checkout">
-                    <b className="SummaryItemText-checkout">Total</b>
-                    <b className="SummaryItemPrice-checkout">
-                      {(total + parseInt(shipping)).toFixed(2)}
-                    </b>
-                  </div>
-                </div>)}
+                )}
                 <Link to="/checkout">
                   <button
                     className="Button-checkout-checkout"
