@@ -7,7 +7,7 @@ export const Get_TKKHs = async (req, res) => {
 	*/
 
   try {
-    const tkkhs = await TK_KH_Model.find().populate('id_ttkh');
+    const tkkhs = await TK_KH_Model.find().populate("id_ttkh");
     console.log("tkkhs", tkkhs);
     res.status(200).json(tkkhs);
   } catch (err) {
@@ -53,7 +53,8 @@ export const Login = async (req, res) => {
   try {
     const login_info = req.body;
     const tkkh = await TK_KH_Model.findOne(login_info)
-      .populate("id_ttkh").exec();
+      .populate("id_ttkh")
+      .exec();
     console.log("tkkh", tkkh);
     if (tkkh === null) {
       res.status(200).send("Tài khoản hoặc mật khẩu không đúng");

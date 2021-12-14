@@ -1,3 +1,4 @@
+import { Remove_Voucher_From_TTKH } from "../models/TKKH_Model.js";
 import {
   DON_HANG_Model,
   Set_Dia_Chi_Giao_Hang,
@@ -36,7 +37,7 @@ export const Get_Don_Hang_By_Id = async (req, res) => {
         path: "id_ttdh",
         select: "trang_thai",
       });
-    console.log("don_hang", don_hang);
+    //console.log("don_hang", don_hang);
     if (don_hang == null) {
       console.log("Not found don hang");
     }
@@ -66,8 +67,15 @@ export const Create_Don_Hang = async (req, res) => {
     const distance = await Compute_Distance_Between_Two_Location(
       new_don_hang.dia_chi_giao
     );
-    console.log(distance);
     new_don_hang = Set_Shipping_Fee(new_don_hang, distance);
+
+    // If the account uses voucher to get discount, then
+    // removing the voucher from list voucher of account
+    const id_ttkh = new_don_hang.id_ttkh;
+    const id_voucher = new_don_hang.id_voucher;
+    if (id_voucher != null) {
+      await Remove_Voucher_From_TTKH(id_ttkh, id_voucher);
+    }
 
     const don_hang = new DON_HANG_Model(new_don_hang);
     await don_hang.save();
