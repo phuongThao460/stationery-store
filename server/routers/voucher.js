@@ -1,12 +1,27 @@
-import express from 'express'
-import { Get_Vouchers, Get_Voucher_By_ID, Create_Voucher,
-		Test_Find_TKKH_Meets_The_Conditions  } from '../controller/voucher.js'
+import express from "express";
+import {
+  Get_Vouchers,
+  Get_Voucher_By_ID,
+  Create_Voucher,
+  Test_Find_TKKH_Meets_The_Conditions,
+  Get_Voucher_By_TTKH,
+} from "../controller/voucher.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', Get_Vouchers)
-router.post('/', Get_Voucher_By_ID)
-router.post('/create', Create_Voucher)
-router.post('/test', Test_Find_TKKH_Meets_The_Conditions)
+// GET: /voucher/
+router.get("/", Get_Vouchers);
 
-export default router
+// POST: /voucher/
+router.post("/", Get_Voucher_By_ID);
+
+// POST: /voucher/create
+router.post("/create", Create_Voucher);
+
+// POST: /voucher/test
+router.post("/test", Test_Find_TKKH_Meets_The_Conditions);
+
+// POST: /voucher/ttkh
+router.post("/ttkh", Get_Voucher_By_TTKH);
+
+export default router;

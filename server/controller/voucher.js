@@ -1,46 +1,51 @@
-import { VOUCHER_Model, Is_Voucher_On_Time_To_Sale,
-		Set_Tinh_Trang_Voucher, Find_TKKH_Meets_The_Conditions,
-		Set_So_Luong_Voucher, Broadcast_Voucher_To_Account } from '../models/VOUCHER_Model.js'
-
+import {
+  VOUCHER_Model,
+  Is_Voucher_On_Time_To_Sale,
+  Set_Tinh_Trang_Voucher,
+  Find_TKKH_Meets_The_Conditions,
+  Set_So_Luong_Voucher,
+  Broadcast_Voucher_To_Account,
+  Get_Vouchers_By_ID_TTKH,
+} from "../models/VOUCHER_Model.js";
 
 // ==========================================
 //              FUNCTION DEFINITIONS
 // ==========================================
 
 export const Get_Vouchers = async (req, res) => {
-	/*
+  /*
 	Fetch all vouchers in db
 	:return: Array
 	*/
 
-	try {
-		const vouchers = await VOUCHER_Model.find()
-		console.log('vouchers: ', vouchers)
-		res.status(200).json(vouchers)
-	} catch(err) {
-		res.status(500).json({ error: err })
-	}
-}
+  try {
+    const vouchers = await VOUCHER_Model.find();
+    console.log("vouchers: ", vouchers);
+    res.status(200).json(vouchers);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
 export const Get_Voucher_By_ID = async (req, res) => {
-	/*
+  /*
 	Fetch voucher by id voucher
 	:return: json, null if not found anything
 	*/
 
-	try {
-		const _id = req.body._id
-		const voucher = await VOUCHER_Model.findById(_id)
+  try {
+    const _id = req.body._id;
+    const voucher = await VOUCHER_Model.findById(_id);
 
-		console.log('voucher by id', voucher)
-		res.status(200).json(voucher)
-	} catch(err) {
-		res.status(500).json({ error: err })
-	}
-}
+    console.log("voucher by id", voucher);
+    res.status(200).json(voucher);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
 export const Create_Voucher = async (req, res) => {
-	/*
+  /*
 	Add new voucher to db
 	
 	required value to create new voucher: 
@@ -54,33 +59,33 @@ export const Create_Voucher = async (req, res) => {
 		ngay_bat_dau_ap_dung, ngay_ket_thuc_ap_dung
 	*/
 
-	try {
-		var voucher = req.body
-		voucher = new VOUCHER_Model(voucher)
+  try {
+    var voucher = req.body;
+    voucher = new VOUCHER_Model(voucher);
 
-		// Set tinh trang voucher 
-		var status = Is_Voucher_On_Time_To_Sale(voucher)
-		voucher = Set_Tinh_Trang_Voucher(voucher, status)
+    // Set tinh trang voucher
+    var status = Is_Voucher_On_Time_To_Sale(voucher);
+    voucher = Set_Tinh_Trang_Voucher(voucher, status);
 
-		// Set so luong voucher
-		var tkkh_meet_the_conds = await Find_TKKH_Meets_The_Conditions(voucher)
-		//console.log(tkkh_meet_the_conds.length)
-		voucher = Set_So_Luong_Voucher(voucher, tkkh_meet_the_conds.length)
+    // Set so luong voucher
+    var tkkh_meet_the_conds = await Find_TKKH_Meets_The_Conditions(voucher);
+    //console.log(tkkh_meet_the_conds.length)
+    voucher = Set_So_Luong_Voucher(voucher, tkkh_meet_the_conds.length);
 
-		await voucher.save()
+    await voucher.save();
 
-		// Add voucher for TKKH
-		Broadcast_Voucher_To_Account(tkkh_meet_the_conds, voucher._id)
+    // Add voucher for TKKH
+    Broadcast_Voucher_To_Account(tkkh_meet_the_conds, voucher._id);
 
-		console.log('voucher: ', voucher)
-		res.status(200).json(voucher)
-	} catch(err) {
-		res.status(500).json({ error: err })
-	}
-}
+    console.log("voucher: ", voucher);
+    res.status(200).json(voucher);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
 export const Test_Find_TKKH_Meets_The_Conditions = async (req, res) => {
-	/*
+  /*
 	Add new voucher to db
 	
 	required value to create new voucher: tong_tien_mua_hang_tich_luy_toi_thieu,
@@ -88,14 +93,33 @@ export const Test_Find_TKKH_Meets_The_Conditions = async (req, res) => {
 		ngay_bat_dau, ngay_ket_thuc, ngay_tao
 	*/
 
-	try {
-		var voucher = req.body
+  try {
+    var voucher = req.body;
 
-		var rs = await Find_TKKH_Meets_The_Conditions(voucher)
+    var rs = await Find_TKKH_Meets_The_Conditions(voucher);
 
-		console.log('voucher: ', rs)
-		res.status(200).json(rs)
-	} catch(err) {
-		res.status(500).json({ error: err })
-	}
-}
+    console.log("voucher: ", rs);
+    res.status(200).json(rs);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+export const Get_Voucher_By_TTKH = async (req, res) => {
+  /*
+	Get voucher by id ttkh
+
+	required value: req.body.id_ttkh
+	*/
+
+  try {
+    var id_ttkh = req.body.id_ttkh;
+    var vouchers = await Get_Vouchers_By_ID_TTKH(id_ttkh);
+
+    console.log(vouchers);
+    res.send(vouchers);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json(err);
+  }
+};

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import { DON_HANG_Model } from "./DON_HANG_Model.js";
-import { Add_Voucher } from "./TKKH_Model.js";
+import { Add_Voucher, TK_KH_Model } from "./TKKH_Model.js";
 
 // ==========================================
 //              MODEL DEFINITIONS
@@ -11,7 +11,7 @@ const schema = new mongoose.Schema(
   {
     ten_voucher: {
       type: String,
-      required: true
+      required: true,
     },
     tong_tien_mua_hang_tich_luy_toi_thieu: {
       type: Number,
@@ -198,6 +198,29 @@ export const Find_TKKH_Meets_The_Conditions = async (voucher) => {
     return rs;
   } catch (err) {
     console.log("err", err);
+    return err;
+  }
+};
+
+export const Get_Vouchers_By_ID_TTKH = async (id_ttkh) => {
+  /*
+  Get list voucher by id ttkh
+
+  */
+
+  try {
+    const tkkh = await TK_KH_Model.findOne({
+      id_ttkh: id_ttkh,
+    }).populate("id_voucher");
+
+    // Not found tkkh
+    if (tkkh == null) {
+      return [];
+    } else {
+      return tkkh.id_voucher;
+    }
+  } catch (err) {
+    console.log(err);
     return err;
   }
 };
