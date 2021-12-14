@@ -1,44 +1,37 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-direct-mutation-state */
 import React from "react";
 import "./styles.css";
-//import { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 import CartItem from "./CartItems";
 
 import { addToCart, removeFromCart } from "../../redux/action/cartAction";
-//import axios from "axios";
+import axios from "axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  //const [vouchers, setVouchers] = React.useState([]);
-  const [id, setId] = React.useState(0);
-  const customerInfo = JSON.parse(window.localStorage.getItem("customer-account"));
+  const [vouchers, setVouchers] = React.useState([]);
+  const customerInfo = JSON.parse(
+    window.localStorage.getItem("customer-account")
+  );
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  // const getAllVoucher = async (idCus) => {
-  //   await axios
-  //     .post("http://localhost:8000/tkkh/", { _id: idCus })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     });
-    // if (data.data !== []) {
-    //   setVouchers(data.data.id_voucher);
-    // } else {
-    //   setVouchers([]);
-    // }
-  //};
+  const getAllVoucher = async () => {
+    const data = await axios.post("http://localhost:8000/voucher/ttkh", {
+      id_ttkh: customerInfo._id,
+    });
+    console.log(data.data);
+    setVouchers(data.data);
+  };
 
-  // useEffect(() => {
-  //   if(customerInfo != null){
-  //     getAllVoucher(customerInfo._id);
-  //     console.log(customerInfo._id)
-  //   }
-    
-  // }, []);
+  useEffect(() => {
+    getAllVoucher();
+  }, []);
 
   const qtyChangeHandler = (id, count) => {
     dispatch(addToCart(id, count));
@@ -59,8 +52,7 @@ const Cart = () => {
   };
 
   const getIDVoucher = (event) => {
-    setId(event.target.value);
-    window.localStorage.setItem("id_voucher", id);
+    window.localStorage.setItem("id_voucher", event.target.value);
   };
   return (
     <div className="Container-cart">
@@ -78,10 +70,15 @@ const Cart = () => {
 
           <div className="voucher">
             <h1 className="Title-Info">Voucher</h1>
-            <select className="city" value={id} onChange={getIDVoucher}>
-              {/* {vouchers.map((item, index) => (
-                <option key={index}>{item.ten_voucher}</option>
-              ))} */}
+            <select className="city"  onChange={getIDVoucher}>
+              <option key="0" value="null">Select voucher...</option>
+              {vouchers ? (
+                vouchers.map((item, index) => (
+                  <option key={index} value={item._id}>{item.ten_voucher}</option>
+                ))
+              ) : (
+                <option>No voucher</option>
+              )}
             </select>
           </div>
         </div>

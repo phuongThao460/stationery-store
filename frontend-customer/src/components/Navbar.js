@@ -16,6 +16,11 @@ const Navbar = ({ click }) => {
   const getCartCount = () => {
     return cartItems.reduce((count, item) => Number(item.count) + count, 0);
   };
+
+  const logout = () => {
+    window.localStorage.removeItem("customer-account");
+    window.location.reload();
+  }
   return (
     <div className="container-1">
       <div className="navbar-1">
@@ -29,7 +34,15 @@ const Navbar = ({ click }) => {
           <BsSearch id="input-img" />
         </form>
         {customerInfo ? (
-          <div className="user-name">{customerInfo.ten_kh}</div>
+          <div className="user-name">{customerInfo.ten_kh}
+            <ul className="table-content">
+              <li className="list">
+                <button onClick={() => logout} style={{ color: "white" }}>
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
         ) : (
           <div
             className="user-account"

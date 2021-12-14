@@ -79,7 +79,7 @@
   display: flex;
   justify-content: space-around;
 }
-.user-account {
+.user-account, .user-name {
   position: relative;
 }
 .user-icon {
@@ -110,10 +110,10 @@
   color: white;
   padding-top: 13px;
 }
-.user-account:hover .table-content {
+.user-account:hover .table-content, .user-name:hover .table-content {
   display: block;
 }
-.user-account .table-content::before {
+.user-account .table-content::before, .user-name .table-content::before {
   position: absolute;
   pointer-events: none;
   content: "";

@@ -9,37 +9,42 @@ function Checkout() {
     window.localStorage.getItem("customer-account")
   );
   const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
+  const voucher = window.localStorage.getItem("id_voucher");
   const carts = JSON.parse(window.localStorage.getItem("cart"));
   let number = JSON.parse(window.localStorage.getItem("total"));
   var total = parseInt(number);
+  
   const [orderID, setOrderID] = useState(null);
   const [address, setAdress] = useState("");
   const [shipping, setShipping] = useState(0);
+  const [vouchers, setVouchers] = useState(0);
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
   
-  
-
-  useEffect(() => {
+  const getAddressCustomer = async() => {
     if(cusAccountInfo != null){
-      const getAddressCustomer = async () => {
-        const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+      await axios.post("http://localhost:8000/ttkh/getAddress", {
           _id: cusAccountInfo.id_phuong,
-        });
-        setAdress(data.data);
-      };
-      getAddressCustomer();
+        }).then(res => setAdress(res.data));
+        
     } else {
-      const getAddressCustomer = async () => {
-        const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+      await axios.post("http://localhost:8000/ttkh/getAddress", {
           _id: customerInfo.id_phuong,
-        });
-        setAdress(data.data);
-      };
-      getAddressCustomer();
+        }).then(res => setAdress(res.data));
+        
     }
-    
+  }
+  const getPercentVoucher = async() => {
+    await axios.post("http://localhost:8000/voucher/", {_id: voucher}).then(res => {setVouchers(res.data.phan_tram_giam); console.log(res.data.phan_tram_giam)});
+  }
+  useEffect(() => {
+    if(voucher != null){
+      getPercentVoucher();
+    }
+  },[])
+  useEffect(() => {
+    getAddressCustomer();
     if (cusAccountInfo != null) {
       const createOrder = async () => {
         try {
@@ -51,9 +56,10 @@ function Checkout() {
               id_ttkh: cusAccountInfo._id,
               id_ttdh: "61a2492120a54c9a7f3b028a",
               ghi_chu: "None",
-              tong_gia_giam_boi_voucher: 0,
+              tong_gia_giam_boi_voucher: ((total * vouchers) / 100) ,
               id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
               tong_tien: total,
+              id_voucher: voucher,
               id_phuong: cusAccountInfo.id_phuong,
               dia_chi: cusAccountInfo.dia_chi,
             }
@@ -91,7 +97,7 @@ function Checkout() {
       };
       createOrder();
     }
-  }, []);
+  }, [vouchers]);
 
   useEffect(() => {
     if (orderID != null) {
@@ -104,7 +110,6 @@ function Checkout() {
           tong_gia: element.count * element.gia_ban_hien_tai,
         });
       });
-      console.log(array);
       setDetails(array);
     }
   }, [orderID]); //nhan su thay doi cua state o useEffect tren
@@ -123,11 +128,12 @@ function Checkout() {
         url: "http://localhost:8000/ct_dh/create",
         data: item,
       }).then(() => {
+        navigate("/notificate");
         window.localStorage.removeItem("cart");
         window.localStorage.removeItem("total");
         window.localStorage.removeItem("customer");
+        window.localStorage.removeItem("id_voucher");
         window.location.reload();
-        navigate("/notificate");
       });
     });
   };
@@ -211,7 +217,32 @@ function Checkout() {
                     </div>
                   ))}
                 </div>
-                <div className="summary-price">
+                {vouchers ? (<div className="summary-price">
+                  <div className="SummaryItem-checkout">
+                    <span className="SummaryItemText-checkout">Subtotal</span>
+                    <span className="SummaryItemPrice-checkout">{((total * vouchers) / 100).toFixed(2)}</span>
+                  </div>
+                  <div className="SummaryItem-checkout">
+                    <span className="SummaryItemText-checkout">
+                      Shipping Fee
+                    </span>
+                    <span className="SummaryItemPrice-checkout">
+                      {shipping.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="SummaryItem-checkout">
+                    <span className="SummaryItemText-checkout">
+                      Discount Voucher
+                    </span>
+                    <span className="SummaryItemPrice-checkout">{vouchers}%</span>
+                  </div>
+                  <div className="SummaryItem-total-checkout">
+                    <b className="SummaryItemText-checkout">Total</b>
+                    <b className="SummaryItemPrice-checkout">
+                      {((total + parseInt(shipping) - ((total * vouchers) / 100))).toFixed(2)}
+                    </b>
+                  </div>
+                </div>) : (<div className="summary-price">
                   <div className="SummaryItem-checkout">
                     <span className="SummaryItemText-checkout">Subtotal</span>
                     <span className="SummaryItemPrice-checkout">{total.toFixed(2)}</span>
@@ -228,7 +259,7 @@ function Checkout() {
                     <span className="SummaryItemText-checkout">
                       Discount Voucher
                     </span>
-                    <span className="SummaryItemPrice-checkout">0</span>
+                    <span className="SummaryItemPrice-checkout">0%</span>
                   </div>
                   <div className="SummaryItem-total-checkout">
                     <b className="SummaryItemText-checkout">Total</b>
@@ -236,7 +267,7 @@ function Checkout() {
                       {(total + parseInt(shipping)).toFixed(2)}
                     </b>
                   </div>
-                </div>
+                </div>)}
                 <Link to="/checkout">
                   <button
                     className="Button-checkout-checkout"
