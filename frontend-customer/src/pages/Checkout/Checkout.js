@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
 import "./styles.css";
+
 function Checkout() {
   const cusAccountInfo = JSON.parse(
     window.localStorage.getItem("customer-account")
@@ -18,6 +20,7 @@ function Checkout() {
   const [address, setAdress] = useState("");
   const [shipping, setShipping] = useState(0);
   const [vouchers, setVouchers] = useState(0);
+  const [checkout, setCheckout] = useState(false);
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
@@ -61,6 +64,7 @@ function Checkout() {
       console.log("not shipping tax");
     }
   }, [shipping]);
+  
   const addCartDetails = () => {
     if (cusAccountInfo != null) {
       const createOrder = async () => {
@@ -163,6 +167,46 @@ function Checkout() {
       };
       createOrder();
     }
+  }, [vouchers];
+
+  useEffect(() => {
+    if (orderID != null) {
+      carts.forEach((element) => {
+        array.push({
+          so_luong: element.count,
+          gia_ban: element.gia_ban_hien_tai,
+          id_san_pham: element.product,
+          id_don_hang: orderID,
+          tong_gia: element.count * element.gia_ban_hien_tai,
+        });
+      });
+      setDetails(array);
+    }
+  }, [orderID]); //nhan su thay doi cua state o useEffect tren
+
+  useEffect(() => {
+    if (shipping !== 0) {
+      console.log("shipping tax: " + shipping);
+    } else {
+      console.log("not shipping tax");
+    }
+  }, [shipping]);
+
+  const addCartDetails = () => {
+    details.forEach((item) => {
+      axios({
+        method: "post",
+        url: "http://localhost:8000/ct_dh/create",
+        data: item,
+      }).then(() => {
+        navigate("/notificate");
+        window.localStorage.removeItem("cart");
+        window.localStorage.removeItem("total");
+        window.localStorage.removeItem("customer");
+        window.localStorage.removeItem("id_voucher");
+        window.location.reload();
+      });
+    });
   };
   return (
     <div className="container-checkout">
@@ -313,20 +357,18 @@ function Checkout() {
                     </div>
                   </div>
                 )}
-                <Link to="/checkout">
+                </div>
                   <button
                     className="Button-checkout-checkout"
                     onClick={addCartDetails}
                   >
                     Confirm
                   </button>
-                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
