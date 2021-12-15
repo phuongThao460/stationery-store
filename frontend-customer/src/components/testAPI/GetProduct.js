@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import productApi from "../../services/api/productAPI";
-//import ProductList from "./ProductList";
+import ProductList from './ProductList'
 function GetProduct() {
   const [productsList, setProductsList] = useState([]);
 
-  const fetchProductList = async () => {
-    const response = await productApi.getAll();
-    setProductsList(response);
-  };
   useEffect(() => {
-    fetchProductList();
-  },[]);
+    productApi.getAll().then((res) => setProductsList(res));
+  }, []);
 
   return (
     <>
-      {console.log(productsList)}
+      {productsList.map((item, index) => (
+          <ProductList products={item.ten_sp}/>
+        ))}
+      
     </>
   );
 }
