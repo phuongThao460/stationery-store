@@ -50,7 +50,7 @@ export const Get_Don_Hang_By_Id = async (req, res) => {
 
 export const Create_Don_Hang = async (req, res) => {
   /*
-	Create don hang
+	Create don hang, dont save to db
 	:return: json
 	*/
 
@@ -83,10 +83,10 @@ export const Create_Don_Hang = async (req, res) => {
       await Increase_Num_Of_Voucher_Applied(id_voucher);
     }
 
-    const don_hang = new DON_HANG_Model(new_don_hang);
-    await don_hang.save();
+    //const don_hang = new DON_HANG_Model(new_don_hang);
+    //await don_hang.save();
 
-    res.status(200).json(don_hang);
+    res.status(200).json(new_don_hang);
   } catch (err) {
     res.status(500).json({ error: err });
     console.log(err);
@@ -130,5 +130,22 @@ export const Update_Don_Hang = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
     console.log(err);
+  }
+};
+
+export const Save_Don_Hang_To_DB = async (new_don_hang) => {
+  /*
+  Save don_hang to db
+
+  :return: json
+  */
+
+  try {
+    const don_hang = new DON_HANG_Model(new_don_hang);
+    await don_hang.save();
+    res.status(200).json(don_hang);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 };
