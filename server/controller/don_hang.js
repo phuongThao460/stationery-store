@@ -133,15 +133,13 @@ export const Update_Don_Hang = async (req, res) => {
   }
 };
 
-export const Save_Don_Hang_To_DB = async (new_don_hang) => {
+export const Save_Don_Hang_To_DB = async (req, res) => {
   /*
   Save don_hang to db
-
   :return: json
   */
-
   try {
-    const don_hang = new DON_HANG_Model(new_don_hang);
+    const don_hang = new DON_HANG_Model(req.body);
     await don_hang.save();
     res.status(200).json(don_hang);
   } catch (err) {

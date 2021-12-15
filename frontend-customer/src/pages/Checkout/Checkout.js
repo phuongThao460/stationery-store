@@ -2,9 +2,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.css";
+import LayoutCheckout from "./Layout/LayoutCheckout";
 
 function Checkout() {
   const cusAccountInfo = JSON.parse(
@@ -21,6 +22,7 @@ function Checkout() {
   const [shipping, setShipping] = useState(0);
   const [vouchers, setVouchers] = useState(0);
   const [checkout, setCheckout] = useState(false);
+  const [newOrder, setNewOrder] = useState(null);
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
@@ -45,27 +47,16 @@ function Checkout() {
       .post("http://localhost:8000/voucher/", { _id: voucher })
       .then((res) => {
         setVouchers(res.data.phan_tram_giam);
-        console.log(res.data.phan_tram_giam);
       });
   };
   useEffect(() => {
+    getAddressCustomer();
     if (voucher != null) {
       getPercentVoucher();
     }
-  }, []);
+  }, [voucher]);
   useEffect(() => {
-    getAddressCustomer();
-  }, [vouchers]);
-
-  useEffect(() => {
-    if (shipping !== 0) {
-      console.log("shipping tax: " + shipping);
-    } else {
-      console.log("not shipping tax");
-    }
-  }, [shipping]);
-
-  const addCartDetails = () => {
+    console.log(vouchers);
     if (cusAccountInfo != null) {
       const createOrder = async () => {
         try {
@@ -87,30 +78,8 @@ function Checkout() {
             }
           );
           setShipping(data.data.phi_ship);
-          carts.forEach((element) => {
-            array.push({
-              so_luong: element.count,
-              gia_ban: element.gia_ban_hien_tai,
-              id_san_pham: element.product,
-              id_don_hang: data.data._id,
-              tong_gia: element.count * element.gia_ban_hien_tai,
-            });
-          });
-          //setDetails(array);
-          array.forEach((item) => {
-            axios({
-              method: "post",
-              url: "http://localhost:8000/ct_dh/create",
-              data: item,
-            }).then(() => {
-              navigate("/notificate");
-              window.localStorage.removeItem("cart");
-              window.localStorage.removeItem("total");
-              window.localStorage.removeItem("customer");
-              window.localStorage.removeItem("id_voucher");
-              window.location.reload();
-            });
-          });
+          setOrderID(data.data._id);
+          setNewOrder(data.data);
         } catch (error) {
           console.log(error);
         }
@@ -137,38 +106,15 @@ function Checkout() {
             }
           );
           setShipping(data.data.phi_ship);
-          carts.forEach((element) => {
-            array.push({
-              so_luong: element.count,
-              gia_ban: element.gia_ban_hien_tai,
-              id_san_pham: element.product,
-              id_don_hang: data.data._id,
-              tong_gia: element.count * element.gia_ban_hien_tai,
-            });
-          });
-          //setDetails(array);
-          array.forEach((item) => {
-            axios({
-              method: "post",
-              url: "http://localhost:8000/ct_dh/create",
-              data: item,
-            }).then(() => {
-              navigate("/notificate");
-              window.localStorage.removeItem("cart");
-              window.localStorage.removeItem("total");
-              window.localStorage.removeItem("customer");
-              window.localStorage.removeItem("id_voucher");
-              window.location.reload();
-            });
-          });
+          setOrderID(data.data._id);
+          setNewOrder(data.data);
         } catch (error) {
           console.log(error);
         }
       };
       createOrder();
     }
-  };
-
+  }, [vouchers]);
   useEffect(() => {
     if (orderID != null) {
       carts.forEach((element) => {
@@ -185,184 +131,72 @@ function Checkout() {
   }, [orderID]); //nhan su thay doi cua state o useEffect tren
 
   useEffect(() => {
-    if (shipping !== 0) {
-      console.log("shipping tax: " + shipping);
+    if (newOrder != null) {
+      console.log(" order: " + newOrder.id_ttkh);
+      //console.log(" order: " + JSON.parse(newOrder));
     } else {
-      console.log("not shipping tax");
+      console.log("not order");
     }
-  }, [shipping]);
+  }, [newOrder]);
+  const addCartDetails = () => {
+    axios
+      .post("http://localhost:8000/don_hang/save", {
+        ngay_dat: newOrder.ngay_dat,
+        ngay_giao: newOrder.ngay_giao,
+        id_ttkh: newOrder.id_ttkh,
+        id_ttdh: newOrder.id_ttdh,
+        ghi_chu: newOrder.ghi_chu,
+        tong_phu: newOrder.tong_phu,
+        phi_ship: newOrder.phi_ship,
+        tong_gia_giam_boi_voucher: newOrder.tong_gia_giam_boi_voucher,
+        id_phuong_thuc_thanh_toan: newOrder.id_phuong_thuc_thanh_toan,
+        tong_tien: newOrder.tong_tien,
+        id_voucher: newOrder.id_voucher,
+        id_phuong: newOrder.id_phuong,
+        dia_chi: newOrder.dia_chi,
+      })
+      .then((res) => {
+        console.log(res.data);
+        carts.forEach((element) => {
+          array.push({
+            so_luong: element.count,
+            gia_ban: element.gia_ban_hien_tai,
+            id_san_pham: element.product,
+            id_don_hang: res.data._id,
+            tong_gia: element.count * element.gia_ban_hien_tai,
+          });
+        });
+        setDetails(array);
+        array.forEach((item) => {
+          axios({
+            method: "post",
+            url: "http://localhost:8000/ct_dh/create",
+            data: item,
+          }).then(() => {
+            navigate("/notificate");
+            window.localStorage.removeItem("cart");
+            window.localStorage.removeItem("total");
+            window.localStorage.removeItem("customer");
+            window.localStorage.removeItem("id_voucher");
+            window.location.reload();
+          });
+        });
+      });
+  };
 
   return (
-    <div className="container-checkout">
-      <div className="wrapper-checkout">
-        <h1 className="Title-checkout">Checkout</h1>
-        <div className="bottom-checkout">
-          <div className="Info-checkout">
-            <div
-              className="cusInfo"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "10px",
-              }}
-            >
-              {cusAccountInfo ? (
-                <div style={{ display: "block" }}>
-                  <h1 className="Title-Info">Contact info</h1>
-                  <div className="body-info">
-                    <p>{cusAccountInfo.ten_kh}</p>
-                  </div>
-                  <div className="body-info">
-                    <p>{cusAccountInfo.sdt}</p>
-                  </div>
-                  <div className="body-info">
-                    <p>{cusAccountInfo.email}</p>
-                  </div>
-                </div>
-              ) : (
-                <div style={{ display: "block" }}>
-                  <h1 className="Title-Info">Contact info</h1>
-                  <div className="body-info">
-                    <p>{customerInfo.ten_kh}</p>
-                  </div>
-                  <div className="body-info">
-                    <p>{customerInfo.sdt}</p>
-                  </div>
-                  <div className="body-info">
-                    <p>{customerInfo.email}</p>
-                  </div>
-                </div>
-              )}
-              <div className="Payment" style={{ padding: "0px" }}>
-                <h1 className="Title-Info">Payment Method</h1>
-                <div className="body-info">
-                  <p>Payment on delivery</p>
-                </div>
-              </div>
-            </div>
-            {cusAccountInfo ? (
-              <div className="Shipping">
-                <h1 className="Title-Info">Shipping Address</h1>
-                <div className="address body-info">
-                  <p>{cusAccountInfo.dia_chi + ", " + address}</p>
-                </div>
-              </div>
-            ) : (
-              <div className="Shipping">
-                <h1 className="Title-Info">Shipping Address</h1>
-                <div className="address body-info">
-                  <p>{customerInfo.dia_chi + ", " + address}</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="right">
-            <div className="Summary-checkout" style={{ border: "0" }}>
-              <div className="summary-container-checkout">
-                <h1 className="SummaryTitle-checkout">Order Details</h1>
-                <div
-                  className="SummaryItem-checkout"
-                  style={{ display: "block" }}
-                >
-                  {carts.map((item) => (
-                    <div className="cart-item">
-                      <div style={{ paddingBottom: "20px" }}>
-                        <p className="body-title">{item.ten_sp}</p>
-                        <p className="body-title">Amount: {item.count}</p>
-                      </div>
-                      <b style={{ marginLeft: "25px" }}>
-                        ${item.gia_ban_hien_tai}
-                      </b>
-                    </div>
-                  ))}
-                </div>
-                {vouchers ? (
-                  <div className="summary-price">
-                    <div className="SummaryItem-checkout">
-                      <span className="SummaryItemText-checkout">Subtotal</span>
-                      <span className="SummaryItemPrice-checkout">
-                        {((total * vouchers) / 100).toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="SummaryItem-checkout">
-                      <span className="SummaryItemText-checkout">
-                        Shipping Fee
-                      </span>
-                      <span className="SummaryItemPrice-checkout">
-                        {shipping.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="SummaryItem-checkout">
-                      <span className="SummaryItemText-checkout">
-                        Discount Voucher
-                      </span>
-                      <span className="SummaryItemPrice-checkout">
-                        {vouchers}%
-                      </span>
-                    </div>
-                    <div className="SummaryItem-total-checkout">
-                      <b className="SummaryItemText-checkout">Total</b>
-                      <b className="SummaryItemPrice-checkout">
-                        {(
-                          total +
-                          parseInt(shipping) -
-                          (total * vouchers) / 100
-                        ).toFixed(2)}
-                      </b>
-                    </div>
-                    <Link to="/checkout">
-                      <button
-                        className="Button-checkout-checkout"
-                        onClick={addCartDetails}
-                      >
-                        Confirm
-                      </button>
-                    </Link>
-                  </div>
-                ) : (
-                  <div className="summary-price">
-                    <div className="SummaryItem-checkout">
-                      <span className="SummaryItemText-checkout">Subtotal</span>
-                      <span className="SummaryItemPrice-checkout">
-                        {total.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="SummaryItem-checkout">
-                      <span className="SummaryItemText-checkout">
-                        Shipping Fee
-                      </span>
-                      <span className="SummaryItemPrice-checkout">
-                        {shipping.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="SummaryItem-checkout">
-                      <span className="SummaryItemText-checkout">
-                        Discount Voucher
-                      </span>
-                      <span className="SummaryItemPrice-checkout">0%</span>
-                    </div>
-                    <div className="SummaryItem-total-checkout">
-                      <b className="SummaryItemText-checkout">Total</b>
-                      <b className="SummaryItemPrice-checkout">
-                        {(total + parseInt(shipping)).toFixed(2)}
-                      </b>
-                    </div>
-                    <Link to="/checkout">
-                      <button
-                        className="Button-checkout-checkout"
-                        onClick={addCartDetails}
-                      >
-                        Confirm
-                      </button>
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <LayoutCheckout
+        cusAccountInfo={cusAccountInfo}
+        customerInfo={customerInfo}
+        shipping={shipping}
+        address={address}
+        carts={carts}
+        vouchers={vouchers}
+        total={total}
+        addCartDetails={addCartDetails}
+      />
+    </>
   );
 }
 
