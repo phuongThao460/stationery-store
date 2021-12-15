@@ -63,29 +63,30 @@ export default class Account extends Component {
   };
 
   createAccount = async () => {
-    axios
-      .post("http://localhost:8000/ttkh/create", {
-        ten_kh: this.fullName.current.value,
-        sdt: this.phoneNumber.current.value,
-        dia_chi: this.streetName.current.value,
-        email: this.email.current.value,
-        diem_tich_luy: "0",
-        gioi_tinh: this.gender.current.value,
-        id_phuong: this.state.idWard,
-      })
-      .then((res) => {
-        this.setState({ cusInfo: res.data });
-        axios
-          .post("http://localhost:8000/tkkh/create", {
-            email: this.email.current.value,
-            password: this.password.current.value,
-            id_ttkh: this.state.cusInfo._id,
-          })
-          .then((res) => {
-            console.log(res.data);
-            window.localStorage.setItem("customer", JSON.stringify(res.data));
-          });
-      });
+    const ttkh_req = {
+      ten_kh: this.fullName.current.value,
+      sdt: this.phoneNumber.current.value,
+      dia_chi: this.streetName.current.value,
+      email: this.email.current.value,
+      diem_tich_luy: "0",
+      gioi_tinh: this.gender.current.value,
+      id_phuong: this.state.idWard,
+    };
+
+    const tkkh_req = {
+      email: this.email.current.value,
+      password: this.password.current.value,
+      id_ttkh: null,
+    };
+
+    const ttkh_res = await axios.post("http://localhost:8000/ttkh/create", ttkh_req);
+    tkkh_req['id_ttkh'] = await ttkh_res.data._id;
+
+    this.setState({ cusInfo: ttkh_res.data });
+
+    const tkkh_res = await axios.post("http://localhost:8000/tkkh/create", tkkh_req);
+
+    window.localStorage.setItem("customer", JSON.stringify(tkkh_res.data));
   };
   render() {
     return (
