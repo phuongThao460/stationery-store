@@ -64,7 +64,7 @@ function Checkout() {
       console.log("not shipping tax");
     }
   }, [shipping]);
-  
+
   const addCartDetails = () => {
     if (cusAccountInfo != null) {
       const createOrder = async () => {
@@ -167,7 +167,7 @@ function Checkout() {
       };
       createOrder();
     }
-  }, [vouchers];
+  };
 
   useEffect(() => {
     if (orderID != null) {
@@ -192,22 +192,6 @@ function Checkout() {
     }
   }, [shipping]);
 
-  const addCartDetails = () => {
-    details.forEach((item) => {
-      axios({
-        method: "post",
-        url: "http://localhost:8000/ct_dh/create",
-        data: item,
-      }).then(() => {
-        navigate("/notificate");
-        window.localStorage.removeItem("cart");
-        window.localStorage.removeItem("total");
-        window.localStorage.removeItem("customer");
-        window.localStorage.removeItem("id_voucher");
-        window.location.reload();
-      });
-    });
-  };
   return (
     <div className="container-checkout">
       <div className="wrapper-checkout">
@@ -326,6 +310,14 @@ function Checkout() {
                         ).toFixed(2)}
                       </b>
                     </div>
+                    <Link to="/checkout">
+                      <button
+                        className="Button-checkout-checkout"
+                        onClick={addCartDetails}
+                      >
+                        Confirm
+                      </button>
+                    </Link>
                   </div>
                 ) : (
                   <div className="summary-price">
@@ -355,20 +347,22 @@ function Checkout() {
                         {(total + parseInt(shipping)).toFixed(2)}
                       </b>
                     </div>
+                    <Link to="/checkout">
+                      <button
+                        className="Button-checkout-checkout"
+                        onClick={addCartDetails}
+                      >
+                        Confirm
+                      </button>
+                    </Link>
                   </div>
                 )}
-                </div>
-                  <button
-                    className="Button-checkout-checkout"
-                    onClick={addCartDetails}
-                  >
-                    Confirm
-                  </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 
