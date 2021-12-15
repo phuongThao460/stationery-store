@@ -14,7 +14,7 @@ export default function PayPal(props) {
                       description: "Thank you for your purchase",
                       amount: {
                         currency_code: "USD",
-                        value: props.tong_gia,
+                        value: props.val,
                       },
                     },
                   ],

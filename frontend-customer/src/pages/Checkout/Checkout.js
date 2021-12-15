@@ -21,7 +21,6 @@ function Checkout() {
   const [address, setAdress] = useState("");
   const [shipping, setShipping] = useState(0);
   const [vouchers, setVouchers] = useState(0);
-  const [checkout, setCheckout] = useState(false);
   const [newOrder, setNewOrder] = useState(null);
   let array = [];
   let navigate = useNavigate();
@@ -55,6 +54,7 @@ function Checkout() {
       getPercentVoucher();
     }
   }, [voucher]);
+
   useEffect(() => {
     console.log(vouchers);
     if (cusAccountInfo != null) {
@@ -115,6 +115,7 @@ function Checkout() {
       createOrder();
     }
   }, [vouchers]);
+
   useEffect(() => {
     if (orderID != null) {
       carts.forEach((element) => {
@@ -138,10 +139,12 @@ function Checkout() {
       console.log("not order");
     }
   }, [newOrder]);
+
+
   const addCartDetails = () => {
     axios
       .post("http://localhost:8000/don_hang/save", {
-        ngay_dat: newOrder.ngay_dat,
+        ngay_dat: new Date().toLocaleDateString(),
         ngay_giao: newOrder.ngay_giao,
         id_ttkh: newOrder.id_ttkh,
         id_ttdh: newOrder.id_ttdh,
@@ -184,6 +187,51 @@ function Checkout() {
       });
   };
 
+  const handlePaypalCallback= () => {
+    axios
+      .post("http://localhost:8000/don_hang/save", {
+        ngay_dat: newOrder.ngay_dat,
+        ngay_giao: newOrder.ngay_giao,
+        id_ttkh: newOrder.id_ttkh,
+        id_ttdh: newOrder.id_ttdh,
+        ghi_chu: newOrder.ghi_chu,
+        tong_phu: newOrder.tong_phu,
+        phi_ship: newOrder.phi_ship,
+        tong_gia_giam_boi_voucher: newOrder.tong_gia_giam_boi_voucher,
+        id_phuong_thuc_thanh_toan: "61aec7588d6b567f56418a16",
+        tong_tien: newOrder.tong_tien,
+        id_voucher: newOrder.id_voucher,
+        id_phuong: newOrder.id_phuong,
+        dia_chi: newOrder.dia_chi,
+      })
+      .then((res) => {
+        console.log(res.data);
+        carts.forEach((element) => {
+          array.push({
+            so_luong: element.count,
+            gia_ban: element.gia_ban_hien_tai,
+            id_san_pham: element.product,
+            id_don_hang: res.data._id,
+            tong_gia: element.count * element.gia_ban_hien_tai,
+          });
+        });
+        setDetails(array);
+        array.forEach((item) => {
+          axios({
+            method: "post",
+            url: "http://localhost:8000/ct_dh/create",
+            data: item,
+          }).then(() => {
+            navigate("/notificate");
+            window.localStorage.removeItem("cart");
+            window.localStorage.removeItem("total");
+            window.localStorage.removeItem("customer");
+            window.localStorage.removeItem("id_voucher");
+            window.location.reload();
+          });
+        });
+      });
+  };
   return (
     <>
       <LayoutCheckout
@@ -195,6 +243,7 @@ function Checkout() {
         vouchers={vouchers}
         total={total}
         addCartDetails={addCartDetails}
+        handlePaypalCallback={handlePaypalCallback}
       />
     </>
   );

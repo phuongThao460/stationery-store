@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+
+import PayPal from "../PayPal";
+
 function LayoutCheckout(props) {
   return (
     <div className="container-checkout">
@@ -42,12 +45,12 @@ function LayoutCheckout(props) {
                   </div>
                 </div>
               )}
-              <div className="Payment" style={{ padding: "0px" }}>
+              {/* <div className="Payment" style={{ padding: "0px" }}>
                 <h1 className="Title-Info">Payment Method</h1>
                 <div className="body-info">
                   <p>Payment on delivery</p>
                 </div>
-              </div>
+              </div> */}
             </div>
             {props.cusAccountInfo ? (
               <div className="Shipping">
@@ -126,6 +129,7 @@ function LayoutCheckout(props) {
                       >
                         Confirm
                       </button>
+                      <PayPal val={props.total} callback={this.handlePaypalCallback}/>
                     </Link>
                   </div>
                 ) : (
@@ -162,6 +166,9 @@ function LayoutCheckout(props) {
                     >
                       Confirm
                     </button>
+                    <div className="payment-with-paypal">
+                    <PayPal val={props.total} callback={props.handlePaypalCallback}/>
+                    </div>
                   </div>
                 )}
               </div>

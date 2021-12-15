@@ -1,7 +1,6 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { Component, createRef } from "react";
 import axios from "axios";
-
 import "./styles.css";
 import { Link } from "react-router-dom";
 
@@ -112,6 +111,7 @@ export default class CheckoutCustomer extends Component {
                 ></input>
                 <input
                   className="Input-type"
+                  type="number"
                   placeholder="Phone number"
                   ref={this.phoneNumber}
                 ></input>
@@ -178,7 +178,7 @@ export default class CheckoutCustomer extends Component {
                   </select>
                 </div>
               </div>
-              <div className="Payment">
+              {/* <div className="Payment">
                 <h1 className="Title-Info">Select Payment Method</h1>
                 <div className="radio">
                   <input type="radio" />{" "}
@@ -188,7 +188,7 @@ export default class CheckoutCustomer extends Component {
                   <input type="radio" checked />{" "}
                   <label className="opRadio">Payment on delivery</label>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="right">
               
