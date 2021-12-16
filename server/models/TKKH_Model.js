@@ -37,6 +37,13 @@ const schema = new mongoose.Schema(
       type: Date,
       default: new Date(),
     },
+    san_pham_cho_danh_gia: [
+      {
+        type: mongoose.Types.ObjectId,
+        default: [],
+        ref: "SAN_PHAM",
+      },
+    ],
   },
   { timestamps: false }
 );

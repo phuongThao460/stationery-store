@@ -5,6 +5,8 @@ import {
   Set_Dia_Chi_Giao_Hang,
   Compute_Distance_Between_Two_Location,
   Set_Shipping_Fee,
+  Set_Total,
+  Set_Total_Voucher_Discount,
 } from "../models/DON_HANG_Model.js";
 
 export const Get_Don_Hangs = async (req, res) => {
@@ -57,6 +59,8 @@ export const Create_Don_Hang = async (req, res) => {
   try {
     var new_don_hang = req.body;
 
+    //var don_hang = new DON_HANG_Model(new_don_hang);
+
     // Set dia_chi_giao
     new_don_hang = await Set_Dia_Chi_Giao_Hang(
       new_don_hang,
@@ -70,18 +74,11 @@ export const Create_Don_Hang = async (req, res) => {
     );
     new_don_hang = Set_Shipping_Fee(new_don_hang, distance);
 
-    // If the account uses voucher to get discount, then
-    // removing the voucher from list voucher of account
-    // and increasing num of applied in voucher
-    const id_ttkh = new_don_hang.id_ttkh;
-    const id_voucher = new_don_hang.id_voucher;
-    if (id_voucher != null) {
-      // Removing voucher from list voucher
-      await Remove_Voucher_From_TTKH(id_ttkh, id_voucher);
+    // Set tong_gia_giam_boi_voucher
+    new_don_hang = await Set_Total_Voucher_Discount(new_don_hang);
 
-      // Increasing num of applied
-      await Increase_Num_Of_Voucher_Applied(id_voucher);
-    }
+    // Set tong_tien
+    new_don_hang = Set_Total(new_don_hang);
 
     //const don_hang = new DON_HANG_Model(new_don_hang);
     //await don_hang.save();
@@ -141,6 +138,20 @@ export const Save_Don_Hang_To_DB = async (req, res) => {
   try {
     const don_hang = new DON_HANG_Model(req.body);
     await don_hang.save();
+
+    // If the account uses voucher to get discount, then
+    // removing the voucher from list voucher of account
+    // and increasing num of applied in voucher
+    const id_ttkh = don_hang.id_ttkh;
+    const id_voucher = don_hang.id_voucher;
+    if (id_voucher != null) {
+      // Removing voucher from list voucher
+      await Remove_Voucher_From_TTKH(id_ttkh, id_voucher);
+
+      // Increasing num of applied
+      await Increase_Num_Of_Voucher_Applied(id_voucher);
+    }
+
     res.status(200).json(don_hang);
   } catch (err) {
     console.log(err);
