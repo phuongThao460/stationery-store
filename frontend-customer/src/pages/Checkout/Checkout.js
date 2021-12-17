@@ -25,7 +25,7 @@ function Checkout() {
   let array = [];
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
-
+  
   const getAddressCustomer = async () => {
     if (cusAccountInfo != null) {
       await axios
@@ -80,6 +80,7 @@ function Checkout() {
           setShipping(data.data.phi_ship);
           setOrderID(data.data._id);
           setNewOrder(data.data);
+
         } catch (error) {
           console.log(error);
         }
@@ -133,7 +134,7 @@ function Checkout() {
 
   useEffect(() => {
     if (newOrder != null) {
-      console.log(" order: " + newOrder.id_ttkh);
+      console.log(" order: " + newOrder.ngay_dat);
       //console.log(" order: " + JSON.parse(newOrder));
     } else {
       console.log("not order");
@@ -144,7 +145,7 @@ function Checkout() {
   const addCartDetails = () => {
     axios
       .post("http://localhost:8000/don_hang/save", {
-        ngay_dat: new Date().toLocaleDateString(),
+        ngay_dat: newOrder.ngay_dat,
         ngay_giao: newOrder.ngay_giao,
         id_ttkh: newOrder.id_ttkh,
         id_ttdh: newOrder.id_ttdh,
@@ -153,7 +154,7 @@ function Checkout() {
         phi_ship: newOrder.phi_ship,
         tong_gia_giam_boi_voucher: newOrder.tong_gia_giam_boi_voucher,
         id_phuong_thuc_thanh_toan: newOrder.id_phuong_thuc_thanh_toan,
-        tong_tien: newOrder.tong_tien,
+        tong_tien: newOrder.tong_tien + newOrder.phi_ship,
         id_voucher: newOrder.id_voucher,
         id_phuong: newOrder.id_phuong,
         dia_chi: newOrder.dia_chi,
@@ -188,22 +189,24 @@ function Checkout() {
   };
 
   const handlePaypalCallback= () => {
+    const sendData = {
+      ngay_dat: newOrder.ngay_dat,
+      ngay_giao: newOrder.ngay_giao,
+      id_ttkh: newOrder.id_ttkh,
+      id_ttdh: newOrder.id_ttdh,
+      ghi_chu: newOrder.ghi_chu,
+      tong_phu: newOrder.tong_phu,
+      phi_ship: newOrder.phi_ship,
+      tong_gia_giam_boi_voucher: newOrder.tong_gia_giam_boi_voucher,
+      id_phuong_thuc_thanh_toan: "61a2494520a54c9a7f3b02a9",
+      tong_tien: newOrder.tong_tien + newOrder.phi_ship,
+      id_voucher: newOrder.id_voucher,
+      id_phuong: newOrder.id_phuong,
+      dia_chi: newOrder.dia_chi,
+    }
+    console.log(sendData);
     axios
-      .post("http://localhost:8000/don_hang/save", {
-        ngay_dat: newOrder.ngay_dat,
-        ngay_giao: newOrder.ngay_giao,
-        id_ttkh: newOrder.id_ttkh,
-        id_ttdh: newOrder.id_ttdh,
-        ghi_chu: newOrder.ghi_chu,
-        tong_phu: newOrder.tong_phu,
-        phi_ship: newOrder.phi_ship,
-        tong_gia_giam_boi_voucher: newOrder.tong_gia_giam_boi_voucher,
-        id_phuong_thuc_thanh_toan: "61aec7588d6b567f56418a16",
-        tong_tien: newOrder.tong_tien,
-        id_voucher: newOrder.id_voucher,
-        id_phuong: newOrder.id_phuong,
-        dia_chi: newOrder.dia_chi,
-      })
+      .post("http://localhost:8000/don_hang/save", sendData)
       .then((res) => {
         console.log(res.data);
         carts.forEach((element) => {
@@ -223,11 +226,11 @@ function Checkout() {
             data: item,
           }).then(() => {
             navigate("/notificate");
-            window.localStorage.removeItem("cart");
-            window.localStorage.removeItem("total");
-            window.localStorage.removeItem("customer");
-            window.localStorage.removeItem("id_voucher");
-            window.location.reload();
+            // window.localStorage.removeItem("cart");
+            // window.localStorage.removeItem("total");
+            // window.localStorage.removeItem("customer");
+            // window.localStorage.removeItem("id_voucher");
+            // window.location.reload();
           });
         });
       });

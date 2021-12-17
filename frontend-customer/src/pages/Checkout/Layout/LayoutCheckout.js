@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PayPal from "../PayPal";
 
 function LayoutCheckout(props) {
+  let totalPrice = props.total + props.shipping;
   return (
     <div className="container-checkout">
       <div className="wrapper-checkout">
@@ -157,7 +158,7 @@ function LayoutCheckout(props) {
                     <div className="SummaryItem-total-checkout">
                       <b className="SummaryItemText-checkout">Total</b>
                       <b className="SummaryItemPrice-checkout">
-                        {(props.total + parseInt(props.shipping)).toFixed(2)}
+                        {totalPrice.toFixed(2)}
                       </b>
                     </div>
                     <button
@@ -167,7 +168,7 @@ function LayoutCheckout(props) {
                       Confirm
                     </button>
                     <div className="payment-with-paypal">
-                    <PayPal val={props.total} callback={props.handlePaypalCallback}/>
+                    <PayPal val={totalPrice} callback={props.handlePaypalCallback}/>
                     </div>
                   </div>
                 )}
