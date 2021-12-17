@@ -1,7 +1,6 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { Component, createRef } from "react";
 import axios from "axios";
-import "./styles.css";
 import { Link } from "react-router-dom";
 
 export default class CheckoutCustomer extends Component {
@@ -101,7 +100,7 @@ export default class CheckoutCustomer extends Component {
           <div className="bottom-checkout">
             <div className="Info-checkout">
               <div className="cusInfo">
-                <h1 className="Title-Info">Contact info</h1>
+                <h2>Contact info</h2>
                 <input
                   className="Input-type"
                   placeholder="Your full name"
@@ -123,7 +122,7 @@ export default class CheckoutCustomer extends Component {
                 ></input>
               </div>
               <div className="Shipping">
-                <h1 className="Title-Info">Shipping Address</h1>
+                <h2>Shipping Address</h2>
                 <input
                   className="Input-type"
                   placeholder="Street number and name"
@@ -194,7 +193,7 @@ export default class CheckoutCustomer extends Component {
               
               <div className="Summary-checkout" style={{ border: "0" }}>
                 <div className="summary-container-checkout">
-                  <h1 className="SummaryTitle-checkout">Order Details</h1>
+                  <h2 className="SummaryTitle-checkout">Order Details</h2>
                   <div
                     className="SummaryItem-checkout"
                     style={{ display: "block" }}
@@ -205,8 +204,8 @@ export default class CheckoutCustomer extends Component {
                           <p className="body-title">{item.ten_sp}</p>
                           <p className="body-title">Amount: {item.count}</p>
                         </div>
-                        <b style={{ marginLeft: "25px" }}>
-                          ${item.don_gia_xuat}
+                        <b style={{marginLeft: "44px", fontSize: "35px"}}>
+                          ${item.gia_ban_hien_tai}
                         </b>
                       </div>
                     ))}

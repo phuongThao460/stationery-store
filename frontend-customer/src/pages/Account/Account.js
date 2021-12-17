@@ -1,7 +1,6 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React, { Component, createRef } from "react";
 import axios from "axios";
-import "./styles.css";
 import { Link } from "react-router-dom";
 
 export default class Account extends Component {
@@ -98,7 +97,7 @@ export default class Account extends Component {
         <div className="wrapper-signup">
           <form className="Info-form">
             <div>
-              <h1 className="title-form">Account Information</h1>
+              <h3 className="title-form">Account Information</h3>
             </div>
             <div className="GN">
               <div className="Gender" style={{ display: "flex" }}>
@@ -152,7 +151,7 @@ export default class Account extends Component {
           </form>
           <form className="Address-form">
             <div>
-              <h1 className="title-form">Address Information</h1>
+              <h3 className="title-form">Address Information</h3>
             </div>
             <div className="cus-address">
               <input

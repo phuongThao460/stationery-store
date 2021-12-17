@@ -25,7 +25,7 @@ class Homepage extends React.Component {
   }
   getListProduct = () => {
     axios.get("http://localhost:8000/san_pham/").then((res) => {
-      const array = []
+      const array = [];
       res.data.forEach((element) => {
         array.push({
           id: element._id,
@@ -33,7 +33,7 @@ class Homepage extends React.Component {
           price: element.gia_ban_hien_tai,
         });
       });
-      this.state.lstProduct = array.reverse()
+      this.state.lstProduct = array.reverse();
       this.setState(this);
     });
   };
@@ -145,7 +145,10 @@ class Homepage extends React.Component {
             })}
           </div>
         </div>
-        <h1 className="Home-Title">New Arrival</h1>
+        <div className="Home-Title">
+          <h1 className="title-home-body">New Arrival</h1>
+        </div>
+
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             {this.state.lstProduct.map((item, index) => (
@@ -159,7 +162,7 @@ class Homepage extends React.Component {
                     />
                   </Link>
                 </div>
-                <Link to={"/products/" + item.id}>
+                <Link to={"/products/" + item.id} style={{textDecoration: "none", color: "black", fontWeight: "400"}}>
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
                     <div className="body-price">$ {item.price}</div>
@@ -176,7 +179,9 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <h1 className="Home-Title">Special Sale 50% Off</h1>
+        <div className="Home-Title">
+          <h1 className="title-home-body">Special Sale 50% Off</h1>
+        </div>
         <div className="card-container">
           <Carousel itemsToShow={9} breakPoints={this.state.breakPoints}>
             {this.state.lstProduct.map((item, index) => (
@@ -190,7 +195,7 @@ class Homepage extends React.Component {
                     />
                   </Link>
                 </div>
-                <Link to={"/products/" + item.id}>
+                <Link to={"/products/" + item.id}  style={{textDecoration: "none", color: "black", fontWeight: "400"}}>
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
                     <div className="body-price">$ {item.price}</div>

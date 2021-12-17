@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import "./App.css";
 
+import './global.styles'
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
 import LoginForm from './pages/Account/LoginForm'

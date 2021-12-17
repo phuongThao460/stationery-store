@@ -58,9 +58,9 @@ const Product = ({ match, history }) => {
             <div style={{ display: "inline-block" }}>
               <div
                 className="infoContainer"
-                style={{ maxWidth: "610px", position: "relative" }}
+                style={{ maxWidth: "641px", position: "relative" }}
               >
-                <h1 className="Title-Product">{product.ten_sp}</h1>
+                <h2 className="Title-Product">{product.ten_sp}</h2>
                 <div className="stock">
                   {product.so_luong > 0 ? (
                     <span className="in-stock">IN STOCK</span>

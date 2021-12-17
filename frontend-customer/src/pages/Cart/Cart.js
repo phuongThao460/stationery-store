@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-direct-mutation-state */
 import React from "react";
-import "./styles.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -107,7 +106,7 @@ const Cart = () => {
           </div>
           <div className="Summary">
             <div className="summary-container">
-              <h1 className="SummaryTitle">ORDER SUMMARY</h1>
+              <h3 className="SummaryTitle">ORDER SUMMARY</h3>
               <div className="SummaryItem">
                 <span className="SummaryItemText">Subtotal</span>
                 <span className="SummaryItemPrice">{getCartCount()} items</span>

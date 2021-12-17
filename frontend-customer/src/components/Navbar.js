@@ -51,7 +51,7 @@ const Navbar = ({ click }) => {
             <BiUser className="user-icon" />
             <ul className="table-content">
               <li className="list">
-                <Link to="/login" style={{ color: "white" }}>
+                <Link to="/login" style={{ color: "white" }} className="list-link">
                   Login
                 </Link>
               </li>
@@ -59,7 +59,7 @@ const Navbar = ({ click }) => {
                 className="list"
                 style={{ marginTop: "8px", backgroundColor: "#efefef" }}
               >
-                <Link to="/Signup" style={{ color: "black" }}>
+                <Link to="/Signup" style={{ color: "black" }}  className="list-link">
                   {" "}
                   Signup
                 </Link>
