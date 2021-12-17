@@ -57,8 +57,8 @@ const SidebarMenu = (props) => {
     });
   }, []);
   return (
-    <>
-      <h1>Profile</h1>
+    <div>
+      
       <div  className="side-menu">
         <div className="user-account-info">
           <div className="img-profile"></div>
@@ -84,7 +84,7 @@ const SidebarMenu = (props) => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -34,10 +34,10 @@ const Navbar = ({ click }) => {
           <BsSearch id="input-img" />
         </form>
         {customerInfo ? (
-          <div className="user-name">{customerInfo.ten_kh}
+          <div className="user-name"><span style={{fontSize: "25px"}}>{customerInfo.ten_kh}</span>
             <ul className="table-content">
               <li className="list">
-                <button onClick={logout} style={{ color: "white", outline: "none" }}>
+                <button onClick={logout} className="btn-logout">
                   Logout
                 </button>
               </li>
@@ -45,7 +45,7 @@ const Navbar = ({ click }) => {
                 className="list"
                 style={{ marginTop: "8px", backgroundColor: "#efefef" }}
               >
-                <Link to="/Signup" style={{ color: "black" }}  className="list-link">
+                <Link to="/profile/account" style={{ color: "black" }}  className="list-link">
                   {" "}
                   Profile
                 </Link>
@@ -86,7 +86,7 @@ const Navbar = ({ click }) => {
           </Link>
         </div>
       </div>
-      <nav className="navbar">
+      <nav className="main-navbar">
         {NavbarData.map((item, index) => {
           return (
             <div key={index} className="sub-nav">

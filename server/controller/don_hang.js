@@ -98,7 +98,7 @@ export const Get_Don_Hang_By_User_Id = async (req, res) => {
 
   try {
     const id_ttkh = req.body.id_ttkh;
-    const don_hangs = await DON_HANG_Model.find({ id_ttkh: id_ttkh }).exec();
+    const don_hangs = await DON_HANG_Model.find({ id_ttkh: id_ttkh }).populate({path: "id_ttdh", select: "trang_thai"}).exec();
     console.log("don_hangs", don_hangs);
     if (don_hangs.length == 0) {
       console.log("Not found don hang");

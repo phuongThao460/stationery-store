@@ -39,7 +39,8 @@
 .user-name {
   text-align: center;
   width: 200px;
-  margin-top: 20px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 .user-account,
 .cart {
@@ -75,7 +76,7 @@
   position: absolute;
   margin-top: -4.5px;
 }
-.navbar {
+.main-navbar {
   text-align: center;
   height: 50px;
   background-color: rgb(250, 235, 215);
@@ -108,7 +109,7 @@
 }
 .table-content li {
   background-color: #ff975c;
-  height: 27px;
+  height: 39px;
   border-radius: 5px;
   text-align: center;
   color: white;
@@ -140,4 +141,18 @@
   margin-top: -15px;
   width: 100%;
   text-decoration: none;
+}
+.btn-logout {
+  color: white;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  font-size: 30px;
+    margin-top: -15px;
+}
+.user-name .table-content{
+  right: -19px;
+}
+.list{
+  padding: 0;
 }

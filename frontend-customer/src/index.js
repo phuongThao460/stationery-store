@@ -4,14 +4,12 @@ import './index.css';
 import App from './App';
 import { Provider } from "react-redux"
 import store from "./redux/store"
-import Profile from './pages/Profile/Profile';
-//import ListItem from './components/ListItem';
 
 
 ReactDOM.render(
   <Provider store = {store}>
     <React.StrictMode>
-      <Profile />
+      <App />
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')

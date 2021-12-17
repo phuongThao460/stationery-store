@@ -1,6 +1,32 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function EditAccount() {
+  const cusAccountInfo = JSON.parse(
+    window.localStorage.getItem("customer-account")
+  );
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    setName(cusAccountInfo.ten_kh);
+    setEmail(cusAccountInfo.email);
+    setPhone(cusAccountInfo.sdt);
+  },[])
+  const changeName = (e) => {
+    setName(e.target.value)
+  }
+  const changeEmail = (e) => {
+    setEmail(e.target.value)
+  }
+  const changePhone = (e) => {
+    setPhone(e.target.value)
+  }
+  const updateProfile = () => {
+    axios.post("http://localhost:8000/ttkh/")
+  }
   return (
     <>
       <div className="main-right">
@@ -9,26 +35,26 @@ function EditAccount() {
           <table>
             <tr className="name">
               <td className="td-label">Full name</td>
-              <td>
-                <input className="text-field" type="text" />
+              <td className="td-input">
+                <input className="text-field" type="text" value={name} onChange={changeName}/>
               </td>
             </tr>
 
             <tr className="email">
               <td className="td-label">Email</td>
-              <td>
-                <input className="text-field" type="email" />
+              <td className="td-label">
+                <input className="text-field" type="email" value={email} onChange={changeEmail}/>
               </td>
             </tr>
             <tr className="phone">
               <td className="td-label">Phone number</td>
-              <td>
-                <input className="text-field" type="number" />
+              <td className="td-label">
+                <input className="text-field" type="number" value={phone} onChange={changePhone}/>
               </td>
             </tr>
           </table>
-          <div className="btn">
-            <button className="btn-edit">Save</button>
+          <div className="btn-container">
+            <button className="btn-edit" onClick={updateProfile}>Save</button>
           </div>
         </form>
       </div>
