@@ -1,18 +1,27 @@
-import express from 'express'
-import { Get_TTKHs, Get_TTKH_By_ID, create_TTKH, Get_address } from '../controller/tt_kh.js'
+import express from "express";
+import {
+  Get_TTKHs,
+  Get_TTKH_By_ID,
+  create_TTKH,
+  Get_address,
+  Update_TTKH,
+} from "../controller/tt_kh.js";
 
-const router = express.Router()
+const router = express.Router();
 
 // GET: /ttkh/
-router.get('/', Get_TTKHs)
+router.get("/", Get_TTKHs);
 
 // POST: /ttkh/
-router.post('/', Get_TTKH_By_ID)
+router.post("/", Get_TTKH_By_ID);
 
 // POST: /ttkh/getAddress
-router.post('/getAddress', Get_address)
+router.post("/getAddress", Get_address);
 
 // POST: /ttkh/create
-router.post('/create', create_TTKH)
+router.post("/create", create_TTKH);
 
-export default router
+// POST: /ttkh/update
+router.post("/update", Update_TTKH);
+
+export default router;

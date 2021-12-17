@@ -96,7 +96,7 @@ export const Update_CTDH = async (req, res) => {
       update_ctdh,
       { new: true }
     );
-    console.log(ctdh);
+    //console.log(ctdh);
     res.status(200).json(ctdh);
   } catch (err) {
     res.status(500).json({ error: err });
