@@ -39,8 +39,8 @@ function App() {
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/notificate" element={<NotificateOrder />} />
+          <Route path="profile/*" element={<Profile/>}/>
         </Routes>
-        <Profile/>
       </BrowserRouter>
     </>
   );

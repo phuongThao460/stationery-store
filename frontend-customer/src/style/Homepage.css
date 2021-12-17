@@ -163,6 +163,8 @@
   margin-right: auto;
   margin-left: auto;
   margin-top: 7px;
+  flex: none;
+  padding: 0;
 }
 .body-title {
   font-weight: 300;

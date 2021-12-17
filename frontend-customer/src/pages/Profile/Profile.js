@@ -21,12 +21,12 @@ function Profile() {
           }}
         />
         <Routes>
-          <Route path="/profile/account" element={<EditAccount />} />
-          <Route path="/profile/address" element={<EditAddress />} />
-          <Route path="/profile/order" element={<OrderView />} />
-          <Route path="/profile/feedback" element={<Feedback />} />
-          <Route path="/profile/favorites" element={<Favorites />} />
-          <Route path="/profile/vouchers" element={<Vouchers />} />
+          <Route path="/account" element={<EditAccount />} />
+          <Route path="/address" element={<EditAddress />} />
+          <Route path="/order" element={<OrderView />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/vouchers" element={<Vouchers />} />
         </Routes>
       </div>
     </>
