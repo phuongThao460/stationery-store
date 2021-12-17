@@ -4,11 +4,49 @@ h1{
 }
 main{
   width: 1154px;
-  background-color: burlywood;
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
 }
 .sidebar{
-  
+  width: 216px;
+  background-color: white;
+  display: inline-block;
+}
+.sidebar-title{
+  margin-top: 10px;
+}
+.sidebar-title li{
+  list-style: none;
+  font-size: 30px;
+  padding-left: 10px;
+  border-radius: 2px;
+}
+.user-account-info{
+  display: flex;
+}
+.img-profile{
+  width: 30%;
+  height: 50px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+.profile-title{
+  width: 100%;
+  padding-left: 5px;
+}
+.in{
+  font-size: 20px;
+}
+.name-cus{
+  font-size: 25px;
+}
+.main-right{
+  margin-left: auto;
+  width: 908px;
+  background-color: #cecece;
+}
+.main-right-title{
+  padding-left: 20px;
 }

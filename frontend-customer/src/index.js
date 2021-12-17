@@ -11,7 +11,7 @@ import Profile from './pages/Profile/Profile';
 ReactDOM.render(
   <Provider store = {store}>
     <React.StrictMode>
-      <App />
+      <Profile />
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const MenuItem = (props) => {
-  const { name, subMenus, icon, onClick, to, exact } = props;
+  const { name, subMenus, icon, to, exact } = props;
   const [expand, setExpand] = useState(false);
   return (
     <li onClick={props.onClick}>

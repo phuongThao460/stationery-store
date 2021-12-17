@@ -42,9 +42,6 @@ function Profile() {
             <li>Vouchers</li>
           </ul>
         </div>
-        <div className="main-right">
-          <h2 className="main-right-title">My Account</h2>
-        </div>
       </main>
     </>
   );

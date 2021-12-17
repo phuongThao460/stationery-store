@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-
 import './global.styles'
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
@@ -13,7 +12,6 @@ import ListItem from "./components/ListItem";
 import Checkout from "./pages/Checkout/Checkout";
 import NotificateOrder from "./pages/NotificateOrder";
 import Account from "./pages/Account/Account";
-//import data from './data'
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
