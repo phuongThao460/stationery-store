@@ -5,6 +5,7 @@ import haversine from "haversine-distance";
 import { PHUONG_Model } from "./PHUONG_Model.js";
 import { QUAN_Model } from "./QUAN_Model.js";
 import { THANH_PHO_Model } from "./THANH_PHO_Model.js";
+import { Get_Vouchers_By_ID_TTKH, VOUCHER_Model } from "./VOUCHER_Model.js";
 
 // ==============================================
 // 				CONSTANT DEFINITIONS
@@ -107,6 +108,7 @@ const Get_Number_And_Street_Name_From_Address = (address) => {
 
   var number = "";
   var street = "";
+
   address = address.split(" ");
 
   let contain_digit_reg = new RegExp("^\\d+");
@@ -232,6 +234,42 @@ export const Set_Shipping_Fee = (don_hang, distance) => {
   var shipping_fee = Compute_Shipping_Fee(distance);
 
   don_hang.phi_ship = shipping_fee;
+
+  return don_hang;
+};
+
+export const Set_Total = (don_hang) => {
+  /*
+  Set total for don_hang
+
+  :return: json
+  */
+
+  var shipping_fee = don_hang.phi_ship;
+  var subtotal = don_hang.tong_phu;
+  var voucher_discount = don_hang.tong_gia_giam_boi_voucher;
+
+  var total = subtotal - voucher_discount + shipping_fee;
+  don_hang.tong_tien = total;
+
+  return don_hang;
+};
+
+export const Set_Total_Voucher_Discount = async (don_hang) => {
+  /*
+  Set total voucher discount for don_hang
+
+  :return: json
+  */
+
+  if (don_hang.id_voucher != null) {
+    var voucher = await VOUCHER_Model.findById(don_hang.id_voucher);
+    var discount = voucher.phan_tram_giam / 100;
+    var subtotal = don_hang.tong_phu;
+
+    var total_discount_by_voucher = subtotal * discount;
+    don_hang.tong_gia_giam_boi_voucher = total_discount_by_voucher;
+  }
 
   return don_hang;
 };

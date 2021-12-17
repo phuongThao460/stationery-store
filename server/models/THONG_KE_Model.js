@@ -179,7 +179,7 @@ export const Find_San_Pham_By_ID_Don_Hangs = async (id_don_hangs) => {
             id_san_pham: "$san_pham._id",
             gia_ban: "$gia_ban",
             gia_nhap: "$san_pham.don_gia_nhap",
-            mau_sac: "$mau_sac",
+            //mau_sac: "$mau_sac",
           },
           tong_so_luong_da_ban: { $sum: "$so_luong" },
           tong_tien: { $sum: "$tong_gia" },
