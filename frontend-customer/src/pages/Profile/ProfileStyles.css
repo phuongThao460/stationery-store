@@ -2,29 +2,29 @@ h1{
   font-size: 80px;
   font-weight: bold;
 }
-main{
-  width: 1154px;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
-.sidebar{
-  width: 216px;
+.side-menu{
+  width: 303px;
+  margin-left: 75px;
+  position: fixed;
   background-color: white;
+  border-right: 1px solid #ccc;
   display: inline-block;
+  
 }
-.sidebar-title{
+.side-menu{
   margin-top: 10px;
+  padding-right: 20px;
 }
-.sidebar-title li{
+li{
   list-style: none;
-  font-size: 30px;
   padding-left: 10px;
   border-radius: 2px;
+  padding-top: 7px;
 }
+
 .user-account-info{
   display: flex;
+  padding-left: 11px;
 }
 .img-profile{
   width: 30%;
@@ -44,8 +44,8 @@ main{
 }
 .main-right{
   margin-left: auto;
+  margin-right: 49px;
   width: 908px;
-  background-color: #cecece;
 }
 .main-right-title{
   padding-left: 20px;

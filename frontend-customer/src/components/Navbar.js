@@ -37,9 +37,18 @@ const Navbar = ({ click }) => {
           <div className="user-name">{customerInfo.ten_kh}
             <ul className="table-content">
               <li className="list">
-                <button onClick={logout} style={{ color: "white" }}>
+                <button onClick={logout} style={{ color: "white", outline: "none" }}>
                   Logout
                 </button>
+              </li>
+              <li
+                className="list"
+                style={{ marginTop: "8px", backgroundColor: "#efefef" }}
+              >
+                <Link to="/Signup" style={{ color: "black" }}  className="list-link">
+                  {" "}
+                  Profile
+                </Link>
               </li>
             </ul>
           </div>

@@ -1,51 +1,33 @@
-import React from "react";
-import { AiOutlineBarChart } from "react-icons/ai";
-import { BsFillPersonLinesFill } from "react-icons/bs";
-import { RiDashboardFill, RiContactsFill, RiListUnordered } from "react-icons/ri";
-import { IoTicketOutline } from "react-icons/io5";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
+import '../../style/SidebarMenu.css'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import SidebarMenu from "../../components/SidebarMenu";
+import EditAccount from "./MainProfile/EditAccount";
+import EditAddress from "./MainProfile/EditAddress";
+import OrderView from "./MainProfile/OrderView";
+import Feedback from "./MainProfile/Feedback";
+import Favorites from "./MainProfile/Favorites";
+import Vouchers from "./MainProfile/Vouchers";
 function Profile() {
-  const menuItems = [
-    {
-      name: "My account",
-      to: "/",
-      icon: <RiDashboardFill />,
-    },
-    {
-      name: "My address",
-      to: "/customer",
-      exact: "true",
-      icon: <BsFillPersonLinesFill />,
-    },
-    { name: "Order management", to: "/order", icon: <RiListUnordered /> },
-    { name: "Review of purchased product", to: "/statistics", icon: <AiOutlineBarChart /> },
-    { name: "Favorites", to: "/contact", icon: <RiContactsFill /> },
-    { name: "Vouchers", to: "/voucher", icon: <IoTicketOutline /> },
-  ];
+  const [inactive, setInactive] = useState(false);
   return (
     <>
-      <h1>Profile</h1>
-      <main>
-        <div className="sidebar">
-          <div className="user-account-info">
-            <div className="img-profile"></div>
-            <div className="profile-title">
-              <p className="in">Account of</p>
-              <b className="name-cus">Nguyen Hoang Kha</b>
-            </div>
-          </div>
-          <ul className="sidebar-title">
-            <li style={{backgroundColor: "#ccc"}}>My account</li>
-            <li>My address</li>
-            <li>Order management</li>
-            <li>Review of purchased product</li>
-            <li>Favorites</li>
-            <li>Vouchers</li>
-          </ul>
-        </div>
-        <div className="main-right">
-          <h2 className="main-right-title">My Account</h2>
-        </div>
-      </main>
+      <BrowserRouter>
+        <SidebarMenu
+          onCollapse={(inactive) => {
+            setInactive(inactive);
+          }}
+        />
+        <Routes>
+          <Route path="/profile/account" element={<EditAccount/>}/>
+          <Route path="/profile/address" element={<EditAddress/>}/>
+          <Route path="/profile/order" element={<OrderView/>}/>
+          <Route path="/profile/feedback" element={<Feedback/>}/>
+          <Route path="/profile/favorites" element={<Favorites/>}/>
+          <Route path="/profile/vouchers" element={<Vouchers/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

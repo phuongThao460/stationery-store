@@ -9,7 +9,8 @@ const MenuItems = (props) => {
       <NavLink
         onClick={() => setExpand(!expand)}
         to={to}
-        className={`menu-item`}
+        className={"menu-item"}
+        exact
       >
         <div className="menu-icon">{icon}</div>
         <span>{name}</span>

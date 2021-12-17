@@ -1,21 +1,23 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import './global.styles'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
 import LoginForm from './pages/Account/LoginForm'
 import Product from "./components/Product";
 import Cart from "./pages/Cart/Cart.js";
 import CheckoutCustomer from "./pages/Checkout/CheckoutCustomer";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ListItem from "./components/ListItem";
 import Checkout from "./pages/Checkout/Checkout";
 import NotificateOrder from "./pages/NotificateOrder";
 import Account from "./pages/Account/Account";
+import Profile from "./pages/Profile/Profile";
+
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
-
   return (
     <>
       <BrowserRouter>
@@ -30,6 +32,7 @@ function App() {
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer/>}/>
           <Route path="/checkout" element={<Checkout/>} />
           <Route path="/notificate" element={<NotificateOrder/>} />
+          <Route path="/profile/account" element={<Profile/>}/>
         </Routes>
       </BrowserRouter>
     </>

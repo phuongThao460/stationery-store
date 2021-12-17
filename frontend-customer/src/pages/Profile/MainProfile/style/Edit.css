@@ -1,0 +1,42 @@
+.btn{
+  margin: 10px;
+}
+.btn-edit{
+  outline: none;
+  border: 0;
+  margin-right: 11px;
+  border-radius: 5px;
+  padding: 4px 14px;
+  background-color: green;
+  color: #fff;
+  font-size: 20px;
+}
+.td-label{
+  font-size: 30px;
+  text-align: end;
+  color: #000;
+  font-weight: 300;
+  padding-right: 20px;
+}
+.name input[type=text], .phone input[type=number], .email input[type=email] {
+  font-size: 13px;
+  border: 1px solid #D8D3D0;
+  border-radius: 2px 2px 2px 2px;
+  margin: 0;
+  color: #858585;
+  height: 20px;
+  padding: 10px;
+  width: 280px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+input[type=number]:focus, input[type=text]:focus, input[type=email]:focus{
+  outline: 1px solid #ccc;
+}
