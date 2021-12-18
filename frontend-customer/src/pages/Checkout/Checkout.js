@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import LayoutCheckout from "./Layout/LayoutCheckout";
+import { resetCart } from "../../redux/action/cartAction";
 
 function Checkout() {
   const cusAccountInfo = JSON.parse(
@@ -21,8 +23,10 @@ function Checkout() {
   const [vouchers, setVouchers] = useState(0);
   const [newOrder, setNewOrder] = useState(null);
   let array = [];
+  let newOrder2 = null;
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
+  const dispatch = useDispatch();
   
   const getAddressCustomer = async () => {
     if (cusAccountInfo != null) {
@@ -78,35 +82,8 @@ function Checkout() {
           setShipping(data.data.phi_ship);
           setOrderID(data.data._id);
           setNewOrder(data.data);
+          newOrder2 = data.data
 
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      createOrder();
-    }
-    if (customerInfo != null) {
-      const createOrder = async () => {
-        try {
-          const data = await axios.post(
-            "http://localhost:8000/don_hang/create_don_hang",
-            {
-              ngay_dat: new Date().toLocaleDateString(),
-              ngay_giao: new Date().toLocaleDateString(),
-              id_ttkh: customerInfo._id,
-              id_ttdh: "61a2492120a54c9a7f3b028a",
-              ghi_chu: "None",
-              tong_phu: total,
-              tong_gia_giam_boi_voucher: 0,
-              id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
-              tong_tien: total,
-              id_phuong: customerInfo.id_phuong,
-              dia_chi: customerInfo.dia_chi,
-            }
-          );
-          setShipping(data.data.phi_ship);
-          setOrderID(data.data._id);
-          setNewOrder(data.data);
         } catch (error) {
           console.log(error);
         }
@@ -175,12 +152,8 @@ function Checkout() {
             url: "http://localhost:8000/ct_dh/create",
             data: item,
           }).then(() => {
+            dispatch(resetCart());
             navigate("/notificate");
-            window.localStorage.removeItem("cart");
-            window.localStorage.removeItem("total");
-            window.localStorage.removeItem("customer");
-            window.localStorage.removeItem("id_voucher");
-            window.location.reload();
           });
         });
       });
@@ -188,19 +161,19 @@ function Checkout() {
 
   const handlePaypalCallback= () => {
     const sendData = {
-      ngay_dat: newOrder.ngay_dat,
-      ngay_giao: newOrder.ngay_giao,
-      id_ttkh: newOrder.id_ttkh,
-      id_ttdh: newOrder.id_ttdh,
-      ghi_chu: newOrder.ghi_chu,
-      tong_phu: newOrder.tong_phu,
-      phi_ship: newOrder.phi_ship,
-      tong_gia_giam_boi_voucher: newOrder.tong_gia_giam_boi_voucher,
+      ngay_dat: newOrder2.ngay_dat,
+      ngay_giao: newOrder2.ngay_giao,
+      id_ttkh: newOrder2.id_ttkh,
+      id_ttdh: newOrder2.id_ttdh,
+      ghi_chu: newOrder2.ghi_chu,
+      tong_phu: newOrder2.tong_phu,
+      phi_ship: newOrder2.phi_ship,
+      tong_gia_giam_boi_voucher: newOrder2.tong_gia_giam_boi_voucher,
       id_phuong_thuc_thanh_toan: "61a2494520a54c9a7f3b02a9",
-      tong_tien: newOrder.tong_tien + newOrder.phi_ship,
-      id_voucher: newOrder.id_voucher,
-      id_phuong: newOrder.id_phuong,
-      dia_chi: newOrder.dia_chi,
+      tong_tien: newOrder2.tong_tien + newOrder2.phi_ship,
+      id_voucher: newOrder2.id_voucher,
+      id_phuong: newOrder2.id_phuong,
+      dia_chi: newOrder2.dia_chi,
     }
     console.log(sendData);
     axios
@@ -223,12 +196,8 @@ function Checkout() {
             url: "http://localhost:8000/ct_dh/create",
             data: item,
           }).then(() => {
+            dispatch(resetCart());
             navigate("/notificate");
-            // window.localStorage.removeItem("cart");
-            // window.localStorage.removeItem("total");
-            // window.localStorage.removeItem("customer");
-            // window.localStorage.removeItem("id_voucher");
-            // window.location.reload();
           });
         });
       });

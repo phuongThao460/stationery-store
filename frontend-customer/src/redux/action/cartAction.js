@@ -28,3 +28,13 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 
   localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
 };
+
+export const resetCart = () => (dispatch) => {
+  dispatch({
+    type: actionTypes.CART_RESET,
+  });
+
+  localStorage.removeItem("cart");
+  localStorage.removeItem("total");
+  localStorage.removeItem("id_voucher");
+};
