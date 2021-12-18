@@ -52,7 +52,7 @@ const Product = ({ match, history }) => {
               <img
                 alt=""
                 className="Image"
-                src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
+                src={process.env.PUBLIC_URL + "/so-tay-bia-da-cao-cap.jpg"}
               />
             </div>
             <div style={{ display: "inline-block" }}>
