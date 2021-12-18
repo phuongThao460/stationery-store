@@ -62,7 +62,7 @@ function EditAccount() {
 
             <tr className="email">
               <td className="td-label">Email</td>
-              <td className="td-label">
+              <td className="td-input">
                 <input
                   className="text-field"
                   type="email"
@@ -73,7 +73,7 @@ function EditAccount() {
             </tr>
             <tr className="phone">
               <td className="td-label">Phone number</td>
-              <td className="td-label">
+              <td className="td-input">
                 <input
                   className="text-field"
                   type="number"

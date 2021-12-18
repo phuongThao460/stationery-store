@@ -4,8 +4,7 @@ import "../style/Navbar.css";
 import { BsSearch, BsHandbag } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Navbar = ({ click }) => {
@@ -14,13 +13,14 @@ const Navbar = ({ click }) => {
     window.localStorage.getItem("customer-account")
   );
   const { cartItems } = cart;
-
+  let navigate = useNavigate();
   const getCartCount = () => {
     return cartItems.reduce((count, item) => Number(item.count) + count, 0);
   };
 
   const logout = () => {
     window.localStorage.removeItem("customer-account");
+    navigate("/");
     window.location.reload();
   };
   return (

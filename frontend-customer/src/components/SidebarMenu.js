@@ -61,10 +61,14 @@ const SidebarMenu = (props) => {
   }, []);
   return (
     <div>
-      
-      <div  className="side-menu">
+      <div className="side-menu">
         <div className="user-account-info">
-          <div className="img-profile"></div>
+          <div className="img-profile">
+            <img
+              src="./images/banner-1.jpg"
+              alt="sale-off"
+            />
+          </div>
           <div className="profile-title">
             <p className="in">Account of</p>
             <b className="name-cus">{cusAccountInfo.ten_kh}</b>
