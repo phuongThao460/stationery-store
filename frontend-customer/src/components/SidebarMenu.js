@@ -9,7 +9,6 @@ import {
 } from "react-icons/ri";
 import { IoTicketOutline } from "react-icons/io5";
 import MenuItems from "./MenuItems";
-
 const SidebarMenu = (props) => {
   const cusAccountInfo = JSON.parse(
     window.localStorage.getItem("customer-account")
@@ -65,8 +64,9 @@ const SidebarMenu = (props) => {
         <div className="user-account-info">
           <div className="img-profile">
             <img
-              src="./images/banner-1.jpg"
-              alt="sale-off"
+              src={process.env.PUBLIC_URL + "/account.jpg"}
+              alt="account"
+              className="account-pic"
             />
           </div>
           <div className="profile-title">
