@@ -53,6 +53,21 @@ export const Find_CTDH_By_ID_TTKH = async (id_ttkh) => {
 	*/
 
   try {
+    var san_pham_field_not_show = {
+      "san_pham.so_luong": 0,
+      "san_pham.ngay_nhap": 0,
+      "san_pham.mo_ta": 0,
+      "san_pham.don_gia_nhap": 0,
+      "san_pham.gia_ban_goc": 0,
+      "san_pham.gia_ban_hien_tai": 0,
+      "san_pham.id_loai_sp": 0,
+      "san_pham.id_nha_cc": 0,
+      "san_pham.id_chat_lieu": 0,
+      "san_pham.ti_le_danh_gia": 0,
+      "san_pham.id_pham_loai": 0,
+      "san_pham.mau_sac": 0,
+    };
+
     var rs = await DON_HANG_Model.aggregate([
       // Stage 1: Find don_hang by id_ttkh
       { $match: { id_ttkh: mongoose.Types.ObjectId(id_ttkh) } },
@@ -64,6 +79,23 @@ export const Find_CTDH_By_ID_TTKH = async (id_ttkh) => {
           localField: "_id",
           foreignField: "id_don_hang",
           as: "ct_dh",
+        },
+      },
+
+      // Stage 3: Lookup at SANPHAM to find ten_san_pham
+      {
+        $lookup: {
+          from: "san_phams",
+          localField: "ct_dh.id_san_pham",
+          foreignField: "_id",
+          as: "san_pham",
+        },
+      },
+
+      // Stage 4:
+      {
+        $project: {
+          ...san_pham_field_not_show,
         },
       },
     ]).exec();
