@@ -98,6 +98,14 @@ export const Find_CTDH_By_ID_TTKH = async (id_ttkh) => {
           ...san_pham_field_not_show,
         },
       },
+      {
+        $lookup: {
+          from: "trang_thai_dhs",
+          localField: "id_ttdh",
+          foreignField: "_id",
+          as: "ttdh"
+        }
+      }
     ]).exec();
 
     return rs;

@@ -140,7 +140,7 @@ function Checkout() {
   useEffect(() => {
     if (newOrder != null) {
       console.log(" order: " + newOrder.ngay_dat);
-      window.localStorage.setItem("total-1", (total + newOrder.phi_ship + newOrder.tong_gia_giam_boi_voucher))
+      window.localStorage.setItem("total-1", (total + newOrder.phi_ship - newOrder.tong_gia_giam_boi_voucher))
     } else {
       console.log("not order");
     }

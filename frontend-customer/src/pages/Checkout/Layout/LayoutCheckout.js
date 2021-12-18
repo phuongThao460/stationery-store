@@ -131,7 +131,7 @@ function LayoutCheckout(props) {
                       >
                         Confirm
                       </button>
-                      <PayPal val={total_1.toFixed(2)} callback={props.handlePaypalCallback}/>
+                      <PayPal val={total_1} callback={props.handlePaypalCallback}/>
                     </Link>
                   </div>
                 ) : (
