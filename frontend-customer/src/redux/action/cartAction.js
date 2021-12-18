@@ -36,5 +36,6 @@ export const resetCart = () => (dispatch) => {
 
   localStorage.removeItem("cart");
   localStorage.removeItem("total");
+  localStorage.removeItem("total-1");
   localStorage.removeItem("id_voucher");
 };

@@ -21,7 +21,8 @@
 
 .Input-type {
   width: 100%;
-  padding: 12px 20px;
+  font-size: 30px;
+  padding-left: 10px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -30,7 +31,7 @@
 }
 .city {
   width: 100%;
-  padding: 12px 20px;
+  font-size: 25px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -40,10 +41,10 @@
 
 .District {
   width: 49%;
-  padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  font-size: 25px;
+  border: 1px solid #d8d3d0;
   border-radius: 4px;
   box-sizing: border-box;
   margin-right: 10px;
@@ -51,10 +52,9 @@
 
 .Ward {
   width: 49%;
-  padding: 12px 20px;
   margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
+  font-size: 25px;
+  border: 1px solid #d8d3d0;
   border-radius: 4px;
   box-sizing: border-box;
   align-items: right;
@@ -119,7 +119,7 @@
 
 .summary-container-checkout {
   position: absolute;
-  width: 90%;
+  width: 100%;
   height: 100%;
   padding: 0px 20px;
 }
@@ -133,7 +133,7 @@
 
 .Button-checkout-checkout {
   width: 100%;
-  padding: 15px;
+  padding: 5px;
   margin-bottom: 14px;
   background-color: black;
   color: white;
@@ -142,6 +142,7 @@
   border: 0;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.5);
+  font-size: 30px;
 }
 .Shipping,
 .Payment {
@@ -153,20 +154,20 @@
   width: 374px;
   padding-left: 0 !important;
 }
-.cart-item{
+.cart-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.summary-price{
+.summary-price {
   width: 429px;
 }
-.cart-item:last-child{
+.cart-item:last-child {
   border-bottom: 1px solid #ccc;
 }
-.body-info p{
+.body-info p {
   font-size: 30px;
 }
-.address{
+.address {
   width: 323px;
 }

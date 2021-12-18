@@ -53,7 +53,21 @@ export const Login = async (req, res) => {
   try {
     const login_info = req.body;
     const tkkh = await TK_KH_Model.findOne(login_info)
-      .populate("id_ttkh")
+      .populate({
+        path: "id_ttkh",
+        populate: {
+          path: "id_phuong",
+          select: "phuong_xa",
+          populate: {
+            path: "id_quan",
+            select: "quan_huyen",
+            populate: {
+              path: "id_thanh_pho",
+              select: "ten_thanh_pho",
+            },
+          },
+        },
+      })
       .exec();
     console.log("tkkh", tkkh);
     if (tkkh === null) {

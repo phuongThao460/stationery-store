@@ -5,6 +5,7 @@ import PayPal from "../PayPal";
 
 function LayoutCheckout(props) {
   let totalPrice = props.total + props.shipping;
+  const total_1 = JSON.parse(window.localStorage.getItem("total-1"));
   return (
     <div className="container-checkout">
       <div className="wrapper-checkout">
@@ -84,7 +85,7 @@ function LayoutCheckout(props) {
                         <p className="body-title">Amount: {item.count}</p>
                       </div>
                       <b style={{ marginLeft: "25px" }}>
-                        ${item.gia_ban_hien_tai}
+                        {item.gia_ban_hien_tai}
                       </b>
                     </div>
                   ))}
@@ -116,7 +117,7 @@ function LayoutCheckout(props) {
                     <div className="SummaryItem-total-checkout">
                       <b className="SummaryItemText-checkout">Total</b>
                       <b className="SummaryItemPrice-checkout">
-                        {(
+                        ${(
                           props.total +
                           parseInt(props.shipping) -
                           (props.total * props.vouchers) / 100
@@ -130,7 +131,7 @@ function LayoutCheckout(props) {
                       >
                         Confirm
                       </button>
-                      <PayPal val={props.total} callback={this.handlePaypalCallback}/>
+                      <PayPal val={total_1.toFixed(2)} callback={props.handlePaypalCallback}/>
                     </Link>
                   </div>
                 ) : (
@@ -168,7 +169,7 @@ function LayoutCheckout(props) {
                       Confirm
                     </button>
                     <div className="payment-with-paypal">
-                    <PayPal val={totalPrice} callback={props.handlePaypalCallback}/>
+                    <PayPal val={total_1} callback={props.handlePaypalCallback}/>
                     </div>
                   </div>
                 )}

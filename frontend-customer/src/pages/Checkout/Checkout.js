@@ -83,7 +83,37 @@ function Checkout() {
           setOrderID(data.data._id);
           setNewOrder(data.data);
           newOrder2 = data.data
-
+          
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      createOrder();
+    }
+    if (customerInfo != null) {
+      const createOrder = async () => {
+        try {
+          const data = await axios.post(
+            "http://localhost:8000/don_hang/create_don_hang",
+            {
+              ngay_dat: new Date().toLocaleDateString(),
+              ngay_giao: new Date().toLocaleDateString(),
+              id_ttkh: customerInfo._id,
+              id_ttdh: "61a2492120a54c9a7f3b028a",
+              ghi_chu: "None",
+              tong_phu: total,
+              tong_gia_giam_boi_voucher: (total * vouchers) / 100,
+              id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
+              tong_tien: total - (total * vouchers) / 100,
+              id_voucher: voucher,
+              id_phuong: customerInfo.id_phuong,
+              dia_chi: customerInfo.dia_chi,
+            }
+          );
+          setShipping(data.data.phi_ship);
+          setOrderID(data.data._id);
+          setNewOrder(data.data);
+          newOrder2 = data.data
         } catch (error) {
           console.log(error);
         }
@@ -110,7 +140,7 @@ function Checkout() {
   useEffect(() => {
     if (newOrder != null) {
       console.log(" order: " + newOrder.ngay_dat);
-      //console.log(" order: " + JSON.parse(newOrder));
+      window.localStorage.setItem("total-1", (total + newOrder.phi_ship))
     } else {
       console.log("not order");
     }
@@ -175,7 +205,7 @@ function Checkout() {
       id_phuong: newOrder2.id_phuong,
       dia_chi: newOrder2.dia_chi,
     }
-    console.log(sendData);
+    
     axios
       .post("http://localhost:8000/don_hang/save", sendData)
       .then((res) => {
