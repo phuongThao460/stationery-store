@@ -10,7 +10,9 @@ import { useSelector } from "react-redux";
 
 const Navbar = ({ click }) => {
   const cart = useSelector((state) => state.cart);
-  const customerInfo = JSON.parse(window.localStorage.getItem("customer-account"));
+  const customerInfo = JSON.parse(
+    window.localStorage.getItem("customer-account")
+  );
   const { cartItems } = cart;
 
   const getCartCount = () => {
@@ -20,7 +22,7 @@ const Navbar = ({ click }) => {
   const logout = () => {
     window.localStorage.removeItem("customer-account");
     window.location.reload();
-  }
+  };
   return (
     <div className="container-1">
       <div className="navbar-1">
@@ -34,21 +36,26 @@ const Navbar = ({ click }) => {
           <BsSearch id="input-img" />
         </form>
         {customerInfo ? (
-          <div className="user-name"><span style={{fontSize: "25px"}}>{customerInfo.ten_kh}</span>
+          <div className="user-name">
+            <span style={{ fontSize: "25px" }}>{customerInfo.ten_kh}</span>
             <ul className="table-content">
               <li className="list">
-                <button onClick={logout} className="btn-logout">
-                  Logout
-                </button>
+                <Link
+                  to="/profile/account"
+                  style={{ color: "white" }}
+                  className="list-link"
+                >
+                  {" "}
+                  Profile
+                </Link>
               </li>
               <li
                 className="list"
                 style={{ marginTop: "8px", backgroundColor: "#efefef" }}
               >
-                <Link to="/profile/account" style={{ color: "black" }}  className="list-link">
-                  {" "}
-                  Profile
-                </Link>
+                <button onClick={logout} className="btn-logout">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -60,7 +67,11 @@ const Navbar = ({ click }) => {
             <BiUser className="user-icon" />
             <ul className="table-content">
               <li className="list">
-                <Link to="/login" style={{ color: "white" }} className="list-link">
+                <Link
+                  to="/login"
+                  style={{ color: "white" }}
+                  className="list-link"
+                >
                   Login
                 </Link>
               </li>
@@ -68,7 +79,11 @@ const Navbar = ({ click }) => {
                 className="list"
                 style={{ marginTop: "8px", backgroundColor: "#efefef" }}
               >
-                <Link to="/Signup" style={{ color: "black" }}  className="list-link">
+                <Link
+                  to="/Signup"
+                  style={{ color: "black" }}
+                  className="list-link"
+                >
                   {" "}
                   Signup
                 </Link>

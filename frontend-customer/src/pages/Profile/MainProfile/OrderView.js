@@ -23,14 +23,20 @@ function OrderView() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/don_hang/by_id_ttkh/", {
+      .post("http://localhost:8000/ct_dh/by_ttkh", {
         id_ttkh: cusAccountInfo._id,
       })
       .then((res) => {
         setOrderList(res.data);
-        console.log(res.data);
+        setOrderDetail(res.data.ct_dh);
+        //console.log(res.data[0].ct_dh.length);
       });
   }, []);
+  useEffect(() => {
+    if(orderDetail != null){
+      console.log(orderDetail);
+    }
+  },[])
   return (
     <div className="main-right">
       <h2>Your Order</h2>
@@ -62,7 +68,7 @@ function OrderView() {
             <tr key={index} style={{ textAlign: "center", fontSize: "25px" }}>
               <th scope="row">{item._id.substr(14)}</th>
               <td>{new Date(item.ngay_dat).toLocaleDateString("en-GB")}</td>
-              <td style={{ textAlign: "start" }}>san pham</td>
+              <td style={{ textAlign: "start" }}>san pham{orderList[index].ct_dh.length}</td>
               <td style={{ textAlign: "end" }}>
                 <span style={{ marginRight: "5px !important" }}>
                   ${item.tong_tien.toFixed(2)}

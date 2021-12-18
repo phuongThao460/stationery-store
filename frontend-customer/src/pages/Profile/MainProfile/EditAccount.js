@@ -14,47 +14,79 @@ function EditAccount() {
     setName(cusAccountInfo.ten_kh);
     setEmail(cusAccountInfo.email);
     setPhone(cusAccountInfo.sdt);
-  },[])
+  }, []);
   const changeName = (e) => {
-    setName(e.target.value)
-  }
+    setName(e.target.value);
+  };
   const changeEmail = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
   const changePhone = (e) => {
-    setPhone(e.target.value)
-  }
+    setPhone(e.target.value);
+  };
   const updateProfile = () => {
-    axios.post("http://localhost:8000/ttkh/")
-  }
+    axios
+      .post("http://localhost:8000/ttkh/update", {
+        _id: cusAccountInfo._id,
+        ten_kh: name,
+        email: email,
+        sdt: phone,
+      })
+      .then(() => {
+        axios
+          .post("http://localhost:8000/ttkh", {
+            ttkh_id: cusAccountInfo._id,
+          })
+          .then((res) =>
+            window.localStorage.setItem("customer-account", JSON.stringify(res.data))
+          );
+      });
+  };
   return (
     <>
       <div className="main-right">
         <h2 className="main-right-title">My Account</h2>
-        <form className="form-wrapper">
+        <form className="form-wrapper" onSubmit={updateProfile}>
           <table>
             <tr className="name">
               <td className="td-label">Full name</td>
               <td className="td-input">
-                <input className="text-field" type="text" value={name} onChange={changeName}/>
+                <input
+                  className="text-field"
+                  type="text"
+                  value={name}
+                  onChange={changeName}
+                />
               </td>
             </tr>
 
             <tr className="email">
               <td className="td-label">Email</td>
               <td className="td-label">
-                <input className="text-field" type="email" value={email} onChange={changeEmail}/>
+                <input
+                  className="text-field"
+                  type="email"
+                  value={email}
+                  onChange={changeEmail}
+                />
               </td>
             </tr>
             <tr className="phone">
               <td className="td-label">Phone number</td>
               <td className="td-label">
-                <input className="text-field" type="number" value={phone} onChange={changePhone}/>
+                <input
+                  className="text-field"
+                  type="number"
+                  value={phone}
+                  onChange={changePhone}
+                />
               </td>
             </tr>
           </table>
           <div className="btn-container">
-            <button className="btn-edit" onClick={updateProfile}>Save</button>
+            <button className="btn-edit" type="submit">
+              Save
+            </button>
           </div>
         </form>
       </div>
