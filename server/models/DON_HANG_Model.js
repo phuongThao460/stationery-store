@@ -6,6 +6,8 @@ import { PHUONG_Model } from "./PHUONG_Model.js";
 import { QUAN_Model } from "./QUAN_Model.js";
 import { THANH_PHO_Model } from "./THANH_PHO_Model.js";
 import { Get_Vouchers_By_ID_TTKH, VOUCHER_Model } from "./VOUCHER_Model.js";
+import { Find_CTDH_By_DonHang } from "./CT_DON_HANG_Model.js";
+import { Find_TKKH_By_TTKH, Add_San_Pham_To_Feedback } from "./TKKH_Model.js";
 
 // ==============================================
 // 				CONSTANT DEFINITIONS
@@ -17,6 +19,7 @@ const API_KEY = "8e6ae120db9a42bc82a32ff38756e4fe";
 const initial_shipping_fee = 1;
 const intial_km = 2;
 const shipping_fee_per_km = 0.5;
+const TRANG_THAI_DON_HANG_THANH_CONG = "61a2497920a54c9a7f3b02d6";
 
 // ==============================================
 // 				SCHEMA DEFINITION
@@ -272,4 +275,35 @@ export const Set_Total_Voucher_Discount = async (don_hang) => {
   }
 
   return don_hang;
+};
+
+export const Add_SanPham_To_List_Feedback_Of_Account = async (don_hang) => {
+  /*
+  When trang_thai_don_hang = giao_thanh_cong then add san_pham to
+  list feedback of account
+  */
+
+  try {
+    var id_trang_thai_dh = don_hang.id_ttdh;
+    var id_don_hang = don_hang._id;
+    var id_ttkh = don_hang.id_ttkh;
+
+    var tai_khoan_kh = await Find_TKKH_By_TTKH(id_ttkh);
+
+    // Check if trang_thai_dh = giao_thanh_cong && user has account
+    if (
+      id_trang_thai_dh == TRANG_THAI_DON_HANG_THANH_CONG &&
+      tai_khoan_kh != null
+    ) {
+      var ctdh_s = await Find_CTDH_By_DonHang(id_don_hang);
+
+      // Add id_san_pham to list feedback
+      ctdh_s.forEach((ctdh) =>
+        Add_San_Pham_To_Feedback(tai_khoan_kh._id, ctdh.id_san_pham)
+      );
+    }
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 };

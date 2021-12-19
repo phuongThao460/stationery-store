@@ -68,8 +68,27 @@ export const Add_Voucher = async (id_tkkh, id_voucher) => {
     console.log(tkkh);
     return tkkh;
   } catch (err) {
-    res.status(500).json({ error: err });
     console.log(err);
+    throw err;
+  }
+};
+
+export const Add_San_Pham_To_Feedback = async (id_tkkh, id_sp) => {
+  /*
+  Add san_pham to san_pham_cho_danh_gia
+  */
+
+  try {
+    if (!(await Does_SanPham_Exist_In_List_Feedback(id_tkkh, id_sp))) {
+      await TK_KH_Model.findOneAndUpdate(
+        { _id: id_tkkh },
+        { $push: { san_pham_cho_danh_gia: id_sp } },
+        { new: true }
+      );
+    }
+  } catch (err) {
+    console.log(err);
+    throw err;
   }
 };
 
@@ -89,6 +108,67 @@ export const Remove_Voucher_From_TTKH = async (id_ttkh, id_voucher) => {
     return tkkh;
   } catch (err) {
     console.log(err);
-    return err;
+    throw err;
   }
+};
+
+export const Remove_SanPham_From_List_Feedback = async (id_tkkh, id_sp) => {
+  /*
+  After feedback, san_pham will be automatically removed from list 
+  san_pham_cho_danh_gia
+  */
+
+  try {
+    const tkkh = await TK_KH_Model.findOneAndUpdate(
+      { _id: id_tkkh },
+      { $pull: { san_pham_cho_danh_gia: id_sp } },
+      { new: true }
+    );
+    return tkkh;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+export const Find_TKKH_By_TTKH = async (id_ttkh) => {
+  /*
+  Find tkkh by id_ttkh
+
+  :return: json, null if not found anything
+  */
+
+  try {
+    const tkkh = await TK_KH_Model.findOne({ id_ttkh: id_ttkh });
+    return tkkh;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+const Does_SanPham_Exist_In_List_Feedback = async (id_tkkh, id_sp) => {
+  /*
+  Check whether san_pham exist in san_pham_cho_danh_gia
+
+  :return: Boolean
+  */
+
+  var tkkh = await TK_KH_Model.findById(id_tkkh);
+
+  if (tkkh != null) {
+    var sp_cho_danh_gia = tkkh.san_pham_cho_danh_gia;
+
+    if (sp_cho_danh_gia == null) {
+      return false;
+    }
+
+    var sp = await TK_KH_Model.findOne({ san_pham_cho_danh_gia: id_sp });
+
+    if (sp != null) {
+      return true;
+    }
+  }
+
+  return false;
 };

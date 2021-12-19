@@ -1,4 +1,4 @@
-import { TK_KH_Model } from "../models/TKKH_Model.js";
+import { TK_KH_Model, Find_TKKH_By_TTKH } from "../models/TKKH_Model.js";
 
 export const Get_TKKHs = async (req, res) => {
   /*
@@ -80,25 +80,6 @@ export const Login = async (req, res) => {
   }
 };
 
-export const Add_San_Pham_To_Rate_List = async (_id, sp_id) => {
-  /*
-	Add id san pham to danh sach san pham cho danh gia
-	*/
-
-  try {
-    const tkkh = await TK_KH_Model.findOneAndUpdate(
-      { _id: _id },
-      { $push: { sp_cho_danh_gia: sp_id } },
-      { new: true }
-    );
-    console.log(tkkh);
-    return tkkh;
-  } catch (err) {
-    console.log(err);
-    return err;
-  }
-};
-
 export const create_TKKH = async (req, res) => {
   /*
 	Create new tai khoan khach hang
@@ -137,5 +118,15 @@ export const Update_TKKH = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+};
+
+export const Get_TKKH_By_TTKH = async (req, res) => {
+  try {
+    var id_ttkh = req.body.id_ttkh;
+    var rs = await Find_TKKH_By_TTKH(id_ttkh);
+    res.json(rs);
+  } catch (err) {
+    res.json(err);
   }
 };

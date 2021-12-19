@@ -7,6 +7,7 @@ import {
   Set_Shipping_Fee,
   Set_Total,
   Set_Total_Voucher_Discount,
+  Add_SanPham_To_List_Feedback_Of_Account,
 } from "../models/DON_HANG_Model.js";
 
 export const Get_Don_Hangs = async (req, res) => {
@@ -98,7 +99,9 @@ export const Get_Don_Hang_By_User_Id = async (req, res) => {
 
   try {
     const id_ttkh = req.body.id_ttkh;
-    const don_hangs = await DON_HANG_Model.find({ id_ttkh: id_ttkh }).populate({path: "id_ttdh", select: "trang_thai"}).exec();
+    const don_hangs = await DON_HANG_Model.find({ id_ttkh: id_ttkh })
+      .populate({ path: "id_ttdh", select: "trang_thai" })
+      .exec();
     console.log("don_hangs", don_hangs);
     if (don_hangs.length == 0) {
       console.log("Not found don hang");
@@ -122,6 +125,9 @@ export const Update_Don_Hang = async (req, res) => {
       update_don_hang,
       { new: true }
     );
+
+    Add_SanPham_To_List_Feedback_Of_Account(don_hang);
+
     console.log(don_hang);
     res.status(200).json(don_hang);
   } catch (err) {

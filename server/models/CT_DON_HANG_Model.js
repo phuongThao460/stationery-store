@@ -106,3 +106,19 @@ export const Find_CTDH_By_ID_TTKH = async (id_ttkh) => {
     return err;
   }
 };
+
+export const Find_CTDH_By_DonHang = async (id_dh) => {
+  /*
+  Find ctdh by id_don_hang
+
+  :return: Array
+  */
+
+  try {
+    var ctdh = await CT_DON_HANG_Model.find({ id_don_hang: id_dh });
+    return ctdh;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
