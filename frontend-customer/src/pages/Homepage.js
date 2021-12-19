@@ -134,7 +134,7 @@ class Homepage extends React.Component {
                     >
                       <Link
                         to={"/item/" + item.title}
-                        style={{ color: "#D16325" }}
+                        style={{ color: "#D16325", fontSize: "15px !important" }}
                       >
                         See more
                       </Link>
@@ -205,7 +205,7 @@ class Homepage extends React.Component {
             ))}
             <div className="card">
               <div className="card-body">
-                <div className="body-title">
+                <div className="body-title" style={{fontSize: "30px !important"}}>
                   <a href="/#">See more</a>
                 </div>
               </div>

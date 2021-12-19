@@ -17,12 +17,12 @@ function EditAddress() {
   const [lstDistrict, setLstDistrict] = useState([]);
   const [lstWard, setLstWard] = useState([]);
 
-  // useEffect(() => {
-  //   setStreetName(cusAccountInfo.dia_chi);
-  //   setIdCities(cusAccountInfo.id_phuong.id_quan.id_thanh_pho._id);
-  //   setIdDis(cusAccountInfo.id_phuong.id_quan._id);
-  //   setIdWard(cusAccountInfo.id_phuong._id);
-  // }, []);
+  useEffect(() => {
+    setStreetName(cusAccountInfo.dia_chi);
+    //setIdCities(cusAccountInfo.id_phuong.id_quan.id_thanh_pho._id);
+    //setIdDis(cusAccountInfo.id_phuong.id_quan._id);
+    //setIdWard(cusAccountInfo.id_phuong._id);
+  }, []);
   useEffect(() => {
     axios
       .post("http://localhost:8000/phuong/", { _id: cusAccountInfo.id_phuong })

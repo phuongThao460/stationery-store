@@ -55,8 +55,9 @@
 }
 .card-text {
   color: #fff;
-  font-size: 300;
+  font-size: 25px;
   padding: 8px;
+  line-height: 1;
 }
 .card-content-1 {
   width: 275px;
@@ -240,13 +241,19 @@
   width: 100%;
 }
 .btn-submit {
-  padding: 10px;
+  padding: 2px;
   margin-left: 7px;
-  width: 116px;
+  width: 99px;
   border-radius: 10px;
   outline: none;
-  font-size: 16px;
+
   border: none;
   font-family: "Grandstander", cursive;
   background-color: wheat;
+}
+.btn-submit a{
+  font-size: 16px !important;
+}
+.card-title {
+  margin-bottom: 0;
 }
