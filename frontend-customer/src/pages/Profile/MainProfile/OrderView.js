@@ -33,10 +33,10 @@ function OrderView() {
       });
   }, []);
   useEffect(() => {
-    if(orderDetail != null){
+    if (orderDetail != null) {
       console.log(orderDetail);
     }
-  },[])
+  }, []);
   return (
     <div className="main-right">
       <h2>Your Order</h2>
@@ -68,13 +68,20 @@ function OrderView() {
             <tr key={index} style={{ textAlign: "center", fontSize: "25px" }}>
               <th scope="row">{item._id.substr(14)}</th>
               <td>{new Date(item.ngay_dat).toLocaleDateString("en-GB")}</td>
-              <td style={{ textAlign: "start" }}>san pham{orderList[index].ct_dh.length}</td>
+              <td style={{ textAlign: "start", lineHeight: "1" }}>
+                {orderList[index].san_pham.length > 1
+                  ? orderList[index].san_pham[0].ten_sp +
+                    " ...and more than " +
+                    (orderList[index].san_pham.length - 1) +
+                    " products"
+                  : orderList[index].san_pham[0].ten_sp}
+              </td>
               <td style={{ textAlign: "end" }}>
                 <span style={{ marginRight: "5px !important" }}>
                   ${item.tong_tien.toFixed(2)}
                 </span>
               </td>
-              <td>{item.id_ttdh.trang_thai}</td>
+              <td>{orderList[0].ttdh[0].trang_thai}</td>
               <td>
                 <button
                   className="btn-view"
