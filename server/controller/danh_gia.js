@@ -16,7 +16,7 @@ export const Get_DanhGias = async (req, res) => {
 	*/
 
   try {
-    const danh_gias = await Find_All_Danh_Gia_In_DB;
+    const danh_gias = await Find_All_Danh_Gia_In_DB();
     res.status(200).json(danh_gias);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -53,7 +53,7 @@ export const Create_DanhGia = async (req, res) => {
 
   try {
     var danh_gia = req.body;
-    new_danh_gia = await Create(danh_gia);
+    const new_danh_gia = await Create(danh_gia);
 
     //console.log("voucher: ", voucher);
     res.status(200).json(new_danh_gia);

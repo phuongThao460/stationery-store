@@ -94,7 +94,6 @@ export const Create = async (danh_gia) => {
   try {
     var danh_gia = new DANH_GIA_Model(danh_gia);
     danh_gia = await danh_gia.save();
-
     return danh_gia;
   } catch (err) {
     console.log(err);

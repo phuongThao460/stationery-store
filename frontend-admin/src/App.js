@@ -13,6 +13,7 @@ import Customers from "./pages/Customer/Customers";
 import Voucher from "./pages/Voucher/Voucher";
 import AddNewVoucher from "./pages/Voucher/AddNewVoucher";
 import Statistic from './pages/Statistics/Statistic';
+import Reviews from './pages/Reviews/Reviews';
 const Contact = () => {
   return <h1>Contact</h1>;
 };
@@ -32,6 +33,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/products/add-product" element={<AddNewProduct />} />
               <Route path="/products/edit/:id" element={<EditProduct/>} />
+              <Route path="/products/feedback" element={<Reviews/>} />
               <Route path="/customer" element={<Customers />} />
               <Route path="/order" element={<OrderManagerment />} />
               <Route path="/order/:id" element={<OrderDetail />} />
