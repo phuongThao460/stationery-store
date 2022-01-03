@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import ModalReviews from './ModalReviews'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import ModalReviews from "./ModalReviews";
+import axios from "axios";
 function Reviews() {
   const [modalShow, setModalShow] = useState(false);
   const [reviews, setReviews] = useState([]);
@@ -8,7 +8,7 @@ function Reviews() {
   useEffect(() => {
     const getAllReviews = async () => {
       try {
-        const data = await axios.get("http://localhost:8000/tkkh");
+        const data = await axios.get("http://localhost:8000/danh_gia/");
         setReviews(data.data);
       } catch (error) {
         console.log(error);
@@ -20,16 +20,17 @@ function Reviews() {
   }, []);
   return (
     <>
-      <h1>Customers</h1>
+      <h1>Reviews</h1>
       <table className="table table-hover" style={{ backgroundColor: "#fff" }}>
         <thead>
           <tr>
             <th scope="col" style={{ width: "100px" }}>
               ID
             </th>
-            <th scope="col">Customer's Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Accumulated Point</th>
+            <th scope="col">Product</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Status</th>
             <th scope="col" style={{ width: "200px", textAlign: "center" }}>
               Action
             </th>
@@ -39,20 +40,21 @@ function Reviews() {
           {reviews.length !== 0
             ? reviews.map((item, index) => (
                 <tr key={index}>
-                  <th scope="row" style={{ width: "167px" }}>
+                  <th scope="row">
                     {item._id.substr(14)}
                   </th>
-                  <td>{item.id_ttkh.ten_kh}</td>
-                  <td>{item.id_ttkh.email}</td>
-                  <td style={{ textAlign: "end", width: "164px" }}>
-                    {item.id_ttkh.diem_tich_luy}
+                  <td className="name-style"
+                  >
+                    {item.id_san_pham.ten_sp}
                   </td>
-                  <td style={{ width: "200px", textAlign: "center" }}>
-                    <button
-                      className="btn-view"
-                    >
-                      View
-                    </button>
+                  <td>{item.noi_dung_danh_gia}</td>
+                  <td style={{ textAlign: "end" }}>
+                    {item.so_sao_danh_gia}
+                  </td>
+                  <td>{item.tinh_trang ? "Publish" : "Waiting"}</td>
+                  <td style={{ textAlign: "center" }}>
+                    <button className="btn-view">View</button>
+                    <button className="btn-add">Publish</button>
                   </td>
                 </tr>
               ))
@@ -60,13 +62,10 @@ function Reviews() {
         </tbody>
       </table>
       {modalShow ? (
-        <ModalReviews
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
+        <ModalReviews show={modalShow} onHide={() => setModalShow(false)} />
       ) : null}
     </>
-  )
+  );
 }
 
-export default Reviews
+export default Reviews;
