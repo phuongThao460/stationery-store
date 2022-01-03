@@ -41,6 +41,11 @@ const schema = new mongoose.Schema(
       require: true,
       default: 0,
     },
+    id_nv: {
+      type: mongoose.Types.ObjectId,
+      ref: "NHAN_VIEN",
+      require: true,
+    },
   },
   { timestamps: false }
 );
