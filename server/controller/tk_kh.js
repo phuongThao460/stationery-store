@@ -1,4 +1,9 @@
-import { TK_KH_Model, Find_TKKH_By_TTKH } from "../models/TKKH_Model.js";
+import {
+  TK_KH_Model,
+  Find_TKKH_By_TTKH,
+  Add_SanPham_To_WishList,
+  Remove_SanPham_From_WishList,
+} from "../models/TKKH_Model.js";
 
 export const Get_TKKHs = async (req, res) => {
   /*
@@ -7,7 +12,21 @@ export const Get_TKKHs = async (req, res) => {
 	*/
 
   try {
-    const tkkhs = await TK_KH_Model.find().populate("id_ttkh");
+    const tkkhs = await TK_KH_Model.find().populate({
+      path: "id_ttkh",
+      populate: {
+        path: "id_phuong",
+        select: "phuong_xa",
+        populate: {
+          path: "id_quan",
+          select: "quan_huyen",
+          populate: {
+            path: "id_thanh_pho",
+            select: "ten_thanh_pho",
+          },
+        },
+      },
+    });
     console.log("tkkhs", tkkhs);
     res.status(200).json(tkkhs);
   } catch (err) {
@@ -128,5 +147,37 @@ export const Get_TKKH_By_TTKH = async (req, res) => {
     res.json(rs);
   } catch (err) {
     res.json(err);
+  }
+};
+
+export const Add_To_WishList = async (req, res) => {
+  /*
+  Request body: id_tkkh, id_sp
+  */
+
+  try {
+    var id_tkkh = req.body.id_tkkh;
+    var id_sp = req.body.id_sp;
+    var rs = await Add_SanPham_To_WishList(id_tkkh, id_sp);
+    res.status(200).json(rs);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err });
+  }
+};
+
+export const Remove_From_WishList = async (req, res) => {
+  /*
+  Request body: id_tkkh, id_sp
+  */
+
+  try {
+    var id_tkkh = req.body.id_tkkh;
+    var id_sp = req.body.id_sp;
+    var rs = await Remove_SanPham_From_WishList(id_tkkh, id_sp);
+    res.status(200).json(rs);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err });
   }
 };
