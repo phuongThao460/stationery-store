@@ -24,6 +24,7 @@ import phan_loai from "./routers/phan_loai.js";
 import voucher from "./routers/voucher.js";
 import thong_ke from "./routers/thong_ke.js";
 import danh_gia from "./routers/danh_gia.js";
+import nhan_vien from "./routers/nhan_vien.js";
 
 const app = express();
 const PORT = process.env.port || 8000;
@@ -52,6 +53,7 @@ app.use("/phan_loai", phan_loai);
 app.use("/voucher", voucher);
 app.use("/thong_ke", thong_ke);
 app.use("/danh_gia", danh_gia);
+app.use("/nhan_vien", nhan_vien);
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })

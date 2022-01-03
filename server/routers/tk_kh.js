@@ -6,6 +6,8 @@ import {
   create_TKKH,
   Update_TKKH,
   Get_TKKH_By_TTKH,
+  Add_To_WishList,
+  Remove_From_WishList,
 } from "../controller/tk_kh.js";
 
 const router = express.Router();
@@ -24,6 +26,12 @@ router.post("/create", create_TKKH);
 
 // POST: /tkkh/update
 router.post("/update", Update_TKKH);
+
+// POST: /tkkh/add_wishlist
+router.post("/add_wishlist", Add_To_WishList);
+
+// POST: /tkkh/remove_wishlist
+router.post("/remove_wishlist", Remove_From_WishList);
 
 router.post("/test", Get_TKKH_By_TTKH);
 
