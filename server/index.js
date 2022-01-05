@@ -27,9 +27,10 @@ import danh_gia from "./routers/danh_gia.js";
 import nhan_vien from "./routers/nhan_vien.js";
 
 const app = express();
-const PORT = process.env.port || 8000;
+const PORT = process.env.PORT || 8000;
 
-const URI = process.env.DB_URI;
+//const URI = process.env.DB_URI;
+const URI = process.env.CLOUD_DB_URI;
 
 app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -60,7 +61,8 @@ mongoose
   .then(() => {
     console.log("Connected to DB");
     app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+      //console.log(`Server is running on port ${PORT}`);
+      console.log("Server is running");
     });
   })
   .catch((err) => {
