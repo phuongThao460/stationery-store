@@ -1,0 +1,24 @@
+.main-container {
+  display: flex;
+  background-color: #fff;
+}
+.side-left {
+  background-color: #a6c1b0;
+  width: 638px;
+  height: 100vh;
+}
+.side-right {
+  width: 53%;
+  margin-left: 263.5px;
+}
+.input-field {
+  display: inline-block;
+  box-sizing: inherit;
+}
+.email, .password {
+  width: 100%;
+}
+.email:focus,
+.password:focus {
+  outline: none;
+}

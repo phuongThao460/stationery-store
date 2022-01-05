@@ -14,6 +14,7 @@ import Voucher from "./pages/Voucher/Voucher";
 import AddNewVoucher from "./pages/Voucher/AddNewVoucher";
 import Statistic from './pages/Statistics/Statistic';
 import Reviews from './pages/Reviews/Reviews';
+import Login from './pages/Employee/Login';
 const Contact = () => {
   return <h1>Contact</h1>;
 };
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <div className="App">
+        
         <BrowserRouter>
           <SideMenu
             onCollapse={(inactive) => {
