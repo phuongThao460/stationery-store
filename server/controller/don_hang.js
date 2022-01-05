@@ -8,6 +8,7 @@ import {
   Set_Total,
   Set_Total_Voucher_Discount,
   Add_SanPham_To_List_Feedback_Of_Account,
+  Update_So_Luong_San_Pham,
 } from "../models/DON_HANG_Model.js";
 
 export const Get_Don_Hangs = async (req, res) => {
@@ -126,6 +127,7 @@ export const Update_Don_Hang = async (req, res) => {
       { new: true }
     );
 
+    Update_So_Luong_San_Pham(don_hang);
     Add_SanPham_To_List_Feedback_Of_Account(don_hang);
 
     console.log(don_hang);

@@ -8,6 +8,7 @@ import { THANH_PHO_Model } from "./THANH_PHO_Model.js";
 import { Get_Vouchers_By_ID_TTKH, VOUCHER_Model } from "./VOUCHER_Model.js";
 import { Find_CTDH_By_DonHang } from "./CT_DON_HANG_Model.js";
 import { Find_TKKH_By_TTKH, Add_San_Pham_To_Feedback } from "./TKKH_Model.js";
+import { Update_San_Pham, Find_San_Pham_By_Id } from "./SANPHAM_Model.js";
 
 // ==============================================
 // 				CONSTANT DEFINITIONS
@@ -19,7 +20,9 @@ const API_KEY = "8e6ae120db9a42bc82a32ff38756e4fe";
 const initial_shipping_fee = 1;
 const intial_km = 2;
 const shipping_fee_per_km = 0.5;
+const XAC_NHAN_DON_HANG = "61a2494520a54c9a7f3b02a9";
 const TRANG_THAI_DON_HANG_THANH_CONG = "61a2497920a54c9a7f3b02d6";
+const HUY_DON_HANG = "61a2498320a54c9a7f3b02dd";
 
 // ==============================================
 // 				SCHEMA DEFINITION
@@ -304,6 +307,57 @@ export const Add_SanPham_To_List_Feedback_Of_Account = async (don_hang) => {
     }
   } catch (err) {
     console.log(err);
+    throw err;
+  }
+};
+
+export const Update_So_Luong_San_Pham = async (don_hang) => {
+  /*
+  Increasing number of san_pham if trang-thai-don-hang = cancel
+  Decreasing number of san_pham if trang-thai-don-hang = confirm
+  */
+
+  try {
+    var id_don_hang = don_hang._id;
+    var id_trang_thai_dh = don_hang.id_ttdh;
+
+    // Get ctdh by don-hang
+    var ctdh_s = await Find_CTDH_By_DonHang(id_don_hang);
+
+    // xac-nhan-don-hang => decrease num of san_pham
+    if (id_trang_thai_dh == XAC_NHAN_DON_HANG) {
+      for (var ctdh of ctdh_s) {
+        var flag = "DECREASE";
+        await Find_And_Update_So_Luong_San_Pham(flag, ctdh);
+      }
+    }
+
+    // huy-don-hang => increase num of san_pham
+    if (id_trang_thai_dh == HUY_DON_HANG) {
+      for (var ctdh of ctdh_s) {
+        var flag = "INCREASE";
+        await Find_And_Update_So_Luong_San_Pham(flag, ctdh);
+      }
+    }
+  } catch (err) {}
+};
+
+const Find_And_Update_So_Luong_San_Pham = async (flag, ctdh) => {
+  try {
+    var id_san_pham = ctdh.id_san_pham;
+    var so_luong_ban = ctdh.so_luong;
+    var so_luong_trong_kho = (await Find_San_Pham_By_Id(id_san_pham)).so_luong;
+    if (flag == "DECREASE") {
+      var so_luong_moi = so_luong_trong_kho - so_luong_ban;
+    }
+    if (flag == "INCREASE") {
+      var so_luong_moi = so_luong_trong_kho + so_luong_ban;
+    }
+    Update_San_Pham({
+      _id: mongoose.Types.ObjectId(id_san_pham),
+      so_luong: so_luong_moi,
+    });
+  } catch (err) {
     throw err;
   }
 };

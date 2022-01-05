@@ -116,3 +116,21 @@ export const Find_All = async () => {
     throw err;
   }
 };
+
+export const Find_NV_By_Email_And_Pass = async (email, password) => {
+  /*
+	Get nhan_vien by email and password
+
+  :return: json, null unless find anything
+	*/
+
+  try {
+    const nhan_vien = await NHAN_VIEN_Model.findOne({
+      email: email,
+      password: password,
+    }).exec();
+    return nhan_vien;
+  } catch (err) {
+    throw err;
+  }
+};
