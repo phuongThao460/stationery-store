@@ -21,7 +21,7 @@ function OrderManagerment() {
 
   const getAllOrder = async () => {
     try {
-      const data = await axios.get("http://localhost:8000/don_hang/");
+      const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/don_hang/");
       setOrderList(data.data);
     } catch (err) {
       console.log(err);
@@ -29,7 +29,7 @@ function OrderManagerment() {
   };
 
   const updateStatus = (idOrder, event) => {
-    axios.post("http://localhost:8000/don_hang/update_by_id", {
+    axios.post("https://stationery-store-tmdt.herokuapp.com/don_hang/update_by_id", {
       _id: idOrder,
       id_ttdh: event,
     });

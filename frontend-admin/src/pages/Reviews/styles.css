@@ -1,8 +1,13 @@
 .name-style {
   display: block;
   overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    word-break: normal;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  margin-right: 0px;
+  white-space: nowrap;
+  width: 120px;
+}
+.table-modal {
+  border-collapse: collapse;
+  border-spacing: 0 10px;
 }

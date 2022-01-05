@@ -78,12 +78,12 @@ export default class Account extends Component {
       id_ttkh: null,
     };
 
-    const ttkh_res = await axios.post("http://localhost:8000/ttkh/create", ttkh_req);
+    const ttkh_res = await axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/create", ttkh_req);
     tkkh_req['id_ttkh'] = await ttkh_res.data._id;
 
     this.setState({ cusInfo: ttkh_res.data });
 
-    const tkkh_res = await axios.post("http://localhost:8000/tkkh/create", tkkh_req);
+    const tkkh_res = await axios.post("https://stationery-store-tmdt.herokuapp.com/tkkh/create", tkkh_req);
 
     window.localStorage.setItem("customer", JSON.stringify(tkkh_res.data));
   };

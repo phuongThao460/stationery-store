@@ -18,7 +18,7 @@ function Customers() {
   useEffect(() => {
     const getAllCustomer = async () => {
       try {
-        const data = await axios.get("http://localhost:8000/tkkh");
+        const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/tkkh");
         setCustomers(data.data);
       } catch (error) {
         console.log(error);

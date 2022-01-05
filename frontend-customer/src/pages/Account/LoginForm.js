@@ -17,7 +17,7 @@ function LoginForm() {
       alert(errorName);
     } else {
       axios
-        .post("http://localhost:8000/tkkh/login", {
+        .post("https://stationery-store-tmdt.herokuapp.com/tkkh/login", {
           email: emailInput.current.value,
           password: passwordInput.current.value,
         })

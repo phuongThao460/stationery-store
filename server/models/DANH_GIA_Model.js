@@ -60,7 +60,9 @@ export const Find_All_Danh_Gia_In_DB = async () => {
   */
 
   try {
-    var danh_gias = await DANH_GIA_Model.find().populate({path: "id_san_pham", select: "ten_sp"});
+    var danh_gias = await DANH_GIA_Model.find()
+      .populate({ path: "id_san_pham", select: "ten_sp" })
+      .populate({ path: "id_tkkh", select: "email" });
     return danh_gias;
   } catch (err) {
     console.log(err);

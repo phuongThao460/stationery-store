@@ -11,7 +11,7 @@ function ViewProduct() {
   const [material, setMaterial] = useState("")
   const [color, setColor] = useState([])
   const getData = () => {
-    const data = axios.post("http://localhost:8000/san_pham/", {_id: idItem})
+    const data = axios.post("https://stationery-store-tmdt.herokuapp.com/san_pham/", {_id: idItem})
     setResponseData(data.data)
     setType(data.data.id_loai_sp.ten_loai_sp)
     setColor(data.data.mau_sac)

@@ -26,7 +26,7 @@ function EditAccount() {
   };
   const updateProfile = () => {
     axios
-      .post("http://localhost:8000/ttkh/update", {
+      .post("https://stationery-store-tmdt.herokuapp.com/ttkh/update", {
         _id: cusAccountInfo._id,
         ten_kh: name,
         email: email,
@@ -34,7 +34,7 @@ function EditAccount() {
       })
       .then(() => {
         axios
-          .post("http://localhost:8000/ttkh", {
+          .post("https://stationery-store-tmdt.herokuapp.com/ttkh", {
             ttkh_id: cusAccountInfo._id,
           })
           .then((res) =>

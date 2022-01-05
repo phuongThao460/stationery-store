@@ -95,7 +95,7 @@ class Statistic extends React.PureComponent {
     this.getAllData();
   }
   getAllData = () => {
-    axios.get("http://localhost:8000/thong_ke/").then((res) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/thong_ke/").then((res) => {
       //this.setState({ data: res.data });
       res.data.forEach((element) => {
         let getMonth = new Date(element.ngay_bat_dau);

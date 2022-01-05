@@ -20,7 +20,7 @@ function Dashboard() {
 
   const getProductData = async () => {
     try {
-      const data = await axios.get("http://localhost:8000/san_pham/");
+      const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/san_pham/");
       setProducts(data.data.reverse());
     } catch (e) {
       console.log(e);

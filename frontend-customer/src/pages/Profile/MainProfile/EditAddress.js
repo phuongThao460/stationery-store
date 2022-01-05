@@ -25,7 +25,7 @@ function EditAddress() {
   }, []);
   useEffect(() => {
     axios
-      .post("http://localhost:8000/phuong/", { _id: cusAccountInfo.id_phuong })
+      .post("https://stationery-store-tmdt.herokuapp.com/phuong/", { _id: cusAccountInfo.id_phuong })
       .then((res) => {
         console.log(res.data);
         setIdCities(res.data.id_quan.id_thanh_pho._id);
@@ -34,13 +34,13 @@ function EditAddress() {
       });
   }, []);
   const getListCities = () => {
-    axios.get("http://localhost:8000/thanh_pho/").then((response) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/thanh_pho/").then((response) => {
       setLstCity(response.data);
     });
   };
   const getListDistrict = async () => {
     await axios
-      .post("http://localhost:8000/quan/by_thanh_pho", {
+      .post("https://stationery-store-tmdt.herokuapp.com/quan/by_thanh_pho", {
         id_thanh_pho: idCities,
       })
       .then((response) => {
@@ -49,7 +49,7 @@ function EditAddress() {
   };
   const getListWards = async () => {
     await axios
-      .post("http://localhost:8000/phuong/by_quan", {
+      .post("https://stationery-store-tmdt.herokuapp.com/phuong/by_quan", {
         id_quan: idDis,
       })
       .then((response) => {
