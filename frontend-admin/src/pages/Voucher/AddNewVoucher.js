@@ -16,7 +16,7 @@ export default class Voucher extends Component {
 
   createVoucher = () => {
     axios
-      .post("http://localhost:8000/voucher/create", {
+      .post("https://stationery-store-tmdt.herokuapp.com/voucher/create", {
         ten_voucher: this.nameVoucher.current.value,
         ngay_bat_dau_tich_luy: this.dateStart.current.value,
         ngay_ket_thuc_tich_luy: this.dateEnd.current.value,

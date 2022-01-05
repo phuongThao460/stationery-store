@@ -23,7 +23,7 @@ function OrderView() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/ct_dh/by_ttkh", {
+      .post("https://stationery-store-tmdt.herokuapp.com/ct_dh/by_ttkh", {
         id_ttkh: cusAccountInfo._id,
       })
       .then((res) => {

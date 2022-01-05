@@ -24,7 +24,7 @@ class Homepage extends React.Component {
     this.getListProduct();
   }
   getListProduct = () => {
-    axios.get("http://localhost:8000/san_pham/").then((res) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/san_pham/").then((res) => {
       const array = [];
       res.data.forEach((element) => {
         array.push({

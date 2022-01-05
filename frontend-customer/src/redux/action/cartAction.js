@@ -2,7 +2,7 @@ import * as actionTypes from "../constant/CartConstant";
 import axios from "axios";
 
 export const addToCart = (id, count, cong_don = false) => async (dispatch, getState) => {
-  const { data } = await axios.post("http://localhost:8000/san_pham/", {_id: id});
+  const { data } = await axios.post("https://stationery-store-tmdt.herokuapp.com/san_pham/", {_id: id});
 
   dispatch({
     type: actionTypes.ADD_TO_CART,

@@ -27,7 +27,7 @@ export default class CheckoutCustomer extends Component {
     this.email = createRef();
   }
   getListCities = () => {
-    axios.get("http://localhost:8000/thanh_pho/").then((response) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/thanh_pho/").then((response) => {
       this.state.lstCities = response.data;
       //console.log(this.state.lstCities);
       this.setState(this);
@@ -35,7 +35,7 @@ export default class CheckoutCustomer extends Component {
   };
   getListDistrict = () => {
     axios
-      .post("http://localhost:8000/quan/by_thanh_pho", {
+      .post("https://stationery-store-tmdt.herokuapp.com/quan/by_thanh_pho", {
         id_thanh_pho: this.state.idCity,
       })
       .then((response) => {
@@ -46,7 +46,7 @@ export default class CheckoutCustomer extends Component {
   };
   getListWards = () => {
     axios
-      .post("http://localhost:8000/phuong/by_quan", {
+      .post("https://stationery-store-tmdt.herokuapp.com/phuong/by_quan", {
         id_quan: this.state.idDis,
       })
       .then((response) => {
@@ -76,7 +76,7 @@ export default class CheckoutCustomer extends Component {
   };
   createInfo = () => {
     axios
-      .post("http://localhost:8000/ttkh/create", {
+      .post("https://stationery-store-tmdt.herokuapp.com/ttkh/create", {
         ten_kh: this.fullName.current.value,
         sdt: this.phoneNumber.current.value,
         dia_chi: this.streetName.current.value,

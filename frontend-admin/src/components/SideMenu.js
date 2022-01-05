@@ -12,7 +12,7 @@ import MenuItem from "./MenuItem";
 const menuItems = [
   {
     name: "Dashboard",
-    to: "/",
+    to: "/dashboard",
     icon: <RiDashboardFill />,
     subMenus: [
       { name: "Supplier", to: "/products/supplier" },

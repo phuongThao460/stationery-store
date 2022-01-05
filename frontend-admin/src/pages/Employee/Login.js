@@ -1,7 +1,7 @@
-import React, { useState, createRef} from "react";
+import React, { useState, createRef } from "react";
 import "./styles.css";
 import TextField from "@mui/material/TextField";
-import axios from 'axios';
+import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 function Login() {
   let navigate = useNavigate();
@@ -12,26 +12,29 @@ function Login() {
   const passwordInput = createRef();
 
   const loginSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (emailInput.current.value === "" || passwordInput.current.value === "") {
       alert(errorName);
     } else {
       axios
-        .post("http://localhost:8000/tkkh/login", {
+        .post("https://stationery-store-tmdt.herokuapp.com/nhan_vien/login", {
           email: emailInput.current.value,
           password: passwordInput.current.value,
         })
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
           if (res.data !== null) {
             alert("Đăng nhập thành công");
-            window.localStorage.setItem("customer-account", JSON.stringify(res.data.id_ttkh));
-            navigate("/");
+            window.localStorage.setItem(
+              "customer-account",
+              JSON.stringify(res.data.id_ttkh)
+            );
+            navigate("/dashboard");
             window.location.reload();
           }
         });
     }
-  }
+  };
   return (
     <div className="main-container">
       <div className="side-left"></div>
@@ -40,7 +43,7 @@ function Login() {
           <h1>Login</h1>
           <form className="input-field" onSubmit={loginSubmit}>
             <TextField
-              id="standard-password-input"
+              id="standard-email-input"
               label="Email"
               type="email"
               autoComplete="current-email"
@@ -57,10 +60,10 @@ function Login() {
               className="password"
               inputRef={passwordInput}
             />
+            <div className="btn-submit">
+              <button type="submit">Login</button>
+            </div>
           </form>
-          <div className="btn-submit">
-            <button type="submit">Login</button>
-          </div>
         </div>
       </div>
     </div>

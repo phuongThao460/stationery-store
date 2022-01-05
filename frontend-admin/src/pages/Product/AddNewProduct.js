@@ -46,7 +46,7 @@ class Product extends React.Component {
     this.setState({ idMate: e.value });
   };
   getListSupplier = () => {
-    axios.get("http://localhost:8000/nha_cc/").then((res) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/nha_cc/").then((res) => {
       res.data.forEach((element) => {
         this.state.lstSupplier.push({
           value: element._id,
@@ -57,7 +57,7 @@ class Product extends React.Component {
     });
   };
   getListType = () => {
-    axios.get("http://localhost:8000/loai_sp/").then((res) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/loai_sp/").then((res) => {
       res.data.forEach((element) => {
         this.state.lstType.push({
           value: element._id,
@@ -68,7 +68,7 @@ class Product extends React.Component {
     });
   };
   getListMaterial = () => {
-    axios.get("http://localhost:8000/chat_lieu/").then((res) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/chat_lieu/").then((res) => {
       res.data.forEach((element) => {
         this.state.lstMate.push({
           value: element._id,
@@ -80,7 +80,7 @@ class Product extends React.Component {
   };
   createProduct = () => {
     axios
-      .post("http://localhost:8000/san_pham/create_san_pham", {
+      .post("https://stationery-store-tmdt.herokuapp.com/san_pham/create_san_pham", {
         ten_sp: this.nameProduct.current.value,
         so_luong: this.amount.current.value,
         ngay_nhap: this.date.current.value,

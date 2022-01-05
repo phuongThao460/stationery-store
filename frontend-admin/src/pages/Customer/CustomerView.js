@@ -4,7 +4,7 @@ import axios from "axios";
 function CustomerView(props) {
   const [address, setAdress] = useState("");
   const getAddressCustomer = async () => {
-    const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+    const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", {
       _id: props.street,
     });
     setAdress(data.data);

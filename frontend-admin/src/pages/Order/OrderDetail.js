@@ -21,7 +21,7 @@ export default class OrderDetail extends Component {
   }
   getOrderDetail = async () => {
     await axios
-      .post("http://localhost:8000/don_hang/", { _id: this.state.id_order })
+      .post("https://stationery-store-tmdt.herokuapp.com/don_hang/", { _id: this.state.id_order })
       .then((res) => {
         this.state.order = res.data;
         this.state.customer = res.data.id_ttkh;
@@ -31,7 +31,7 @@ export default class OrderDetail extends Component {
         console.log(this.state.customer.id_phuong);
       });
     await axios
-      .post("http://localhost:8000/ct_dh/by_dh_id", {
+      .post("https://stationery-store-tmdt.herokuapp.com/ct_dh/by_dh_id", {
         id_don_hang: this.state.id_order,
       })
       .then((res) => {
@@ -41,14 +41,14 @@ export default class OrderDetail extends Component {
       });
   };
   getAddressCustomer = (idAddr) => {
-    axios.post("http://localhost:8000/ttkh/getAddress", { _id: idAddr })
+    axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", { _id: idAddr })
       .then((res) => {
         //console.log(res.data);
         this.setState({ address: res.data });
       });
   };
   updateStatus = (event) => {
-    axios.post("http://localhost:8000/don_hang/update_by_id", {
+    axios.post("https://stationery-store-tmdt.herokuapp.com/don_hang/update_by_id", {
       _id: this.state.id_order,
       id_ttdh: event,
     });

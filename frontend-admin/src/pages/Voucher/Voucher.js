@@ -29,7 +29,7 @@ function Voucher() {
   const [inUsed, setInUsed] = useState(0);
 
   const getAllVoucher = async () => {
-    const data = await axios.get("http://localhost:8000/voucher/");
+    const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/voucher/");
     setVouchers(data.data);
   };
 

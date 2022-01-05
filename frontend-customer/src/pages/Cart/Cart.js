@@ -21,7 +21,7 @@ const Cart = () => {
   const { cartItems } = cart;
 
   const getAllVoucher = async () => {
-    const data = await axios.post("http://localhost:8000/voucher/ttkh", {
+    const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/voucher/ttkh", {
       id_ttkh: customerInfo._id,
     });
     console.log(data.data);

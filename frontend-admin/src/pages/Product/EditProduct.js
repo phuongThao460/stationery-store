@@ -25,7 +25,7 @@ function EditProduct() {
     setResponseData({ten_sp: e.target.value})
   }
   const getData = async () => {
-    const data = await axios.post("http://localhost:8000/san_pham/", {
+    const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/san_pham/", {
       _id: idItem,
     });
     setResponseData(data.data);
@@ -36,7 +36,7 @@ function EditProduct() {
 
   };
   const updateData = () => {
-    axios.post("http://localhost:8000/san_pham/update_san_pham",{
+    axios.post("https://stationery-store-tmdt.herokuapp.com/san_pham/update_san_pham",{
       _id: responseData._id,
       ten_sp: responseData.ten_sp
     }).then((res) => {console.log(res.data)})

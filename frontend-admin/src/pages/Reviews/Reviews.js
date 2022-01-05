@@ -12,7 +12,7 @@ function Reviews() {
   useEffect(() => {
     const getAllReviews = async () => {
       try {
-        const data = await axios.get("http://localhost:8000/danh_gia/");
+        const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/danh_gia/");
         setReviews(data.data);
       } catch (error) {
         console.log(error);

@@ -5,7 +5,7 @@ export const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get("http://localhost:8000/san_pham/");
+    const { data } = await axios.get("https://stationery-store-tmdt.herokuapp.com/san_pham/");
 
     dispatch({
       type: actionTypes.GET_PRODUCTS_SUCCESS,
@@ -26,7 +26,7 @@ export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_REQUEST });
 
-    const data = await axios.post("http://localhost:8000/san_pham/", {_id: id});
+    const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/san_pham/", {_id: id});
     //console.log(data.data)
     dispatch({
       type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS,

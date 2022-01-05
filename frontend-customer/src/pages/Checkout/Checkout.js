@@ -31,13 +31,13 @@ function Checkout() {
   const getAddressCustomer = async () => {
     if (cusAccountInfo != null) {
       await axios
-        .post("http://localhost:8000/ttkh/getAddress", {
+        .post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", {
           _id: cusAccountInfo.id_phuong,
         })
         .then((res) => setAdress(res.data));
     } else {
       await axios
-        .post("http://localhost:8000/ttkh/getAddress", {
+        .post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", {
           _id: customerInfo.id_phuong,
         })
         .then((res) => setAdress(res.data));
@@ -45,7 +45,7 @@ function Checkout() {
   };
   const getPercentVoucher = async () => {
     await axios
-      .post("http://localhost:8000/voucher/", { _id: voucher })
+      .post("https://stationery-store-tmdt.herokuapp.com/voucher/", { _id: voucher })
       .then((res) => {
         setVouchers(res.data.phan_tram_giam);
       });
@@ -63,7 +63,7 @@ function Checkout() {
       const createOrder = async () => {
         try {
           const data = await axios.post(
-            "http://localhost:8000/don_hang/create_don_hang",
+            "https://stationery-store-tmdt.herokuapp.com/don_hang/create_don_hang",
             {
               ngay_dat: new Date().toLocaleDateString(),
               ngay_giao: new Date().toLocaleDateString(),
@@ -94,7 +94,7 @@ function Checkout() {
       const createOrder = async () => {
         try {
           const data = await axios.post(
-            "http://localhost:8000/don_hang/create_don_hang",
+            "https://stationery-store-tmdt.herokuapp.com/don_hang/create_don_hang",
             {
               ngay_dat: new Date().toLocaleDateString(),
               ngay_giao: new Date().toLocaleDateString(),
@@ -149,7 +149,7 @@ function Checkout() {
 
   const addCartDetails = () => {
     axios
-      .post("http://localhost:8000/don_hang/save", {
+      .post("https://stationery-store-tmdt.herokuapp.com/don_hang/save", {
         ngay_dat: newOrder.ngay_dat,
         ngay_giao: newOrder.ngay_giao,
         id_ttkh: newOrder.id_ttkh,
@@ -179,7 +179,7 @@ function Checkout() {
         array.forEach((item) => {
           axios({
             method: "post",
-            url: "http://localhost:8000/ct_dh/create",
+            url: "https://stationery-store-tmdt.herokuapp.com/ct_dh/create",
             data: item,
           }).then(() => {
             dispatch(resetCart());
@@ -207,7 +207,7 @@ function Checkout() {
     }
     
     axios
-      .post("http://localhost:8000/don_hang/save", sendData)
+      .post("https://stationery-store-tmdt.herokuapp.com/don_hang/save", sendData)
       .then((res) => {
         console.log(res.data);
         carts.forEach((element) => {
@@ -223,7 +223,7 @@ function Checkout() {
         array.forEach((item) => {
           axios({
             method: "post",
-            url: "http://localhost:8000/ct_dh/create",
+            url: "https://stationery-store-tmdt.herokuapp.com/ct_dh/create",
             data: item,
           }).then(() => {
             dispatch(resetCart());
