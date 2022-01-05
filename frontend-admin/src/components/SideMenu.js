@@ -1,9 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useEffect, useState } from "react";
-import { AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineBarChart } from "react-icons/ai";
-import { BsSearch, BsFillPersonLinesFill } from "react-icons/bs";
-import { RiDashboardFill, RiContactsFill, RiListUnordered } from "react-icons/ri";
+import {
+  AiOutlineArrowRight,
+  AiOutlineArrowLeft,
+  AiOutlineBarChart,
+} from "react-icons/ai";
+import {
+  BsSearch,
+  BsFillPersonLinesFill,
+  BsThreeDotsVertical,
+} from "react-icons/bs";
+import {
+  RiDashboardFill,
+  RiContactsFill,
+  RiListUnordered,
+} from "react-icons/ri";
 import { IoTicketOutline } from "react-icons/io5";
 import logo from "../images/logo.jpg";
 import cat from "../images/cat.jpg";
@@ -29,7 +41,11 @@ const menuItems = [
   },
   { name: "Order", to: "/order", icon: <RiListUnordered /> },
   { name: "Voucher", to: "/voucher", icon: <IoTicketOutline /> },
-  { name: "Revenue Statistics", to: "/statistics", icon: <AiOutlineBarChart /> },
+  {
+    name: "Revenue Statistics",
+    to: "/statistics",
+    icon: <AiOutlineBarChart />,
+  },
   { name: "Contact", to: "/contact", icon: <RiContactsFill /> },
 ];
 
@@ -42,7 +58,7 @@ const SideMenu = (props) => {
 
     props.onCollapse(inactive);
   }, [inactive]);
-
+  const info = JSON.parse(window.localStorage.getItem("employee-account"));
   //just an improvment and it is not recorded in video :(
   const removeActiveClassFromSubMenu = () => {
     document.querySelectorAll(".sub-menu").forEach((el) => {
@@ -75,7 +91,7 @@ const SideMenu = (props) => {
           <img src={logo} alt="" />
         </div>
         <div className="toggle-menu-btn" onClick={() => setInactive(!inactive)}>
-          {inactive ?  <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
+          {inactive ? <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
         </div>
       </div>
 
@@ -110,9 +126,21 @@ const SideMenu = (props) => {
           <img src={cat} alt="" />
         </div>
         <div className="user-info">
-          <h5>Sen Hasegaki</h5>
-          <p>sennekomi@yonna.com</p>
+          <h5 style={{ marginBottom: "0" }}>{info.ten_nv}</h5>
+          <p>{info.email}</p>
         </div>
+        <div className="settings"
+          
+        >
+          <BsThreeDotsVertical />
+          <ul className="table-content">
+            <li className="list">Profile</li>
+            <li className="list">
+              <button className="btn-logout">Logout</button>
+            </li>
+          </ul>
+        </div>
+        <div style={{height: "20px"}}/>
       </div>
     </div>
   );

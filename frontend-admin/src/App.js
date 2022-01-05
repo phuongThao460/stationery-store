@@ -24,30 +24,40 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-          </Routes>
-
-          <SideMenu
-            onCollapse={(inactive) => {
-              setInactive(inactive);
-            }}
-          />
-          <div className={`container ${inactive ? "inactive" : ""}`}>
+          {window.localStorage.getItem("employee-account") !== null ? (
+            <>
+              <SideMenu
+                onCollapse={(inactive) => {
+                  setInactive(inactive);
+                }}
+              />
+              <div className={`container ${inactive ? "inactive" : ""}`}>
+                <Routes>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route
+                    path="/products/add-product"
+                    element={<AddNewProduct />}
+                  />
+                  <Route path="/products/edit/:id" element={<EditProduct />} />
+                  <Route path="/products/feedback" element={<Reviews />} />
+                  <Route path="/customer" element={<Customers />} />
+                  <Route path="/order" element={<OrderManagerment />} />
+                  <Route path="/order/:id" element={<OrderDetail />} />
+                  <Route path="/voucher" element={<Voucher />} />
+                  <Route
+                    path="/voucher/add-voucher"
+                    element={<AddNewVoucher />}
+                  />
+                  <Route path="/statistics" element={<Statistic />} />
+                  <Route path="/contact" element={<Contact />} />
+                </Routes>
+              </div>
+            </>
+          ) : (
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/products/add-product" element={<AddNewProduct />} />
-              <Route path="/products/edit/:id" element={<EditProduct />} />
-              <Route path="/products/feedback" element={<Reviews />} />
-              <Route path="/customer" element={<Customers />} />
-              <Route path="/order" element={<OrderManagerment />} />
-              <Route path="/order/:id" element={<OrderDetail />} />
-              <Route path="/voucher" element={<Voucher />} />
-              <Route path="/voucher/add-voucher" element={<AddNewVoucher />} />
-              <Route path="/statistics" element={<Statistic />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/" element={<Login />} />
             </Routes>
-          </div>
+          )}
         </BrowserRouter>
       </div>
     </>
