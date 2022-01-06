@@ -124,13 +124,29 @@ export const Find_San_Pham_By_Category_And_Page = async (
   */
 
   try {
-    //var san_pham = await SANPHAM_Model.find({
-    //id_loai_sp: mongoose.Types.ObjectId(id_loai_sp),
-    //})
-    var san_pham = await SANPHAM_Model.find()
+    var san_pham = await SANPHAM_Model.find({
+      id_loai_sp: mongoose.Types.ObjectId(id_loai_sp),
+    })
       .skip(product_per_page * page_number - product_per_page) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
       .limit(product_per_page);
     return san_pham;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const Count_Page_Of_Category = async (id_loai_sp) => {
+  /*
+  Count number of page per category has
+
+  :return: Number
+  */
+
+  try {
+    var san_phams = await SANPHAM_Model.find({
+      id_loai_sp: mongoose.Types.ObjectId(id_loai_sp),
+    });
+    return Math.ceil(san_phams.length / product_per_page);
   } catch (err) {
     throw err;
   }
