@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
-import { SANPHAM_Model } from "../models/SANPHAM_Model.js";
+import {
+  SANPHAM_Model,
+  Find_San_Pham_By_Category_And_Page,
+  Count_Page_Of_Category,
+} from "../models/SANPHAM_Model.js";
 
 export const Get_San_Phams = async (req, res) => {
   try {
@@ -18,8 +22,8 @@ export const Get_San_Phams = async (req, res) => {
       })
       .populate({
         path: "id_phan_loai",
-        select: "ten_phan_loai"
-      })
+        select: "ten_phan_loai",
+      });
     //console.log("san_phams", san_phams);
     res.status(200).json(san_phams);
   } catch (err) {
@@ -45,8 +49,8 @@ export const Get_San_Pham_By_ID = async (req, res) => {
       })
       .populate({
         path: "id_phan_loai",
-        select: "ten_phan_loai"
-      })
+        select: "ten_phan_loai",
+      });
     //console.log("san_pham", san_pham);
     res.status(200).json(san_pham);
   } catch (err) {
@@ -108,6 +112,37 @@ export const Add_Color = async (req, res) => {
     res.status(200).json(sp);
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log(err);
+  }
+};
+
+export const Pagination = async (req, res) => {
+  /*
+  Get san_pham by id_loai_sp and pagination
+  */
+
+  try {
+    var id_loai_sp = req.params.id_loai_sp;
+    var page_number = req.params.page;
+    var rs = await Find_San_Pham_By_Category_And_Page(id_loai_sp, page_number);
+    res.status(200).json(rs);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
+export const Limit_Page = async (req, res) => {
+  /*
+  Get number of page per category then limit it
+  */
+
+  try {
+    var id_loai_sp = req.body.id_loai_sp;
+    var rs = await Count_Page_Of_Category(id_loai_sp);
+    res.json(rs);
+  } catch (err) {
+    res.status(500).json(err);
     console.log(err);
   }
 };
