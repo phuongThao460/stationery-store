@@ -156,7 +156,7 @@ function Dashboard() {
         <Modal.Body>
           <ul>
             <li>
-              <b>Name: </b> {console.log(modalInfo)}
+              <b>Name: </b>
               {modalInfo.ten_sp}
             </li>
             <li>
@@ -165,23 +165,20 @@ function Dashboard() {
             </li>
             <li>
               <b>Import Date: </b>
-              {new Date(modalInfo.ngay_nhap).toLocaleDateString()}
+              {(modalInfo.ngay_nhap).substr(0, 10)}
             </li>
-            <li>
-              <b>Description: </b>
-              {modalInfo.mo_ta}
-            </li>
+            
             <li>
               <b>Import Price: </b>
-              {modalInfo.don_gia_nhap}
+              ${modalInfo.don_gia_nhap}.00
             </li>
             <li>
               <b>Selling Price: </b>
-              {modalInfo.gia_ban_hien_tai}
+              ${modalInfo.gia_ban_hien_tai}.00
             </li>
             <li>
               <b>Original Price: </b>
-              {modalInfo.gia_ban_goc}
+              ${modalInfo.gia_ban_goc}.00
             </li>
             <li>
               <b>Supplier: </b>
@@ -208,6 +205,10 @@ function Dashboard() {
             <li>
               <b>Rating of rate: </b>
               {modalInfo.ti_le_danh_gia}
+            </li>
+            <li>
+              <b>Description: </b>
+              {modalInfo.mo_ta}
             </li>
           </ul>
         </Modal.Body>

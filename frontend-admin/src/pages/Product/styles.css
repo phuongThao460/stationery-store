@@ -2,3 +2,20 @@
   padding-bottom: 20px;
   width: 657px;
 }
+.form-control.price{
+  border-radius: unset;
+  border: 1px solid #fed7a1ba;
+}
+.css-number-2 {
+  width: 53px;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 7px 0;
+  margin-bottom: 0px;
+  font-size: 14px;
+  line-height: 20.02px;
+  color: #c0883bba;
+  text-align: center;
+  background-color: #f4e3ccba;
+  border: 1px solid #fed7a1ba;
+}
