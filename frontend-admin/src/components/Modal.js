@@ -30,6 +30,9 @@ export const ModalColor = ({ show, children, handleClose, setColor }) => {
   const handleInput = (e) => {
     updateState(e.target.value);
   };
+  const color = () => {
+    setColor(state)
+  }
   return (
     <>
       {show ? (
@@ -62,14 +65,14 @@ export const ModalColor = ({ show, children, handleClose, setColor }) => {
               </div>
               <div className="col-auto">
                 <div className="color">
-                  {/* <ColorPicker onChange={handleInput} value={state} /> */}
-                  <input type="color" onChange={handleInput} value={state}/>
+                  <ColorPicker onChange={handleInput} value={state} />
+                  {/* <input type="color" onChange={handleInput} value={state}/> */}
                 </div>
               </div>
               <div className="col-auto">
                 <button
                   style={styleButton}
-                  onClick={setColor}
+                  onClick={color}
                 >
                   Submit
                 </button>

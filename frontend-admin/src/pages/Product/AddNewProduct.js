@@ -21,7 +21,7 @@ class Product extends React.Component {
       // selectedOptions: [],
       selectedOption: 0,
     };
-
+    this.submitColorHandle = this.submitColorHandle.bind(this)
     this.getListSupplier();
     this.getListType();
     this.getListMaterial();
@@ -106,13 +106,14 @@ class Product extends React.Component {
     this.setState({ showModal: false });
   };
 
-  submitColorHandle = (value) => {
+  submitColorHandle(value){
     const temp = this.state.colorArray;
     temp.push(value);
     this.setState({
       showModal: false,
       colorArray: temp,
     });
+    
   };
 
   render() {
@@ -259,7 +260,7 @@ class Product extends React.Component {
                   {this.state.colorArray.map((item) => {
                     return (
                       <span className="badge" style={{ backgroundColor: item }}>
-                        {item}
+                        {item}{console.log(item)}
                       </span>
                     );
                   })}

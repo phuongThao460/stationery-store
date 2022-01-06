@@ -46,7 +46,7 @@ function EditAccount() {
     <>
       <div className="main-right">
         <h2 className="main-right-title">My Account</h2>
-        <form className="form-wrapper" onSubmit={updateProfile}>
+        <div className="form-wrapper">
           <table>
             <tr className="name">
               <td className="td-label">Full name</td>
@@ -84,11 +84,11 @@ function EditAccount() {
             </tr>
           </table>
           <div className="btn-container">
-            <button className="btn-edit" type="submit">
+            <button className="btn-edit" onClick={() => updateProfile()}>
               Save
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );

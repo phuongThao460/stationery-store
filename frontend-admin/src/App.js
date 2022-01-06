@@ -15,11 +15,14 @@ import AddNewVoucher from "./pages/Voucher/AddNewVoucher";
 import Statistic from "./pages/Statistics/Statistic";
 import Reviews from "./pages/Reviews/Reviews";
 import Login from "./pages/Employee/Login";
+import Profile from "./pages/Employee/Profile";
+import StaffManagement from "./pages/Employee/StaffManagement";
 const Contact = () => {
   return <h1>Contact</h1>;
 };
 function App() {
   const [inactive, setInactive] = useState(false);
+  const employeeInfo = JSON.parse(window.localStorage.getItem("employee-account"));
   return (
     <>
       <div className="App">
@@ -50,6 +53,9 @@ function App() {
                   />
                   <Route path="/statistics" element={<Statistic />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/profile" element={<Profile/>} />
+                  {employeeInfo.role === 0 ? <Route path="/staff" element={<StaffManagement/>} /> : null}
+                  
                 </Routes>
               </div>
             </>

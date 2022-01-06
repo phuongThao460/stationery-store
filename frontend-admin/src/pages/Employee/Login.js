@@ -64,7 +64,7 @@ function Login() {
                 type="email"
                 autoComplete="current-email"
                 variant="standard"
-                className="email"
+                className="email-log"
                 inputRef={emailInput}
               />
             </div>

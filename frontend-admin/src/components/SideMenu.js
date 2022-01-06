@@ -10,17 +10,18 @@ import {
   BsSearch,
   BsFillPersonLinesFill,
   BsThreeDotsVertical,
+  BsPerson
 } from "react-icons/bs";
 import {
   RiDashboardFill,
-  RiContactsFill,
   RiListUnordered,
+  RiContactsBook2Line
 } from "react-icons/ri";
 import { IoTicketOutline } from "react-icons/io5";
 import logo from "../images/logo.jpg";
 import cat from "../images/cat.jpg";
 import MenuItem from "./MenuItem";
-
+import { Link, useNavigate } from "react-router-dom";
 const menuItems = [
   {
     name: "Dashboard",
@@ -39,6 +40,12 @@ const menuItems = [
     exact: "true",
     icon: <BsFillPersonLinesFill />,
   },
+  {
+    name: "Staff",
+    to: "/staff",
+    exact: "true",
+    icon: <BsPerson />,
+  },
   { name: "Order", to: "/order", icon: <RiListUnordered /> },
   { name: "Voucher", to: "/voucher", icon: <IoTicketOutline /> },
   {
@@ -46,11 +53,12 @@ const menuItems = [
     to: "/statistics",
     icon: <AiOutlineBarChart />,
   },
-  { name: "Contact", to: "/contact", icon: <RiContactsFill /> },
+  { name: "Contact", to: "/contact", icon: <RiContactsBook2Line /> },
 ];
 
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
+  let navigate = useNavigate();
   useEffect(() => {
     if (inactive) {
       removeActiveClassFromSubMenu();
@@ -83,6 +91,12 @@ const SideMenu = (props) => {
       });
     });
   }, []);
+
+  const logout = () => {
+    window.localStorage.removeItem("employee-account");
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
@@ -129,18 +143,18 @@ const SideMenu = (props) => {
           <h5 style={{ marginBottom: "0" }}>{info.ten_nv}</h5>
           <p>{info.email}</p>
         </div>
-        <div className="settings"
-          
-        >
+        <div className="settings">
           <BsThreeDotsVertical />
           <ul className="table-content">
-            <li className="list">Profile</li>
             <li className="list">
-              <button className="btn-logout">Logout</button>
+              <Link to="/profile" className="list-link">Profile</Link>
+            </li>
+            <li className="list">
+              <button className="btn-logout" onClick={logout}>Logout</button>
             </li>
           </ul>
         </div>
-        <div style={{height: "20px"}}/>
+        <div style={{ height: "20px" }} />
       </div>
     </div>
   );

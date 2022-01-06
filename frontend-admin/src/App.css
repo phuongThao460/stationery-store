@@ -178,7 +178,7 @@ body {
   position: relative;
   display: inline-block;
   width: 20px;
-  margin-left: 40px;
+  right: 0;
   bottom: 12px;
 }
 .table-content {
@@ -189,7 +189,6 @@ body {
   border: 1px solid #efefef;
   background: #fff;
   margin: 0;
-  padding: 8px 10px;
   border-radius: 0 0 3px 3px;
   box-shadow: 0 6px 12px 0 rgb(0 0 0 / 18%);
   z-index: 999;
@@ -205,13 +204,14 @@ body {
   justify-content: center;
   position: relative;
 }
-.btn-logout{
+.btn-logout {
   background-color: transparent;
+  width: 100%;
 }
-.settings:hover .table-content{
+.settings:hover .table-content {
   display: block;
 }
-.settings .table-content::before{
+.settings .table-content::before {
   position: absolute;
   pointer-events: none;
   content: "";
@@ -250,4 +250,15 @@ body {
 .container.inactive {
   margin-left: 80px;
   max-width: 94%;
+}
+.list-link{
+  color: #000;
+  text-decoration: none;
+  width: 100%;
+  padding: 8px 0;
+  height: fit-content;
+}
+.list-link:hover, .btn-logout:hover{
+  background-color: #cecece;
+  color: #000;
 }

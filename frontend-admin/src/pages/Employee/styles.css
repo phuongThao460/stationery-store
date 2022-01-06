@@ -51,11 +51,11 @@
   box-sizing: inherit;
   width: 100%;
 }
-.email, .password {
+.email-log, .password {
   width: 100%;
   margin-bottom: 20px;
 }
-.email:focus,
+.email-log:focus,
 .password:focus {
   outline: none;
 }
@@ -72,4 +72,61 @@
   background-color: #d16325;
   color: #fff;
   font-weight: bold;
+}
+
+/* -------------------Profile ----------------*/
+.btn-container {
+  width: 563px;
+  display: inline-block;
+  text-align: end;
+}
+.td-label {
+  font-size: 20px;
+  text-align: end;
+  color: #000;
+  font-weight: 300;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  line-height: 0.5;
+}
+.td-input {
+  padding-bottom: 20px;
+}
+.name input[type="text"],
+.phone input[type="number"],
+.email-profile input[type="email"],
+.address input[type="text"],
+.password-change input[type="password"]
+{
+  font-size: 20px;
+  border: 1px solid #d8d3d0;
+  border-radius: 2px 2px 2px 2px;
+  margin: 0;
+  color: #858585;
+  height: 100%;
+  padding: 9px 10px 9px 10px;
+  width: 421px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+.name input[type="text"]:focus,
+.phone input[type="number"]:focus,
+.email-profile input[type="email"]:focus,
+.address input[type="text"]:focus,
+.password-change input[type="password"]:focus {
+  outline: 1px solid #ccc;
+}
+
+select:focus, select::after{
+  outline: 1px solid #ccc;
+}
+select option{
+  outline: 1px solid #ccc;
 }
