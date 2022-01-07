@@ -17,6 +17,7 @@ import Reviews from "./pages/Reviews/Reviews";
 import Login from "./pages/Employee/Login";
 import Profile from "./pages/Employee/Profile";
 import StaffManagement from "./pages/Employee/StaffManagement";
+import AddListProducts from "./pages/Product/AddListProducts";
 const Contact = () => {
   return <h1>Contact</h1>;
 };
@@ -41,6 +42,7 @@ function App() {
                     path="/products/add-product"
                     element={<AddNewProduct />}
                   />
+                  <Route path="/products/add-lst-product" element={<AddListProducts/>}/>
                   <Route path="/products/edit/:id" element={<EditProduct />} />
                   <Route path="/products/feedback" element={<Reviews />} />
                   <Route path="/customer" element={<Customers />} />

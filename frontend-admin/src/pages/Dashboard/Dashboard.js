@@ -20,7 +20,9 @@ function Dashboard() {
 
   const getProductData = async () => {
     try {
-      const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/san_pham/");
+      const data = await axios.get(
+        "https://stationery-store-tmdt.herokuapp.com/san_pham/"
+      );
       setProducts(data.data.reverse());
     } catch (e) {
       console.log(e);
@@ -38,7 +40,7 @@ function Dashboard() {
           lineHeight: "normal",
           display: "inline-flex",
           justifyContent: "space-around",
-          marginLeft: "23px"
+          marginLeft: "23px",
         }}
       >
         <AiFillDelete></AiFillDelete>
@@ -165,20 +167,17 @@ function Dashboard() {
             </li>
             <li>
               <b>Import Date: </b>
-              {(modalInfo.ngay_nhap).substr(0, 10)}
+              {modalInfo.ngay_nhap.substr(0, 10)}
             </li>
-            
+
             <li>
-              <b>Import Price: </b>
-              ${modalInfo.don_gia_nhap}.00
-            </li>
-            <li>
-              <b>Selling Price: </b>
-              ${modalInfo.gia_ban_hien_tai}.00
+              <b>Import Price: </b>${modalInfo.don_gia_nhap}.00
             </li>
             <li>
-              <b>Original Price: </b>
-              ${modalInfo.gia_ban_goc}.00
+              <b>Selling Price: </b>${modalInfo.gia_ban_hien_tai}.00
+            </li>
+            <li>
+              <b>Original Price: </b>${modalInfo.gia_ban_goc}.00
             </li>
             <li>
               <b>Supplier: </b>
@@ -235,8 +234,18 @@ function Dashboard() {
             </Link>
           </button>
           <button className="btn-add">
-            <BiPlusMedical />
-            <span>Add List of Product</span>
+            <Link
+              to="/products/add-lst-product"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                wordBreak: "break-word",
+                overflow: "hidden",
+              }}
+            >
+              <BiPlusMedical />
+              <span>Add List of Product</span>
+            </Link>
           </button>
         </div>
       </div>
