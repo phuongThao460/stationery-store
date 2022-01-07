@@ -37,6 +37,11 @@ const schema = new mongoose.Schema(
       min: [0],
       max: [1],
     },
+    tinh_trang: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
   },
   { timestamps: true }
 );
