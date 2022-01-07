@@ -12,30 +12,30 @@ class Product extends React.Component {
       idType: 0,
       idSupp: 0,
       idMate: 0,
+      idClassi: 0,
       lstSupplier: [],
       lstType: [],
       lstMate: [],
       lstColor: [],
+      lstClassify: [],
       getLstColor: [],
       colorArray: [],
-      // selectedOptions: [],
       selectedOption: 0,
     };
-    this.submitColorHandle = this.submitColorHandle.bind(this)
+    this.submitColorHandle = this.submitColorHandle.bind(this);
     this.getListSupplier();
     this.getListType();
     this.getListMaterial();
+    this.getListClassify();
     this.nameProduct = createRef();
     this.amount = createRef();
     this.date = createRef();
     this.descript = createRef();
     this.importPrice = createRef();
     this.exportPrice = createRef();
+    this.basicPrice = createRef();
     this.rate = createRef();
   }
-  // handleChange = (selectedOptions) => {
-  //   this.setState({ selectedOptions });
-  // };
   changeId = (e) => {
     this.setState({ idType: e.value });
   };
@@ -45,54 +45,81 @@ class Product extends React.Component {
   changeIdMate = (e) => {
     this.setState({ idMate: e.value });
   };
+  changeIdClassi = (e) => {
+    this.setState({ idClassi: e.value });
+  };
   getListSupplier = () => {
-    axios.get("https://stationery-store-tmdt.herokuapp.com/nha_cc/").then((res) => {
-      res.data.forEach((element) => {
-        this.state.lstSupplier.push({
-          value: element._id,
-          label: element.ten_nha_cc,
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/nha_cc/")
+      .then((res) => {
+        res.data.forEach((element) => {
+          this.state.lstSupplier.push({
+            value: element._id,
+            label: element.ten_nha_cc,
+          });
         });
+        this.setState(this);
       });
-      this.setState(this);
-    });
   };
   getListType = () => {
-    axios.get("https://stationery-store-tmdt.herokuapp.com/loai_sp/").then((res) => {
-      res.data.forEach((element) => {
-        this.state.lstType.push({
-          value: element._id,
-          label: element.ten_loai_sp,
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/loai_sp/")
+      .then((res) => {
+        res.data.forEach((element) => {
+          this.state.lstType.push({
+            value: element._id,
+            label: element.ten_loai_sp,
+          });
         });
+        this.setState(this);
       });
-      this.setState(this);
-    });
+  };
+  getListClassify = () => {
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/phan_loai/")
+      .then((res) => {
+        res.data.forEach((element) => {
+          this.state.lstClassify.push({
+            value: element._id,
+            label: element.ten_phan_loai,
+          });
+        });
+        this.setState(this);
+      });
   };
   getListMaterial = () => {
-    axios.get("https://stationery-store-tmdt.herokuapp.com/chat_lieu/").then((res) => {
-      res.data.forEach((element) => {
-        this.state.lstMate.push({
-          value: element._id,
-          label: element.ten_chat_lieu,
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/chat_lieu/")
+      .then((res) => {
+        res.data.forEach((element) => {
+          this.state.lstMate.push({
+            value: element._id,
+            label: element.ten_chat_lieu,
+          });
         });
+        this.setState(this);
       });
-      this.setState(this);
-    });
   };
   createProduct = () => {
     axios
-      .post("https://stationery-store-tmdt.herokuapp.com/san_pham/create_san_pham", {
-        ten_sp: this.nameProduct.current.value,
-        so_luong: this.amount.current.value,
-        ngay_nhap: this.date.current.value,
-        mo_ta: this.descript.current.value,
-        don_gia_nhap: this.importPrice.current.value,
-        gia_ban_hien_tai: this.exportPrice.current.value,
-        id_loai_sp: window.localStorage.getItem("loai_sp_id"),
-        id_nha_cc: window.localStorage.getItem("nha_cc_id"),
-        id_mau_sac: window.localStorage.getItem("mau_sac_id"),
-        id_chat_lieu: window.localStorage.getItem("chat_lieu_id"),
-        ti_le_danh_gia: "0",
-      })
+      .post(
+        "https://stationery-store-tmdt.herokuapp.com/san_pham/create_san_pham",
+        {
+          ten_sp: this.nameProduct.current.value,
+          so_luong: this.amount.current.value,
+          ngay_nhap: this.date.current.value,
+          don_gia_nhap: this.importPrice.current.value,
+          gia_ban_goc: this.basicPrice.current.value,
+          gia_ban_hien_tai: this.exportPrice.current.value,
+          id_loai_sp: window.localStorage.getItem("loai_sp_id"),
+          id_nha_cc: window.localStorage.getItem("nha_cc_id"),
+          mau_sac: this.state.colorArray,
+          id_chat_lieu: window.localStorage.getItem("chat_lieu_id"),
+          mo_ta: this.descript.current.value,
+          ti_le_danh_gia: "0",
+          id_phan_loai: window.localStorage.getItem("phan_loai_id"),
+        }
+      )
       .then((res) => {
         console.log(res.data);
         //this.props.history.push("/");
@@ -106,15 +133,14 @@ class Product extends React.Component {
     this.setState({ showModal: false });
   };
 
-  submitColorHandle(value){
+  submitColorHandle(value) {
     const temp = this.state.colorArray;
     temp.push(value);
     this.setState({
       showModal: false,
       colorArray: temp,
     });
-    
-  };
+  }
 
   render() {
     return (
@@ -164,12 +190,16 @@ class Product extends React.Component {
           </div>
           {/* Price */}
           <div style={{ display: "flex" }}>
-            <div className="form-group" style={{ width: "300px" }}>
+            <div className="form-group" style={{ width: "200px" }}>
               <label className="control-label col-sm-2">Price</label>
-              <div className="col-sm-10">
+              <div className="col-sm-10" style={{ display: "flex" }}>
+                <div className="input-group-addon css-number-2">
+                  <span style={{ fontSize: "18px" }}>$</span>
+                </div>
                 <input
+                  style={{ marginLeft: "-1px" }}
                   type="number"
-                  className="form-control"
+                  className="form-control price"
                   placeholder="Import Price"
                   ref={this.importPrice}
                   min="1.000"
@@ -177,14 +207,36 @@ class Product extends React.Component {
                 />
               </div>
             </div>
-            <div className="form-group" style={{ width: "300px" }}>
+            <div className="form-group" style={{ width: "200px" }}>
               <label className="control-label col-sm-2"></label>
-              <div className="col-sm-10">
+              <div className="col-sm-10" style={{ display: "flex" }}>
+                <div className="input-group-addon css-number-2">
+                  <span style={{ fontSize: "18px" }}>$</span>
+                </div>
                 <input
+                  style={{ marginLeft: "-1px" }}
                   type="number"
-                  class="form-control"
+                  class="form-control price"
                   placeholder="Export Price"
                   ref={this.exportPrice}
+                  min="1000"
+                  step="1.000"
+                  max="3.000.000"
+                />
+              </div>
+            </div>
+            <div className="form-group" style={{ width: "200px" }}>
+              <label className="control-label col-sm-2"></label>
+              <div className="col-sm-10" style={{ display: "flex" }}>
+                <div className="input-group-addon css-number-2">
+                  <span style={{ fontSize: "18px" }}>$</span>
+                </div>
+                <input
+                  style={{ marginLeft: "-1px" }}
+                  type="number"
+                  class="form-control price"
+                  placeholder="Basic Price"
+                  ref={this.basicPrice}
                   min="1000"
                   step="1.000"
                   max="3.000.000"
@@ -260,7 +312,7 @@ class Product extends React.Component {
                   {this.state.colorArray.map((item) => {
                     return (
                       <span className="badge" style={{ backgroundColor: item }}>
-                        {item}{console.log(item)}
+                        {item}
                       </span>
                     );
                   })}
@@ -305,11 +357,35 @@ class Product extends React.Component {
               <BiPlusMedical />
               <span style={{ marginLeft: "8px" }}>Add New Material</span>
             </button>
-            {/* <ModalMaterial
-              show={this.state.showModal}
-              handleClose={this.hideModal}
-              children={"Add new color"}
-            ></ModalMaterial> */}
+          </div>
+          {/* Classify */}
+          <div style={{ display: "flex" }}>
+            <div className="form-group" style={{ width: "367px" }}>
+              <label className="control-label col-sm-10">
+                Classification of Item
+              </label>
+              <div className="col-sm-10">
+                <Select
+                  options={this.state.lstClassify}
+                  onChange={this.changeIdClassi}
+                  value={this.state.lstClassify.find(
+                    (id) => id.value === this.state.idClassi
+                  )}
+                />
+                {window.localStorage.setItem(
+                  "phan_loai_id",
+                  this.state.idClassi
+                )}
+              </div>
+            </div>
+            <button
+              onClick={this.openModal}
+              className="btn-add"
+              style={{ height: "fit-content", marginTop: "25px" }}
+            >
+              <BiPlusMedical />
+              <span style={{ marginLeft: "8px" }}>Add New Material</span>
+            </button>
           </div>
           <div className="form-group">
             <label className="control-label col-sm-2">Description</label>

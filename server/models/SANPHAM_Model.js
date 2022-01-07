@@ -49,12 +49,10 @@ const schema = new mongoose.Schema(
       ref: "NHA_CUNG_CAP",
       required: true,
     },
-    mau_sac: [
-      {
-        type: String,
-        required: false,
-      },
-    ],
+    mau_sac: { 
+      type: Array, 
+      required: false 
+    },
     id_chat_lieu: {
       type: mongoose.Types.ObjectId,
       ref: "CHAT_LIEU",
