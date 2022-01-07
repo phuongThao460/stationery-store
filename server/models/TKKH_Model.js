@@ -241,3 +241,24 @@ export const Remove_SanPham_From_WishList = async (id_tkkh, id_sp) => {
     throw err;
   }
 };
+
+export const Get_FeedBack_Product_By_TTKH = async (id_ttkh) => {
+  /*
+  Get danh sach san pham can danh gia theo id_ttkh
+
+  :return: array
+  */
+
+  try {
+    var rs = await TK_KH_Model.aggregate([
+      // Stage 1
+      { $match: { id_ttkh: mongoose.Types.ObjectId(id_ttkh) } },
+
+      // Stage 2:
+      { $project: { san_pham_cho_danh_gia: 1 } },
+    ]).exec();
+    return rs;
+  } catch (err) {
+    throw err;
+  }
+};

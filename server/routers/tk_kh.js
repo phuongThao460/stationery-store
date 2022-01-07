@@ -8,6 +8,7 @@ import {
   Get_TKKH_By_TTKH,
   Add_To_WishList,
   Remove_From_WishList,
+  Get_FeedBack_By_ID_TTKH,
 } from "../controller/tk_kh.js";
 
 const router = express.Router();
@@ -33,6 +34,8 @@ router.post("/add_wishlist", Add_To_WishList);
 // POST: /tkkh/remove_wishlist
 router.post("/remove_wishlist", Remove_From_WishList);
 
-router.post("/test", Get_TKKH_By_TTKH);
+// POST: /tkkh/feedbacks_from_ttkh
+router.post("/feedbacks_from_ttkh", Get_FeedBack_By_ID_TTKH);
 
+router.post("/test", Get_TKKH_By_TTKH);
 export default router;
