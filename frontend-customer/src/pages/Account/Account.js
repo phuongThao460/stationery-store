@@ -24,13 +24,13 @@ export default class Account extends Component {
     this.gender = createRef();
   }
   getListCities = () => {
-    axios.get("http://localhost:8000/thanh_pho/").then((response) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/thanh_pho/").then((response) => {
       this.setState({ lstCities: response.data });
     });
   };
   getListDistrict = () => {
     axios
-      .post("http://localhost:8000/quan/by_thanh_pho", {
+      .post("https://stationery-store-tmdt.herokuapp.com/quan/by_thanh_pho", {
         id_thanh_pho: this.state.idCity,
       })
       .then((response) => {
@@ -39,7 +39,7 @@ export default class Account extends Component {
   };
   getListWards = () => {
     axios
-      .post("http://localhost:8000/phuong/by_quan", {
+      .post("https://stationery-store-tmdt.herokuapp.com/phuong/by_quan", {
         id_quan: this.state.idDis,
       })
       .then((response) => {
