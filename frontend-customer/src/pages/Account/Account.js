@@ -24,9 +24,11 @@ export default class Account extends Component {
     this.gender = createRef();
   }
   getListCities = () => {
-    axios.get("https://stationery-store-tmdt.herokuapp.com/thanh_pho/").then((response) => {
-      this.setState({ lstCities: response.data });
-    });
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/thanh_pho/")
+      .then((response) => {
+        this.setState({ lstCities: response.data });
+      });
   };
   getListDistrict = () => {
     axios
@@ -78,12 +80,18 @@ export default class Account extends Component {
       id_ttkh: null,
     };
 
-    const ttkh_res = await axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/create", ttkh_req);
-    tkkh_req['id_ttkh'] = await ttkh_res.data._id;
+    const ttkh_res = await axios.post(
+      "https://stationery-store-tmdt.herokuapp.com/ttkh/create",
+      ttkh_req
+    );
+    tkkh_req["id_ttkh"] = await ttkh_res.data._id;
 
     this.setState({ cusInfo: ttkh_res.data });
 
-    const tkkh_res = await axios.post("https://stationery-store-tmdt.herokuapp.com/tkkh/create", tkkh_req);
+    const tkkh_res = await axios.post(
+      "https://stationery-store-tmdt.herokuapp.com/tkkh/create",
+      tkkh_req
+    );
 
     window.localStorage.setItem("customer", JSON.stringify(tkkh_res.data));
   };

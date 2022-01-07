@@ -150,8 +150,8 @@ function Checkout() {
   const addCartDetails = () => {
     axios
       .post("https://stationery-store-tmdt.herokuapp.com/don_hang/save", {
-        ngay_dat: newOrder.ngay_dat,
-        ngay_giao: newOrder.ngay_giao,
+        ngay_dat: new Date().toLocaleDateString(),
+        ngay_giao: new Date().toLocaleDateString(),
         id_ttkh: newOrder.id_ttkh,
         id_ttdh: newOrder.id_ttdh,
         ghi_chu: newOrder.ghi_chu,
