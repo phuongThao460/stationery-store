@@ -66,6 +66,9 @@ const schema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "PHAN_LOAI",
     },
+    hinh_anh: {
+      type: String,
+    },
   },
   { timestamps: false }
 );
