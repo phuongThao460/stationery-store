@@ -130,3 +130,6 @@ select:focus, select::after{
 select option{
   outline: 1px solid #ccc;
 }
+.table-new-staff{
+  width: 60%;
+}

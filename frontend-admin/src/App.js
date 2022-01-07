@@ -18,6 +18,7 @@ import Login from "./pages/Employee/Login";
 import Profile from "./pages/Employee/Profile";
 import StaffManagement from "./pages/Employee/StaffManagement";
 import AddListProducts from "./pages/Product/AddListProducts";
+import AddNewStaff from "./pages/Employee/AddNewStaff";
 const Contact = () => {
   return <h1>Contact</h1>;
 };
@@ -57,7 +58,7 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/profile" element={<Profile/>} />
                   {employeeInfo.role === 0 ? <Route path="/staff" element={<StaffManagement/>} /> : null}
-                  
+                  <Route path="/staff/add-new-staff" element={<AddNewStaff/>} />
                 </Routes>
               </div>
             </>

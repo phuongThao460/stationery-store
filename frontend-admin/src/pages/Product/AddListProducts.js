@@ -63,7 +63,7 @@ function AddListProducts() {
       <input type="file" onChange={handleChange} />
         <div className="btn">
           <button
-            onClick={addLstProduct}
+            onClick={() => addLstProduct()}
             className="btn-add"
             style={{ width: "120px" }}
           >

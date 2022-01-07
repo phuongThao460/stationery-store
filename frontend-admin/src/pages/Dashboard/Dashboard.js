@@ -97,7 +97,7 @@ function Dashboard() {
     {
       dataField: "id_loai_sp.ten_loai_sp",
       text: "Type",
-      attrs: { width: 100, class: "EditRow", style: { textAlign: "start" } },
+      attrs: { width: 150, class: "EditRow", style: { textAlign: "start" } },
       headerAlign: "start",
     },
     {
