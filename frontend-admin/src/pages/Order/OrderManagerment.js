@@ -21,7 +21,9 @@ function OrderManagerment() {
 
   const getAllOrder = async () => {
     try {
-      const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/don_hang/");
+      const data = await axios.get(
+        "https://stationery-store-tmdt.herokuapp.com/don_hang/"
+      );
       setOrderList(data.data);
     } catch (err) {
       console.log(err);
@@ -29,10 +31,15 @@ function OrderManagerment() {
   };
 
   const updateStatus = (idOrder, event) => {
-    axios.post("https://stationery-store-tmdt.herokuapp.com/don_hang/update_by_id", {
-      _id: idOrder,
-      id_ttdh: event,
-    });
+    axios
+      .post(
+        "https://stationery-store-tmdt.herokuapp.com/don_hang/update_by_id",
+        {
+          _id: idOrder,
+          id_ttdh: event,
+        }
+      )
+      .then(() => window.location.reload());
   };
   useEffect(() => {
     getAllOrder();
@@ -97,7 +104,9 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td style={{ textAlign: "end" }}>${item.tong_tien.toFixed(2)}</td>
+                      <td style={{ textAlign: "end" }}>
+                        ${item.tong_tien.toFixed(2)}
+                      </td>
                       <td>
                         <button
                           className="btn-edit"
@@ -155,7 +164,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${(item.tong_tien).toFixed(2)}</td>
+                      <td>${item.tong_tien.toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-edit"
@@ -177,7 +186,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
-                            setSaleTax(item.tong_gia_giam_boi_voucher)
+                            setSaleTax(item.tong_gia_giam_boi_voucher);
                           }}
                         >
                           View
@@ -212,7 +221,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${(item.tong_tien).toFixed(2)}</td>
+                      <td>${item.tong_tien.toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-edit"
@@ -234,7 +243,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
-                            setSaleTax(item.tong_gia_giam_boi_voucher)
+                            setSaleTax(item.tong_gia_giam_boi_voucher);
                           }}
                         >
                           View
@@ -268,7 +277,7 @@ function OrderManagerment() {
                       <td>
                         {new Date(item.ngay_dat).toLocaleDateString("en-GB")}
                       </td>
-                      <td>${(item.tong_tien).toFixed(2)}</td>
+                      <td>${item.tong_tien.toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-view"
@@ -282,7 +291,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
-                            setSaleTax(item.tong_gia_giam_boi_voucher)
+                            setSaleTax(item.tong_gia_giam_boi_voucher);
                           }}
                         >
                           View
@@ -314,7 +323,7 @@ function OrderManagerment() {
                     <tr key={index} style={{ textAlign: "center" }}>
                       <th scope="row">{item._id.substr(14)}</th>
                       <td>{new Date(item.ngay_dat).toLocaleDateString()}</td>
-                      <td>${(item.tong_tien).toFixed(2)}</td>
+                      <td>${item.tong_tien.toFixed(2)}</td>
                       <td>
                         <button
                           className="btn-view"
@@ -328,7 +337,7 @@ function OrderManagerment() {
                             setSubtotal(item.tong_phu);
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
-                            setSaleTax(item.tong_gia_giam_boi_voucher)
+                            setSaleTax(item.tong_gia_giam_boi_voucher);
                           }}
                         >
                           View

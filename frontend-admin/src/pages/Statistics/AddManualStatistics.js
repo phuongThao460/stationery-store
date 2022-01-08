@@ -17,6 +17,8 @@ function AddManualStatistics(props) {
       })
       .then(() => {
         alert("Add New Successful");
+        console.log(staffInfo._id)
+        window.location.reload();
       });
   };
   return (

@@ -60,6 +60,7 @@ function AddListProducts() {
   return (
     <div className="save-list">
       <div className="hearder">
+      <a href="/excel/AddProduct.xlsx" download style={{marginRight: "20px"}}>Download the template</a>
       <input type="file" onChange={handleChange} />
         <div className="btn">
           <button
