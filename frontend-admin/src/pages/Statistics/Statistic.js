@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-direct-mutation-state */
 import * as React from "react";
+import { BiPlusMedical } from "react-icons/bi";
 import Paper from "@material-ui/core/Paper";
 import {
   Chart,
@@ -32,7 +33,8 @@ import {
   decodeTarget,
   compareTargets,
 } from "./styles.js";
-import { annualVehiclesSales, annualVehiclesSales as data } from "./data.js";
+import { Link } from "react-router-dom";
+import AddManualStatistics from "./AddManualStatistics.js";
 
 class Statistic extends React.PureComponent {
   constructor(props) {
@@ -44,6 +46,7 @@ class Statistic extends React.PureComponent {
       tooltipEnabled: true,
       arrayData: [],
       data: [],
+      modalShow: false,
     };
     this.click = ({ targets }) => {
       const target = targets[0];
@@ -94,22 +97,27 @@ class Statistic extends React.PureComponent {
   componentDidMount() {
     this.getAllData();
   }
+  setShowModal = () => {
+    this.setState({ modalShow: true });
+  };
   getAllData = () => {
-    axios.get("https://stationery-store-tmdt.herokuapp.com/thong_ke/").then((res) => {
-      //this.setState({ data: res.data });
-      res.data.forEach((element) => {
-        let getMonth = new Date(element.ngay_bat_dau);
-        let convertMonth = new Intl.DateTimeFormat("en-GB", {
-          month: "long",
-        }).format(getMonth);
-        this.state.arrayData.push({
-          month: convertMonth,
-          Sales: element.tong_doanh_thu,
-          Profits: element.tong_loi_nhuan,
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/thong_ke/")
+      .then((res) => {
+        //this.setState({ data: res.data });
+        res.data.forEach((element) => {
+          let getMonth = new Date(element.ngay_bat_dau);
+          let convertMonth = new Intl.DateTimeFormat("en-GB", {
+            month: "long",
+          }).format(getMonth);
+          this.state.arrayData.push({
+            month: convertMonth,
+            Sales: element.tong_doanh_thu,
+            Profits: element.tong_loi_nhuan,
+          });
         });
+        this.setState(this);
       });
-      this.setState(this);
-    });
   };
   render() {
     const { hover, selection, tooltipTarget, tooltipEnabled, arrayData } =
@@ -119,40 +127,74 @@ class Statistic extends React.PureComponent {
     }
     if (arrayData !== 0) {
       return (
-        <Paper>
-          {console.log(arrayData.length)}
-          <Chart data={arrayData}>
-            <ArgumentScale factory={scaleBand} />
-            <ArgumentAxis />
-            <ValueAxis />
-            <Title
-              text="Revenue Statistics per Month"
-              textComponent={TitleText}
-            />
+        <>
+          <div className="hearder">
+            <h1>Statistics</h1>
+            <div className="btn">
+              <button className="btn-add" onClick={this.setShowModal}>
+                <BiPlusMedical />
+                <span>Add New</span>
+              </button>
+              <button className="btn-add">
+                <Link
+                  to="/statistics/view-list"
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    wordBreak: "break-word",
+                    overflow: "hidden",
+                  }}
+                >
+                  <span>View List of Statistics</span>
+                </Link>
+              </button>
+            </div>
+          </div>
+          <Paper>
+            {console.log(arrayData.length)}
+            <Chart data={arrayData}>
+              <ArgumentScale factory={scaleBand} />
+              <ArgumentAxis />
+              <ValueAxis />
+              <Title
+                text="Revenue Statistics per Month"
+                textComponent={TitleText}
+              />
 
-            <BarSeries name="Sales" valueField="Sales" argumentField="month" />
-            <BarSeries
-              name="Profits"
-              valueField="Profits"
-              argumentField="month"
+              <BarSeries
+                name="Sales"
+                valueField="Sales"
+                argumentField="month"
+              />
+              <BarSeries
+                name="Profits"
+                valueField="Profits"
+                argumentField="month"
+              />
+              <Stack />
+              <Legend
+                position="bottom"
+                rootComponent={Root}
+                labelComponent={Label}
+              />
+              <EventTracker onClick={this.click} />
+              <HoverState hover={hover} onHoverChange={this.changeHover} />
+              <Tooltip
+                targetItem={tooltipEnabled && tooltipTarget}
+                onTargetItemChange={this.changeTooltip}
+                contentComponent={TooltipContent}
+              />
+              <SelectionState selection={selection} />
+              <Animation />
+            </Chart>
+          </Paper>
+          {this.state.modalShow ? (
+            <AddManualStatistics
+              show={this.state.modalShow}
+              onHide={() => this.setState({ modalShow: false })}
             />
-            <Stack />
-            <Legend
-              position="bottom"
-              rootComponent={Root}
-              labelComponent={Label}
-            />
-            <EventTracker onClick={this.click} />
-            <HoverState hover={hover} onHoverChange={this.changeHover} />
-            <Tooltip
-              targetItem={tooltipEnabled && tooltipTarget}
-              onTargetItemChange={this.changeTooltip}
-              contentComponent={TooltipContent}
-            />
-            <SelectionState selection={selection} />
-            <Animation />
-          </Chart>
-        </Paper>
+          ) : null}
+        </>
       );
     }
   }

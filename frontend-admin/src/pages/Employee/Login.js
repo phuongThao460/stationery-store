@@ -57,7 +57,7 @@ function Login() {
             <span>Welcome to our stationery store</span>
           </div>
           <form className="input-field" onSubmit={loginSubmit}>
-            <div className="email">
+            <div className="email" style={{marginBottom: "20px"}}>
               <TextField
                 id="standard-email-input"
                 label="Email"
