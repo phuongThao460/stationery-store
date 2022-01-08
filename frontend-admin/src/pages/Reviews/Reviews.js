@@ -12,7 +12,9 @@ function Reviews() {
   useEffect(() => {
     const getAllReviews = async () => {
       try {
-        const data = await axios.get("https://stationery-store-tmdt.herokuapp.com/danh_gia/");
+        const data = await axios.get(
+          "https://stationery-store-tmdt.herokuapp.com/danh_gia/"
+        );
         setReviews(data.data);
       } catch (error) {
         console.log(error);
@@ -22,6 +24,15 @@ function Reviews() {
     getAllReviews();
     console.log("just run once");
   }, []);
+
+  const updateStatus = (id) => {
+    axios
+      .post("https://stationery-store-tmdt.herokuapp.com/danh_gia/update", {
+        _id: id,
+        tinh_trang: "true",
+      })
+      .then(() => window.location.reload());
+  };
   return (
     <>
       <h1>Reviews</h1>
@@ -55,20 +66,42 @@ function Reviews() {
                   <td style={{ textAlign: "end" }}>{item.so_sao_danh_gia}</td>
                   <td>{item.tinh_trang ? "Publish" : "Waiting"}</td>
                   <td style={{ textAlign: "center" }}>
-                    <button
-                      className="btn-view"
-                      onClick={() => {
-                        setModalShow(true);
-                        setEmail(item.id_tkkh.email);
-                        setProduct(item.id_san_pham.ten_sp);
-                        setRating(item.so_sao_danh_gia);
-                        setComment(item.noi_dung_danh_gia);
-                      }}
-                    >
-                      View
-                    </button>
-                    <button className="btn-add">Publish</button>
-                    <button className="btn-delete">Cancel</button>
+                    {item.tinh_trang ? (
+                      <button
+                        className="btn-view"
+                        onClick={() => {
+                          setModalShow(true);
+                          setEmail(item.id_tkkh.email);
+                          setProduct(item.id_san_pham.ten_sp);
+                          setRating(item.so_sao_danh_gia);
+                          setComment(item.noi_dung_danh_gia);
+                        }}
+                      >
+                        View
+                      </button>
+                    ) : (
+                      <>
+                        <button
+                          className="btn-view"
+                          onClick={() => {
+                            setModalShow(true);
+                            setEmail(item.id_tkkh.email);
+                            setProduct(item.id_san_pham.ten_sp);
+                            setRating(item.so_sao_danh_gia);
+                            setComment(item.noi_dung_danh_gia);
+                          }}
+                        >
+                          View
+                        </button>
+                        <button
+                          className="btn-add"
+                          onClick={() => updateStatus(item._id)}
+                        >
+                          Publish
+                        </button>
+                        <button className="btn-delete">Cancel</button>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))

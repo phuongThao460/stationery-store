@@ -24,6 +24,10 @@ function LoginForm() {
         })
         .then((res) => {
           console.log(res.data)
+          if(res.data.status === 200){
+            alert(errorName);
+            window.location.reload();
+          }
           if (res.data !== null) {
             alert("Đăng nhập thành công");
             window.localStorage.setItem("id_account", res.data._id);
@@ -31,9 +35,7 @@ function LoginForm() {
             navigate("/");
             window.location.reload();
           }
-          if(res.data === null){
-            alert(errorName);
-          }
+          
         });
     }
   }
