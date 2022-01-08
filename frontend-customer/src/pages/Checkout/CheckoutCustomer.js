@@ -204,7 +204,7 @@ export default class CheckoutCustomer extends Component {
                           <p className="body-title">{item.ten_sp}</p>
                           <p className="body-title">Amount: {item.count}</p>
                         </div>
-                        <b style={{marginLeft: "44px", fontSize: "35px"}}>
+                        <b style={{marginLeft: "44px", fontSize: "25px"}}>
                           ${item.gia_ban_hien_tai}
                         </b>
                       </div>

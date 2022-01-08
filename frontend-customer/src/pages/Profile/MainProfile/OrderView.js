@@ -42,7 +42,7 @@ function OrderView() {
       <h2>Your Order</h2>
       <table className="table table-bordered">
         <thead>
-          <tr style={{ fontSize: "30px" }}>
+          <tr style={{ fontSize: "20px" }}>
             <th scope="col" style={{ textAlign: "center" }}>
               ID
             </th>
@@ -65,10 +65,10 @@ function OrderView() {
         </thead>
         <tbody>
           {orderList.map((item, index) => (
-            <tr key={index} style={{ textAlign: "center", fontSize: "25px" }}>
-              <th scope="row">{item._id.substr(14)}</th>
-              <td>{new Date(item.ngay_dat).toLocaleDateString("en-GB")}</td>
-              <td style={{ textAlign: "start", lineHeight: "1" }}>
+            <tr key={index} style={{ textAlign: "center", fontSize: "18px" }}>
+              <th scope="row" style={{ paddingTop: "7px" }}>{item._id.substr(14)}</th>
+              <td style={{ paddingTop: "7px" }}>{new Date(item.ngay_dat).toLocaleDateString("en-GB")}</td>
+              <td style={{ textAlign: "start", paddingTop: "7px"}}>
                 {orderList[index].san_pham.length > 1
                   ? orderList[index].san_pham[0].ten_sp +
                     " ...and more than " +
@@ -76,13 +76,13 @@ function OrderView() {
                     " products"
                   : orderList[index].san_pham[0].ten_sp}
               </td>
-              <td style={{ textAlign: "end" }}>
+              <td style={{ textAlign: "end", paddingTop: "7px" }}>
                 <span style={{ marginRight: "5px !important" }}>
                   ${item.tong_tien.toFixed(2)}
                 </span>
               </td>
-              <td>{orderList[0].ttdh[0].trang_thai}</td>
-              <td>
+              <td style={{ paddingTop: "7px" }}>{orderList[0].ttdh[0].trang_thai}</td>
+              <td style={{ paddingTop: "3px" }}>
                 <button
                   className="btn-view"
                   onClick={() => {

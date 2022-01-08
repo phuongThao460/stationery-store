@@ -78,7 +78,7 @@ function EditAddress() {
       <form className="address-profile">
         <table>
           <tr>
-            <td className="td-label" style={{ width: "132px" }}>
+            <td className="td-label" style={{ width: "219px" }}>
               Street name & number
             </td>
             <td>

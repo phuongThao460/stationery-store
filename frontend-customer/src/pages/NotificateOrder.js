@@ -8,18 +8,18 @@ function NotificateOrder() {
       <h1 style={{ marginBottom: "15px" }}>
         Thank you for your order
       </h1>
-      <div style={{marginTop: "20px"}}>
-        <p style={{fontSize: "30px"}}>
+      <div style={{marginTop: "30px"}}>
+        <p style={{fontSize: "18px", marginBottom: "0"}}>
           As soon as your package is on its way, you will receive a delivery
           confirmation from us by email{" "}
         </p>
-        <p style={{fontSize: "30px"}}>
+        <p style={{fontSize: "18px"}}>
           Please be so kind to leave us a review and share your purchase with us
           on social media
         </p>
       </div>
       <div style={{marginTop: "30px"}}>
-        <Link to="/" style={{color: "blue", textDecoration: "underline", fontSize: "30px"}}><AiOutlineArrowLeft style={{paddingRight: "10px"}}/>Continue shopping</Link>
+        <Link to="/" style={{color: "blue", textDecoration: "underline", fontSize: "15px"}}><AiOutlineArrowLeft style={{paddingRight: "10px", fontSize: "25px"}}/>Continue shopping</Link>
       </div>
     </div>
   );

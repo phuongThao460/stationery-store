@@ -60,7 +60,7 @@ function ViewListStatistics() {
                   <td>{item.tong_doanh_thu}</td>
                   <td>{item.tong_gia_nhap}</td>
                   <td>{item.tong_loi_nhuan}</td>
-                  <td>{item.id_nv}</td>
+                  <td>{item.id_nv.ten_nv}</td>
                 </tr>
               ))
             : null}

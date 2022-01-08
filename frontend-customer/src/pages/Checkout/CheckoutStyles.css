@@ -12,52 +12,56 @@
 }
 
 .Title-Info {
-  font-weight: 600;
+  font-weight: 500;
   text-align: left;
-  font-size: 50px;
+  font-size: 30px;
   background-color: transparent;
   color: black;
 }
 
 .Input-type {
   width: 100%;
-  font-size: 30px;
+  font-size: 20px;
   padding-left: 10px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  padding: 5px 10px 5px 10px;
 }
 .city {
   width: 100%;
-  font-size: 25px;
+  font-size: 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  padding: 5px 10px 5px 10px;
 }
 
 .District {
   width: 49%;
   margin: 8px 0;
   display: inline-block;
-  font-size: 25px;
+  font-size: 20px;
   border: 1px solid #d8d3d0;
   border-radius: 4px;
   box-sizing: border-box;
   margin-right: 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 .Ward {
   width: 49%;
   margin: 8px 0;
-  font-size: 25px;
+  font-size: 20px;
   border: 1px solid #d8d3d0;
   border-radius: 4px;
   box-sizing: border-box;
   align-items: right;
+  padding: 5px 10px 5px 10px;
 }
 
 .radio {
@@ -112,7 +116,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: lighter;
   line-height: 1;
 }
@@ -128,12 +132,12 @@
   display: flex;
   justify-content: space-between;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 20px;
 }
 
 .Button-checkout-checkout {
   width: 100%;
-  padding: 5px;
+  padding: 11px;
   margin-bottom: 14px;
   background-color: black;
   color: white;
@@ -142,7 +146,7 @@
   border: 0;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.5);
-  font-size: 30px;
+  font-size: 20px;
 }
 .Shipping,
 .Payment {
@@ -166,7 +170,7 @@
   border-bottom: 1px solid #ccc;
 }
 .body-info p {
-  font-size: 30px;
+  font-size: 22px;
 }
 .address {
   width: 323px;

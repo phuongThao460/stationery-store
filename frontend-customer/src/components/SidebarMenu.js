@@ -74,8 +74,8 @@ const SidebarMenu = (props) => {
             <b className="name-cus">{cusAccountInfo.ten_kh}</b>
           </div>
         </div>
-        <div className="main-menu">
-          <ul>
+        <div className="main-menu" style={{height: "339px"}}>
+          <ul style={{height: "339px"}}>
             {menuItems.map((item, index) => (
               <MenuItems
                 key={index}

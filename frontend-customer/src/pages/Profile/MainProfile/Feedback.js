@@ -26,10 +26,10 @@ function Feedback() {
   }, []);
   return (
     <div className="main-right">
-      <h2>Your Order</h2>
+      <h2>Your Feedback</h2>
       <table className="table table-bordered">
         <thead>
-          <tr style={{ fontSize: "30px" }}>
+          <tr style={{ fontSize: "20px" }}>
             <th scope="col" style={{ textAlign: "center" }}>
               ID
             </th>
@@ -46,16 +46,16 @@ function Feedback() {
         </thead>
         <tbody>
           {feedback.map((item, index) => (
-            <tr key={index} style={{ textAlign: "center", fontSize: "25px" }}>
+            <tr key={index} style={{ fontSize: "18px" }}>
               <th scope="row">{item._id.substr(14)}</th>
-              <td>{item[0]}</td>
+              <td>{item.ten_sp}</td>
               <td></td>
-              <td>
+              <td style={{textAlign: "center"}}>
                 <button
                   className="btn-view"
                   onClick={() => {
                     setModalShow(true);
-                    setItem(item);
+                    setItem(item.ten_sp);
                   }}
                 >
                   Send Reviews
@@ -65,7 +65,7 @@ function Feedback() {
           ))}
         </tbody>
       </table>
-      {modalShow ? <WriteFeedback item={item} /> : null}
+      {modalShow ? <WriteFeedback item={item} show={modalShow} onHide={() => setModalShow(false)}/> : null}
     </div>
   );
 }

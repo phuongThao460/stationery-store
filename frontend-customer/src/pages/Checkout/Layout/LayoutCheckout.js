@@ -22,7 +22,7 @@ function LayoutCheckout(props) {
             >
               {props.cusAccountInfo ? (
                 <div style={{ display: "block" }}>
-                  <h1 className="Title-Info">Contact info</h1>
+                  <h2 className="Title-Info">Contact info</h2>
                   <div className="body-info">
                     <p>{props.cusAccountInfo.ten_kh}</p>
                   </div>
@@ -35,7 +35,7 @@ function LayoutCheckout(props) {
                 </div>
               ) : (
                 <div style={{ display: "block" }}>
-                  <h1 className="Title-Info">Contact info</h1>
+                  <h2 className="Title-Info">Contact info</h2>
                   <div className="body-info">
                     <p>{props.customerInfo.ten_kh}</p>
                   </div>
@@ -56,14 +56,14 @@ function LayoutCheckout(props) {
             </div>
             {props.cusAccountInfo ? (
               <div className="Shipping">
-                <h1 className="Title-Info">Shipping Address</h1>
+                <h2 className="Title-Info">Shipping Address</h2>
                 <div className="address body-info">
                   <p>{props.cusAccountInfo.dia_chi + ", " + props.address}</p>
                 </div>
               </div>
             ) : (
               <div className="Shipping">
-                <h1 className="Title-Info">Shipping Address</h1>
+                <h2 className="Title-Info">Shipping Address</h2>
                 <div className="address body-info">
                   <p>{props.customerInfo.dia_chi + ", " + props.address}</p>
                 </div>
@@ -73,7 +73,7 @@ function LayoutCheckout(props) {
           <div className="right">
             <div className="Summary-checkout" style={{ border: "0" }}>
               <div className="summary-container-checkout">
-                <h1 className="SummaryTitle-checkout">Order Details</h1>
+                <h2 className="SummaryTitle-checkout">Order Details</h2>
                 <div
                   className="SummaryItem-checkout"
                   style={{ display: "block" }}

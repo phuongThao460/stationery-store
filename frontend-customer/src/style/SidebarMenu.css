@@ -1,7 +1,7 @@
 .side-menu .main-menu .menu-item {
   color: #333;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 17px;
   display: block;
   font-weight: 600;
   line-height: normal;
@@ -23,11 +23,13 @@
   line-height: 0.7;
   opacity: 1;
   transition: opacity 500ms ease-in;
-  padding-top: 15px;
+  padding-top: 11px;
 }
 .side-menu .main-menu .menu-item.active {
   background: rgb(224, 224, 224);
   border-radius: 5px;
+  height: 40px;
+  padding-top: 5px;
 }
 .side-menu.inactive .main-menu .menu-item span {
   opacity: 0;

@@ -37,7 +37,7 @@ const Navbar = ({ click }) => {
         </form>
         {customerInfo ? (
           <div className="user-name">
-            <span style={{ fontSize: "25px" }}>{customerInfo.ten_kh}</span>
+            <span style={{ fontSize: "20px" }}>{customerInfo.ten_kh}</span>
             <ul className="table-content">
               <li className="list">
                 <Link

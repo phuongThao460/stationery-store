@@ -13,7 +13,7 @@
 }
 
 .Image {
-  width: 70vh;
+  width: 90vh;
   height: 70vh;
   object-fit: cover;
 }
@@ -31,6 +31,7 @@
   margin: 0;
 }
 .Title-Product {
+  font-size: 30px;
   font-weight: 600;
   text-align: left;
   background-color: transparent;
@@ -43,12 +44,12 @@
 
 .Desc {
   margin: 20px 0px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .Price {
-  font-weight: 100;
-  font-size: 50px;
+  font-weight: 400;
+  font-size: 40px;
   color: red;
 }
 
@@ -69,7 +70,7 @@
   font-weight: 200;
 }
 .FilterTitle {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 200;
   margin-right: 12px;
 }

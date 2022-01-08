@@ -7,7 +7,7 @@
   position: relative;
 }
 .sub-nav {
-  width: 174px;
+  width: 224px;
   position: relative;
   display: flex;
 }
@@ -18,11 +18,12 @@
 .link-page {
   text-decoration: none;
   color: rgb(209, 99, 37);
-  font-size: 35px;
-  padding-top: 2px;
+  font-size: 24px;
+  padding-top: 7px;
   width: 100%;
   height: 100%;
   position: absolute;
+  font-weight: 500;
 }
 
 .link-page:hover {
@@ -168,7 +169,7 @@
   padding: 0;
 }
 .body-title {
-  font-weight: 300;
+  font-weight: 400;
   display: -webkit-box;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
@@ -176,18 +177,19 @@
   word-break: break-all;
   overflow: hidden;
   line-height: 1;
-  font-size: 25px;
+  font-size: 15px;
 }
 .body-price {
   font-weight: 400;
   color: #a81f1f;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
 }
 .body-title,
 .body-price {
   padding-left: 8px;
   padding-right: 8px;
+  margin-bottom: 4px;
 }
 .rec.rec-carousel-item {
   width: 217px;
@@ -239,6 +241,7 @@
   height: 75px;
   position: absolute;
   width: 100%;
+  padding-top: 12px;
 }
 .btn-submit {
   padding: 2px;

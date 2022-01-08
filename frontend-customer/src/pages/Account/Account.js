@@ -105,7 +105,7 @@ export default class Account extends Component {
         <div className="wrapper-signup">
           <form className="Info-form">
             <div>
-              <h3 className="title-form">Account Information</h3>
+              <h2 className="title-form">Account Information</h2>
             </div>
             <div className="GN">
               <div className="Gender" style={{ display: "flex" }}>
@@ -136,6 +136,7 @@ export default class Account extends Component {
                 placeholder="Email"
                 type="email"
                 ref={this.email}
+                style={{width: "315px"}}
               ></input>
             </div>
             <div className="password">
@@ -154,18 +155,20 @@ export default class Account extends Component {
                 className="Input-type"
                 placeholder="Phone number"
                 ref={this.phoneNumber}
+                style={{width: "315px"}}
               ></input>
             </div>
           </form>
           <form className="Address-form">
             <div>
-              <h3 className="title-form">Address Information</h3>
+              <h2 className="title-form">Address Information</h2>
             </div>
             <div className="cus-address">
               <input
                 className="Input-type"
                 placeholder="Street number and name"
                 ref={this.streetName}
+                type="text"
               ></input>
             </div>
             <div className="cus-city">
@@ -219,7 +222,7 @@ export default class Account extends Component {
           </form>
         </div>
         <div className="btn-signup">
-          <Link to="/login">
+          <Link to="/login" style={{textDecoration: "none", color: "#fff", fontWeight: "400"}}>
             <button className="submit" onClick={this.createAccount}>
               Create account
             </button>

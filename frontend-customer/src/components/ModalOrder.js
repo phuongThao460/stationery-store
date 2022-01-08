@@ -10,19 +10,19 @@ export default function ModalOrder(props) {
 
   const getDetails = async () => {
     const data_details = await axios.post(
-      "http://localhost:8000/ct_dh/by_dh_id",
+      "https://stationery-store-tmdt.herokuapp.com/ct_dh/by_dh_id",
       { id_don_hang: props.idOrder }
     );
     setDetails(data_details.data);
   };
   const getAddressCustomer = async () => {
-    const data = await axios.post("http://localhost:8000/ttkh/getAddress", {
+    const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", {
       _id: props.customer.id_phuong,
     });
     setAdress(data.data);
   };
   const updateStatus = (event) => {
-    axios.post("http://localhost:8000/don_hang/update_by_id", {
+    axios.post("https://stationery-store-tmdt.herokuapp.com/don_hang/update_by_id", {
       _id: props.idOrder,
       id_ttdh: event,
     });

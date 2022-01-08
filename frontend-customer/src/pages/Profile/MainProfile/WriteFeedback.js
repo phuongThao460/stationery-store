@@ -22,7 +22,7 @@ function WriteFeedback(props) {
         </Modal.Header>
         <Modal.Body>
           <div className="orderInfo" style={{ fontSize: "25px" }}></div>
-          <table className="table table-light">
+          <table>
             <tr>
               <td>Item</td>
               <td>{props.item}</td>
@@ -33,7 +33,7 @@ function WriteFeedback(props) {
                 {[...Array(5)].map((star, i) => {
                   const ratingValue = i + 1;
                   return (
-                    <label>
+                    <label style={{backgroundColor: "#fff"}}>
                       <input
                         style={styled}
                         type="radio"
@@ -47,7 +47,7 @@ function WriteFeedback(props) {
                             ? "#ffc107"
                             : "#e4e5e9"
                         }
-                        size={100}
+                        size={19}
                         className="star"
                         onMouseEnter={() => setHover(ratingValue)}
                         onMouseLeave={() => setHover(null)}
@@ -61,7 +61,7 @@ function WriteFeedback(props) {
               <td>Comment</td>
             </tr>
             <tr>
-              <td><textarea className="comment"/></td>
+              <td colSpan="2"><textarea className="comment"/></td>
             </tr>
           </table>
         </Modal.Body>
