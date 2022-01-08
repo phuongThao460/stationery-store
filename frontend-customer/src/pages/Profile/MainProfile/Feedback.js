@@ -55,6 +55,7 @@ function Feedback() {
                   className="btn-view"
                   onClick={() => {
                     setModalShow(true);
+                    setItem(item);
                   }}
                 >
                   Send Reviews
