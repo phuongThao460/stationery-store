@@ -1,8 +1,29 @@
-import React, { useState} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import WriteFeedback from "./WriteFeedback";
 
 function Feedback() {
   const [feedback, setFeedback] = useState([]);
+  const [item, setItem] = useState("");
   const [modalShow, setModalShow] = useState(false);
+  const customerInfo = JSON.parse(
+    window.localStorage.getItem("customer-account")
+  );
+  const getFeedbackWaiting = async () => {
+    await axios
+      .post(
+        "https://stationery-store-tmdt.herokuapp.com/tkkh/feedbacks_from_ttkh",
+        { id_ttkh: customerInfo._id }
+      )
+      .then((res) => {
+        setFeedback(res.data.san_pham_cho_danh_gia);
+      });
+  };
+  useEffect(() => {
+    getFeedbackWaiting();
+  }, []);
   return (
     <div className="main-right">
       <h2>Your Order</h2>
@@ -12,14 +33,8 @@ function Feedback() {
             <th scope="col" style={{ textAlign: "center" }}>
               ID
             </th>
-            <th scope="col" style={{ textAlign: "center", width: "122px" }}>
-              Date Order
-            </th>
             <th scope="col" style={{ width: "420px" }}>
               Product
-            </th>
-            <th scope="col" style={{ textAlign: "center" }}>
-              Total
             </th>
             <th scope="col" style={{ textAlign: "center" }}>
               Status
@@ -33,16 +48,8 @@ function Feedback() {
           {feedback.map((item, index) => (
             <tr key={index} style={{ textAlign: "center", fontSize: "25px" }}>
               <th scope="row">{item._id.substr(14)}</th>
-              <td>{new Date(item.ngay_dat).toLocaleDateString("en-GB")}</td>
-              <td style={{ textAlign: "start", lineHeight: "1" }}>
-                
-              </td>
-              <td style={{ textAlign: "end" }}>
-                <span style={{ marginRight: "5px !important" }}>
-                  ${item.tong_tien.toFixed(2)}
-                </span>
-              </td>
-              <td>{}</td>
+              <td>{item[0]}</td>
+              <td></td>
               <td>
                 <button
                   className="btn-view"
@@ -50,15 +57,16 @@ function Feedback() {
                     setModalShow(true);
                   }}
                 >
-                  View
+                  Send Reviews
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {modalShow ? <WriteFeedback item={item} /> : null}
     </div>
-  )
+  );
 }
 
-export default Feedback
+export default Feedback;
