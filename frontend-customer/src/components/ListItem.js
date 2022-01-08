@@ -9,7 +9,7 @@ function ListItem() {
   const [lstProduct, setLstProduct] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      await axios.get("http://localhost:8000/san_pham/").then((res) => {
+      await axios.get("https://stationery-store-tmdt.herokuapp.com/san_pham/").then((res) => {
         console.log(res.data.id_loai_sp);
         setLstProduct(res.data);
         setType(res.data.id_loai_sp);

@@ -11,13 +11,16 @@
 .ImgContainer {
   flex: 1;
 }
-
-.Image {
-  width: 90vh;
-  height: 70vh;
-  object-fit: cover;
+@media only screen and (max-width: 1920px){
+  .Wrapper .ImgContainer {
+    max-width: 664px;
+  }
 }
-
+@media only screen and (max-width: 1366px){
+  .ImgContainer {
+    max-width: 597px;
+  }
+}
 .InfoContainer {
   flex: 1;
   padding: 0px 50px;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import validation from "../data/validation";
-
+import "./AccountStyles.css"
 
 const SignupForm = () => {
   const [values, setValues] = useState({
@@ -51,6 +51,7 @@ const SignupForm = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
+              
             />
             {errors.email && <p className="error">{errors.email}</p>}
           </div>

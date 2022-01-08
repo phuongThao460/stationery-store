@@ -32,7 +32,7 @@ export default function GetCart() {
     carts.forEach((item) => {
       axios({
         method: "post",
-        url:"http://localhost:8000/ct_dh/create",
+        url:"https://stationery-store-tmdt.herokuapp.com/ct_dh/create",
         data: item
       })
     })

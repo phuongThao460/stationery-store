@@ -21,6 +21,7 @@ import Feedback from "./pages/Profile/MainProfile/Feedback";
 import Favorites from "./pages/Profile/MainProfile/Favorites";
 import Vouchers from "./pages/Profile/MainProfile/Vouchers";
 import Profile from "./pages/Profile/Profile";
+import Category from "./pages/Category/Category";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
@@ -34,6 +35,7 @@ function App() {
           <Route path="/item/:title" element={<ListItem />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/Signup" element={<Account />} />
+          <Route path="/category/:category_name" element={<Category />} />
           <Route path="/products/:id" element={<Product />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer />} />
