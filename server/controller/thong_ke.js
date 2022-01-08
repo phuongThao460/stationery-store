@@ -63,6 +63,7 @@ export const Create_Thong_Ke = async (req, res) => {
   try {
     var ngay_bat_dau = req.body.ngay_bat_dau;
     var ngay_ket_thuc = req.body.ngay_ket_thuc;
+    var id_nv = req.body.id_nv;
 
     // Find don hang in which ngay_bat_dau <= ngay_giao <= ngay_ket_thuc
     var don_hangs = await Find_Hoa_Don_By_Date(ngay_bat_dau, ngay_ket_thuc);
@@ -77,6 +78,7 @@ export const Create_Thong_Ke = async (req, res) => {
       tong_tien_san_pham_ban_duoc: tong[0],
       tong_tien_giam_boi_voucher: tong[1],
       tong_doanh_thu: tong[2],
+      id_nv: id_nv,
     };
 
     thong_ke = new THONG_KE_Model(thong_ke);
