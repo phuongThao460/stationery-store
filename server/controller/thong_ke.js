@@ -20,10 +20,16 @@ export const Get_ThongKes = async (req, res) => {
 	*/
 
   try {
-    const thong_kes = await THONG_KE_Model.find();
+    const thong_kes = await THONG_KE_Model.find()
+      .populate({
+        path: "id_nv",
+        select: "ten_nv",
+      })
+      .exec();
     console.log("thong kes: ", thong_kes);
     res.status(200).json(thong_kes);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err });
   }
 };
