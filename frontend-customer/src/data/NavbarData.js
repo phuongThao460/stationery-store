@@ -7,12 +7,12 @@ const NavbarData = [
   {
     key: 2,
     title: "Office & School",
-    path: "/#",
+    path: "/category/office-and-school",
   },
   {
     key: 3,
     title: "Design & Fun",
-    path: "/#",
+    path: "#",
   },
   {
     key: 4,

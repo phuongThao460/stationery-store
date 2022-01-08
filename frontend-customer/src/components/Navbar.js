@@ -106,9 +106,12 @@ const Navbar = ({ click }) => {
         {NavbarData.map((item, index) => {
           return (
             <div key={index} className="sub-nav">
-              <a href={item.path} className="link-page">
-                {item.title}
-              </a>
+                <Link
+                  to={item.path}
+                  className="link-page"
+                >
+                  {item.title}
+                </Link>
             </div>
           );
         })}

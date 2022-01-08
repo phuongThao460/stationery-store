@@ -12,7 +12,7 @@ return (
         src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
       />
       <div className="Details-cart">
-      <Link to={`/product/${item.product}`} className="ProductName" style={{ width: "328px" }}>
+      <Link to={`/products/${item.product}`} className="ProductName" style={{ width: "328px" }}>
         <p style={{fontSize: "15px"}}>{item.ten_sp}</p>
       </Link>
         

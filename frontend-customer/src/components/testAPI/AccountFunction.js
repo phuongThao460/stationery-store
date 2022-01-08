@@ -17,14 +17,14 @@ function AccountFunction() {
   const [lstWard, setLstWard] = useState([]);
 
   const getListCities = () => {
-    axios.get("http://localhost:8000/thanh_pho/").then((response) => {
+    axios.get("https://stationery-store-tmdt.herokuapp.com/thanh_pho/").then((response) => {
       setLstCity(response.data);
       console.log(response.data)
     });
   };
   const getListDistrict = async() => {
     await axios
-      .post("http://localhost:8000/quan/by_thanh_pho", {
+      .post("https://stationery-store-tmdt.herokuapp.com/quan/by_thanh_pho", {
         id_thanh_pho: idCities,
       })
       .then((response) => {
@@ -34,7 +34,7 @@ function AccountFunction() {
   };
   const getListWards = async() => {
     await axios
-      .post("http://localhost:8000/phuong/by_quan", {
+      .post("https://stationery-store-tmdt.herokuapp.com/phuong/by_quan", {
         id_quan: idDis,
       })
       .then((response) => {
@@ -59,7 +59,7 @@ function AccountFunction() {
 
   const createAccount = async () => {
     axios
-      .post("http://localhost:8000/ttkh/create", {
+      .post("https://stationery-store-tmdt.herokuapp.com/ttkh/create", {
         ten_kh: this.fullName.current.value,
         sdt: this.phoneNumber.current.value,
         dia_chi: this.streetName.current.value,
@@ -71,7 +71,7 @@ function AccountFunction() {
       .then((res) => {
         this.setState({ cusInfo: res.data });
         axios
-          .post("http://localhost:8000/tkkh/create", {
+          .post("https://stationery-store-tmdt.herokuapp.com/tkkh/create", {
             ten_dn: this.email.current.value,
             mat_khau: this.password.current.value,
             id_ttkh: this.state.cusInfo._id,
