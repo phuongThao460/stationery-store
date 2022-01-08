@@ -5,6 +5,7 @@ import axios from "axios";
 
 function LoginForm() {
   let navigate = useNavigate();
+  
   const [errorName, setErrorName] = useState(
     "Phải nhập tên đăng nhập và mật khẩu!"
   );
@@ -25,9 +26,13 @@ function LoginForm() {
           console.log(res.data)
           if (res.data !== null) {
             alert("Đăng nhập thành công");
+            window.localStorage.setItem("id_account", res.data._id);
             window.localStorage.setItem("customer-account", JSON.stringify(res.data.id_ttkh));
             navigate("/");
             window.location.reload();
+          }
+          if(res.data === null){
+            alert(errorName);
           }
         });
     }

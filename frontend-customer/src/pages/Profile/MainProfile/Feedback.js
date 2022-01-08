@@ -7,6 +7,7 @@ import WriteFeedback from "./WriteFeedback";
 function Feedback() {
   const [feedback, setFeedback] = useState([]);
   const [item, setItem] = useState("");
+  const [id, setId] = useState("");
   const [modalShow, setModalShow] = useState(false);
   const customerInfo = JSON.parse(
     window.localStorage.getItem("customer-account")
@@ -49,13 +50,14 @@ function Feedback() {
             <tr key={index} style={{ fontSize: "18px" }}>
               <th scope="row">{item._id.substr(14)}</th>
               <td>{item.ten_sp}</td>
-              <td></td>
-              <td style={{textAlign: "center"}}>
+              <td style={{ textAlign: "center" }}>New</td>
+              <td style={{ textAlign: "center" }}>
                 <button
                   className="btn-view"
                   onClick={() => {
                     setModalShow(true);
                     setItem(item.ten_sp);
+                    setId(item._id);
                   }}
                 >
                   Send Reviews
@@ -65,7 +67,14 @@ function Feedback() {
           ))}
         </tbody>
       </table>
-      {modalShow ? <WriteFeedback item={item} show={modalShow} onHide={() => setModalShow(false)}/> : null}
+      {modalShow ? (
+        <WriteFeedback
+          item={item}
+          id={id}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      ) : null}
     </div>
   );
 }

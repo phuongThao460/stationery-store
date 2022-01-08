@@ -20,6 +20,7 @@ const Navbar = ({ click }) => {
 
   const logout = () => {
     window.localStorage.removeItem("customer-account");
+    window.localStorage.removeItem("id_account");
     navigate("/");
     window.location.reload();
   };

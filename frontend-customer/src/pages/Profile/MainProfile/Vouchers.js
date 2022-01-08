@@ -27,21 +27,21 @@ function Vouchers() {
       <h2>Your Vouchers</h2>
       <table className="table table-bordered">
         <thead>
-          <tr style={{ fontSize: "30px" }}>
+          <tr style={{ fontSize: "20px" }}>
             <th scope="col" style={{ textAlign: "center" }}>
               ID
             </th>
+            <th scope="col" style={{ textAlign: "center", width: "320px" }}>
+              Name
+            </th>
+            <th scope="col" style={{ width: "122px" }}>
+              Start Day
+            </th>
             <th scope="col" style={{ textAlign: "center", width: "122px" }}>
-              Date Order
-            </th>
-            <th scope="col" style={{ width: "420px" }}>
-              Product
+              End Day
             </th>
             <th scope="col" style={{ textAlign: "center" }}>
-              Total
-            </th>
-            <th scope="col" style={{ textAlign: "center" }}>
-              Status
+              Percent
             </th>
             <th scope="col" style={{ textAlign: "center" }}>
               Action
@@ -50,18 +50,16 @@ function Vouchers() {
         </thead>
         <tbody>
           {vouchers.map((item, index) => (
-            <tr key={index} style={{ textAlign: "center", fontSize: "25px" }}>
+            <tr key={index} style={{ textAlign: "center", fontSize: "20px" }}>
               <th scope="row">{item._id.substr(14)}</th>
-              <td>{new Date(item.ngay_dat).toLocaleDateString("en-GB")}</td>
+              <td>{item.ten_voucher}</td>
               <td style={{ textAlign: "start", lineHeight: "1" }}>
-                
+              {new Date(item.ngay_bat_dau_ap_dung).toLocaleDateString("en-CA")}
               </td>
               <td style={{ textAlign: "end" }}>
-                <span style={{ marginRight: "5px !important" }}>
-                  ${item.tong_tien.toFixed(2)}
-                </span>
+              {new Date(item.ngay_ket_thuc_ap_dung).toLocaleDateString("en-CA")}
               </td>
-              <td>{}</td>
+              <td>{item.phan_tram_giam}</td>
               <td>
                 <button
                   className="btn-view"

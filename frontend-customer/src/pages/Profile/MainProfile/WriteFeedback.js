@@ -1,11 +1,29 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { createRef } from "react";
 import { Modal } from "react-bootstrap";
 import { FaStar } from "react-icons/fa";
 function WriteFeedback(props) {
+  const id_account = window.localStorage.getItem("id_account");
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const comment = createRef();
   const styled = {
     display: "none",
+  };
+  const writeReviews = () => {
+    axios
+      .post("https://stationery-store-tmdt.herokuapp.com/danh_gia/create", {
+        id_tkkh: id_account,
+        id_san_pham: props.id,
+        noi_dung_danh_gia: comment.current.value,
+        so_sao_danh_gia: rating,
+        tinh_trang: false,
+      })
+      .then(() => {
+        alert("Your reviews will be check and display if it suitable");
+        window.location.reload();
+      });
   };
   return (
     <>
@@ -24,7 +42,9 @@ function WriteFeedback(props) {
           <div className="orderInfo" style={{ fontSize: "25px" }}></div>
           <table>
             <tr>
-              <td>Item</td>
+              <td style={{ verticalAlign: "top" }}>
+                <span>Item</span>
+              </td>
               <td>{props.item}</td>
             </tr>
             <tr>
@@ -33,7 +53,7 @@ function WriteFeedback(props) {
                 {[...Array(5)].map((star, i) => {
                   const ratingValue = i + 1;
                   return (
-                    <label style={{backgroundColor: "#fff"}}>
+                    <label style={{ backgroundColor: "#fff" }}>
                       <input
                         style={styled}
                         type="radio"
@@ -61,12 +81,16 @@ function WriteFeedback(props) {
               <td>Comment</td>
             </tr>
             <tr>
-              <td colSpan="2"><textarea className="comment"/></td>
+              <td colSpan="2">
+                <textarea className="comment" ref={comment}/>
+              </td>
             </tr>
           </table>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn-delete">Cancel</button>
+          <button className="btn-add" onClick={() => writeReviews()}>
+            Send
+          </button>
         </Modal.Footer>
       </Modal>
     </>
