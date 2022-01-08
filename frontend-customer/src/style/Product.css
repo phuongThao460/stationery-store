@@ -17,8 +17,14 @@
   }
 }
 @media only screen and (max-width: 1366px){
-  .ImgContainer {
+  .Wrapper .ImgContainer {
     max-width: 597px;
+  }
+  .Image{
+    width: 561px;
+  }
+  .card-body-rating .row{
+    width: 1123px;
   }
 }
 .InfoContainer {
