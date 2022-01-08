@@ -192,10 +192,10 @@ export const Get_FeedBack_By_ID_TTKH = async (req, res) => {
     var id_ttkh = req.body.id_ttkh;
     var rs = await Get_FeedBack_Product_By_TTKH(id_ttkh);
 
-    if (rs.length > 0) {
-      // Get 1st ele from result
-      rs = rs[0];
-    }
+    //if (rs.length > 0) {
+    //// Get 1st ele from result
+    //rs = rs[0];
+    //}
     res.status(200).json(rs);
   } catch (err) {
     console.log(err);

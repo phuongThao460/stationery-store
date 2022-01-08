@@ -250,13 +250,16 @@ export const Get_FeedBack_Product_By_TTKH = async (id_ttkh) => {
   */
 
   try {
-    var rs = await TK_KH_Model.aggregate([
-      // Stage 1
-      { $match: { id_ttkh: mongoose.Types.ObjectId(id_ttkh) } },
+    //var rs = await TK_KH_Model.aggregate([
+    //// Stage 1
+    //{ $match: { id_ttkh: mongoose.Types.ObjectId(id_ttkh) } },
 
-      // Stage 2:
-      { $project: { san_pham_cho_danh_gia: 1 } },
-    ]).exec();
+    //// Stage 2:
+    //{ $project: { san_pham_cho_danh_gia: 1 } },
+    //]).exec();
+    var rs = await TK_KH_Model.findOne({ id_ttkh: id_ttkh })
+      .select(["san_pham_cho_danh_gia"])
+      .populate({ path: "san_pham_cho_danh_gia", select: "ten_sp" });
     return rs;
   } catch (err) {
     throw err;
