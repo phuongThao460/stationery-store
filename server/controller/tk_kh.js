@@ -91,7 +91,7 @@ export const Login = async (req, res) => {
       .exec();
     console.log("tkkh", tkkh);
     if (tkkh === null) {
-      res.status(200).send("Tài khoản hoặc mật khẩu không đúng");
+      res.status(500).send("Tài khoản hoặc mật khẩu không đúng");
     } else {
       res.status(200).json(tkkh);
     }
