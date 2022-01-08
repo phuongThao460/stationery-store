@@ -24,11 +24,11 @@ function LoginForm() {
         })
         .then((res) => {
           console.log(res.data)
-          if(res.data.status === 200){
-            alert(errorName);
-            window.location.reload();
+          if(res.data === "Tài khoản hoặc mật khẩu không đúng"){
+            alert("Tài khoản hoặc mật khẩu không đúng");
+            console.log(res.data)
           }
-          if (res.data !== null) {
+          else if(res.data !== "undefined") {
             alert("Đăng nhập thành công");
             window.localStorage.setItem("id_account", res.data._id);
             window.localStorage.setItem("customer-account", JSON.stringify(res.data.id_ttkh));

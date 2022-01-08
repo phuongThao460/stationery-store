@@ -241,6 +241,7 @@
   position: absolute;
   width: 100%;
   padding-top: 12px;
+  font-size: 40px;
 }
 .btn-submit {
   padding: 2px;
