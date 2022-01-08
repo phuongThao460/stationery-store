@@ -132,7 +132,6 @@ class Product extends React.Component {
   hideModal = () => {
     this.setState({ showModal: false });
   };
-
   submitColorHandle(value) {
     const temp = this.state.colorArray;
     temp.push(value);

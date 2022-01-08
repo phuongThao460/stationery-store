@@ -19,9 +19,6 @@ function EditAddress() {
 
   useEffect(() => {
     setStreetName(cusAccountInfo.dia_chi);
-    //setIdCities(cusAccountInfo.id_phuong.id_quan.id_thanh_pho._id);
-    //setIdDis(cusAccountInfo.id_phuong.id_quan._id);
-    //setIdWard(cusAccountInfo.id_phuong._id);
   }, []);
   useEffect(() => {
     axios

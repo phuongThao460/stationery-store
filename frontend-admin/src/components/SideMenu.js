@@ -29,7 +29,7 @@ const menuItems = [
     icon: <RiDashboardFill />,
     subMenus: [
       { name: "Supplier", to: "/products/supplier" },
-      { name: "Type of Product", to: "/products/types" },
+      { name: "Type of Product", to: "/products/type" },
       { name: "Material of Product", to: "/products/material" },
       { name: "Feedback", to: "/products/feedback" },
     ],

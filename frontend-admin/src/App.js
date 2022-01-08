@@ -5,6 +5,7 @@ import SideMenu from "./components/SideMenu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import TypeAndMaterial from './pages/Dashboard/SubMenuForm/TypeAndMaterial'
 import AddNewProduct from "./pages/Product/AddNewProduct";
 import OrderManagerment from "./pages/Order/OrderManagerment";
 import OrderDetail from "./pages/Order/OrderDetail";
@@ -47,6 +48,7 @@ function App() {
                   <Route path="/products/add-lst-product" element={<AddListProducts/>}/>
                   <Route path="/products/edit/:id" element={<EditProduct />} />
                   <Route path="/products/feedback" element={<Reviews />} />
+                  <Route path="/products/type" element={<TypeAndMaterial/>} />
                   <Route path="/customer" element={<Customers />} />
                   <Route path="/order" element={<OrderManagerment />} />
                   <Route path="/order/:id" element={<OrderDetail />} />

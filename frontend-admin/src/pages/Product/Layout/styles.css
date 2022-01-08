@@ -1,0 +1,9 @@
+.select-supp{
+  width: 305px;
+  padding: 9px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.select-option{
+  padding-bottom: 20px;
+}
