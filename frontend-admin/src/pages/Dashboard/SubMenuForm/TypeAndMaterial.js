@@ -43,13 +43,13 @@ function TypeAndMaterial() {
             class="table table-hover"
             style={{
               backgroundColor: "#fff",
-              width: "550px",
-              marginRight: "30px",
+              width: "512px",
+              marginRight: "150px",
             }}
           >
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col" style={{width: "100px"}}>ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Action</th>
               </tr>
@@ -79,11 +79,11 @@ function TypeAndMaterial() {
           <AddNewMaterial />
           <table
             class="table table-hover"
-            style={{ backgroundColor: "#fff", width: "550px" }}
+            style={{ backgroundColor: "#fff", width: "512px" }}
           >
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col" style={{width: "100px"}}>ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Action</th>
               </tr>
