@@ -15,15 +15,17 @@ const MenuItem = (props) => {
       >
         <div className="menu-icon">{icon}</div>
         <span>{name}</span>
-        <div className="sub-menu-icon">
-          {subMenus && subMenus.length > 0 ? (
-            !expand ? (
+        {subMenus && subMenus.length > 0 ? (
+          !expand ? (
+            <div className="sub-menu-icon">
               <IoIosArrowDown />
-            ) : (
+            </div>
+          ) : (
+            <div className="sub-menu-icon">
               <IoIosArrowUp />
-            )
-          ) : null}
-        </div>
+            </div>
+          )
+        ) : null}
       </NavLink>
       {subMenus && subMenus.length > 0 ? (
         <ul className={`sub-menu ${expand ? "active" : ""}`}>

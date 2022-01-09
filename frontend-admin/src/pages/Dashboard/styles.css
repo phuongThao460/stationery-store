@@ -1,10 +1,13 @@
-.modal-dialog{
+.modal-dialog {
   max-width: 839px !important;
 }
 .react-bootstrap-table {
   background-color: white;
 }
-.btn-edit, .btn-delete, .btn-view, .btn-add{
+.btn-edit,
+.btn-delete,
+.btn-view,
+.btn-add {
   outline: none;
   border: 0;
   margin-right: 11px;
@@ -29,32 +32,42 @@
   border-radius: 50%;
 }
 
-.btn-add{
-  background-color: #3EA4ED;
+.btn-add {
+  background-color: #3ea4ed;
   color: white;
   padding: 6px 14px;
 }
-.btn-add span{
+.btn-add span {
   margin-left: 8px;
 }
-.btn-delete{
+.btn-delete {
   background-color: red;
   color: white;
 }
-.btn-edit{
+.btn-edit {
   background-color: green;
   color: #fff;
 }
-.btn-view{
+.btn-view {
   background-color: transparent;
   padding: 4px 14px;
   border: 1px solid #cdcdcd;
 }
-.hearder{
+.hearder {
   position: relative;
 }
-.hearder .btn{
+.hearder .btn {
   position: absolute;
   top: 0;
   right: 0;
+}
+.add-new{
+  margin-bottom: 20x;
+}
+.add-new .name {
+  padding: 4px;
+  border-radius: 5px;
+  margin-right: 41px;
+  outline: none;
+  border: 1px solid #ccc;
 }

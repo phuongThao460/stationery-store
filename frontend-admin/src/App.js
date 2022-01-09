@@ -48,7 +48,7 @@ function App() {
                   <Route path="/products/add-lst-product" element={<AddListProducts/>}/>
                   <Route path="/products/edit/:id" element={<EditProduct />} />
                   <Route path="/products/feedback" element={<Reviews />} />
-                  <Route path="/products/type" element={<TypeAndMaterial/>} />
+                  <Route path="/products/type-material" element={<TypeAndMaterial/>} />
                   <Route path="/customer" element={<Customers />} />
                   <Route path="/order" element={<OrderManagerment />} />
                   <Route path="/order/:id" element={<OrderDetail />} />
