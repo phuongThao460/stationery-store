@@ -3,6 +3,7 @@ import {
   Find_Danh_Gia_By_ID,
   Create,
   Update,
+  Get_List_FeedBack_From_TTKH,
 } from "../models/DANH_GIA_Model.js";
 import { Remove_SanPham_From_List_Feedback } from "../models/TKKH_Model.js";
 
@@ -81,5 +82,22 @@ export const Update_DanhGia = async (req, res) => {
     res.status(200).json(rs);
   } catch (err) {
     res.status(500).json({ error: err });
+  }
+};
+
+export const Get_List_FeedBack_By_ID_TTKH = async (req, res) => {
+  /*
+  Required request value: id_ttkh
+
+  :return: array, null unless id_ttkh is invalid
+  */
+
+  try {
+    const id_ttkh = req.body.id_ttkh;
+    const rs = await Get_List_FeedBack_From_TTKH(id_ttkh);
+    res.json(rs);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
   }
 };

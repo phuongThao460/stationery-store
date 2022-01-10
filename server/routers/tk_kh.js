@@ -38,7 +38,7 @@ router.post("/remove_wishlist", Remove_From_WishList);
 // POST: /tkkh/feedbacks_from_ttkh
 router.post("/feedbacks_from_ttkh", Get_FeedBack_By_ID_TTKH);
 
-// POST:
+// POST: /tkkh/wishlist_from_ttkh
 router.post("/wishlist_from_ttkh", Get_WishList_By_ID_TTKH);
 
 router.post("/test", Get_TKKH_By_TTKH);
