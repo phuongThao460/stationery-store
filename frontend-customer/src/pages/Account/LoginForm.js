@@ -1,11 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React, { createRef, useState } from "react";
+import React, { createRef, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Notify from "react-notification-alert";
+import "react-notification-alert/dist/animate.css";
 import axios from "axios";
 
 function LoginForm() {
   let navigate = useNavigate();
-  
+  let err_notify = useRef();
+  var options = {};
+  options = {
+    place: "tr",
+    message: <div>Tài khoản hoặc mật khẩu không đúng</div>,
+    type: "danger",
+    icon: "fas fa-times",
+    autoDismiss: 3,
+    closeButton: false,
+  };
+
   const [errorName, setErrorName] = useState(
     "Phải nhập tên đăng nhập và mật khẩu!"
   );
@@ -13,7 +25,7 @@ function LoginForm() {
   const passwordInput = createRef();
 
   const loginSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (emailInput.current.value === "" || passwordInput.current.value === "") {
       alert(errorName);
     } else {
@@ -23,22 +35,37 @@ function LoginForm() {
           password: passwordInput.current.value,
         })
         .then((res) => {
-          console.log(res.data)
-          if(res.data === "Tài khoản hoặc mật khẩu không đúng"){
+          console.log(res.data);
+          /*  
+          if (res.data === "Tài khoản hoặc mật khẩu không đúng") {
             alert("Tài khoản hoặc mật khẩu không đúng");
-            console.log(res.data)
-          }
-          else if(res.data !== "undefined") {
+            console.log(res.data);
+          } else if (res.data !== "undefined") {
             alert("Đăng nhập thành công");
             window.localStorage.setItem("id_account", res.data._id);
-            window.localStorage.setItem("customer-account", JSON.stringify(res.data.id_ttkh));
+            window.localStorage.setItem(
+              "customer-account",
+              JSON.stringify(res.data.id_ttkh)
+            );
             navigate("/");
             window.location.reload();
           }
-          
+          */
+
+          if (res.data == null) {
+            err_notify.current.notificationAlert(options);
+          } else {
+            window.localStorage.setItem("id_account", res.data._id);
+            window.localStorage.setItem(
+              "customer-account",
+              JSON.stringify(res.data.id_ttkh)
+            );
+            navigate("/");
+            window.location.reload();
+          }
         });
     }
-  }
+  };
   return (
     <div
       className="container"
@@ -49,6 +76,7 @@ function LoginForm() {
     >
       <div className="app-wrapper">
         <div>
+          <Notify ref={err_notify} />
           <h2 className="title">Login</h2>
         </div>
         <form className="form-wrapper" onSubmit={loginSubmit}>
@@ -89,5 +117,3 @@ function LoginForm() {
 }
 
 export default LoginForm;
-
-  

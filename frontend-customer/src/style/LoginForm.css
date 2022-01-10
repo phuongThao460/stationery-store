@@ -7,7 +7,7 @@
 }
 
 .app-wrapper {
-  background-color: #FFFEE3;
+  background-color: #fffee3;
   width: 350px;
   min-height: 446px;
   padding: 7px;
@@ -78,4 +78,13 @@ button:active {
   text-align: center;
   color: #f59841;
   font-size: 14px;
+}
+
+.fas.fa-times {
+  margin-right: 10px;
+}
+
+.alert-with-icon.animated.fadeInDown.alert.alert-danger.fade.show
+  span:nth-child(2) {
+  display: inline-block;
 }
