@@ -33,7 +33,7 @@ const Product = ({ match, history }) => {
   let notify = useRef();
   var not_login_option = {
     place: "tr",
-    message: <div>Bạn cần phải đăng nhập</div>,
+    message: <div>You must login in order to add to wishlist</div>,
     type: "danger",
     icon: "fas fa-times",
     autoDismiss: 3,
@@ -41,7 +41,7 @@ const Product = ({ match, history }) => {
   };
   var duplicated_item_option = {
     place: "tr",
-    message: <div>Sản phẩm đã có trong wishlist</div>,
+    message: <div>This product has been added to wishlist</div>,
     type: "danger",
     icon: "fas fa-times",
     autoDismiss: 3,
@@ -49,7 +49,7 @@ const Product = ({ match, history }) => {
   };
   var success_option = {
     place: "tr",
-    message: <div>Thêm vào wishlist thành công</div>,
+    message: <div>Added to wishlist successfully</div>,
     type: "success",
     icon: "fas fa-check-circle",
     autoDismiss: 3,
@@ -73,7 +73,7 @@ const Product = ({ match, history }) => {
       notify.current.notificationAlert(not_login_option);
     } else {
       axios
-        .post("http://localhost:8000/tkkh/add_wishlist", {
+        .post("https://stationery-store-tmdt.herokuapp.com/tkkh/add_wishlist", {
           id_sp: product._id,
           id_tkkh: id_tkkh,
         })
