@@ -5,10 +5,13 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import "../style/Product.css";
 import { AiFillStar } from "react-icons/ai";
 import { useState, useEffect, useRef } from "react";
+//import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from "../redux/action/productAction";
 import { addToCart } from "../redux/action/cartAction";
 import Notify from "react-notification-alert";
+import "react-notification-alert/dist/animate.css";
+import axios from "axios";
 
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
@@ -26,6 +29,33 @@ const Product = ({ match, history }) => {
   const productDetails = useSelector((state) => state.getProductDetails);
   const { loading, error, product } = productDetails;
 
+  // NOTIFY
+  let notify = useRef();
+  var not_login_option = {
+    place: "tr",
+    message: <div>You must login in order to add to wishlist</div>,
+    type: "danger",
+    icon: "fas fa-times",
+    autoDismiss: 3,
+    closeButton: false,
+  };
+  var duplicated_item_option = {
+    place: "tr",
+    message: <div>This product has been added to wishlist</div>,
+    type: "danger",
+    icon: "fas fa-times",
+    autoDismiss: 3,
+    closeButton: false,
+  };
+  var success_option = {
+    place: "tr",
+    message: <div>Added to wishlist successfully</div>,
+    type: "success",
+    icon: "fas fa-check-circle",
+    autoDismiss: 3,
+    closeButton: false,
+  };
+
   useEffect(() => {
     dispatch(getProductDetails(window.location.pathname.substring(10)));
   }, []);
@@ -33,6 +63,28 @@ const Product = ({ match, history }) => {
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, count, true));
     err_notify.current.notificationAlert(options);
+  };
+
+  const addWishList = () => {
+    var id_tkkh = localStorage.getItem("id_account");
+
+    // user didnt login
+    if (id_tkkh === null) {
+      notify.current.notificationAlert(not_login_option);
+    } else {
+      axios
+        .post("https://stationery-store-tmdt.herokuapp.com/tkkh/add_wishlist", {
+          id_sp: product._id,
+          id_tkkh: id_tkkh,
+        })
+        .then((res) => {
+          if (res.data === null) {
+            notify.current.notificationAlert(duplicated_item_option);
+          } else {
+            notify.current.notificationAlert(success_option);
+          }
+        });
+    }
   };
 
   return (
@@ -44,6 +96,9 @@ const Product = ({ match, history }) => {
       ) : (
         <>
           <div className="Wrapper">
+            <div>
+              <Notify ref={notify} />
+            </div>
             <div className="ImgContainer">
               <img
                 alt=""
@@ -102,7 +157,7 @@ const Product = ({ match, history }) => {
                   <BsHandbagFill style={{ marginRight: "7px" }} />
                   ADD TO CART
                 </button>
-                <button className="Button">
+                <button className="Button" onClick={addWishList}>
                   <BsFillSuitHeartFill style={{ marginRight: "7px" }} />
                   ADD TO WISHLIST
                 </button>

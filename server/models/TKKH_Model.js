@@ -189,9 +189,9 @@ const Does_SanPham_Exist_In_WishList = async (id_tkkh, id_sp) => {
       return false;
     }
 
-    var sp = await TK_KH_Model.findOne({ wish_list: id_sp });
+    const sp = wish_list.find((ele) => ele == id_sp);
 
-    if (sp != null) {
+    if (sp != undefined) {
       return true;
     }
   }

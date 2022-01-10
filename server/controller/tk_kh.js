@@ -153,6 +153,7 @@ export const Add_To_WishList = async (req, res) => {
   */
 
   try {
+    console.log(req.body);
     var id_tkkh = req.body.id_tkkh;
     var id_sp = req.body.id_sp;
     var rs = await Add_SanPham_To_WishList(id_tkkh, id_sp);

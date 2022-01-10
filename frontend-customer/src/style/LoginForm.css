@@ -79,12 +79,3 @@ button:active {
   color: #f59841;
   font-size: 14px;
 }
-
-.fas.fa-times {
-  margin-right: 10px;
-}
-
-.alert-with-icon.animated.fadeInDown.alert.alert-danger.fade.show
-  span:nth-child(2) {
-  display: inline-block;
-}

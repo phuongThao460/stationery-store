@@ -11,7 +11,7 @@ function LoginForm() {
   var options = {};
   options = {
     place: "tr",
-    message: <div>Tài khoản hoặc mật khẩu không đúng</div>,
+    message: <div>Email or password incorrect</div>,
     type: "danger",
     icon: "fas fa-times",
     autoDismiss: 3,

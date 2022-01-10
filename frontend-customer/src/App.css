@@ -1,1 +1,23 @@
+/* 
+============================================
+			NOTIFY CSS
+============================================
+*/
 
+.fas.fa-times {
+  margin-right: 10px;
+}
+
+.alert-with-icon.animated.fadeInDown.alert.alert-danger.fade.show
+  span:nth-child(2) {
+  display: inline-block;
+}
+
+.fas.fa-check-circle {
+  margin-right: 10px;
+}
+
+.alert-with-icon.animated.fadeInDown.alert.alert-success.fade.show
+  span:nth-child(2) {
+  display: inline-block;
+}
