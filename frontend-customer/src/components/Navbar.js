@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const Navbar = ({ click }) => {
   const cart = useSelector((state) => state.cart);
   const customerInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
   const { cartItems } = cart;
   let navigate = useNavigate();
