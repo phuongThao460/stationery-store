@@ -22,6 +22,7 @@ function WriteFeedback(props) {
       })
       .then(() => {
         alert("Your reviews will be check and display if it suitable");
+        props.setStatus("Waiting");
         window.location.reload();
       });
   };

@@ -21,6 +21,7 @@ import StaffManagement from "./pages/Employee/StaffManagement";
 import AddListProducts from "./pages/Product/AddListProducts";
 import AddNewStaff from "./pages/Employee/AddNewStaff";
 import ViewListStatistics from './pages/Statistics/ViewListStatistics'
+import Supplier from "./pages/Dashboard/SubMenuForm/Supplier";
 const Contact = () => {
   return <h1>Contact</h1>;
 };
@@ -49,6 +50,7 @@ function App() {
                   <Route path="/products/edit/:id" element={<EditProduct />} />
                   <Route path="/products/feedback" element={<Reviews />} />
                   <Route path="/products/type-material" element={<TypeAndMaterial/>} />
+                  <Route path="/products/supplier" element={<Supplier/>} />
                   <Route path="/customer" element={<Customers />} />
                   <Route path="/order" element={<OrderManagerment />} />
                   <Route path="/order/:id" element={<OrderDetail />} />

@@ -9,6 +9,7 @@ function Feedback() {
   const [item, setItem] = useState("");
   const [id, setId] = useState("");
   const [modalShow, setModalShow] = useState(false);
+  const [status, setStatus] = useState("New");
   const customerInfo = JSON.parse(
     window.localStorage.getItem("customer-account")
   );
@@ -50,7 +51,7 @@ function Feedback() {
             <tr key={index} style={{ fontSize: "18px" }}>
               <th scope="row">{item._id.substr(14)}</th>
               <td>{item.ten_sp}</td>
-              <td style={{ textAlign: "center" }}>New</td>
+              <td style={{ textAlign: "center" }}>{item.tinh_trang ? "Published" : status}</td>
               <td style={{ textAlign: "center" }}>
                 <button
                   className="btn-view"
@@ -72,6 +73,7 @@ function Feedback() {
           item={item}
           id={id}
           show={modalShow}
+          setStatus={setStatus}
           onHide={() => setModalShow(false)}
         />
       ) : null}

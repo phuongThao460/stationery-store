@@ -1,16 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-// import { IoMdRemove } from "react-icons/io";
-// import { GrAdd } from "react-icons/gr";
 import { BsHandbagFill } from "react-icons/bs";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import "../style/Product.css";
 import { AiFillStar } from "react-icons/ai";
-
 import { useState, useEffect, useRef } from "react";
 //import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-
 import { getProductDetails } from "../redux/action/productAction";
 import { addToCart } from "../redux/action/cartAction";
 import Notify from "react-notification-alert";
@@ -19,8 +15,17 @@ import axios from "axios";
 
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
+  let err_notify = useRef();
+  var options = {};
+  options = {
+    place: "tc",
+    message: <div>Add to cart successfull!</div>,
+    type: "success",
+    icon: "far fa-check-circle",
+    autoDismiss: 3,
+    closeButton: false,
+  };
   const dispatch = useDispatch();
-  //let navigate = useNavigate();
   const productDetails = useSelector((state) => state.getProductDetails);
   const { loading, error, product } = productDetails;
 
@@ -52,17 +57,12 @@ const Product = ({ match, history }) => {
   };
 
   useEffect(() => {
-    // if (product && match.params.id !== product._id) {
-    //
-    // }
     dispatch(getProductDetails(window.location.pathname.substring(10)));
-    //console.log(productDetails)
   }, []);
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, count, true));
-    alert("Add to cart successfull!");
-    //navigate(`/cart`);
+    err_notify.current.notificationAlert(options);
   };
 
   const addWishList = () => {
@@ -152,6 +152,7 @@ const Product = ({ match, history }) => {
                 </select>
               </div>
               <div className="btn">
+                <Notify ref={err_notify} />
                 <button className="Button" onClick={addToCartHandler}>
                   <BsHandbagFill style={{ marginRight: "7px" }} />
                   ADD TO CART
