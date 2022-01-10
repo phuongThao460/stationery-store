@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
 
 import PayPal from "../PayPal";
@@ -95,7 +95,8 @@ function LayoutCheckout(props) {
                     <div className="SummaryItem-checkout">
                       <span className="SummaryItemText-checkout">Subtotal</span>
                       <span className="SummaryItemPrice-checkout">
-                        {((props.total * props.vouchers) / 100).toFixed(2)}
+                        {/* {((props.total * props.vouchers) / 100).toFixed(2)} */}
+                        {props.total.toFixed(2)}
                       </span>
                     </div>
                     <div className="SummaryItem-checkout">
@@ -117,7 +118,8 @@ function LayoutCheckout(props) {
                     <div className="SummaryItem-total-checkout">
                       <b className="SummaryItemText-checkout">Total</b>
                       <b className="SummaryItemPrice-checkout">
-                        ${(
+                        $
+                        {(
                           props.total +
                           parseInt(props.shipping) -
                           (props.total * props.vouchers) / 100
@@ -131,7 +133,10 @@ function LayoutCheckout(props) {
                       >
                         Confirm
                       </button>
-                      <PayPal val={total_1} callback={props.handlePaypalCallback}/>
+                      <PayPal
+                        val={total_1}
+                        callback={props.handlePaypalCallback}
+                      />
                     </Link>
                   </div>
                 ) : (
@@ -169,7 +174,10 @@ function LayoutCheckout(props) {
                       Confirm
                     </button>
                     <div className="payment-with-paypal">
-                    <PayPal val={total_1} callback={props.handlePaypalCallback}/>
+                      <PayPal
+                        val={total_1}
+                        callback={props.handlePaypalCallback}
+                      />
                     </div>
                   </div>
                 )}
@@ -179,7 +187,7 @@ function LayoutCheckout(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default LayoutCheckout
+export default LayoutCheckout;
