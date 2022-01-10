@@ -164,183 +164,201 @@ const Product = ({ match, history }) => {
               </div>
             </div>
           </div>
-        </>
-      )}
-      <hr style={{ margin: "0px 50px" }} />
-      <div className="rating">
-        <div className="card-rating">
-          <span className="review-card">REVIEWS PRODUCT</span>
-          <div className="card-body-rating">
-            <div className="row">
-              <div className="col-sm-4 text-center">
-                <h2 className="text-warning mt-4 mb-2">
-                  <b>
-                    <span id="average_rating">4.8</span> / 5
-                  </b>
-                </h2>
-                <div className="mb-3">
-                  <AiFillStar size={20} color="#FFCC00" />
-                  <AiFillStar size={20} color="#FFCC00" />
-                  <AiFillStar size={20} color="#FFCC00" />
-                  <AiFillStar size={20} color="#FFCC00" />
-                  <AiFillStar size={20} color="#FFCC00" />
+          <hr style={{ margin: "0px 50px" }} />
+          <div className="rating">
+            <div className="card-rating">
+              <span className="review-card">REVIEWS AND RATING</span>
+              <div className="card-body-rating">
+                <div className="row">
+                  <div className="col-sm-4 text-center">
+                    <h2 className="text-warning mt-4 mb-2">
+                      <b>
+                        <span id="average_rating">4.8</span> / 5
+                      </b>
+                    </h2>
+                    <div className="mb-3">
+                      <AiFillStar size={20} color="#FFCC00" />
+                      <AiFillStar size={20} color="#FFCC00" />
+                      <AiFillStar size={20} color="#FFCC00" />
+                      <AiFillStar size={20} color="#FFCC00" />
+                      <AiFillStar size={20} color="#FFCC00" />
+                    </div>
+                    <h3>
+                      <span id="total_review">0</span> Review
+                    </h3>
+                  </div>
+                  <div className="col-sm-4" style={{ marginTop: "40px" }}>
+                    <p className="progress-label">
+                      <div
+                        className="progress-label-left"
+                        style={{ float: "left" }}
+                      >
+                        <b style={{ margin: "5px" }}>5 Star</b>
+                      </div>
+                      <div
+                        className="progress-label-right"
+                        style={{ float: "right" }}
+                      >
+                        (
+                        <span
+                          id="total_five_star_review"
+                          style={{ margin: "5px" }}
+                        >
+                          0
+                        </span>
+                        )
+                      </div>
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-warning"
+                          style={{ width: "95%", borderRadius: "10px" }}
+                          role="progressbar"
+                          aria-valuenow="0"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          id="five_star_progress"
+                        ></div>
+                      </div>
+                    </p>
+                    <p className="progress-label">
+                      <div
+                        className="progress-label-left"
+                        style={{ float: "left" }}
+                      >
+                        <b style={{ margin: "5px" }}>4 Star</b>
+                      </div>
+                      <div
+                        className="progress-label-right"
+                        style={{ float: "right" }}
+                      >
+                        (
+                        <span
+                          id="total_four_star_review"
+                          style={{ margin: "5px" }}
+                        >
+                          0
+                        </span>
+                        )
+                      </div>
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-warning"
+                          style={{ width: "75%", borderRadius: "10px" }}
+                          role="progressbar"
+                          aria-valuenow="0"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          id="four_star_progress"
+                        ></div>
+                      </div>
+                    </p>
+                    <p className="progress-label">
+                      <div
+                        className="progress-label-left"
+                        style={{ float: "left" }}
+                      >
+                        <b style={{ margin: "5px" }}>3 Star</b>
+                      </div>
+                      <div
+                        className="progress-label-right"
+                        style={{ float: "right" }}
+                      >
+                        (
+                        <span
+                          id="total_four_star_review"
+                          style={{ margin: "5px" }}
+                        >
+                          0
+                        </span>
+                        )
+                      </div>
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-warning"
+                          style={{ width: "55%", borderRadius: "10px" }}
+                          role="progressbar"
+                          aria-valuenow="0"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          id="three_star_progress"
+                        ></div>
+                      </div>
+                    </p>
+                    <p className="progress-label">
+                      <div
+                        className="progress-label-left"
+                        style={{ float: "left" }}
+                      >
+                        <b style={{ margin: "5px" }}>2 Star</b>
+                      </div>
+                      <div
+                        className="progress-label-right"
+                        style={{ float: "right" }}
+                      >
+                        (
+                        <span
+                          id="total_four_star_review"
+                          style={{ margin: "5px" }}
+                        >
+                          0
+                        </span>
+                        )
+                      </div>
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-warning"
+                          style={{ width: "35%", borderRadius: "10px" }}
+                          role="progressbar"
+                          aria-valuenow="0"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          id="two_star_progress"
+                        ></div>
+                      </div>
+                    </p>
+                    <p className="progress-label">
+                      <div
+                        className="progress-label-left"
+                        style={{ float: "left" }}
+                      >
+                        <b style={{ margin: "5px" }}>1 Star</b>
+                      </div>
+                      <div
+                        className="progress-label-right"
+                        style={{ float: "right" }}
+                      >
+                        (
+                        <span
+                          id="total_four_star_review"
+                          style={{ margin: "5px" }}
+                        >
+                          0
+                        </span>
+                        )
+                      </div>
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-warning"
+                          style={{ width: "15%", borderRadius: "10px" }}
+                          role="progressbar"
+                          aria-valuenow="0"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          id="one_star_progress"
+                        ></div>
+                      </div>
+                    </p>
+                  </div>
                 </div>
-                <h3>
-                  <span id="total_review">0</span> Review
-                </h3>
-              </div>
-              <div className="col-sm-4" style={{ marginTop: "40px" }}>
-                <p className="progress-label">
-                  <div
-                    className="progress-label-left"
-                    style={{ float: "left" }}
-                  >
-                    <b style={{ margin: "5px" }}>5 Star</b>
-                  </div>
-                  <div
-                    className="progress-label-right"
-                    style={{ float: "right" }}
-                  >
-                    (
-                    <span id="total_five_star_review" style={{ margin: "5px" }}>
-                      0
-                    </span>
-                    )
-                  </div>
-                  <div className="progress">
-                    <div
-                      className="progress-bar bg-warning"
-                      style={{ width: "95%", borderRadius: "10px" }}
-                      role="progressbar"
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      id="five_star_progress"
-                    ></div>
-                  </div>
-                </p>
-                <p className="progress-label">
-                  <div
-                    className="progress-label-left"
-                    style={{ float: "left" }}
-                  >
-                    <b style={{ margin: "5px" }}>4 Star</b>
-                  </div>
-                  <div
-                    className="progress-label-right"
-                    style={{ float: "right" }}
-                  >
-                    (
-                    <span id="total_four_star_review" style={{ margin: "5px" }}>
-                      0
-                    </span>
-                    )
-                  </div>
-                  <div className="progress">
-                    <div
-                      className="progress-bar bg-warning"
-                      style={{ width: "75%", borderRadius: "10px" }}
-                      role="progressbar"
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      id="four_star_progress"
-                    ></div>
-                  </div>
-                </p>
-                <p className="progress-label">
-                  <div
-                    className="progress-label-left"
-                    style={{ float: "left" }}
-                  >
-                    <b style={{ margin: "5px" }}>3 Star</b>
-                  </div>
-                  <div
-                    className="progress-label-right"
-                    style={{ float: "right" }}
-                  >
-                    (
-                    <span id="total_four_star_review" style={{ margin: "5px" }}>
-                      0
-                    </span>
-                    )
-                  </div>
-                  <div className="progress">
-                    <div
-                      className="progress-bar bg-warning"
-                      style={{ width: "55%", borderRadius: "10px" }}
-                      role="progressbar"
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      id="three_star_progress"
-                    ></div>
-                  </div>
-                </p>
-                <p className="progress-label">
-                  <div
-                    className="progress-label-left"
-                    style={{ float: "left" }}
-                  >
-                    <b style={{ margin: "5px" }}>2 Star</b>
-                  </div>
-                  <div
-                    className="progress-label-right"
-                    style={{ float: "right" }}
-                  >
-                    (
-                    <span id="total_four_star_review" style={{ margin: "5px" }}>
-                      0
-                    </span>
-                    )
-                  </div>
-                  <div className="progress">
-                    <div
-                      className="progress-bar bg-warning"
-                      style={{ width: "35%", borderRadius: "10px" }}
-                      role="progressbar"
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      id="two_star_progress"
-                    ></div>
-                  </div>
-                </p>
-                <p className="progress-label">
-                  <div
-                    className="progress-label-left"
-                    style={{ float: "left" }}
-                  >
-                    <b style={{ margin: "5px" }}>1 Star</b>
-                  </div>
-                  <div
-                    className="progress-label-right"
-                    style={{ float: "right" }}
-                  >
-                    (
-                    <span id="total_four_star_review" style={{ margin: "5px" }}>
-                      0
-                    </span>
-                    )
-                  </div>
-                  <div className="progress">
-                    <div
-                      className="progress-bar bg-warning"
-                      style={{ width: "15%", borderRadius: "10px" }}
-                      role="progressbar"
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      id="one_star_progress"
-                    ></div>
-                  </div>
-                </p>
               </div>
             </div>
           </div>
-        </div>
-        <div className="custom-feedback"></div>
-      </div>
+          <hr style={{ margin: "0px 50px" }} />
+          <div className="custom-feedback">
+            <span className="review-card">TOP REVIEWS</span>
+          </div>
+        </>
+      )}
     </div>
   );
 };

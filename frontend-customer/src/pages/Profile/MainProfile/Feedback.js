@@ -51,7 +51,7 @@ function Feedback() {
             <tr key={index} style={{ fontSize: "18px" }}>
               <th scope="row">{item._id.substr(14)}</th>
               <td>{item.ten_sp}</td>
-              <td style={{ textAlign: "center" }}>{item.tinh_trang ? "Published" : status}</td>
+              <td style={{ textAlign: "center" }}>{item.tinh_trang === null ? "Published" : status}</td>
               <td style={{ textAlign: "center" }}>
                 <button
                   className="btn-view"
