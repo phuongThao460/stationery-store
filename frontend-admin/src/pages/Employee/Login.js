@@ -26,7 +26,7 @@ function Login() {
           console.log(res.data);
           if (res.data !== null) {
             alert("Đăng nhập thành công");
-            window.localStorage.setItem(
+            window.sessionStorage.setItem(
               "employee-account",
               JSON.stringify(res.data)
             );

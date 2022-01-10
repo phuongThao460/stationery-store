@@ -39,8 +39,8 @@ function LoginForm() {
           if (res.data == null) {
             err_notify.current.notificationAlert(options);
           } else {
-            window.localStorage.setItem("id_account", res.data._id);
-            window.localStorage.setItem(
+            window.sessionStorage.setItem("id_account", res.data._id);
+            window.sessionStorage.setItem(
               "customer-account",
               JSON.stringify(res.data.id_ttkh)
             );

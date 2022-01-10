@@ -4,7 +4,7 @@ function Vouchers() {
   const [vouchers, setVouchers] = React.useState([]);
   const [modalShow, setModalShow] = useState(false);
   const customerInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
   const getAllVoucher = async () => {
     const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/voucher/ttkh", {

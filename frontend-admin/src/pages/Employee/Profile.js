@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 function Profile() {
   const employeeInfo = JSON.parse(
-    window.localStorage.getItem("employee-account")
+    window.sessionStorage.getItem("employee-account")
   );
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -61,7 +61,7 @@ function Profile() {
         gioi_tinh: sexual,
       })
       .then((res) => {
-        window.localStorage.setItem(
+        window.sessionStorage.setItem(
           "employee-account",
           JSON.stringify(res.data)
         );

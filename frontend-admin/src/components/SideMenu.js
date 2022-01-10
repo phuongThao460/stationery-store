@@ -65,7 +65,7 @@ const SideMenu = (props) => {
 
     props.onCollapse(inactive);
   }, [inactive]);
-  const info = JSON.parse(window.localStorage.getItem("employee-account"));
+  const info = JSON.parse(window.sessionStorage.getItem("employee-account"));
   //just an improvment and it is not recorded in video :(
   const removeActiveClassFromSubMenu = () => {
     document.querySelectorAll(".sub-menu").forEach((el) => {
@@ -92,7 +92,7 @@ const SideMenu = (props) => {
   }, []);
 
   const logout = () => {
-    window.localStorage.removeItem("employee-account");
+    window.sessionStorage.removeItem("employee-account");
     navigate("/");
     window.location.reload();
   };

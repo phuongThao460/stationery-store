@@ -4,7 +4,7 @@ import { createRef } from "react";
 import { Modal } from "react-bootstrap";
 import { FaStar } from "react-icons/fa";
 function WriteFeedback(props) {
-  const id_account = window.localStorage.getItem("id_account");
+  const id_account = window.sessionStorage.getItem("id_account");
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const comment = createRef();
@@ -36,7 +36,7 @@ function WriteFeedback(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            <h2>Order Detail</h2>
+            <h2>Write Feedback</h2>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

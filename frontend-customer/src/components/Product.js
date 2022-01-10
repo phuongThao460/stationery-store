@@ -66,7 +66,7 @@ const Product = ({ match, history }) => {
   };
 
   const addWishList = () => {
-    var id_tkkh = localStorage.getItem("id_account");
+    var id_tkkh = sessionStorage.getItem("id_account");
 
     // user didnt login
     if (id_tkkh === null) {

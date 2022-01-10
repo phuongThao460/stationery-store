@@ -12,13 +12,13 @@ function Favorites() {
   return (
     <div className="main-right">
       <h2>Your Favorites</h2>
-      <table>
-        <thread>
+      <table className="table table-bordered">
+        <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Action</th>
+            <th scope="col" style={{ width: "220px", textAlign: "center" }}>Action</th>
           </tr>
-        </thread>
+        </thead>
         <tbody>
           {wishList.map((item) => (
             <tr>

@@ -111,14 +111,14 @@ class Product extends React.Component {
           don_gia_nhap: this.importPrice.current.value,
           gia_ban_goc: this.basicPrice.current.value,
           gia_ban_hien_tai: this.exportPrice.current.value,
-          id_loai_sp: window.localStorage.getItem("loai_sp_id"),
-          id_nha_cc: window.localStorage.getItem("nha_cc_id"),
+          id_loai_sp: window.sessionStorage.getItem("loai_sp_id"),
+          id_nha_cc: window.sessionStorage.getItem("nha_cc_id"),
           mau_sac: this.state.colorArray,
-          id_chat_lieu: window.localStorage.getItem("chat_lieu_id"),
+          id_chat_lieu: window.sessionStorage.getItem("chat_lieu_id"),
           mo_ta: this.descript.current.value,
           ti_le_danh_gia: "0",
           hinh_anh: this.images.current.value,
-          id_phan_loai: window.localStorage.getItem("phan_loai_id"),
+          id_phan_loai: window.sessionStorage.getItem("phan_loai_id"),
         }
       )
       .then((res) => {
@@ -258,7 +258,7 @@ class Product extends React.Component {
                     (id) => id.value === this.state.idSupp
                   )}
                 />
-                {window.localStorage.setItem("nha_cc_id", this.state.idSupp)}
+                {window.sessionStorage.setItem("nha_cc_id", this.state.idSupp)}
               </div>
             </div>
             <button
@@ -287,7 +287,7 @@ class Product extends React.Component {
                     (id) => id.value === this.state.idType
                   )}
                 />
-                {window.localStorage.setItem("loai_sp_id", this.state.idType)}
+                {window.sessionStorage.setItem("loai_sp_id", this.state.idType)}
               </div>
             </div>
             <button
@@ -347,7 +347,7 @@ class Product extends React.Component {
                     (id) => id.value === this.state.idMate
                   )}
                 />
-                {window.localStorage.setItem("chat_lieu_id", this.state.idMate)}
+                {window.sessionStorage.setItem("chat_lieu_id", this.state.idMate)}
               </div>
             </div>
             <button
@@ -373,7 +373,7 @@ class Product extends React.Component {
                     (id) => id.value === this.state.idClassi
                   )}
                 />
-                {window.localStorage.setItem(
+                {window.sessionStorage.setItem(
                   "phan_loai_id",
                   this.state.idClassi
                 )}

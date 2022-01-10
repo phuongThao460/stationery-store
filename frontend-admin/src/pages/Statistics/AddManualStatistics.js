@@ -4,7 +4,7 @@ import { createRef } from "react";
 import { Modal } from "react-bootstrap";
 
 function AddManualStatistics(props) {
-  const staffInfo = JSON.parse(window.localStorage.getItem("employee-account"));
+  const staffInfo = JSON.parse(window.sessionStorage.getItem("employee-account"));
   const startDay = createRef();
   const endDay = createRef();
 

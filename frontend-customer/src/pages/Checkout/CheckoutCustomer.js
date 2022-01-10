@@ -18,7 +18,7 @@ export default class CheckoutCustomer extends Component {
       lstCities: [],
       lstWards: [],
       lstDistrict: [],
-      carts: JSON.parse(window.localStorage.getItem("cart")),
+      carts: JSON.parse(window.sessionStorage.getItem("cart")),
     };
     this.getListCities();
     this.fullName = createRef();
@@ -88,7 +88,7 @@ export default class CheckoutCustomer extends Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ customerInfo: res.data });
-        (async () => await localStorage.setItem("customer", JSON.stringify(res.data)))();
+        (async () => await sessionStorage.setItem("customer", JSON.stringify(res.data)))();
         window.location.reload();
       });
   };
@@ -230,7 +230,7 @@ export default class CheckoutCustomer extends Component {
                     <div className="SummaryItem-total-checkout">
                       <b className="SummaryItemText-checkout">Total</b>
                       <b className="SummaryItemPrice-checkout">
-                        {window.localStorage.getItem("total")}
+                        {window.sessionStorage.getItem("total")}
                       </b>
                     </div>
                   </div>

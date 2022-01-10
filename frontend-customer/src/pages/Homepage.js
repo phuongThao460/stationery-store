@@ -38,7 +38,7 @@ class Homepage extends React.Component {
     });
   };
   submit = (title) => {
-    window.localStorage.setItem("itemTitle", title);
+    window.sessionStorage.setItem("itemTitle", title);
   };
   render() {
     return (

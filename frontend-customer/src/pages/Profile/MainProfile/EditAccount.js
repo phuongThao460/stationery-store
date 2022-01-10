@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 function EditAccount() {
   const cusAccountInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ function EditAccount() {
             ttkh_id: cusAccountInfo._id,
           })
           .then((res) =>
-            window.localStorage.setItem("customer-account", JSON.stringify(res.data))
+            window.sessionStorage.setItem("customer-account", JSON.stringify(res.data))
           );
       });
   };

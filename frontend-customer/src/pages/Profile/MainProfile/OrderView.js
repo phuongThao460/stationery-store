@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import ModalOrder from "../../../components/ModalOrder";
 function OrderView() {
   const cusAccountInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
   const [orderList, setOrderList] = useState([]);
   const [orderDetail, setOrderDetail] = useState([]);

@@ -93,7 +93,7 @@ export default class Account extends Component {
       tkkh_req
     );
 
-    window.localStorage.setItem("customer", JSON.stringify(tkkh_res.data));
+    window.sessionStorage.setItem("customer", JSON.stringify(tkkh_res.data));
   };
   render() {
     return (

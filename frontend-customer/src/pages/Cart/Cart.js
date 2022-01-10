@@ -14,7 +14,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const [vouchers, setVouchers] = React.useState([]);
   const customerInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
 
   const cart = useSelector((state) => state.cart);
@@ -56,7 +56,7 @@ const Cart = () => {
   };
 
   const getIDVoucher = (event) => {
-    window.localStorage.setItem("id_voucher", event.target.value);
+    window.sessionStorage.setItem("id_voucher", event.target.value);
   };
   return (
     <div className="Container-cart">
@@ -122,7 +122,7 @@ const Cart = () => {
               <div className="SummaryItem-total">
                 <span className="SummaryItemText">Total</span>
                 <span className="SummaryItemPrice">${getCartSubTotal()}</span>
-                {window.localStorage.setItem("total", getCartSubTotal())}
+                {window.sessionStorage.setItem("total", getCartSubTotal())}
               </div>
               {customerInfo ? (
                 <Link to="/checkout">

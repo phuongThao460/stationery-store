@@ -5,7 +5,7 @@ import PayPal from "../PayPal";
 
 function LayoutCheckout(props) {
   let totalPrice = props.total + props.shipping;
-  const total_1 = JSON.parse(window.localStorage.getItem("total-1"));
+  const total_1 = JSON.parse(window.sessionStorage.getItem("total-1"));
   return (
     <div className="container-checkout">
       <div className="wrapper-checkout">

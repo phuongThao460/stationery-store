@@ -11,7 +11,7 @@ function Feedback() {
   const [modalShow, setModalShow] = useState(false);
   const [status, setStatus] = useState("New");
   const customerInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
   const getFeedbackWaiting = async () => {
     await axios

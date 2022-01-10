@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 //import { Link } from "react-router-dom";
 import "../style/ListItem.css";
 function ListItem() {
-  const titleProduct = window.localStorage.getItem("itemTitle");
+  const titleProduct = window.sessionStorage.getItem("itemTitle");
   const [type, setType] = useState([]);
   const [lstProduct, setLstProduct] = useState([]);
   useEffect(() => {

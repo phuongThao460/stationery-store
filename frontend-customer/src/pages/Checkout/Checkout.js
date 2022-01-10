@@ -9,12 +9,12 @@ import { resetCart } from "../../redux/action/cartAction";
 
 function Checkout() {
   const cusAccountInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
-  const customerInfo = JSON.parse(window.localStorage.getItem("customer"));
-  const voucher = window.localStorage.getItem("id_voucher");
-  const carts = JSON.parse(window.localStorage.getItem("cart"));
-  let number = JSON.parse(window.localStorage.getItem("total"));
+  const customerInfo = JSON.parse(window.sessionStorage.getItem("customer"));
+  const voucher = window.sessionStorage.getItem("id_voucher");
+  const carts = JSON.parse(window.sessionStorage.getItem("cart"));
+  let number = JSON.parse(window.sessionStorage.getItem("total"));
   var total = parseInt(number);
 
   const [orderID, setOrderID] = useState(null);
@@ -140,7 +140,7 @@ function Checkout() {
   useEffect(() => {
     if (newOrder != null) {
       console.log(" order: " + newOrder.ngay_dat);
-      window.localStorage.setItem("total-1", (total + newOrder.phi_ship - newOrder.tong_gia_giam_boi_voucher))
+      window.sessionStorage.setItem("total-1", (total + newOrder.phi_ship - newOrder.tong_gia_giam_boi_voucher))
     } else {
       console.log("not order");
     }

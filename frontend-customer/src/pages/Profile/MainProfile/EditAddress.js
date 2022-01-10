@@ -6,7 +6,7 @@ function EditAddress() {
     marginBottom: "20px",
   };
   const cusAccountInfo = JSON.parse(
-    window.localStorage.getItem("customer-account")
+    window.sessionStorage.getItem("customer-account")
   );
   const [streetName, setStreetName] = useState("");
   const [idCities, setIdCities] = useState(0);
