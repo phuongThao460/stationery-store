@@ -4,6 +4,7 @@ import {
   Add_SanPham_To_WishList,
   Remove_SanPham_From_WishList,
   Get_FeedBack_Product_By_TTKH,
+  Get_WishList_By_TTKH,
 } from "../models/TKKH_Model.js";
 
 export const Get_TKKHs = async (req, res) => {
@@ -193,6 +194,22 @@ export const Get_FeedBack_By_ID_TTKH = async (req, res) => {
     //// Get 1st ele from result
     //rs = rs[0];
     //}
+    res.status(200).json(rs);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
+export const Get_WishList_By_ID_TTKH = async (req, res) => {
+  /*
+  Request body: id_ttkh
+  */
+
+  try {
+    var id_ttkh = req.body.id_ttkh;
+    var rs = await Get_WishList_By_TTKH(id_ttkh);
+
     res.status(200).json(rs);
   } catch (err) {
     console.log(err);

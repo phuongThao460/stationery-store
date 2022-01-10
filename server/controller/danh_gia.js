@@ -4,6 +4,7 @@ import {
   Create,
   Update,
 } from "../models/DANH_GIA_Model.js";
+import { Remove_SanPham_From_List_Feedback } from "../models/TKKH_Model.js";
 
 // ==========================================
 //              FUNCTION DEFINITIONS
@@ -45,7 +46,7 @@ export const Create_DanhGia = async (req, res) => {
 	Add new danh_gia then save to db
 	
 	required value to create new danh gia: 
-		id_ttkh, id_san_pham, noi_dung_danh_gia,
+		id_tkkh, id_san_pham, noi_dung_danh_gia,
     so_sao_danh_gia, tinh_trang
 
   :return: json
@@ -55,7 +56,11 @@ export const Create_DanhGia = async (req, res) => {
     var danh_gia = req.body;
     const new_danh_gia = await Create(danh_gia);
 
-    //console.log("voucher: ", voucher);
+    // After feedback, remove san_pham from feedback_list of tkkh
+    var id_sp = new_danh_gia.id_san_pham;
+    var id_tkkh = new_danh_gia.id_tkkh;
+    Remove_SanPham_From_List_Feedback(id_tkkh, id_sp);
+
     res.status(200).json(new_danh_gia);
   } catch (err) {
     res.status(500).json({ error: err });

@@ -163,7 +163,7 @@ const Does_SanPham_Exist_In_List_Feedback = async (id_tkkh, id_sp) => {
       return false;
     }
 
-    var sp = await TK_KH_Model.findOne({ san_pham_cho_danh_gia: id_sp });
+    const sp = sp_cho_danh_gia.find((ele) => ele == id_sp);
 
     if (sp != null) {
       return true;
@@ -250,16 +250,26 @@ export const Get_FeedBack_Product_By_TTKH = async (id_ttkh) => {
   */
 
   try {
-    //var rs = await TK_KH_Model.aggregate([
-    //// Stage 1
-    //{ $match: { id_ttkh: mongoose.Types.ObjectId(id_ttkh) } },
-
-    //// Stage 2:
-    //{ $project: { san_pham_cho_danh_gia: 1 } },
-    //]).exec();
     var rs = await TK_KH_Model.findOne({ id_ttkh: id_ttkh })
       .select(["san_pham_cho_danh_gia"])
       .populate({ path: "san_pham_cho_danh_gia", select: "ten_sp" });
+    return rs;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const Get_WishList_By_TTKH = async (id_ttkh) => {
+  /*
+  Get wishlist theo id_ttkh
+
+  :return: array
+  */
+
+  try {
+    var rs = await TK_KH_Model.findOne({ id_ttkh: id_ttkh })
+      .select(["wish_list"])
+      .populate({ path: "wish_list", select: "ten_sp" });
     return rs;
   } catch (err) {
     throw err;
