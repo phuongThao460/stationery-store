@@ -71,3 +71,6 @@
   outline: none;
   border: 1px solid #ccc;
 }
+.name-phone{
+  display: flex;
+}

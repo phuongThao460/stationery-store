@@ -34,7 +34,7 @@ class Product extends React.Component {
     this.importPrice = createRef();
     this.exportPrice = createRef();
     this.basicPrice = createRef();
-    this.rate = createRef();
+    this.images = createRef();
   }
   changeId = (e) => {
     this.setState({ idType: e.value });
@@ -117,6 +117,7 @@ class Product extends React.Component {
           id_chat_lieu: window.localStorage.getItem("chat_lieu_id"),
           mo_ta: this.descript.current.value,
           ti_le_danh_gia: "0",
+          hinh_anh: this.images.current.value,
           id_phan_loai: window.localStorage.getItem("phan_loai_id"),
         }
       )
@@ -148,6 +149,7 @@ class Product extends React.Component {
           <h1>Add New Product</h1>
         </div>
         <div className="form-horizontal">
+          {/* Name */}
           <div className="form-group">
             <label className="control-label col-sm-2">Name</label>
             <div className="col-sm-10">
@@ -386,6 +388,7 @@ class Product extends React.Component {
               <span style={{ marginLeft: "8px" }}>Add New Material</span>
             </button>
           </div>
+          {/* Description */}
           <div className="form-group">
             <label className="control-label col-sm-2">Description</label>
             <div className="col-sm-10">
@@ -395,6 +398,19 @@ class Product extends React.Component {
                 className="form-control"
                 placeholder="Enter a Description"
                 ref={this.descript}
+              />
+            </div>
+          </div>
+          {/* Image */}
+          <div className="form-group">
+            <label className="control-label col-sm-2">Image</label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter image's link"
+                ref={this.images}
+                autoFocus
               />
             </div>
           </div>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-const EditableMaterial = ({ index, item }) => {
+const EditableMaterial = ({ index, item, handleCancelClick }) => {
   const [name, setName] = useState("");
   const materialNameHandler = (e) => {
     setName(e.target.value);
@@ -37,7 +37,7 @@ const EditableMaterial = ({ index, item }) => {
         <button className="btn-edit" onClick={handleEditSubmit}>
           Save
         </button>
-        <button className="btn-delete">Cancel</button>
+        <button className="btn-delete"  onClick={handleCancelClick}>Cancel</button>
       </td>
     </tr>
   );
