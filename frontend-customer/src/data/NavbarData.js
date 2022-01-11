@@ -7,27 +7,27 @@ const NavbarData = [
   {
     key: 2,
     title: "Office & School",
-    path: "/category/office-and-school",
+    path: "/office-and-school",
   },
   {
     key: 3,
     title: "Design & Fun",
-    path: "#",
+    path: "/Design-Fun",
   },
   {
     key: 4,
     title: "Accessories",
-    path: "/#",
+    path: "/Accessories",
   },
   {
     key: 5,
     title: "Souvenir",
-    path: "/#",
+    path: "/Souvenir",
   },
   {
     key: 6,
     title: "About",
-    path: "/#",
+    path: "/About",
   },
 ];
 export default NavbarData;

@@ -7,7 +7,6 @@ import Carousel from "react-elastic-carousel";
 import SubNav from "../data/SubNavbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Footer from "../components/Footer";
 class Homepage extends React.Component {
   constructor() {
     super();
@@ -32,6 +31,7 @@ class Homepage extends React.Component {
           array.push({
             id: element._id,
             name: element.ten_sp,
+            img: element.hinh_anh,
             price: element.gia_ban_hien_tai,
           });
         });
@@ -161,7 +161,7 @@ class Homepage extends React.Component {
                 <div className="card-img">
                   <Link to={"/products/" + item.id}>
                     <img
-                      src="./images/BUT- BI.jpg"
+                      src={item.img}
                       alt=""
                       style={{ width: "204px", height: "185px" }}
                     />
@@ -201,7 +201,7 @@ class Homepage extends React.Component {
                 <div className="card-img">
                   <Link to={"/products/" + item.id}>
                     <img
-                      src="./images/BUT- BI.jpg"
+                      src={item.img}
                       alt=""
                       style={{ width: "204px", height: "185px" }}
                     />
@@ -234,7 +234,6 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <Footer />
       </div>
     );
   }

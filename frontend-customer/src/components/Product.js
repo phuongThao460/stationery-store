@@ -13,7 +13,6 @@ import Notify from "react-notification-alert";
 import "react-notification-alert/dist/animate.css";
 import axios from "axios";
 import Reviews from "../pages/Reviews/Reviews";
-import Footer from "./Footer";
 
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
@@ -111,7 +110,7 @@ const Product = ({ match, history }) => {
               <img
                 alt=""
                 className="Image"
-                src={process.env.PUBLIC_URL + "/so-tay-bia-da-cao-cap.jpg"}
+                src={product.hinh_anh}
               />
             </div>
             <div style={{ display: "inline-block" }}>
@@ -363,7 +362,6 @@ const Product = ({ match, history }) => {
           </div>
         </>
       )}
-      <Footer/>
     </div>
   );
 };

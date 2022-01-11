@@ -20,9 +20,6 @@
   .Wrapper .ImgContainer {
     max-width: 597px;
   }
-  .Image{
-    width: 561px;
-  }
   .card-body-rating .row{
     width: 1123px;
   }
@@ -30,6 +27,13 @@
 .InfoContainer {
   flex: 1;
   padding: 0px 50px;
+}
+
+.Image{
+  min-width: 500px;
+  min-height: 460px;
+  max-width: 561px;
+  max-height: 500px;
 }
 
 .Title-Product {

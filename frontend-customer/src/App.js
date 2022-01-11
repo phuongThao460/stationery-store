@@ -21,8 +21,13 @@ import Feedback from "./pages/Profile/MainProfile/Feedback";
 import Favorites from "./pages/Profile/MainProfile/Favorites";
 import Vouchers from "./pages/Profile/MainProfile/Vouchers";
 import Profile from "./pages/Profile/Profile";
-import Category from "./pages/Category/Category";
 import Footer from "./components/Footer";
+
+import School from "./pages/Category/School";
+import Design from "./pages/Category/Design";
+import Accessories from "./pages/Category/Accessories";
+import Souvenir from "./pages/Category/Souvenir";
+import About from "./pages/Category/About";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
@@ -36,13 +41,17 @@ function App() {
           <Route path="/item/:title" element={<ListItem />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/Signup" element={<Account />} />
-          <Route path="/category/:category_name" element={<Category />} />
+          <Route path="/office-and-school" element={<School />} />
           <Route path="/products/:id" element={<Product />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/CheckoutCustomer" element={<CheckoutCustomer />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/notificate" element={<NotificateOrder />} />
           <Route path="profile/*" element={<Profile />} />
+          <Route path="/Design-Fun" element={<Design />} />
+          <Route path="/Accessories" element={<Accessories />} />
+          <Route path="/Souvenir" element={<Souvenir />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       </BrowserRouter>
       <Footer/>
