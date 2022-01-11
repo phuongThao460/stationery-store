@@ -12,6 +12,7 @@ import { addToCart } from "../redux/action/cartAction";
 import Notify from "react-notification-alert";
 import "react-notification-alert/dist/animate.css";
 import axios from "axios";
+import Reviews from "../pages/Reviews/Reviews";
 
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
@@ -167,10 +168,10 @@ const Product = ({ match, history }) => {
           <hr style={{ margin: "0px 50px" }} />
           <div className="rating">
             <div className="card-rating">
-              <span className="review-card">REVIEWS AND RATING</span>
+              <h3 className="review-card">REVIEWS AND RATING</h3>
               <div className="card-body-rating">
                 <div className="row">
-                  <div className="col-sm-4 text-center">
+                  <div className="col-sm-4 text-center" style={{width: "240px"}}>
                     <h2 className="text-warning mt-4 mb-2">
                       <b>
                         <span id="average_rating">4.8</span> / 5
@@ -187,27 +188,15 @@ const Product = ({ match, history }) => {
                       <span id="total_review">0</span> Review
                     </h3>
                   </div>
-                  <div className="col-sm-4" style={{ marginTop: "40px" }}>
+                  <div className="col-sm-4 percent-rating" style={{ marginTop: "22px", display: "inline-grid" }}>
                     <p className="progress-label">
                       <div
                         className="progress-label-left"
-                        style={{ float: "left" }}
+                        style={{ float: "left", height: "13px" }}
                       >
-                        <b style={{ margin: "5px" }}>5 Star</b>
+                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>5 Star</b>
                       </div>
-                      <div
-                        className="progress-label-right"
-                        style={{ float: "right" }}
-                      >
-                        (
-                        <span
-                          id="total_five_star_review"
-                          style={{ margin: "5px" }}
-                        >
-                          0
-                        </span>
-                        )
-                      </div>
+                      
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -225,21 +214,9 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px" }}>4 Star</b>
+                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>4 Star</b>
                       </div>
-                      <div
-                        className="progress-label-right"
-                        style={{ float: "right" }}
-                      >
-                        (
-                        <span
-                          id="total_four_star_review"
-                          style={{ margin: "5px" }}
-                        >
-                          0
-                        </span>
-                        )
-                      </div>
+                      
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -257,21 +234,9 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px" }}>3 Star</b>
+                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>3 Star</b>
                       </div>
-                      <div
-                        className="progress-label-right"
-                        style={{ float: "right" }}
-                      >
-                        (
-                        <span
-                          id="total_four_star_review"
-                          style={{ margin: "5px" }}
-                        >
-                          0
-                        </span>
-                        )
-                      </div>
+                      
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -289,21 +254,9 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px" }}>2 Star</b>
+                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>2 Star</b>
                       </div>
-                      <div
-                        className="progress-label-right"
-                        style={{ float: "right" }}
-                      >
-                        (
-                        <span
-                          id="total_four_star_review"
-                          style={{ margin: "5px" }}
-                        >
-                          0
-                        </span>
-                        )
-                      </div>
+                      
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -321,21 +274,9 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px" }}>1 Star</b>
+                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>1 Star</b>
                       </div>
-                      <div
-                        className="progress-label-right"
-                        style={{ float: "right" }}
-                      >
-                        (
-                        <span
-                          id="total_four_star_review"
-                          style={{ margin: "5px" }}
-                        >
-                          0
-                        </span>
-                        )
-                      </div>
+                      
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -355,7 +296,10 @@ const Product = ({ match, history }) => {
           </div>
           <hr style={{ margin: "0px 50px" }} />
           <div className="custom-feedback">
-            <span className="review-card">TOP REVIEWS</span>
+            <h3 className="review-card">TOP REVIEWS</h3>
+            <hr style={{ margin: "0px 50px" }} />
+            <Reviews/>
+            <Reviews/>
           </div>
         </>
       )}

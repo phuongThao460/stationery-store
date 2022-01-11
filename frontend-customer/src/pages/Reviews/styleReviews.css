@@ -1,6 +1,38 @@
+.top-section{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
 .img-customer{
   width: 50px;
   height: 50px;
   background-color: tomato;
   border-radius: 100%;
+  margin-right: 10px;
+}
+.body-section{
+  margin-top: 12px;
+}
+.star-rating{
+  justify-content: flex-end;
+  display: flex;
+}
+.bottom-section{
+  display: flex;
+  margin-top: 12px;
+}
+.bottom-section p{
+  color: #ccc;
+  font-size: 13px;
+  padding-top: 5px;
+}
+.bottom-section .icon-like, .bottom-section .icon-dislike{
+  margin-left: 22px;
+}
+.name-time{
+  margin-top: 9px;
+  line-height: normal;
+}
+.name-time span{
+  font-size: 13px;
 }

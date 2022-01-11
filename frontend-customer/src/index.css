@@ -15,7 +15,7 @@ body, .App {
 }
 
 p{
-  font-weight: lighter;
+  margin: 0;
 }
 a{
   font-size: 15px;
@@ -31,5 +31,5 @@ label{
   font-size: 20px;
 }
 h3{
-  font-size: 15px;
+  font-size: 25px;
 }

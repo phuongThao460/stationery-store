@@ -177,4 +177,19 @@
 }
 .review-card{
   margin-left: 50px;
+  margin-top: 10px;
+}
+.progress-label{
+  height: 13px;
+}
+.progress-label .progress{
+  width: 175px;
+  height: 7px;
+  margin-top: 6px;
+}
+.percent-rating{
+  height: 100px;
+}
+.card-body-rating{
+  margin-bottom: 20px;
 }

@@ -6,8 +6,16 @@ import { Link } from "react-router-dom";
 
 function Favorites() {
   const [wishList, setWishList] = useState([]);
+  const cusAccountInfo = JSON.parse(
+    window.sessionStorage.getItem("customer-account")
+  );
   useEffect(() => {
-    axios.get("").then((res) => setWishList(res.data));
+    axios
+      .post(
+        "https://stationery-store-tmdt.herokuapp.com/tkkh/wishlist_from_ttkh",
+        { id_ttkh: cusAccountInfo._id }
+      )
+      .then((res) => setWishList(res.data));
   }, []);
   return (
     <div className="main-right">
@@ -16,7 +24,9 @@ function Favorites() {
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col" style={{ width: "220px", textAlign: "center" }}>Action</th>
+            <th scope="col" style={{ width: "220px", textAlign: "center" }}>
+              Action
+            </th>
           </tr>
         </thead>
         <tbody>
