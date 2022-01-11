@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LayoutCheckout from "./Layout/LayoutCheckout";
 import { resetCart } from "../../redux/action/cartAction";
-import Footer from "../../components/Footer";
 
 function Checkout() {
   const cusAccountInfo = JSON.parse(
@@ -14,7 +13,7 @@ function Checkout() {
   );
   const customerInfo = JSON.parse(window.sessionStorage.getItem("customer"));
   const voucher = window.sessionStorage.getItem("id_voucher");
-  const carts = JSON.parse(window.sessionStorage.getItem("cart"));
+  const carts = JSON.parse(window.localStorage.getItem("cart"));
   let number = JSON.parse(window.sessionStorage.getItem("total"));
   var total = parseInt(number);
 
@@ -188,6 +187,7 @@ function Checkout() {
           }).then(() => {
             dispatch(resetCart());
             navigate("/notificate");
+            window.sessionStorage.removeItem("customer");
           });
         });
       });
@@ -239,7 +239,7 @@ function Checkout() {
         });
       });
   };
-  if (customerInfo === null) {
+  if (customerInfo === null || customerInfo.id_phuong === null) {
     return <h2>Loading...</h2>;
   } else {
     return (
@@ -255,7 +255,6 @@ function Checkout() {
           addCartDetails={addCartDetails}
           handlePaypalCallback={handlePaypalCallback}
         />
-        <Footer/>
       </>
     );
   }

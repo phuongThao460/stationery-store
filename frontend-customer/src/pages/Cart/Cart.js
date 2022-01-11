@@ -74,9 +74,9 @@ const Cart = () => {
             <span className="TopText">Your Wishlist (0)</span>
           </div>
 
-          <div className="voucher">
+          <div className="voucher-cart">
             <h1 className="Title-Info">Voucher</h1>
-            <select className="city"  onChange={getIDVoucher}>
+            <select className="TopButton"  onChange={getIDVoucher}>
               <option key="0" value="null">Select voucher...</option>
               {vouchers ? (
                 vouchers.map((item, index) => (

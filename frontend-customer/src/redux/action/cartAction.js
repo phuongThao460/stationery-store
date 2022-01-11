@@ -14,10 +14,11 @@ export const addToCart = (id, count, cong_don = false) => async (dispatch, getSt
       so_luong: data.so_luong,
       count,
       cong_don,
+      img: data.hinh_anh,
     },
   });
 
-  sessionStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
+  localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
 };
 
 export const removeFromCart = (id) => (dispatch, getState) => {

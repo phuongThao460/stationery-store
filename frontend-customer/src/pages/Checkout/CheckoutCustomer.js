@@ -19,7 +19,7 @@ export default class CheckoutCustomer extends Component {
       lstCities: [],
       lstWards: [],
       lstDistrict: [],
-      carts: JSON.parse(window.sessionStorage.getItem("cart")),
+      carts: JSON.parse(window.localStorage.getItem("cart")),
     };
     this.getListCities();
     this.fullName = createRef();
