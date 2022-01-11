@@ -151,9 +151,52 @@
   margin-top: -15px;
   font-weight: 500;
 }
-.user-name .table-content{
+.user-name .table-content {
   right: -19px;
 }
-.list{
+.list {
   padding: 0;
+}
+
+.voucher {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+  width: 3%;
+  height: 30px;
+  margin-right: 25px;
+  position: relative;
+}
+.voucher-icon {
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  color: #116df6;
+}
+.button-voucher {
+  display: inherit;
+  border: none;
+  background-color: white;
+}
+
+.feedback {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+  width: 3%;
+  height: 30px;
+  margin-right: 25px;
+  position: relative;
+}
+.feedback-icon {
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  color: #116df6;
+}
+
+.button-feedback {
+  display: inherit;
+  border: none;
+  background-color: white;
 }

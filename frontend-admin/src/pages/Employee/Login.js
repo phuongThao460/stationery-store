@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useRef } from "react";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import banner from "../../images/banner.png";
 import { useNavigate } from "react-router-dom";
+import Notify from "react-notification-alert";
+import "react-notification-alert/dist/animate.css";
+
 function Login() {
   let navigate = useNavigate();
   const [errorName, setErrorName] = useState(
@@ -11,6 +14,17 @@ function Login() {
   );
   const emailInput = createRef();
   const passwordInput = createRef();
+
+  let notification = useRef();
+  var err_options = {};
+  err_options = {
+    place: "tr",
+    message: <div>Email or password incorrect</div>,
+    type: "danger",
+    icon: "fas fa-times",
+    autoDismiss: 3,
+    closeButton: false,
+  };
 
   const loginSubmit = (event) => {
     event.preventDefault();
@@ -25,19 +39,24 @@ function Login() {
         .then((res) => {
           console.log(res.data);
           if (res.data !== null) {
-            alert("Đăng nhập thành công");
+            //alert("Đăng nhập thành công");
             window.sessionStorage.setItem(
               "employee-account",
               JSON.stringify(res.data)
             );
             navigate("/dashboard");
             window.location.reload();
+          } else {
+            notification.current.notificationAlert(err_options);
           }
         });
     }
   };
   return (
     <div className="main-container">
+      <div>
+        <Notify ref={notification} />
+      </div>
       <div className="side-left">
         <div className="img-banner">
           <img src={banner} alt="banner pic" className="banner-pic" />
@@ -46,7 +65,8 @@ function Login() {
           <h3>Writing made more elegant</h3>
           <span>
             Whatever you choose for your stationery is your favorite color
-            <br/>because it's where you pour your heart out
+            <br />
+            because it's where you pour your heart out
           </span>
         </div>
       </div>
@@ -57,7 +77,7 @@ function Login() {
             <span>Welcome to our stationery store</span>
           </div>
           <form className="input-field" onSubmit={loginSubmit}>
-            <div className="email" style={{marginBottom: "20px"}}>
+            <div className="email" style={{ marginBottom: "20px" }}>
               <TextField
                 id="standard-email-input"
                 label="Email"
