@@ -1,11 +1,14 @@
 //eslint-disable-next-line
-import React from "react";
+import React, { useRef } from "react";
 import "../style/Navbar.css";
-import { BsSearch, BsHandbag } from "react-icons/bs";
+import { BsSearch, BsHandbag, BsGift, BsStar } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import NavbarData from "../data/NavbarData";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Notify from "react-notification-alert";
+import "react-notification-alert/dist/animate.css";
+import axios from "axios";
 
 const Navbar = ({ click }) => {
   const cart = useSelector((state) => state.cart);
@@ -18,6 +21,62 @@ const Navbar = ({ click }) => {
     return cartItems.reduce((count, item) => Number(item.count) + count, 0);
   };
 
+  let notify = useRef();
+  var login_notify = {
+    place: "tc",
+    message: <div>Please login to use this feature</div>,
+    type: "danger",
+    icon: "fas fa-times",
+    autoDismiss: 3,
+    closeButton: false,
+  };
+
+  const clickVoucherIcon = () => {
+    var id_account = sessionStorage.getItem("id_account");
+    if (id_account != null) {
+      window.location.href = "/profile/vouchers";
+    } else {
+      notify.current.notificationAlert(login_notify);
+    }
+  };
+
+  const getVoucherCount = () => {
+    var id_account = sessionStorage.getItem("id_account");
+    if (id_account != null) {
+      axios.post(
+        "https://stationery-store-tmdt.herokuapp.com/tkkh/voucher_count",
+        {
+          id_tkkh: id_account,
+        }
+      );
+    } else {
+      return 0;
+    }
+  };
+
+  const clickFeedBackIcon = () => {
+    var id_account = sessionStorage.getItem("id_account");
+    if (id_account != null) {
+      window.location.href = "/profile/feedback";
+    } else {
+      notify.current.notificationAlert(login_notify);
+    }
+  };
+
+  const getFeedBackCount = () => {
+    var id_account = sessionStorage.getItem("id_account");
+    if (id_account != null) {
+      axios.post(
+        "https://stationery-store-tmdt.herokuapp.com/tkkh/feedback_count",
+        {
+          id_tkkh: id_account,
+        }
+      );
+    } else {
+      return 0;
+    }
+  };
+
   const logout = () => {
     window.sessionStorage.removeItem("customer-account");
     window.sessionStorage.removeItem("id_account");
@@ -26,6 +85,9 @@ const Navbar = ({ click }) => {
   };
   return (
     <div className="container-1">
+      <div>
+        <Notify ref={notify} />
+      </div>
       <div className="navbar-1">
         <form className="header-1">
           <input
@@ -93,6 +155,24 @@ const Navbar = ({ click }) => {
           </div>
         )}
 
+        <div className="feedback">
+          <button onClick={clickFeedBackIcon} className="button-feedback">
+            <BsStar className="feedback-icon" />
+            <div className="num-item">
+              <div className="text-num">{getFeedBackCount()}</div>
+            </div>
+          </button>
+        </div>
+
+        <div className="voucher">
+          <button onClick={clickVoucherIcon} className="button-voucher">
+            <BsGift className="voucher-icon" />
+            <div className="num-item">
+              <div className="text-num">{getVoucherCount()}</div>
+            </div>
+          </button>
+        </div>
+
         <div className="cart">
           <Link to="/Cart">
             <BsHandbag className="cart-bag" />
@@ -106,12 +186,9 @@ const Navbar = ({ click }) => {
         {NavbarData.map((item, index) => {
           return (
             <div key={index} className="sub-nav">
-                <Link
-                  to={item.path}
-                  className="link-page"
-                >
-                  {item.title}
-                </Link>
+              <Link to={item.path} className="link-page">
+                {item.title}
+              </Link>
             </div>
           );
         })}

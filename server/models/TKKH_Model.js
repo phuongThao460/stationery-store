@@ -275,3 +275,39 @@ export const Get_WishList_By_TTKH = async (id_ttkh) => {
     throw err;
   }
 };
+
+export const Get_FeedBack_Count = async (id_tkkh) => {
+  /*
+  Get number of feedback product by id_tkkh
+
+  :return: Number
+  */
+
+  try {
+    const tkkh = await TK_KH_Model.findById(id_tkkh);
+    if (tkkh != null) {
+      return tkkh.san_pham_cho_danh_gia.length;
+    }
+    return 0;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const Get_Voucher_Count = async (id_tkkh) => {
+  /*
+  Get number of voucher by id_tkkh
+
+  :return: Number
+  */
+
+  try {
+    const tkkh = await TK_KH_Model.findById(id_tkkh);
+    if (tkkh != null) {
+      return tkkh.id_voucher.length;
+    }
+    return 0;
+  } catch (err) {
+    throw err;
+  }
+};

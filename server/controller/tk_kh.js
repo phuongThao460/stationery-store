@@ -5,6 +5,8 @@ import {
   Remove_SanPham_From_WishList,
   Get_FeedBack_Product_By_TTKH,
   Get_WishList_By_TTKH,
+  Get_FeedBack_Count,
+  Get_Voucher_Count,
 } from "../models/TKKH_Model.js";
 
 export const Get_TKKHs = async (req, res) => {
@@ -214,5 +216,35 @@ export const Get_WishList_By_ID_TTKH = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+};
+
+export const Get_FeedBack_Count_By_ID_TKKH = async (req, res) => {
+  /*
+  required value: id_tkkh
+  */
+
+  try {
+    var id_tkkh = req.body.id_tkkh;
+    var count = await Get_FeedBack_Count(id_tkkh);
+    res.json(count);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+export const Get_Voucher_Count_By_ID_TKKH = async (req, res) => {
+  /*
+  required value: id_tkkh
+  */
+
+  try {
+    var id_tkkh = req.body.id_tkkh;
+    var count = await Get_Voucher_Count(id_tkkh);
+    res.json(count);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
   }
 };
