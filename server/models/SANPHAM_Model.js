@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 //				CONSTANT DEFINITIONS
 // =====================================================
 
-const product_per_page = 6;
+const product_per_page = 8;
 
 // =====================================================
 //				MODEL DEFINITIONS

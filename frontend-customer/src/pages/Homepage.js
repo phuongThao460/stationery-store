@@ -31,6 +31,7 @@ class Homepage extends React.Component {
           array.push({
             id: element._id,
             name: element.ten_sp,
+            img: element.hinh_anh,
             price: element.gia_ban_hien_tai,
           });
         });
@@ -160,7 +161,7 @@ class Homepage extends React.Component {
                 <div className="card-img">
                   <Link to={"/products/" + item.id}>
                     <img
-                      src="./images/BUT- BI.jpg"
+                      src={item.img}
                       alt=""
                       style={{ width: "204px", height: "185px" }}
                     />
@@ -200,7 +201,7 @@ class Homepage extends React.Component {
                 <div className="card-img">
                   <Link to={"/products/" + item.id}>
                     <img
-                      src="./images/BUT- BI.jpg"
+                      src={item.img}
                       alt=""
                       style={{ width: "204px", height: "185px" }}
                     />
