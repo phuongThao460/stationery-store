@@ -41,9 +41,9 @@ function WriteFeedback(props) {
         </Modal.Header>
         <Modal.Body>
           <div className="orderInfo" style={{ fontSize: "25px" }}></div>
-          <table>
+          <table style={{width: "100%"}}>
             <tr>
-              <td style={{ verticalAlign: "top" }}>
+              <td style={{ verticalAlign: "top", width: "82px" }}>
                 <span>Item</span>
               </td>
               <td>{props.item}</td>

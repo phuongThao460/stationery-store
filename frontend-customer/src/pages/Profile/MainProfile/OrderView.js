@@ -82,7 +82,7 @@ function OrderView() {
                   ${item.tong_tien.toFixed(2)}
                 </span>
               </td>
-              <td style={{ paddingTop: "7px" }}>{orderList[0].ttdh[0].trang_thai}</td>
+              <td style={{ paddingTop: "7px" }}>{orderList[index].ttdh[0].trang_thai}</td>
               <td style={{ paddingTop: "3px" }}>
                 <button
                   className="btn-view"
