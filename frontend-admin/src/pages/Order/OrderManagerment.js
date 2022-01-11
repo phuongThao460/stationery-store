@@ -338,6 +338,8 @@ function OrderManagerment() {
                             setTotal(item.tong_tien);
                             setShip(item.phi_ship);
                             setSaleTax(item.tong_gia_giam_boi_voucher);
+                            console.log('abc')
+                            console.log(item)
                           }}
                         >
                           View

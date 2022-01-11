@@ -16,10 +16,14 @@ export default function OrderView(props) {
     setDetails(data_details.data);
   };
   const getAddressCustomer = async () => {
-    const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", {
-      _id: props.customer.id_phuong,
-    });
-    setAdress(data.data);
+    if (props.customer === null) {
+      setAdress('bla bla');
+    } else {
+      const data = await axios.post("https://stationery-store-tmdt.herokuapp.com/ttkh/getAddress", {
+        _id: props.customer.id_phuong,
+      });
+      setAdress(data.data);
+    }
   };
   const updateStatus = (event) => {
     axios.post("https://stationery-store-tmdt.herokuapp.com/don_hang/update_by_id", {
@@ -72,20 +76,34 @@ export default function OrderView(props) {
                   <th className="table-title">Shipping Address</th>
                 </tr>
                 <tr>
-                  <td>
-                    <div>
-                      <b>{props.customer.ten_kh}</b>
-                    </div>
-                    <div>{props.customer.email}</div>
-                    <div>{props.customer.sdt}</div>
-                  </td>
-                  <td>
-                    <div>
-                      <b>{props.customer.ten_kh}</b>
-                    </div>
-                    <div>{props.customer.dia_chi + ", " + address}</div>
-                    <div>{props.customer.sdt}</div>
-                  </td>
+                  {props.customer === null ? (<>
+                      <td>
+                        <div>
+                          <b>Unknown</b>
+                        </div>
+                      </td>
+                      <td>
+                        <div>
+                          <b>Unknown</b>
+                        </div>
+                      </td>
+                    </>) :
+                    (<>
+                      <td>
+                        <div>
+                          <b>{props.customer.ten_kh}</b>
+                        </div>
+                        <div>{props.customer.email}</div>
+                        <div>{props.customer.sdt}</div>
+                      </td>
+                      <td>
+                        <div>
+                          <b>{props.customer.ten_kh}</b>
+                        </div>
+                        <div>{props.customer.dia_chi + ", " + address}</div>
+                        <div>{props.customer.sdt}</div>
+                      </td>
+                    </>)}
                 </tr>
               </table>
             </div>

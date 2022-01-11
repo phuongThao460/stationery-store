@@ -9,7 +9,7 @@ return (
       <img
         alt=""
         className="Image-cart"
-        src="https://inbacha.com/wp-content/uploads/2021/05/in-so-tay-doc-quyen1.jpg"
+        src={item.img}
       />
       <div className="Details-cart">
       <Link to={`/products/${item.product}`} className="ProductName" style={{ width: "328px" }}>

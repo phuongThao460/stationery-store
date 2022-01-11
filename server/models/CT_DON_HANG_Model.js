@@ -70,7 +70,7 @@ export const Find_CTDH_By_ID_TTKH = async (id_ttkh) => {
 
     var rs = await DON_HANG_Model.aggregate([
       // Stage 1: Find don_hang by id_ttkh
-      { $match: { id_ttkh: mongoose.Types.ObjectId(id_ttkh) } },
+      { $match: { id_ttkh: mongoose.Types.String(id_ttkh) } },
 
       // Stage 2: Lookup at CTDH to find ctdh by id_dh
       {
