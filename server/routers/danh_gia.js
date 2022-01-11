@@ -5,6 +5,7 @@ import {
   Create_DanhGia,
   Update_DanhGia,
   Get_List_FeedBack_By_ID_TTKH,
+  Get_List_FeedBack_By_ID_SanPham,
 } from "../controller/danh_gia.js";
 
 const router = express.Router();
@@ -23,5 +24,8 @@ router.post("/update", Update_DanhGia);
 
 // POST: /danh_gia/feedbacks_from_ttkh
 router.post("/feedbacks_from_ttkh", Get_List_FeedBack_By_ID_TTKH);
+
+// POST: /danh_gia/feedbacks_from_sp
+router.post("/feedbacks_from_sp", Get_List_FeedBack_By_ID_SanPham);
 
 export default router;
