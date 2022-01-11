@@ -68,7 +68,10 @@ function EmployeeManagement() {
         </div>
       </div>
 
-      <table className="table table-hover" style={{ backgroundColor: "#fff" }}>
+      <table
+        className="table table-hover"
+        style={{ backgroundColor: "#fff", width: "985px" }}
+      >
         <thead>
           <tr>
             <th scope="col" style={{ width: "84px" }}>
@@ -76,8 +79,11 @@ function EmployeeManagement() {
             </th>
             <th scope="col">Staff's Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col" style={{ width: "200px", textAlign: "center" }}>
+            <th scope="col">Tele.</th>
+            <th scope="col" style={{ textAlign: "center" }}>
+              Status
+            </th>
+            <th scope="col" style={{ textAlign: "center" }}>
               Action
             </th>
           </tr>
@@ -91,10 +97,11 @@ function EmployeeManagement() {
                   </th>
                   <td>{item.ten_nv}</td>
                   <td>{item.email}</td>
-                  <td style={{ textAlign: "end", width: "164px" }}>
-                    {item.sdt}
+                  <td style={{ textAlign: "end" }}>{item.sdt}</td>
+                  <td style={{ textAlign: "center" }}>
+                    {item.tinh_trang ? "Active" : "Off"}
                   </td>
-                  <td style={{ width: "200px", textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }}>
                     <button
                       className="btn-view"
                       onClick={() => {
@@ -110,6 +117,9 @@ function EmployeeManagement() {
                     >
                       View
                     </button>
+                    <Link to={"/staff/" + item._id}>
+                      <button className="btn-edit">Edit</button>
+                    </Link>
                   </td>
                 </tr>
               ))

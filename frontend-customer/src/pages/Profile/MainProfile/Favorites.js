@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Favorites() {
+  //tkkh/remove_wishlist
   const [wishList, setWishList] = useState([]);
   const cusAccountInfo = JSON.parse(
     window.sessionStorage.getItem("customer-account")
@@ -15,7 +16,7 @@ function Favorites() {
         "https://stationery-store-tmdt.herokuapp.com/tkkh/wishlist_from_ttkh",
         { id_ttkh: cusAccountInfo._id }
       )
-      .then((res) => setWishList(res.data));
+      .then((res) => setWishList(res.data.wish_list));
   }, []);
   return (
     <div className="main-right">
@@ -33,8 +34,9 @@ function Favorites() {
           {wishList.map((item) => (
             <tr>
               <td>{item.ten_sp}</td>
-              <td>
-                <Link to={"/products/" + item._id}>View Detail</Link>
+              <td style={{textAlign: "center"}}>
+                <Link className="btn-view link" to={"/products/" + item._id}>View</Link> | 
+                <button className="btn-view">Remove</button>
               </td>
             </tr>
           ))}

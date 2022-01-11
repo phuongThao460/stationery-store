@@ -3,7 +3,7 @@ import React from "react";
 import { BsHandbagFill } from "react-icons/bs";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import "../style/Product.css";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineShareAlt } from "react-icons/ai";
 import { useState, useEffect, useRef } from "react";
 //import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
@@ -121,9 +121,6 @@ const Product = ({ match, history }) => {
                   )}
                 </div>
                 <span className="Price">${product.gia_ban_hien_tai}</span>
-
-                <p className="Desc">{product.mo_ta}</p>
-
                 <div className="FilterContainer">
                   <div className="Filter">
                     <span className="FilterTitle">Color</span>
@@ -143,6 +140,7 @@ const Product = ({ match, history }) => {
                 <span className="FilterTitle">Qty</span>
                 <select
                   value={count}
+                  style={{ height: "36px", marginTop: "7px" }}
                   onChange={(e) => setQty(parseInt(e.target.value))}
                 >
                   {[...Array(product.so_luong).keys()].map((x) => (
@@ -151,27 +149,40 @@ const Product = ({ match, history }) => {
                     </option>
                   ))}
                 </select>
-              </div>
-              <div className="btn">
                 <Notify ref={err_notify} />
                 <button className="Button" onClick={addToCartHandler}>
                   <BsHandbagFill style={{ marginRight: "7px" }} />
                   ADD TO CART
                 </button>
-                <button className="Button" onClick={addWishList}>
+              </div>
+              <div className="btn-div">
+                <button className="btn-view product" onClick={addWishList}>
+                  <AiOutlineShareAlt style={{ marginRight: "7px" }} />
+                  Share to...
+                </button>
+                <button className="btn-view product" onClick={addWishList}>
                   <BsFillSuitHeartFill style={{ marginRight: "7px" }} />
-                  ADD TO WISHLIST
+                  Add to Wishlist
                 </button>
               </div>
             </div>
           </div>
+          <hr style={{ margin: "0px 50px" }} />
+          <div className="description-div">
+            <h3 className="details-div">Description</h3>
+            <p className="Desc">{product.mo_ta}</p>
+          </div>
+
           <hr style={{ margin: "0px 50px" }} />
           <div className="rating">
             <div className="card-rating">
               <h3 className="review-card">REVIEWS AND RATING</h3>
               <div className="card-body-rating">
                 <div className="row">
-                  <div className="col-sm-4 text-center" style={{width: "240px"}}>
+                  <div
+                    className="col-sm-4 text-center"
+                    style={{ width: "240px" }}
+                  >
                     <h2 className="text-warning mt-4 mb-2">
                       <b>
                         <span id="average_rating">4.8</span> / 5
@@ -188,15 +199,26 @@ const Product = ({ match, history }) => {
                       <span id="total_review">0</span> Review
                     </h3>
                   </div>
-                  <div className="col-sm-4 percent-rating" style={{ marginTop: "22px", display: "inline-grid" }}>
+                  <div
+                    className="col-sm-4 percent-rating"
+                    style={{ marginTop: "22px", display: "inline-grid" }}
+                  >
                     <p className="progress-label">
                       <div
                         className="progress-label-left"
                         style={{ float: "left", height: "13px" }}
                       >
-                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>5 Star</b>
+                        <b
+                          style={{
+                            margin: "5px",
+                            fontSize: "12px",
+                            verticalAlign: "top",
+                          }}
+                        >
+                          5 Star
+                        </b>
                       </div>
-                      
+
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -214,9 +236,17 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>4 Star</b>
+                        <b
+                          style={{
+                            margin: "5px",
+                            fontSize: "12px",
+                            verticalAlign: "top",
+                          }}
+                        >
+                          4 Star
+                        </b>
                       </div>
-                      
+
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -234,9 +264,17 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>3 Star</b>
+                        <b
+                          style={{
+                            margin: "5px",
+                            fontSize: "12px",
+                            verticalAlign: "top",
+                          }}
+                        >
+                          3 Star
+                        </b>
                       </div>
-                      
+
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -254,9 +292,17 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>2 Star</b>
+                        <b
+                          style={{
+                            margin: "5px",
+                            fontSize: "12px",
+                            verticalAlign: "top",
+                          }}
+                        >
+                          2 Star
+                        </b>
                       </div>
-                      
+
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -274,9 +320,17 @@ const Product = ({ match, history }) => {
                         className="progress-label-left"
                         style={{ float: "left" }}
                       >
-                        <b style={{ margin: "5px", fontSize: "12px", verticalAlign: "top" }}>1 Star</b>
+                        <b
+                          style={{
+                            margin: "5px",
+                            fontSize: "12px",
+                            verticalAlign: "top",
+                          }}
+                        >
+                          1 Star
+                        </b>
                       </div>
-                      
+
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning"
@@ -298,8 +352,8 @@ const Product = ({ match, history }) => {
           <div className="custom-feedback">
             <h3 className="review-card">TOP REVIEWS</h3>
             <hr style={{ margin: "0px 50px" }} />
-            <Reviews/>
-            <Reviews/>
+            <Reviews />
+            <Reviews />
           </div>
         </>
       )}

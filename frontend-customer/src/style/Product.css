@@ -52,7 +52,7 @@
 }
 
 .Desc {
-  margin: 20px 0px;
+  margin: 10px 50px;
   font-size: 20px;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .AddContainer {
-  width: 63%;
+  width: 100%;
   display: flex;
 }
 .AmountContainer {
@@ -113,12 +113,12 @@
   margin: 0px 10px;
 }
 .Button {
-  padding: 15px;
+  padding: 9px 26px 9px 26px;
   border: 2px solid Orange;
   background-color: white;
-  cursor: pointer;
   font-weight: 500;
-  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
 }
 .Button:hover {
   background-color: #ffcc99;
@@ -175,7 +175,7 @@
   display: inline-block;
   margin-right: 5px;
 }
-.review-card{
+.review-card, .details-div{
   margin-left: 50px;
   margin-top: 10px;
 }
@@ -192,4 +192,15 @@
 }
 .card-body-rating{
   margin-bottom: 20px;
+}
+.btn-div{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 283px;
+}
+.btn-view.product{
+  font-size: 15px;
+  color: #ccc;
+  padding: 0;
 }

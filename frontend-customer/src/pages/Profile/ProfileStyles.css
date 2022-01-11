@@ -73,7 +73,7 @@ li{
   background-color: green;
   color: #fff;
 }
-.btn-edit, .btn-view{
+.btn-edit, .btn-view, .btn-delete{
   outline: none;
   border: 0;
   margin-top: 11px;
@@ -135,4 +135,11 @@ li{
 }
 .btn-add span{
   margin-left: 8px;
+}
+.btn-view.link{
+  text-decoration: none;
+}
+.btn-delete {
+  background-color: red;
+  color: white;
 }

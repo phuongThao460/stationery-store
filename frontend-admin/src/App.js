@@ -22,17 +22,18 @@ import AddListProducts from "./pages/Product/AddListProducts";
 import AddNewStaff from "./pages/Employee/AddNewStaff";
 import ViewListStatistics from './pages/Statistics/ViewListStatistics'
 import Supplier from "./pages/Dashboard/SubMenuForm/Supplier";
+import EditStaff from "./pages/Employee/EditStaff";
 const Contact = () => {
   return <h1>Contact</h1>;
 };
 function App() {
   const [inactive, setInactive] = useState(false);
-  const employeeInfo = JSON.parse(window.localStorage.getItem("employee-account"));
+  const employeeInfo = JSON.parse(window.sessionStorage.getItem("employee-account"));
   return (
     <>
       <div className="App">
         <BrowserRouter>
-          {window.localStorage.getItem("employee-account") !== null ? (
+          {window.sessionStorage.getItem("employee-account") !== null ? (
             <>
               <SideMenu
                 onCollapse={(inactive) => {
@@ -64,6 +65,7 @@ function App() {
                   <Route path="/profile" element={<Profile/>} />
                   {employeeInfo.role === 0 ? <Route path="/staff" element={<StaffManagement/>} /> : null}
                   <Route path="/staff/add-new-staff" element={<AddNewStaff/>} />
+                  <Route path="/staff/:id" element={<EditStaff/>} />
                   <Route path="/statistics/view-list" element={<ViewListStatistics/>} />
                 </Routes>
               </div>
