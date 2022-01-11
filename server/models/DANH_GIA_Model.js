@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Find_TKKH_By_TTKH } from "./TKKH_Model.js";
 
 // ==========================================
 //              MODEL DEFINITIONS
@@ -122,6 +123,29 @@ export const Update = async (new_danh_gia) => {
     return danh_gia;
   } catch (err) {
     console.log(err);
+    throw err;
+  }
+};
+
+export const Get_List_FeedBack_From_TTKH = async (id_ttkh) => {
+  /*
+  Get list feedback from id_ttkh
+
+  :return: Array
+  */
+
+  try {
+    const tkkh = await Find_TKKH_By_TTKH(id_ttkh);
+    if (tkkh == null) {
+      return null;
+    }
+
+    const id_tkkh = tkkh._id;
+    const feedbacks = await DANH_GIA_Model.find({
+      id_tkkh: mongoose.Types.ObjectId(id_tkkh),
+    }).populate({ path: "id_san_pham", select: "ten_sp" });
+    return feedbacks;
+  } catch (err) {
     throw err;
   }
 };
