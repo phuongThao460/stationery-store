@@ -56,7 +56,7 @@ function Vouchers() {
             <tr key={index} style={{ textAlign: "center", fontSize: "20px" }}>
               <th scope="row">{item._id.substr(14)}</th>
               <td>{item.ten_voucher}</td>
-              <td style={{ textAlign: "start", lineHeight: "1" }}>
+              <td style={{ textAlign: "start" }}>
               {new Date(item.ngay_bat_dau_ap_dung).toLocaleDateString("en-CA")}
               </td>
               <td style={{ textAlign: "end" }}>
