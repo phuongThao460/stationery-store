@@ -239,7 +239,7 @@ function Checkout() {
         });
       });
   };
-  if (customerInfo === null && customerInfo === null) {
+  if (customerInfo === null && cusAccountInfo === null) {
     return <h2>Loading...</h2>;
   } else {
     return (
