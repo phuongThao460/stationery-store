@@ -46,7 +46,7 @@ export default function ModalOrder(props) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="orderInfo" style={{fontSize: "25px"}}>
+            <div className="orderInfo" style={{fontSize: "17px"}}>
               <div>
                 Order's ID:
                 <b>{props.idOrder}</b>

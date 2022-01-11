@@ -74,7 +74,7 @@ function Checkout() {
               ghi_chu: "None",
               tong_phu: total,
               tong_gia_giam_boi_voucher: (total * vouchers) / 100,
-              id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
+              id_phuong_thuc_thanh_toan: "61a2492120a54c9a7f3b028a",
               tong_tien: total - (total * vouchers) / 100,
               id_voucher: voucher,
               id_phuong: cusAccountInfo.id_phuong,
@@ -104,7 +104,7 @@ function Checkout() {
               ghi_chu: "None",
               tong_phu: total,
               tong_gia_giam_boi_voucher: (total * vouchers) / 100,
-              id_phuong_thuc_thanh_toan: "61aec7868d6b567f56418a40",
+              id_phuong_thuc_thanh_toan: "61a2492120a54c9a7f3b028a",
               tong_tien: total - (total * vouchers) / 100,
               id_voucher: voucher,
               id_phuong: customerInfo.id_phuong,
@@ -239,7 +239,7 @@ function Checkout() {
         });
       });
   };
-  if (customerInfo === null || customerInfo.id_phuong === null) {
+  if (customerInfo === null && customerInfo === null) {
     return <h2>Loading...</h2>;
   } else {
     return (
