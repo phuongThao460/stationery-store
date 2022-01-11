@@ -30,6 +30,8 @@
 }
 
 .Image{
+  min-width: 500px;
+  min-height: 460px;
   max-width: 561px;
   max-height: 500px;
 }
