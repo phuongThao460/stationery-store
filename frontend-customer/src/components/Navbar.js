@@ -43,12 +43,17 @@ const Navbar = ({ click }) => {
   const getVoucherCount = () => {
     var id_account = sessionStorage.getItem("id_account");
     if (id_account != null) {
-      axios.post(
-        "https://stationery-store-tmdt.herokuapp.com/tkkh/voucher_count",
-        {
-          id_tkkh: id_account,
-        }
-      );
+      axios
+        .post(
+          "https://stationery-store-tmdt.herokuapp.com/tkkh/voucher_count",
+          {
+            id_tkkh: id_account,
+          }
+        )
+        .then((res) => {
+          document.getElementsByClassName("text-num-voucher")[0].innerHTML =
+            res.data;
+        });
     } else {
       return 0;
     }
@@ -66,12 +71,17 @@ const Navbar = ({ click }) => {
   const getFeedBackCount = () => {
     var id_account = sessionStorage.getItem("id_account");
     if (id_account != null) {
-      axios.post(
-        "https://stationery-store-tmdt.herokuapp.com/tkkh/feedback_count",
-        {
-          id_tkkh: id_account,
-        }
-      );
+      axios
+        .post(
+          "https://stationery-store-tmdt.herokuapp.com/tkkh/feedback_count",
+          {
+            id_tkkh: id_account,
+          }
+        )
+        .then((res) => {
+          document.getElementsByClassName("text-num-feedback")[0].innerHTML =
+            res.data;
+        });
     } else {
       return 0;
     }
@@ -159,7 +169,9 @@ const Navbar = ({ click }) => {
           <button onClick={clickFeedBackIcon} className="button-feedback">
             <BsStar className="feedback-icon" />
             <div className="num-item">
-              <div className="text-num">{getFeedBackCount()}</div>
+              <div className="text-num text-num-feedback">
+                {getFeedBackCount()}
+              </div>
             </div>
           </button>
         </div>
@@ -168,7 +180,9 @@ const Navbar = ({ click }) => {
           <button onClick={clickVoucherIcon} className="button-voucher">
             <BsGift className="voucher-icon" />
             <div className="num-item">
-              <div className="text-num">{getVoucherCount()}</div>
+              <div className="text-num text-num-voucher">
+                {getVoucherCount()}
+              </div>
             </div>
           </button>
         </div>
