@@ -149,3 +149,28 @@ export const Get_List_FeedBack_From_TTKH = async (id_ttkh) => {
     throw err;
   }
 };
+
+export const Get_List_FeedBack_From_SanPham = async (id_san_pham) => {
+  /*
+  Get list feedback from id_san_pham
+
+  :return: Array
+  */
+
+  try {
+    const feedbacks = await DANH_GIA_Model.find({
+      id_san_pham: mongoose.Types.ObjectId(id_san_pham),
+      tinh_trang: true,
+    }).populate({
+      path: "id_tkkh",
+      select: "id_ttkh",
+      populate: {
+        path: "id_ttkh",
+        select: "ten_kh",
+      },
+    });
+    return feedbacks;
+  } catch (err) {
+    throw err;
+  }
+};

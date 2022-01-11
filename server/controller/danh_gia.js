@@ -4,6 +4,7 @@ import {
   Create,
   Update,
   Get_List_FeedBack_From_TTKH,
+  Get_List_FeedBack_From_SanPham,
 } from "../models/DANH_GIA_Model.js";
 import { Remove_SanPham_From_List_Feedback } from "../models/TKKH_Model.js";
 
@@ -95,6 +96,23 @@ export const Get_List_FeedBack_By_ID_TTKH = async (req, res) => {
   try {
     const id_ttkh = req.body.id_ttkh;
     const rs = await Get_List_FeedBack_From_TTKH(id_ttkh);
+    res.json(rs);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};
+
+export const Get_List_FeedBack_By_ID_SanPham = async (req, res) => {
+  /*
+  Required request value: id_san_pham
+
+  :return: array, null unless id_ttkh is invalid
+  */
+
+  try {
+    const id_san_pham = req.body.id_san_pham;
+    const rs = await Get_List_FeedBack_From_SanPham(id_san_pham);
     res.json(rs);
   } catch (err) {
     console.log(err);

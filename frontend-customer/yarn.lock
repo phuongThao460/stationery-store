@@ -9686,7 +9686,7 @@
   "resolved" "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   "version" "3.0.4"
 
-"react-notification-alert@^0.0.13":
+"react-notification-alert@0.0.13":
   "integrity" "sha512-JNFzfRE+RMIYpek272q4YlQBXWNd4ulMIxv/dDJjILLD2jHhWlLkM2a3Lgs8e/Q0+sYCRFxLHa+enlW4qTH0Dw=="
   "resolved" "https://registry.npmjs.org/react-notification-alert/-/react-notification-alert-0.0.13.tgz"
   "version" "0.0.13"
