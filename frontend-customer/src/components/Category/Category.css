@@ -18,7 +18,22 @@
   height: 350px;
   border-radius: 20px;
 }
-
+@media only screen and (max-width: 1920px){
+  .image {
+    display: block;
+    width: 340px;
+    height: 350px;
+    border-radius: 20px;
+  }
+}
+@media only screen and (max-width: 1366px){
+  .image {
+    display: block;
+    width: 306px;
+    height: 350px;
+    border-radius: 20px;
+  }
+}
 .overlay {
   position: absolute;
   bottom: 0;
