@@ -2,6 +2,7 @@
 import React, { Component, createRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 export default class CheckoutCustomer extends Component {
   constructor(props) {
@@ -177,17 +178,6 @@ export default class CheckoutCustomer extends Component {
                   </select>
                 </div>
               </div>
-              {/* <div className="Payment">
-                <h1 className="Title-Info">Select Payment Method</h1>
-                <div className="radio">
-                  <input type="radio" />{" "}
-                  <label className="opRadio">Paypal</label>
-                </div>
-                <div className="radio">
-                  <input type="radio" checked />{" "}
-                  <label className="opRadio">Payment on delivery</label>
-                </div>
-              </div> */}
             </div>
             <div className="right">
               
@@ -247,6 +237,7 @@ export default class CheckoutCustomer extends Component {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     );
   }

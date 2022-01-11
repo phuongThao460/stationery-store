@@ -3,6 +3,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ModalOrder from "../../../components/ModalOrder";
+import Footer from '../../../components/Footer'
+
 function OrderView() {
   const cusAccountInfo = JSON.parse(
     window.sessionStorage.getItem("customer-account")

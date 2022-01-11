@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import Footer from '../../../components/Footer'
 function EditAccount() {
   const cusAccountInfo = JSON.parse(
     window.sessionStorage.getItem("customer-account")
@@ -90,6 +90,7 @@ function EditAccount() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

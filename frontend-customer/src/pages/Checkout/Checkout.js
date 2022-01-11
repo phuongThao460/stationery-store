@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LayoutCheckout from "./Layout/LayoutCheckout";
 import { resetCart } from "../../redux/action/cartAction";
+import Footer from "../../components/Footer";
 
 function Checkout() {
   const cusAccountInfo = JSON.parse(
@@ -27,7 +28,7 @@ function Checkout() {
   let navigate = useNavigate();
   const [details, setDetails] = useState([]);
   const dispatch = useDispatch();
-  
+
   const getAddressCustomer = async () => {
     if (cusAccountInfo != null) {
       await axios
@@ -45,7 +46,9 @@ function Checkout() {
   };
   const getPercentVoucher = async () => {
     await axios
-      .post("https://stationery-store-tmdt.herokuapp.com/voucher/", { _id: voucher })
+      .post("https://stationery-store-tmdt.herokuapp.com/voucher/", {
+        _id: voucher,
+      })
       .then((res) => {
         setVouchers(res.data.phan_tram_giam);
       });
@@ -82,8 +85,7 @@ function Checkout() {
           setShipping(data.data.phi_ship);
           setOrderID(data.data._id);
           setNewOrder(data.data);
-          newOrder2 = data.data
-          
+          newOrder2 = data.data;
         } catch (error) {
           console.log(error);
         }
@@ -113,7 +115,7 @@ function Checkout() {
           setShipping(data.data.phi_ship);
           setOrderID(data.data._id);
           setNewOrder(data.data);
-          newOrder2 = data.data
+          newOrder2 = data.data;
         } catch (error) {
           console.log(error);
         }
@@ -140,12 +142,14 @@ function Checkout() {
   useEffect(() => {
     if (newOrder != null) {
       console.log(" order: " + newOrder.ngay_dat);
-      window.sessionStorage.setItem("total-1", (total + newOrder.phi_ship - newOrder.tong_gia_giam_boi_voucher))
+      window.sessionStorage.setItem(
+        "total-1",
+        total + newOrder.phi_ship - newOrder.tong_gia_giam_boi_voucher
+      );
     } else {
       console.log("not order");
     }
   }, [newOrder]);
-
 
   const addCartDetails = () => {
     axios
@@ -189,7 +193,7 @@ function Checkout() {
       });
   };
 
-  const handlePaypalCallback= () => {
+  const handlePaypalCallback = () => {
     const sendData = {
       ngay_dat: newOrder2.ngay_dat,
       ngay_giao: newOrder2.ngay_giao,
@@ -204,10 +208,13 @@ function Checkout() {
       id_voucher: newOrder2.id_voucher,
       id_phuong: newOrder2.id_phuong,
       dia_chi: newOrder2.dia_chi,
-    }
-    
+    };
+
     axios
-      .post("https://stationery-store-tmdt.herokuapp.com/don_hang/save", sendData)
+      .post(
+        "https://stationery-store-tmdt.herokuapp.com/don_hang/save",
+        sendData
+      )
       .then((res) => {
         console.log(res.data);
         carts.forEach((element) => {
@@ -232,21 +239,26 @@ function Checkout() {
         });
       });
   };
-  return (
-    <>
-      <LayoutCheckout
-        cusAccountInfo={cusAccountInfo}
-        customerInfo={customerInfo}
-        shipping={shipping}
-        address={address}
-        carts={carts}
-        vouchers={vouchers}
-        total={total}
-        addCartDetails={addCartDetails}
-        handlePaypalCallback={handlePaypalCallback}
-      />
-    </>
-  );
+  if (customerInfo === null) {
+    return <h2>Loading...</h2>;
+  } else {
+    return (
+      <>
+        <LayoutCheckout
+          cusAccountInfo={cusAccountInfo}
+          customerInfo={customerInfo}
+          shipping={shipping}
+          address={address}
+          carts={carts}
+          vouchers={vouchers}
+          total={total}
+          addCartDetails={addCartDetails}
+          handlePaypalCallback={handlePaypalCallback}
+        />
+        <Footer/>
+      </>
+    );
+  }
 }
 
 export default Checkout;

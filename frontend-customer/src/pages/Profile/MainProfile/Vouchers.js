@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+
 function Vouchers() {
   const [vouchers, setVouchers] = React.useState([]);
   const [modalShow, setModalShow] = useState(false);

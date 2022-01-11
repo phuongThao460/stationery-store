@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai"
+import Footer from '../components/Footer'
 function NotificateOrder() {
 
   return (
+    <>
     <div style={{ textAlign: "center", marginTop: "150px", fontSize: "20px" }}>
       <h1 style={{ marginBottom: "15px" }}>
         Thank you for your order
@@ -21,7 +23,10 @@ function NotificateOrder() {
       <div style={{marginTop: "30px"}}>
         <Link to="/" style={{color: "blue", textDecoration: "underline", fontSize: "15px"}}><AiOutlineArrowLeft style={{paddingRight: "10px", fontSize: "25px"}}/>Continue shopping</Link>
       </div>
+
     </div>
+    <Footer/>
+    </>
   );
 }
 
