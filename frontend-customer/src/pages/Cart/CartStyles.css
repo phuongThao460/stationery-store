@@ -26,9 +26,9 @@
 .TopButton {
   padding: 10px;
   font-weight: 600;
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
+  border: 2px solid black;
+  background-color: white;
+
 }
 
 .TopButton-checkout {

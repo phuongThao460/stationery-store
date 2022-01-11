@@ -110,7 +110,7 @@ const Product = ({ match, history }) => {
               <img
                 alt=""
                 className="Image"
-                src={process.env.PUBLIC_URL + "/so-tay-bia-da-cao-cap.jpg"}
+                src={product.hinh_anh}
               />
             </div>
             <div style={{ display: "inline-block" }}>

@@ -64,9 +64,11 @@ const Cart = () => {
         <h1 className="Title-cart">YOUR BAG</h1>
 
         <div className="Top">
-          <Link to="/" className="TopButton">
-            Continue shopping
-          </Link>
+          <button className="TopButton">
+            <Link to="/" style={{color:'black'}}>
+              Continue shopping
+            </Link>
+          </button>
           <div className="TopTexts">
             <span className="TopText">Shopping Bag(2)</span>
             <span className="TopText">Your Wishlist (0)</span>
