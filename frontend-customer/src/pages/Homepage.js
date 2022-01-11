@@ -7,7 +7,6 @@ import Carousel from "react-elastic-carousel";
 import SubNav from "../data/SubNavbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Footer from "../components/Footer";
 class Homepage extends React.Component {
   constructor() {
     super();

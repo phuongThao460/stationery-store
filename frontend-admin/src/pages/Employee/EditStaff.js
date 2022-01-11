@@ -41,12 +41,13 @@ function EditStaff(props) {
     setStatus(e.target.value);
   };
   useEffect(() => {
-    console.log(idStaff)
+    
     axios
       .post("https://stationery-store-tmdt.herokuapp.com/nhan_vien/", {
         _id: idStaff,
       })
       .then((res) => {
+        console.log(res.data.gioi_tinh);
         setNameStaf(res.data.ten_nv);
         setPass(res.data.password);
         setRole(res.data.role);

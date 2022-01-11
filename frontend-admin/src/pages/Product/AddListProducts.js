@@ -92,6 +92,7 @@ function AddListProducts() {
               <th scope="col">Color</th>
               <th scope="col">Material</th>
               <th scope="col">Classify</th>
+              <th scope="col">Images</th>
               <th scope="col">Description</th>
             </tr>
           </thead>
@@ -113,6 +114,7 @@ function AddListProducts() {
                 <td style={{ width: "120px" }}>{index.Color}</td>
                 <td>{index.Material.substr(27, 50)}</td>
                 <td>{index.Classify.substr(27, 50)}</td>
+                <td>{index.Images}</td>
                 <td>{index.Description}</td>
               </tr>
             ))}
