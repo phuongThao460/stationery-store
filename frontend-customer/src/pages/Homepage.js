@@ -212,7 +212,6 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <Footer/>
       </div>
     );
   }
