@@ -13,6 +13,7 @@ import Notify from "react-notification-alert";
 import "react-notification-alert/dist/animate.css";
 import axios from "axios";
 import Reviews from "../pages/Reviews/Reviews";
+import Footer from "./Footer";
 
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
@@ -362,6 +363,7 @@ const Product = ({ match, history }) => {
           </div>
         </>
       )}
+      <Footer/>
     </div>
   );
 };

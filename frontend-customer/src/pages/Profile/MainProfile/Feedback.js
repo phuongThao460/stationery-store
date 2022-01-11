@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import WriteFeedback from "./WriteFeedback";
+import Footer from '../../../components/Footer'
 
 function Feedback() {
   const [feedback, setFeedback] = useState([]);

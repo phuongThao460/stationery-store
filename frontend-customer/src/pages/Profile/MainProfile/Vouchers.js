@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Footer from '../../../components/Footer'
 function Vouchers() {
   const [vouchers, setVouchers] = React.useState([]);
   const [modalShow, setModalShow] = useState(false);
