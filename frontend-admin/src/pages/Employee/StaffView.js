@@ -40,6 +40,10 @@ function StaffView(props) {
               <td>Address</td>
               <td style={{paddingLeft: "10px"}}><b>{props.streetnumber}</b></td>
             </tr>
+            <tr>
+              <td>Status</td>
+              <td style={{paddingLeft: "10px"}}><b>{props.status}</b></td>
+            </tr>
           </table>
         </Modal.Body>
         <Modal.Footer>

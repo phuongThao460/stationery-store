@@ -47,7 +47,6 @@ function EditStaff(props) {
         _id: idStaff,
       })
       .then((res) => {
-        console.log(res.data.gioi_tinh);
         setNameStaf(res.data.ten_nv);
         setPass(res.data.password);
         setRole(res.data.role);
@@ -61,6 +60,7 @@ function EditStaff(props) {
   const editStaff = () => {
     axios
       .post("https://stationery-store-tmdt.herokuapp.com/nhan_vien/update", {
+        _id: idStaff,
         email: email,
         sdt: tele,
         dia_chi: address,

@@ -14,7 +14,7 @@ function EmployeeManagement() {
   const [sexual, setSexual] = useState("");
   const [streetNumber, setStreetNumber] = useState("");
   const [role, setRole] = useState("");
-  //const [array, setArray] = useState([])
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     const getAllStaff = async () => {
@@ -27,9 +27,7 @@ function EmployeeManagement() {
         console.log(error);
       }
     };
-
     getAllStaff();
-    console.log("just run once");
   }, []);
 
   return (
@@ -113,6 +111,7 @@ function EmployeeManagement() {
                         setSexual(item.gioi_tinh ? "Female" : "Male");
                         setStreetNumber(item.dia_chi);
                         setRole(item.role === 0 ? "Admin" : "Staff");
+                        setStatus(item.tinh_trang ? "Active" : "Off")
                       }}
                     >
                       View
@@ -137,6 +136,7 @@ function EmployeeManagement() {
           sexual={sexual}
           streetnumber={streetNumber}
           role={role}
+          status={status}
         />
       ) : null}
     </>
