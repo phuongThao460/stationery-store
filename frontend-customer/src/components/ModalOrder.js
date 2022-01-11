@@ -148,7 +148,7 @@ export default function ModalOrder(props) {
                     <b>Total</b>
                   </td>
                   <td style={{ textAlign: "end" }}>
-                    ${(props.total + props.ship).toFixed(2)}
+                    ${(props.total).toFixed(2)}
                   </td>
                 </tr>
               </tbody>

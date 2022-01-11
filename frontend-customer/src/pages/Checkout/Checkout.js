@@ -239,9 +239,7 @@ function Checkout() {
         });
       });
   };
-  if (customerInfo === null && customerInfo === null) {
-    return <h2>Loading...</h2>;
-  } else {
+  if (customerInfo != null || cusAccountInfo != null) {
     return (
       <>
         <LayoutCheckout
@@ -257,6 +255,8 @@ function Checkout() {
         />
       </>
     );
+  } else {
+    return <h2>Loading...</h2>;
   }
 }
 
