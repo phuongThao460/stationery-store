@@ -46,9 +46,7 @@ function Vouchers() {
             <th scope="col" style={{ textAlign: "center" }}>
               Percent
             </th>
-            <th scope="col" style={{ textAlign: "center" }}>
-              Action
-            </th>
+            
           </tr>
         </thead>
         <tbody>
@@ -63,16 +61,7 @@ function Vouchers() {
               {new Date(item.ngay_ket_thuc_ap_dung).toLocaleDateString("en-CA")}
               </td>
               <td>{item.phan_tram_giam}</td>
-              <td>
-                <button
-                  className="btn-view"
-                  onClick={() => {
-                    setModalShow(true);
-                  }}
-                >
-                  View
-                </button>
-              </td>
+              
             </tr>
           ))}
         </tbody>

@@ -11,13 +11,6 @@
   border-radius: 20px;
   align-items: center;
 }
-
-.image {
-  display: block;
-  width: 340px;
-  height: 350px;
-  border-radius: 20px;
-}
 @media only screen and (max-width: 1920px){
   .image {
     display: block;
