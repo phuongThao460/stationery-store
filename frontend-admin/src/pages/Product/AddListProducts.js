@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import { useNavigate } from "react-router-dom";
+
 function AddListProducts() {
+  let navigate = useNavigate();
   const [item, setItem] = useState([]);
   const readExcel = (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -55,13 +58,19 @@ function AddListProducts() {
           console.log(res.data);
         });
     });
-    alert("Add data successful");
+    navigate("/dashboard");
   };
   return (
     <div className="save-list">
       <div className="hearder">
-      <a href="/excel/AddProduct.xlsx" download style={{marginRight: "20px"}}>Download the template</a>
-      <input type="file" onChange={handleChange} />
+        <a
+          href="/excel/AddProduct.xlsx"
+          download
+          style={{ marginRight: "20px" }}
+        >
+          Download the template
+        </a>
+        <input type="file" onChange={handleChange} />
         <div className="btn">
           <button
             onClick={() => addLstProduct()}
@@ -72,7 +81,6 @@ function AddListProducts() {
           </button>
         </div>
       </div>
-      
 
       <div className="table-index" style={{ marginTop: "20px" }}>
         <table
