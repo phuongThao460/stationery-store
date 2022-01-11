@@ -29,6 +29,8 @@ import Accessories from "./pages/Category/Accessories";
 import Souvenir from "./pages/Category/Souvenir";
 import About from "./pages/Category/About";
 
+import PaginationPage from "./components/PaginationPage"
+
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
   const [inactive, setInactive] = useState(false);
@@ -52,6 +54,7 @@ function App() {
           <Route path="/Accessories" element={<Accessories />} />
           <Route path="/Souvenir" element={<Souvenir />} />
           <Route path="/About" element={<About />} />
+          <Route path="/PaginationPage" element={<PaginationPage />} />
         </Routes>
       </BrowserRouter>
       <Footer/>

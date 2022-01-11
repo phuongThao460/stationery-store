@@ -7,7 +7,7 @@ const NavbarData = [
   {
     key: 2,
     title: "Office & School",
-    path: "/office-and-school",
+    path: "/PaginationPage",
   },
   {
     key: 3,
