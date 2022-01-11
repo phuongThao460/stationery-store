@@ -6,7 +6,7 @@ function NotificateOrder() {
 
   return (
     <>
-    <div style={{ textAlign: "center", marginTop: "150px", fontSize: "20px" }}>
+    <div style={{ textAlign: "center", marginTop: "150px", fontSize: "20px", height: "70vh" }}>
       <h1 style={{ marginBottom: "15px" }}>
         Thank you for your order
       </h1>

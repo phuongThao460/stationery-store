@@ -7,7 +7,7 @@ function LayoutCheckout(props) {
   let totalPrice = props.total + props.shipping;
   const total_1 = JSON.parse(window.sessionStorage.getItem("total-1"));
   return (
-    <div className="container-checkout">
+    <div className="container-checkout" style={{height: "170vh"}}>
       <div className="wrapper-checkout">
         <h1 className="Title-checkout">Checkout</h1>
         <div className="bottom-checkout">
@@ -85,7 +85,7 @@ function LayoutCheckout(props) {
                         <p className="body-title">Amount: {item.count}</p>
                       </div>
                       <b style={{ marginLeft: "25px" }}>
-                        {item.gia_ban_hien_tai}
+                        ${item.gia_ban_hien_tai}
                       </b>
                     </div>
                   ))}
