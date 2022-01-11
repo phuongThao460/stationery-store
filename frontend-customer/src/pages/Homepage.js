@@ -7,7 +7,7 @@ import Carousel from "react-elastic-carousel";
 import SubNav from "../data/SubNavbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 class Homepage extends React.Component {
   constructor() {
     super();
@@ -24,18 +24,20 @@ class Homepage extends React.Component {
     this.getListProduct();
   }
   getListProduct = () => {
-    axios.get("https://stationery-store-tmdt.herokuapp.com/san_pham/").then((res) => {
-      const array = [];
-      res.data.forEach((element) => {
-        array.push({
-          id: element._id,
-          name: element.ten_sp,
-          price: element.gia_ban_hien_tai,
+    axios
+      .get("https://stationery-store-tmdt.herokuapp.com/san_pham/")
+      .then((res) => {
+        const array = [];
+        res.data.forEach((element) => {
+          array.push({
+            id: element._id,
+            name: element.ten_sp,
+            price: element.gia_ban_hien_tai,
+          });
         });
+        this.state.lstProduct = array.reverse();
+        this.setState(this);
       });
-      this.state.lstProduct = array.reverse();
-      this.setState(this);
-    });
   };
   submit = (title) => {
     window.sessionStorage.setItem("itemTitle", title);
@@ -134,7 +136,10 @@ class Homepage extends React.Component {
                     >
                       <Link
                         to={"/item/" + item.title}
-                        style={{ color: "#D16325", fontSize: "15px !important" }}
+                        style={{
+                          color: "#D16325",
+                          fontSize: "15px !important",
+                        }}
                       >
                         See more
                       </Link>
@@ -162,7 +167,14 @@ class Homepage extends React.Component {
                     />
                   </Link>
                 </div>
-                <Link to={"/products/" + item.id} style={{textDecoration: "none", color: "black", fontWeight: "400"}}>
+                <Link
+                  to={"/products/" + item.id}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontWeight: "400",
+                  }}
+                >
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
                     <div className="body-price">$ {item.price}</div>
@@ -195,7 +207,14 @@ class Homepage extends React.Component {
                     />
                   </Link>
                 </div>
-                <Link to={"/products/" + item.id}  style={{textDecoration: "none", color: "black", fontWeight: "400"}}>
+                <Link
+                  to={"/products/" + item.id}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontWeight: "400",
+                  }}
+                >
                   <div className="card-body">
                     <div className="body-title">{item.name}</div>
                     <div className="body-price">$ {item.price}</div>
@@ -205,14 +224,17 @@ class Homepage extends React.Component {
             ))}
             <div className="card">
               <div className="card-body">
-                <div className="body-title" style={{fontSize: "30px !important"}}>
+                <div
+                  className="body-title"
+                  style={{ fontSize: "30px !important" }}
+                >
                   <a href="/#">See more</a>
                 </div>
               </div>
             </div>
           </Carousel>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
