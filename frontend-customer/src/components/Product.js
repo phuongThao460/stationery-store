@@ -16,6 +16,7 @@ import Reviews from "../pages/Reviews/Reviews";
 
 const Product = ({ match, history }) => {
   const [count, setQty] = useState(1);
+  const [feedback, setFeedback] = useState([]);
   let err_notify = useRef();
   var options = {};
   options = {
@@ -56,7 +57,12 @@ const Product = ({ match, history }) => {
     autoDismiss: 3,
     closeButton: false,
   };
-
+  useEffect(() => {
+    axios.post(
+      "https://stationery-store-tmdt.herokuapp.com/danh_gia/feedbacks_from_sp",
+      { id_san_pham: window.location.pathname.substring(10) }
+    ).then((res) => {setFeedback(res.data)});
+  }, []);
   useEffect(() => {
     dispatch(getProductDetails(window.location.pathname.substring(10)));
   }, []);
@@ -352,8 +358,7 @@ const Product = ({ match, history }) => {
           <div className="custom-feedback">
             <h3 className="review-card">TOP REVIEWS</h3>
             <hr style={{ margin: "0px 50px" }} />
-            <Reviews />
-            <Reviews />
+            {feedback !== [] ? <Reviews feedback={feedback}/> : <div>"Not any feedback"</div>}
           </div>
         </>
       )}

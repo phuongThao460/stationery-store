@@ -7,7 +7,7 @@ import Carousel from "react-elastic-carousel";
 import SubNav from "../data/SubNavbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import Footer from '../components/Footer'
 class Homepage extends React.Component {
   constructor() {
     super();
@@ -212,10 +212,7 @@ class Homepage extends React.Component {
             </div>
           </Carousel>
         </div>
-        <div
-          className="footer"
-          style={{ height: "50vh", backgroundColor: "antiquewhite" }}
-        ></div>
+        <Footer/>
       </div>
     );
   }

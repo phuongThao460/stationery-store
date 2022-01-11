@@ -21,3 +21,33 @@
   span:nth-child(2) {
   display: inline-block;
 }
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: antiquewhite;
+  color: rgb(209, 99, 37);
+}
+.about,
+.help,
+.social-media {
+  margin-top: 63px;
+  margin-bottom: 76px;
+}
+.about p,
+.help p {
+  margin-bottom: 10px;
+}
+.icon-social {
+  display: flex;
+  justify-content: space-between;
+  width: 285px;
+}
+.icon-social p {
+  font-size: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px solid;
+  position: relative;
+  width: 50px;
+  background-color: rgb(209, 99, 37);
+}
