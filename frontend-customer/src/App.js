@@ -22,6 +22,7 @@ import Favorites from "./pages/Profile/MainProfile/Favorites";
 import Vouchers from "./pages/Profile/MainProfile/Vouchers";
 import Profile from "./pages/Profile/Profile";
 import Category from "./pages/Category/Category";
+import Footer from "./components/Footer";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
@@ -44,6 +45,7 @@ function App() {
           <Route path="profile/*" element={<Profile />} />
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </>
   );
 }

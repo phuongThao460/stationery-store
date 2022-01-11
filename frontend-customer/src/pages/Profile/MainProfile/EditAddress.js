@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from '../../../components/Footer'
+
 function EditAddress() {
   const styles = {
     marginBottom: "20px",
