@@ -52,6 +52,7 @@ function AddListProducts() {
             mo_ta: element.Description,
             ti_le_danh_gia: "0",
             id_phan_loai: element.Classify.substr(0, 24),
+            hinh_anh: element.Images,
           }
         )
         .then((res) => {
